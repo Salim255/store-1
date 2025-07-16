@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-error-page',
@@ -8,5 +9,7 @@ import { Component } from "@angular/core";
 })
 
 export class ErrorPageComponent {
-  // Error handling logic can be added here
+  constructor(private router: Router){
+
+  }
 }

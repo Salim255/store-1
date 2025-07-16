@@ -1,12 +1,14 @@
-<nav>
-  <a routerLink="/">Housori</a>
-  <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/about">About</a></li>
-    <li><a routerLink="/products">Products</a></li>
-    <li><a routerLink="/cart">Cart</a></li>
-  </ul>
-</nav>
+<main>
+  <nav class="app-navbar">
+    <a routerLink="/">Housori</a>
+    <ul class="app-navbar__links">
+      <li class="app-navbar__links--item"><a class="" routerLink="/">Home</a></li>
+      <li class="app-navbar__links--item"><a routerLink="/about">About</a></li>
+      <li class="app-navbar__links--item"><a routerLink="/products">Products</a></li>
+      <li class="app-navbar__links--item"><a routerLink="/cart">Cart</a></li>
+    </ul>
+  </nav>
+</main>
 
 <router-outlet></router-outlet>
 

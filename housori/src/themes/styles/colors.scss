@@ -1,0 +1,11 @@
+:root {
+  --color-primary: #0B0B0B; /* Almost black  for your most important elements: headers, primary buttons, nav links */
+  --color-secondary:  #F2F2F2; /* Off-white  for backgrounds, card backgrounds, borders, and less important UI areas.*/
+  --color-tertiary: #E63946; /* Strong red accent for hover states, secondary buttons, subtle dividers, or inactive items. */
+
+
+  --text-main: #0B0B0B; /* Very dark (primary color) for readability on white/light backgrounds */
+  --text-secondary: #4A4A4A; /* Dark gray, less intense than main, for subtitles or secondary info */
+  --text-muted: #A6A6A6; /* Medium gray for placeholders or less important text */
+  --text-on-dark: #F9FAFB; /*Very light off-white for text over dark backgrounds */
+}
