@@ -1,0 +1,29 @@
+/* src/styles/typography.css */
+
+/* 1. Font Family */
+:root {
+  --font-base: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+
+  /* 2. Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* 3. Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* 4. Font Colors (light mode by default) */
+  --text-color-base: #1e1e1e;
+  --text-color-muted: #555;
+  --text-color-heading: #111;
+}

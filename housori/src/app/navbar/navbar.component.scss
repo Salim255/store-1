@@ -1,0 +1,27 @@
+main {
+  position: fixed;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .app-navbar {
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    &__links{
+      display: flex;
+      justify-content: space-between;
+      &--item {
+        width: 100%;
+        flex: 1;
+        list-style: none;
+      }
+      &--item:not(:first-child) a {
+        margin-left: 6rem;
+      }
+    }
+  }
+}
