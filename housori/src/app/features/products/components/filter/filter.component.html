@@ -1,0 +1,48 @@
+<div class="filter">
+    <div class="filter__search">
+      <div class="filter__search--input">
+        <p>search products</p>
+        <input type="text" placeholder="Search..">
+      </div>
+      <div>
+        select price
+      </div>
+    </div>
+    <div class="filter__category">
+       <div class="filter__category--options">
+          <p> select category</p>
+          <select [(ngModel)]="selectedProduct" >
+            <option *ngFor="let product of products" [value]="product">
+              {{ product }}
+            </option>
+          </select>
+       </div>
+      <div>
+        free shipping
+      </div>
+    </div>
+    <div class="filter__company">
+      <div class="filter__company--options">
+        <p>select company</p>
+        <select [(ngModel)]="selectedProduct">
+          <option *ngFor="let product of products" [value]="product">
+            {{ product }}
+          </option>
+        </select>
+      </div>
+      <div class="filter__company--btn">
+        search btn
+      </div>
+    </div>
+    <div class="filter__sort">
+      <div class="filter__sort--options">
+        <p>sort by</p>
+        <select [(ngModel)]="selectedProduct">
+          <option *ngFor="let product of products" [value]="product">
+            {{ product }}
+          </option>
+        </select>
+      </div>
+      <div class="filter__sort--options--btn">reset</div>
+    </div>
+  </div>
