@@ -6,7 +6,7 @@ body {
   font-family: var(--font-base);
   font-size: var(--text-base);
   color: var(--text-color-base);
-  background-color: #fefefe;
+  background-color: var(--bg-main);
   line-height: 1.6;
   margin: 0;
 }
@@ -31,9 +31,9 @@ a {
 }
 a:link,:visited, :active{
   text-decoration: none;
-  color: white;
+  color: var(--text-main);
 }
 
 p {
-  margin: 0 0 1em;
+  margin: 0;
 }

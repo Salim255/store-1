@@ -1,16 +1,22 @@
-main {
-  position: fixed;
+header {
+  position: absolute;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
   z-index: 1000;
+  top: 0;
 
   .app-navbar {
-    background-color: var(--color-primary);
+    background-color: var(--bg-main);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    &__logo{
+      padding: .2rem .4rem;
+      border-radius: .2rem;
+      font-weight: 600;
+    }
     &__links{
       display: flex;
       justify-content: space-between;
@@ -18,10 +24,32 @@ main {
         width: 100%;
         flex: 1;
         list-style: none;
+
+        .nav-link {
+          &__inactive{
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 1rem;
+          }
+          &__active{
+            background-color: var(--bg-tertiary);
+          }
+        }
+
       }
       &--item:not(:first-child) a {
-        margin-left: 6rem;
+        margin-left: 3rem;
       }
+    }
+    &__cart {
+
     }
   }
 }
+
+main {
+  margin-top: 10rem;
+}
+
+
+
