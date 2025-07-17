@@ -21,12 +21,16 @@ const routes: Routes = [
         loadChildren: () => import('../features/about/about.module').then(m => m.AboutModule)
       },
       {
-        path: 'cart',
-        loadChildren: () => import('../features/cart/cart.module').then(m => m.CartModule)
-      },
-      {
         path: 'products',
         loadChildren: () => import('../features/products/products.module').then(m => m.ProductsModule)
+      },
+       {
+        path: 'orders',
+        loadChildren: () => import('../features/orders/orders.module').then(m => m.OrdersModule)
+      },
+       {
+        path: 'cart',
+        loadChildren: () => import('../features/cart/cart.module').then(m => m.CartModule)
       },
       {
         path:'**',
