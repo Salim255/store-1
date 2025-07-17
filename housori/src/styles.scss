@@ -37,3 +37,14 @@ a:link,:visited, :active{
 p {
   margin: 0;
 }
+
+select {
+  border: none;;
+  outline: none;
+}
+input {
+  border: none;
+  outline: none;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
