@@ -10,28 +10,41 @@
   gap: 2rem;
   &__search{
     flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
     &--input {
       input {
         width: 100%;
+        padding: .5rem;
+        border-radius: 1rem;
       }
     }
   }
   &__category{
     flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
     &--options{
-      display: flex;
-      gap: .5rem;
-      flex-direction: column;
-      width: 100%;
+      select{
+        padding: .5rem;
+        border-radius: 1rem;
+        width: 100%;
+      }
     }
   }
   &__company{
     flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
     &--options{
-      display: flex;
-      gap: .5rem;
-      flex-direction: column;
-      width: 100%;
+      select{
+        padding: .5rem;
+        border-radius: 1rem;
+        width: 100%;
+      }
     }
     &--btn {
 
@@ -40,11 +53,15 @@
 
   &__sort{
     flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
     &--options{
-      display: flex;
-      gap: .5rem;
-      flex-direction: column;
-      width: 100%;
+      select{
+        padding: .5rem;
+        border-radius: 1rem;
+        width: 100%;
+      }
     }
     &--btn{
 
