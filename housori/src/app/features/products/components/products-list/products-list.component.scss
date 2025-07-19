@@ -11,6 +11,9 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    ion-icon {
+
+    }
   }
   &__items {
     display: flex;
@@ -37,5 +40,8 @@
         }
       }
     }
+  }
+  &__pagination{
+    text-align: right;
   }
 }
