@@ -46,5 +46,29 @@ input {
   border: none;
   outline: none;
 }
+ion-item {
+  --background: transparent;
+/*   --ion-item-background: transparent;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --padding-end: 0;
+  --padding-start: 0; */
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Filter popover */
+.custom-popover {
+  ion-list {
+    --background: transparent;
+    padding: 0;
+  }
+ ion-item.item-radio-checked {
+    --background: rgba(255, 0, 0, 0.1);
+    --color: red;
+    font-weight: 600;
+  }
+}
+

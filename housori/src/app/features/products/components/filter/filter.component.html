@@ -1,49 +1,76 @@
-<div class="filter">
-    <div class="filter__search">
-      <div class="filter__search--input">
-        <p>search products</p>
-        <input type="text" placeholder="Search..">
-      </div>
-      <div>
-        select price
-    <!--    <ion-range></ion-range> -->
-      </div>
+<section class="filter">
+  <!--Filter search section -->
+  <div class="filter__search">
+    <div class="filter__search--input">
+      <p>search products</p>
+      <ion-item>
+        <ion-input placeholder="Search product"></ion-input>
+      </ion-item>
     </div>
-    <div class="filter__category">
-       <div class="filter__category--options">
-          <p> select category</p>
-          <select [(ngModel)]="selectedProduct" >
-            <option *ngFor="let product of products" [value]="product">
-              {{ product }}
-            </option>
-          </select>
-       </div>
-      <div>
-        free shipping
+    <div class="filter__search--range">
+      <div class="selected-price">
+        <div class="selected-price__title">select price </div>
+        <div class="selected-price__current-price">$10000</div>
       </div>
-    </div>
-    <div class="filter__company">
-      <div class="filter__company--options">
-        <p>select company</p>
-        <select [(ngModel)]="selectedProduct">
-          <option *ngFor="let product of products" [value]="product">
-            {{ product }}
-          </option>
-        </select>
-      </div>
-      <div class="filter__company--btn">
-        search btn
-      </div>
-    </div>
-    <div class="filter__sort">
-      <div class="filter__sort--options">
-        <p>sort by</p>
-        <select [(ngModel)]="selectedProduct">
-          <option *ngFor="let product of products" [value]="product">
-            {{ product }}
-          </option>
-        </select>
-      </div>
-      <div class="filter__sort--options--btn">reset</div>
+      <ion-range></ion-range>
     </div>
   </div>
+  <!-- Filter category section -->
+  <div class="filter__category">
+    <div class="filter__category--options">
+      <p> select category</p>
+      <ion-item lines="none">
+        <ion-select
+          (ionChange)="onCategoryChange($event)" [selectedText]="categoryValue()"
+          label-placement="floating"
+          [interfaceOptions]="customPopoverOptions" interface="popover">
+          <ion-select-option
+            *ngFor="let item of categoryOptions; let index" [value]="item">
+            {{ item }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="filter__category--toggle">
+      <ion-toggle labelPlacement="stacked">Free shipping</ion-toggle>
+    </div>
+  </div>
+  <!-- Filter company section -->
+  <div class="filter__company">
+    <div class="filter__company--options">
+      <p>select company</p>
+      <ion-item>
+        <ion-select
+        (ionChange)="onCompanyChange($event)" [selectedText]="companyValue()"
+        label-placement="floating"   [interfaceOptions]="customPopoverOptions" interface="popover">
+          <ion-select-option
+            *ngFor="let item of categoryOptions; let index" [value]="item">
+            {{ item }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="filter__company--btn">
+      <ion-button> search btn</ion-button>
+    </div>
+  </div>
+  <!-- Filter sort section -->
+  <div class="filter__sort">
+    <div class="filter__sort--options">
+      <p>sort by</p>
+        <ion-item>
+          <ion-select
+          (ionChange)="onSortChange($event)" [selectedText]="sortValue()"
+            label-placement="floating" [interfaceOptions]="customPopoverOptions" interface="popover">
+            <ion-select-option
+              *ngFor="let item of sortOptions; let index" [value]="item">
+              {{ item }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+    </div>
+    <div class="filter__sort--btn">
+      <ion-button>reset</ion-button>
+    </div>
+  </div>
+</section>

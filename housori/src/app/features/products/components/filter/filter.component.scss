@@ -20,6 +20,35 @@
         border-radius: 1rem;
       }
     }
+
+    &--range {
+      .selected-price{
+        display: flex;
+        justify-content: space-between;
+        &__title {}
+        &__current-price{
+
+        }
+      }
+      ion-range{
+        position: relative;
+        &::before, &::after {
+          position: absolute;
+          bottom: -1rem;
+          white-space: nowrap;
+        }
+        &::before{
+          content: "0";
+          left: 0;
+          text-align: right;
+        }
+        &::after {
+          content: "Max: 100000$";
+          right: 0;
+          text-align: right;
+        }
+      }
+    }
   }
   &__category{
     flex: 1;
@@ -27,11 +56,23 @@
     gap: 3rem;
     flex-direction: column;
     &--options{
-      select{
-        padding: .5rem;
+      ion-select{
+        padding: 0 .8rem;
         border-radius: 1rem;
         width: 100%;
       }
+      ion-item {
+        border-radius: 1rem;
+      }
+    }
+    &--toggle {
+      ion-toggle {
+        --track-background: #ddd;
+        --track-background-checked: #ddd;
+        --handle-background: var(--color-secondary);
+        --handle-background-checked: var(--color-tertiary);
+      }
+
     }
   }
   &__company{
@@ -47,7 +88,10 @@
       }
     }
     &--btn {
-
+      ion-button {
+        width: 100%;
+        border: none;
+      }
     }
   }
 
@@ -64,7 +108,11 @@
       }
     }
     &--btn{
-
+      ion-button {
+        width: 100%;
+        border: none;
+      }
     }
   }
 }
+
