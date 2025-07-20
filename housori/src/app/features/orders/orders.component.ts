@@ -8,5 +8,7 @@ import { Component } from "@angular/core";
 })
 
 export class OrdersComponent {
-  // Component logic goes here
+  ordersList = ['1', '2', '3', '4', '5'];
+  headerItems = ['image', 'name', 'quantity', 'price', 'date']
+  constructor(){}
 }
