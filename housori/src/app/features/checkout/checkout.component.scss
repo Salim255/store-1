@@ -1,0 +1,39 @@
+.checkout{
+  background-color: var(--bg-secondary);
+  height: 100vh;
+  width: 80%;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 4rem;
+  &__shipping-info {
+    display: flex;
+    gap: 2rem;
+    &>section {
+      flex: 1;
+    }
+    &--address{
+      .checkout-btn{
+        ion-button {
+          width: 100%;
+          cursor: pointer
+        }
+      }
+    }
+    &--total {
+      ion-item {
+        p{
+          text-transform: capitalize;
+        }
+        p:first-child{
+          margin-right: auto;
+        }
+      }
+      ion-item:last-child {
+        border: none;
+      }
+    }
+  }
+}
