@@ -1,3 +1,3 @@
-# Welcome to my diary dev
+# Welcome to my dev diary
 
 ## Create.

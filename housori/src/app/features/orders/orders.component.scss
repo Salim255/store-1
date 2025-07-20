@@ -1,0 +1,12 @@
+.orders {
+  background-color: var(--bg-secondary);
+  height: 80vh;
+  width: 80%;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 4rem;
+}

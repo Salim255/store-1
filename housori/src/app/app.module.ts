@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     RouterOutlet,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
