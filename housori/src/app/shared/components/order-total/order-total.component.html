@@ -1,0 +1,8 @@
+<div class="order-total">
+  <ion-item
+    [lines]="item.name === 'order total' ? 'none' : ''"
+    *ngFor="let item of totalDetails; let index = index">
+      <p>{{ item.name }}</p>
+      <p>{{ item.value | currency }}</p>
+  </ion-item>
+</div>
