@@ -8,10 +8,10 @@ const routes: Routes =[
     component: ProductsComponent, // Assuming ProductsComponent is defined elsewhere
 
   },
-     {
-        path: ':productId',
-        loadChildren:  () => import('../single-product/single-product.module').then( m => m.SingleProductModule)
-      }
+  {
+    path: ':productId',
+    loadChildren:  () => import('../single-product/single-product.module').then( m => m.SingleProductModule)
+  }
 ]
 @NgModule({
   imports: [RouterModule.forChild(routes)],
