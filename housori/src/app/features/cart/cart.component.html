@@ -1,1 +1,13 @@
-<h1>Hello from cart</h1>
+<main class="cart">
+  <section>Shipping cart</section>
+  <section class="cart__content">
+    <div class="cart__content--items">
+      <ion-item *ngFor="let item of  totalDetails">
+         <app-cart-item ></app-cart-item>
+      </ion-item>
+    </div>
+    <div class="cart__content--order-total">
+      <app-order-total [totalDetails]="totalDetails"></app-order-total>
+    </div>
+  </section>
+</main>

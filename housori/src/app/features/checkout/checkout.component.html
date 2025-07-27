@@ -18,12 +18,7 @@
       </ion-item>
     </section>
     <section class="checkout__shipping-info--total">
-      <ion-item
-        [lines]="item.name === 'order total' ? 'none' : ''"
-        *ngFor="let item of totalDetails; let index = index">
-          <p>{{ item.name }}</p>
-          <p>{{ item.value }}</p>
-      </ion-item>
+    <app-order-total [totalDetails]="totalDetails"></app-order-total>
     </section>
   </section>
 </main>

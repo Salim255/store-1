@@ -1,0 +1,29 @@
+.single-product {
+  background-color: var(--bg-secondary);
+  height: 100vh;
+  width: 80%;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin: auto;
+  display: flex;
+  padding: 4rem 4rem;
+  &__figure{
+    flex: 1;
+    img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+  }
+  &__description{
+    flex: 1;
+    &--title{}
+    &--content{}
+    &--colors{}
+    &--amount{}
+    &--btn{
+      ion-button {
+        border: none;
+      }
+    }
+  }
+}

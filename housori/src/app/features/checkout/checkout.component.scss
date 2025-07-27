@@ -22,18 +22,6 @@
         }
       }
     }
-    &--total {
-      ion-item {
-        p{
-          text-transform: capitalize;
-        }
-        p:first-child{
-          margin-right: auto;
-        }
-      }
-      ion-item:last-child {
-        border: none;
-      }
-    }
+    &--total {}
   }
 }
