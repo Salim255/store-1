@@ -172,3 +172,80 @@
 - Streams are everywhere in the core Node modules.
 
 # MongoDB
+
+- MongoDB is NoSQL database
+- MongoDB is document database(store data in document, field-value paired data structure like JSON), with the scalability and flexibility that needed with querying and indexing that you need.
+- The tables in MongoDB called collections
+- Every table or collection contain one or more data structure called document which are rows in SQL database
+- It store data in document instead of rows and tables like in traditional databases
+- MongoDB has built-in scalability, making it very easy to distribute data across multiple machines as your apps get more and more users.
+- MongoDB makes it very easy to grow
+- Its great flexibility, so no need to define a document data schema before filing it with data
+- A document can have a different number and type of fields, and we can change this fields at anytime
+- Its very performant database system
+- Its free and open source database
+- its the most used database with Nodejs
+- MongoDB use data format similar to JSON for data storage called BSON, its same as JSON but its typed
+- The maximum size for each document is currently 16MB
+
+## Mongoose ?
+
+- Mongoose is an object data modeling (ODM) library for MongoDB and Nodejs, a heigh level of abstraction
+- Data modeling library, its just a way of writing JavaScript code that interact with database
+- Allowing for faster and simple development of our applications
+
+### Mongoose features:
+
+- 1. Schema to model our data relationship
+  - Schema in mongoose is a schema where we model our data or where we describe the structure of the data default value and validation, then we take that schema and create model out of it.
+  - Model is a wrapper around the schema, allows us to interact with the database in order to create, delete, update, and read documents
+- 2. Easy data validation
+- 3. Simple query API
+- 4. Middleware...
+- Finally Mongoose is all about model, and a model is like a blueprint that we use to create document, its a bit like class in JavaScript
+- So we create model in mongoose in order to create document using it and to perform the CRUD operation on that document and in order to create a model we need a schema
+- We create models out of mongoose schema
+
+# How Requiring Modules works?
+
+- Each JavaScript file is treated as a separate module
+- Nodejs uses the CommonJS module system: require(), exports or module.exports
+- ES or ECMA script module system is used in browsers(frontend): import/export
+- There have been attempt to bring ES modules to node.js(.mjs)
+
+## require function architecture
+
+- What happens each time that we require a module by calling the require function with the module name?
+  - 1. Resolving & Loading: First the path to the required module is resolved and the file is loaded
+  - 2. Wrapping: wrapping the module in a function
+  - 3. Execution: the module code is executed
+  - 4. Returning Exports: the module exports are returned
+  - 5. Cashing:the entire module get cashed and in subsequent calls, the result is retrieved from the cache.
+
+### How does node knows which file to load when we require a module ?
+
+- Node can load three kinds of modules:
+  - 1. Node's core module
+  - 2. Developer module(our own module)
+  - 3. Thirst party module (npm module) like express
+- how Node resolving the filepath ?
+  - 1. It will first try to load core module with the given name
+  - 2. If the path start by ./ or ../ it will try developer module, but if there is no file with the given name, then it will look for a folder instead and load index.js if its in the folder
+  - 3. Finally which means that the required module neither a core module or developer module, Node will assume that it's a module from npm, so node will step into the module folder and try to find a module there and then load it, and if there is no file, an error will be thrown and the execution will stop
+
+### Wrapping ?
+
+- The module code is wrapped into a special function which will give us access to couple of special objects. then we get access require object, exports object, module reference to the current module, **filename and **direname variable are contain the absolute path to the current module's file and as well the current directory, they are like global variables inject in each module.
+- Each module has its private scope to avoid overridden local variables
+
+### Returning Exports ?
+
+- Require function return exports of the required module
+- module.exports is the returned object
+
+### When to use module.export and when export ?
+
+- To export one single variable or class or function:
+  - we use module.exports = x
+- If you are looking to export multiple named variables like multiple functions, for example:
+  - exports.add =(a, b) => a+b
