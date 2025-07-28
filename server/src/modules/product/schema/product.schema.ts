@@ -3,7 +3,7 @@ import { Document, Types } from 'mongoose';
 
 // Use @Schema to define this class as a Mongoose schema
 @Schema({ timestamps: true }) // Automatically adds createdAt & updatedAt fields
-class Product extends Document {
+export class Product extends Document {
   @Prop({ required: true, unique: true, trim: true })
   name: string;
 
@@ -102,4 +102,4 @@ class Product extends Document {
 }
 
 // Generate Mongoose schema from the class definition
-module.exports = SchemaFactory.createForClass(Product);
+export const ProductSchema = SchemaFactory.createForClass(Product);
