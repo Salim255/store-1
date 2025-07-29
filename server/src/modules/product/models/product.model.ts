@@ -12,12 +12,16 @@ export class ProductModel {
   ) {}
 
   async create(data: CreateProductDto): Promise<Product> {
-    this.logger.log(data);
     const createdProduct = new this.productModel(data).save();
     return createdProduct;
   }
 
-  async findAll() {}
+  async findAll(): Promise<Product[]> {
+    const products = await this.productModel.find().exec();
+    //.find() retrieves all documents in the collection.
+    //.exec() turns it into a real Promise (recommended for consistency).
+    return products;
+  }
 
   async findById() {}
 

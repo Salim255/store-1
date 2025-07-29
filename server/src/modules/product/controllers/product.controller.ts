@@ -1,7 +1,11 @@
 import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from '../schema/product.schema';
-import { CreateProductDto, CreateProductResponseDto } from '../dto/product.dto';
+import {
+  CreateProductDto,
+  CreateProductResponseDto,
+  GetALLProductsDto,
+} from '../dto/product.dto';
 import { ProductsService } from '../services/products.service';
 
 @ApiTags('Products')
@@ -37,7 +41,15 @@ export class ProductsController {
 
   // GET /products
   @Get()
-  async getAllProducts() {}
+  async getAllProducts(): Promise<GetALLProductsDto> {
+    const products: Product[] = await this.productsService.getAllProducts();
+    return {
+      status: 'Success',
+      data: {
+        products,
+      },
+    };
+  }
 
   // GET /products/:1
   @Get('/:productId')

@@ -10,6 +10,7 @@ export function setupSwagger(app: INestApplication): void {
 
   const document = SwaggerModule.createDocument(app, config);
   app.setGlobalPrefix((process.env.API_PREFIX ?? 'api') + '/v1'); // Set a global prefix for all routes
+
   // Setup Swagger UI at /api
   SwaggerModule.setup('api', app, document);
 }
