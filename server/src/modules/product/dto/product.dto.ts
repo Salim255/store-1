@@ -5,7 +5,6 @@ export const ProductExampleDto = {
   _id: '6888cdb8e8dcbe8b27576971',
   name: 'Wireless Mouse',
   description: 'A lightweight ergonomic wireless mouse',
-  price: 29.99,
   isActive: true,
   isDeleted: false,
   tags: [],
