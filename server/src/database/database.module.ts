@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         uri: config.get<string>('REMOTE_DATABASE_URL'),
+        dbName: 'store-1',
       }),
     }),
   ],
