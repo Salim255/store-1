@@ -10,6 +10,7 @@ async function bootstrap() {
   setupSwagger(app);
 
   app.useGlobalFilters(new AllExceptionsFilter()); // Register filter
+
   const PORT = process.env.PORT ?? 3000;
   await app.listen(PORT, () => {
     console.log('Http Server running ✅ on port number: ', PORT);
