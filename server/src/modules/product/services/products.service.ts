@@ -1,0 +1,15 @@
+import { Injectable, Logger } from '@nestjs/common';
+import { CreateProductDto } from '../dto/product.dto';
+import { ProductModel } from '../models/product.model';
+import { Product } from '../schema/product.schema';
+
+@Injectable()
+export class ProductsService {
+  logger = new Logger('Products Service ✅');
+  constructor(private readonly productModel: ProductModel) {}
+
+  async createProduct(data: CreateProductDto): Promise<Product> {
+    const createdProduct: Product = await this.productModel.create(data);
+    return createdProduct;
+  }
+}

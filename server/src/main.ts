@@ -8,6 +8,10 @@ async function bootstrap() {
   // <-- initialize Swagger
   setupSwagger(app);
 
-  await app.listen(process.env.PORT ?? 3000);
+  const PORT = process.env.PORT ?? 3000;
+  await app.listen(PORT, () => {
+    console.log('Http Server running ✅ on port number: ', PORT);
+  });
 }
-bootstrap();
+
+void bootstrap();
