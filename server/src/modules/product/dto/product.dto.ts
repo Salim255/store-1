@@ -1,6 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Product } from '../schema/product.schema';
 
+export class GetALLProductsDto {
+  @ApiProperty({
+    description: 'Get all products response status',
+    example: 'Success',
+  })
+  status: string;
+
+  @ApiProperty({ description: 'Get all products response body' })
+  data: {
+    products: Product[];
+  };
+}
 export const ProductExampleDto = {
   _id: '6888cdb8e8dcbe8b27576971',
   name: 'Wireless Mouse',

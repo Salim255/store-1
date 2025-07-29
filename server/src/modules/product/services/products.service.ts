@@ -12,4 +12,9 @@ export class ProductsService {
     const createdProduct: Product = await this.productModel.create(data);
     return createdProduct;
   }
+
+  async getAllProducts(): Promise<Product[]> {
+    const products: Product[] = await this.productModel.findAll();
+    return products;
+  }
 }
