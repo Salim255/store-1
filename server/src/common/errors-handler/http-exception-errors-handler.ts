@@ -24,7 +24,7 @@ class BaseHttpException {
 // - Mongoose validation errors
 // -Unknown/internal server errors
 @Catch()
-export class AllExceptionsFilter implements ExceptionFilter {
+export class HttpExceptionsErrorHandler implements ExceptionFilter {
   logger = new Logger('Error handler💥');
   // This catch() method gets triggered whenever an exception is thrown in the app
   catch(exception: unknown, host: ArgumentsHost) {
