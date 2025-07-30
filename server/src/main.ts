@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { setupSwagger } from './config/swagger.config';
 import { HttpExceptionsErrorHandler } from './common/errors-handler/http-exception-errors-handler';
 import { processErrorHandler } from './common/errors-handler/process-errors-handler';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   // A built-in NestJS class that creates the application instance
@@ -25,7 +26,8 @@ async function bootstrap() {
 
   // App listener
   await app.listen(PORT, () => {
-    console.log('Http Server running ✅ on port number: ', PORT);
+    const logger = new Logger('MAIN');
+    logger.log('Http Server running... ✅ on port number: ', PORT);
   });
 }
 
