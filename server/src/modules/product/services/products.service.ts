@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateProductDto } from '../dto/product.dto';
-import { ProductModel } from '../models/product.model';
+import { ProductModel } from '../model/product.model';
 import { Product } from '../schema/product.schema';
 
 @Injectable()
