@@ -1,13 +1,36 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { setupSwagger } from './config/swagger.config';
+import { HttpExceptionsErrorHandler } from './common/errors-handler/http-exception-errors-handler';
+import { processErrorHandler } from './common/errors-handler/process-errors-handler';
 
 async function bootstrap() {
+  // A built-in NestJS class that creates the application instance
+  // Initializes all modules and services.
+  // Sets up internal NestJS core (routing, dependency injection, etc.).
+  // Prepares the Express (or Fastify) HTTP server.
   const app = await NestFactory.create(AppModule);
 
-  // <-- initialize Swagger
+  // initialize Swagger
   setupSwagger(app);
 
-  await app.listen(process.env.PORT ?? 3000);
+  // Errors handlers
+  // Register http exception errors handler
+  app.useGlobalFilters(new HttpExceptionsErrorHandler());
+  //  Register process errors handler
+  processErrorHandler(app);
+
+  // Port number
+  const PORT = process.env.PORT ?? 3000;
+
+  // App listener
+  await app.listen(PORT, () => {
+    console.log('Http Server running ✅ on port number: ', PORT);
+  });
 }
-bootstrap();
+
+// This is the main function that starts the application
+bootstrap().catch((err) => {
+  console.error('❌ Error during application bootstrap:', err);
+  process.exit(1);
+});

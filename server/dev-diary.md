@@ -249,3 +249,59 @@
   - we use module.exports = x
 - If you are looking to export multiple named variables like multiple functions, for example:
   - exports.add =(a, b) => a+b
+
+# 🔓 Security Best Practices
+
+## Attack types
+
+- 1. Compromised Database:
+  - Means the attacker gained access to our database
+  - To prevent it?:
+    - 1. Strongly encrypt passwords with salt adn hash (bcrypt)
+    - 2. Strongly encrypt password reset token (SHA 256)
+- 2. Brute Force Attacks:
+  - Where the attacker tries to guess the password, by trying millions of random passwords
+  - To prevent it?:
+    - 1. Use bcrypt (to make the login request slow)
+    - 2. Implement rate limiting (express-rate-limit), to limits number of requests come from one single IP
+    - 3. Implement maximum login attempts, fro example after 10 failed attempts, user would have to wait for one hour before can try again
+
+- 3. Cross Site Scripting (XSS) Attacks
+  - Where the attacker tries to inject scripts into our pages to run his malicious code. On the Client side.
+  - Its dangerous because allows the attacker to read the local storage, which why we should never store JSON web token in local storage. Instead, it should be stored in HTTP-only cookie that makes it so that the browser can only receive and send the cookies but can't access, read or modify it in any way
+  - To prevent it ?:
+    - 1. Store JWT in HTTPOnly cookies
+    - 2. Sanitize user input data
+    - 3. Set special HTTP headers (helmet package)
+
+- 4. Denial Of Service (DOS) Attacks
+  - Its happens when the attacker sent many requests to the server to break it down and the application become unavailable
+  - To prevent it ?:
+    - Implementing rate limiting (express-rate-limit)
+    - Limit body payload (in body -parser)
+    - Avoid evil regular expression in pour code:
+      - Its just regular expression that takes an exponential time to run for no matching input, then they can be exploited to bring our application down
+- 5. NoSQL Query Injection Attack
+  - Its happen when the attacker injects some query in order to create query expressions that are gonna translate to true. For example to be logged in even without providing a valid username or password
+  - How to prevent ?
+    - 1. Use mongoose for MongoDB(because of Schema types):
+      - Because a good schema force each value to have a well defined data type
+    - 2. Sanitize user input data
+
+## 👉 Other Best practices
+
+- ✅ Always use HTTPS
+- ✅ Create random (not generate from date) password reset token with expire dates
+- ✅ Deny access to to JWT after password change (revoke the token as soon as the user change the password)
+- ✅ Don't commit sensitive config data to Git
+- ✅ Don't send errors details to clients
+- ✅ Prevent Cross-Site request Forgery(csur package):
+  - Which an attack that force the user to execute unwanted actions on a web application in which they are currently logged in
+- ✅ Require re-authentication before a heigh value action
+- ✅ Implement a blacklist of untrusted JWT:
+  - We create list of untrusted tokens based on there holder activities and then validate them with each request
+- ✅ Confirm user email address after first creating account
+- ✅ Keep user logged in with refresh tokens
+- ✅ Implement two-factor authentication
+- ✅ Prevent parameters pollution causing Uncaught Exception:
+  - FOR EXAMPLE if i try inserting two field parameters in to the query string that search for all products, there will be an error because our application is not prepared for that. And attacker can use these kinds of weaknesses to crash application

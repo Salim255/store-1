@@ -1,23 +1,28 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 // Use @Schema to define this class as a Mongoose schema
 @Schema({ timestamps: true }) // Automatically adds createdAt & updatedAt fields
 export class Product extends Document {
-  @Prop({ required: true, unique: true, trim: true })
+  @Prop({
+    type: String,
+    required: [true, 'A product must have a name'],
+    unique: true,
+    trim: true,
+  })
   name: string;
 
   // Slug used for URLs like /products/super-shoes
-  @Prop({ trim: true })
-  slug: string;
+  /*  @Prop({ trim: true })
+  slug: string; */
 
   // Detailed description of the product
   @Prop()
   description: string;
 
   // Array of image URLs
-  @Prop({ type: [String], default: [] })
-  images: string[];
+  /*  @Prop({ type: [String], default: [] })
+  images: string[]; */
 
   /**
    * Product variants
@@ -48,11 +53,11 @@ export class Product extends Document {
 
   // Base price of the product (before discount)
   @Prop({ required: true })
-  basePrice: number;
+  price: number;
 
   // Optional discount in percentage (e.g. 15%)
-  @Prop({ default: 0 })
-  discountPercent: number;
+  /*   @Prop({ default: 0 })
+  discountPercent: number; */
 
   // Is the product available in the store?
   @Prop({ default: true })
@@ -67,14 +72,14 @@ export class Product extends Document {
   tags: string[];
 
   // Reference to a Category collection (_id of category)
-  @Prop({ type: Types.ObjectId, ref: 'Category' })
-  category: Types.ObjectId;
+  /*  @Prop({ type: Types.ObjectId, ref: 'Category' })
+  category: Types.ObjectId; */
 
   /**
    * Embedded array of product reviews
    * Each review has: userId (who posted it), rating, comment, and timestamp
    */
-  @Prop({
+  /*   @Prop({
     type: [
       {
         userId: { type: Types.ObjectId, ref: 'User' },
@@ -91,7 +96,7 @@ export class Product extends Document {
     comment: string;
     createdAt: Date;
   }[];
-
+ */
   // Automatically calculated number of reviews
   @Prop({ default: 0 })
   totalReviews: number;
