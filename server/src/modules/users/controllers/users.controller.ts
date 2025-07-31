@@ -22,7 +22,7 @@ export class UsersController {
     status: 400,
     description: 'Bad request validation failed',
   })
-  async createUser(
+  async signUp(
     @Body() createUserDto: CreateUserDto,
   ): Promise<CreatedUserResponseDto> {
     const createUser: User = await this.usersService.signup(createUserDto);

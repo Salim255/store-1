@@ -305,3 +305,13 @@
 - ✅ Implement two-factor authentication
 - ✅ Prevent parameters pollution causing Uncaught Exception:
   - FOR EXAMPLE if i try inserting two field parameters in to the query string that search for all products, there will be an error because our application is not prepared for that. And attacker can use these kinds of weaknesses to crash application
+
+# How Authentication Works?
+
+- There are many authentication methods,
+- JWT is modern and secure, JWT are stateless solution, so no needs to store session state on the server
+- Session is the most used alternative to JWT, its just to store user's login state on the server using session, but thats not follow the principle of APIs should be stateless
+
+## JWT
+
+- sign, verify, expireIn ...
