@@ -1,28 +1,34 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { createdUserResponseDto, createUserDto } from '../dto/users.dto';
+import { CreatedUserResponseDto, CreateUserDto } from '../dto/users.dto';
 import { UsersService } from '../services/users.service';
+import { User } from '../schema/user.schema';
 
 @ApiTags('Users')
-@Controller('Users')
+@Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
   @Post()
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({
-    type: createUserDto,
+    type: CreateUserDto,
   })
   @ApiResponse({
     status: 200,
-    description: '',
-    type: createdUserResponseDto,
+    description: 'Register a new user response',
+    type: CreatedUserResponseDto,
   })
   @ApiResponse({
     status: 400,
     description: 'Bad request validation failed',
   })
-  async createUser() {
-    const createUser = await this.usersService.signup();
-    return createUser;
+  async createUser(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<CreatedUserResponseDto> {
+    const createUser: User = await this.usersService.signup(createUserDto);
+    return {
+      status: 'Success',
+      data: { user: createUser },
+    };
   }
 }
