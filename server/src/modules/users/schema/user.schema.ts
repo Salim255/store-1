@@ -57,7 +57,7 @@ export class User extends Document {
 const userSchema = SchemaFactory.createForClass(User);
 
 // Here we define pre middleware hook on save, so to perform tasks before saving document
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next): Promise<void> {
   // We want only to encrypt the password field if the password been updated or created
   if (!this.isModified('password')) return next();
 
@@ -70,6 +70,16 @@ userSchema.pre('save', async function (next) {
 
   // Delete the password confirm
   this.passwordConfirm = undefined;
+
+  next();
 });
+
+// Instance methods, will be available on all documents on a certain collection
+userSchema.methods.correctPassword = async function (
+  comingPassword: string,
+  storedPassword: string,
+): Promise<boolean> {
+  return await bcrypt.compare(comingPassword, storedPassword);
+};
 
 export const UserSchema = userSchema;

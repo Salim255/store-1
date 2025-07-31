@@ -60,6 +60,11 @@ export class CreatedUserDto extends OmitType(CreateUserDto, [
 export class CreatedUserResponseDto {
   @ApiProperty({ description: 'Create user status', example: 'Success' })
   status: string;
+  @ApiProperty({
+    description: 'User login token',
+    example: 'user token',
+  })
+  token: string;
 
   @ApiProperty({
     description: 'Create user response',
@@ -71,3 +76,13 @@ export class CreatedUserResponseDto {
     user: CreatedUserDto;
   };
 }
+
+export class SigninUserDto {
+  @ApiProperty({ description: 'User email', example: 'test@gmail.com' })
+  email: string;
+
+  @ApiProperty({ description: 'User password', example: 'password' })
+  password: string;
+}
+
+export class SigninUserResponseDto extends CreatedUserResponseDto {}

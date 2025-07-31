@@ -19,6 +19,11 @@ export class UserModel {
 
   async findAll() {}
 
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.userModel.findOne({ email });
+    return user;
+  }
+
   async findById() {}
 
   async update() {}
