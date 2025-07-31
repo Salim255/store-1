@@ -8,6 +8,10 @@ import { CreateProductDto } from '../dto/product.dto';
 export class ProductModel {
   logger = new Logger('Product Model');
   constructor(
+    // @InjectModel(...)	NestJS decorator to inject a Mongoose model
+    // Product.name	Equivalent to 'Product', the name of the model (from the class name)
+    // Model<Product>	Mongoose model type for strong typing in TypeScript
+    // private readonly productModel	Class property to hold the injected model
     @InjectModel(Product.name) private readonly productModel: Model<Product>,
   ) {}
 

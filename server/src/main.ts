@@ -4,6 +4,7 @@ import { setupSwagger } from './config/swagger.config';
 import { HttpExceptionsErrorHandler } from './common/errors-handler/http-exception-errors-handler';
 import { processErrorHandler } from './common/errors-handler/process-errors-handler';
 import { Logger } from '@nestjs/common';
+import * as morgan from 'morgan';
 
 async function bootstrap() {
   // A built-in NestJS class that creates the application instance
@@ -20,6 +21,10 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionsErrorHandler());
   //  Register process errors handler
   processErrorHandler(app);
+
+  // Use the Morgan middleware for logging
+  app.use(morgan('dev'));
+  // Morgan is a middleware for logging HTTP requests in Node.js application
 
   // Port number
   const PORT = process.env.PORT ?? 3000;
