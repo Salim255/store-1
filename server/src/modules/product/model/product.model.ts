@@ -48,12 +48,26 @@ export class ProductModel {
 
     //  Filter first without await, so latter we can add sorting and pagination
     // {price: {$gte: 5}}
-    const query = this.productModel.find(queyObject);
+    let query = this.productModel.find(queyObject);
     //  const query =  this.productModel.find({ price: 15099 }).exec(); */ // Filtering using Object query//
     //  const { price, company, category, name } = req.query;
     //  const excludeFields = ['sort', 'page', 'limit', 'fields'];
     //  excludeFields.forEach((el) => delete queryObj[el]);
 
+    // Sorting by price
+    // api/v1/products?sort=-price
+    // api/v1/products?sort=price
+    // api/v1/products?sort=price,rating
+    if (filters.sort) {
+      //console.log(filters);
+      const sortString = filters.sort.split(',').join(' ');
+      query = query.sort(sortString);
+      console.log(sortString);
+      // sort(price) or sort(price rating)
+    } else {
+      // To get the last one been created
+      query = query.sort('createdAt');
+    }
     //  EXECUTE THE QUERY
     const products = await query; // Filtering using  Mongoose methods
     //  find() retrieves all documents in the collection.
