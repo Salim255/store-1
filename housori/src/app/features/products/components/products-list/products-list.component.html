@@ -1,6 +1,6 @@
 <div class="products-list">
     <div class="products-list__header">
-      <p><span>45</span> Products </p>
+      <p><span>{{products.length}}</span> Products </p>
       <div class="products-list__header--btns">
        <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
         <ion-button><ion-icon name="list-outline"></ion-icon></ion-button>
@@ -10,10 +10,10 @@
     <div class="products-list__items">
       <div class="products-list__items--item description" *ngFor="let item of products" (click)="onProduct()">
        <div class="description__details">
-          <img class="description__details--img" src="{{item.image}}" alt="Product">
+          <img class="description__details--img" [src]="item.images[0]" alt="Product">
           <div class="description__details--title">
             <h3>{{item.name}}</h3>
-            <p>{{item.description}}</p>
+            <p>{{item.company}}</p>
           </div>
        </div>
        <div  class="description__price">

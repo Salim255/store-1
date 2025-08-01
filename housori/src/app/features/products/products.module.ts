@@ -6,11 +6,12 @@ import { ProductsListComponent } from "./components/products-list/products-list.
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [ ProductsComponent, FilterComponent, ProductsListComponent],
-  imports: [ ProductsRoutingModule, CommonModule, FormsModule, IonicModule],
+  imports: [ ProductsRoutingModule, CommonModule, FormsModule,  ReactiveFormsModule , IonicModule],
 })
 
 export class ProductsModule{}

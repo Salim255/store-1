@@ -315,3 +315,9 @@
 ## JWT
 
 - sign, verify, expireIn ...
+
+# Filtering with query string
+
+- There are two ways
+  - 1. Filter object: find({price: 5})
+  - 2. Use special mongoose methods: find().where('price').equal(5)

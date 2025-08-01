@@ -20,6 +20,7 @@ export const ProductExampleDto = {
   isActive: true,
   isDeleted: false,
   tags: [],
+  images: [],
   totalReviews: 0,
   averageRating: 0,
   variants: [],
@@ -79,4 +80,10 @@ export class CreateProductResponseDto {
   data: {
     product: Product;
   };
+}
+
+export class ProductFilterDto {
+  price?: string | { $gte?: string; $gt?: string; $lte?: string; $lt?: string };
+  company?: string;
+  category?: string;
 }

@@ -1,18 +1,20 @@
-<section class="filter">
+<form [formGroup]="filterFormFields" class="filter">
   <!--Filter search section -->
   <div class="filter__search">
     <div class="filter__search--input">
       <p>search products</p>
       <ion-item>
-        <ion-input placeholder="Search product"></ion-input>
+        <ion-input
+          formControlName="search" placeholder="Search product" >
+        </ion-input>
       </ion-item>
     </div>
     <div class="filter__search--range">
       <div class="selected-price">
         <div class="selected-price__title">select price </div>
-        <div class="selected-price__current-price">$10000</div>
+        <div class="selected-price__current-price">${{ priceValue() }}</div>
       </div>
-      <ion-range></ion-range>
+      <ion-range formControlName="price"></ion-range>
     </div>
   </div>
   <!-- Filter category section -->
@@ -21,18 +23,19 @@
       <p> select category</p>
       <ion-item>
         <ion-select
-          (ionChange)="onCategoryChange($event)" [selectedText]="categoryValue()"
+          formControlName="category"
+          [selectedText]="categoryValue()"
           label-placement="floating"
           [interfaceOptions]="customPopoverOptions" interface="popover">
           <ion-select-option
-            *ngFor="let item of categoryOptions; let index" [value]="item">
+            *ngFor="let item of categoryOptions; let index" >
             {{ item }}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </div>
     <div class="filter__category--toggle">
-      <ion-toggle labelPlacement="stacked">Free shipping</ion-toggle>
+      <ion-toggle formControlName="shipping" labelPlacement="stacked">Free shipping</ion-toggle>
     </div>
   </div>
   <!-- Filter company section -->
@@ -41,17 +44,18 @@
       <p>select company</p>
       <ion-item>
         <ion-select
-        (ionChange)="onCompanyChange($event)" [selectedText]="companyValue()"
+        formControlName="company"
+        [selectedText]="companyValue()"
         label-placement="floating"   [interfaceOptions]="customPopoverOptions" interface="popover">
           <ion-select-option
-            *ngFor="let item of categoryOptions; let index" [value]="item">
+            *ngFor="let item of companyOptions; let index" >
             {{ item }}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </div>
     <div class="filter__company--btn">
-      <ion-button> search btn</ion-button>
+      <ion-button (click)="submitSearch()" > search btn</ion-button>
     </div>
   </div>
   <!-- Filter sort section -->
@@ -60,17 +64,18 @@
       <p>sort by</p>
         <ion-item>
           <ion-select
-          (ionChange)="onSortChange($event)" [selectedText]="sortValue()"
+            formControlName="sortBy"
+            [selectedText]="sortValue()"
             label-placement="floating" [interfaceOptions]="customPopoverOptions" interface="popover">
             <ion-select-option
-              *ngFor="let item of sortOptions; let index" [value]="item">
+              *ngFor="let item of sortOptions; let index" >
               {{ item }}
             </ion-select-option>
           </ion-select>
         </ion-item>
     </div>
     <div class="filter__sort--btn">
-      <ion-button>reset</ion-button>
+      <ion-button (click)="resetFilter()">reset</ion-button>
     </div>
   </div>
-</section>
+</form>

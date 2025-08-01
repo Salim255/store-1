@@ -22,7 +22,11 @@ export class User extends Document {
   })
   email: string;
 
-  @Prop({ required: [true, 'Please provide a password'], minlength: 8 })
+  @Prop({
+    required: [true, 'Please provide a password'],
+    minlength: 8,
+    select: false,
+  })
   password: string;
 
   @Prop({
