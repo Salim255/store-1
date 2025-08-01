@@ -85,4 +85,6 @@ export class SigninUserDto {
   password: string;
 }
 
-export class SigninUserResponseDto extends CreatedUserResponseDto {}
+export class SigninUserResponseDto extends OmitType(CreatedUserResponseDto, [
+  'data',
+]) {}

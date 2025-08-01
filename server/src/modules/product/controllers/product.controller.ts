@@ -1,12 +1,22 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from '../schema/product.schema';
 import {
   CreateProductDto,
   CreateProductResponseDto,
   GetALLProductsDto,
+  ProductFilterDto,
 } from '../dto/product.dto';
 import { ProductsService } from '../services/products.service';
+import { Request } from 'express';
 
 @ApiTags('Products')
 @Controller('products') // Base root : /products
@@ -41,8 +51,11 @@ export class ProductsController {
 
   // GET /products
   @Get()
-  async getAllProducts(): Promise<GetALLProductsDto> {
-    const products: Product[] = await this.productsService.getAllProducts();
+  async getAllProducts(
+    @Query() filters: ProductFilterDto,
+  ): Promise<GetALLProductsDto> {
+    const products: Product[] =
+      await this.productsService.getAllProducts(filters);
     return {
       status: 'Success',
       data: {

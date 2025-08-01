@@ -20,7 +20,7 @@ export class UserModel {
   async findAll() {}
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email }).select('+password');
     return user;
   }
 

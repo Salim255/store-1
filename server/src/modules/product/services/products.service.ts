@@ -1,7 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CreateProductDto } from '../dto/product.dto';
+import { CreateProductDto, ProductFilterDto } from '../dto/product.dto';
 import { ProductModel } from '../model/product.model';
 import { Product } from '../schema/product.schema';
+import { Request } from 'express';
 
 @Injectable()
 export class ProductsService {
@@ -13,8 +14,9 @@ export class ProductsService {
     return createdProduct;
   }
 
-  async getAllProducts(): Promise<Product[]> {
-    const products: Product[] = await this.productModel.findAll();
+  async getAllProducts(filters: ProductFilterDto): Promise<Product[]> {
+    //console.log(filters);
+    const products: Product[] = await this.productModel.findAll(filters);
     return products;
   }
 }

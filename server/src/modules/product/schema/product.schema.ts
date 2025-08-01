@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 // Use @Schema to define this class as a Mongoose schema
 @Schema({ timestamps: true }) // Automatically adds createdAt & updatedAt fields
@@ -12,52 +12,20 @@ export class Product extends Document {
   })
   name: string;
 
-  // Slug used for URLs like /products/super-shoes
-  /*  @Prop({ trim: true })
-  slug: string; */
+  @Prop({ type: String, required: true })
+  company: string;
 
   // Detailed description of the product
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
   // Array of image URLs
-  /*  @Prop({ type: [String], default: [] })
-  images: string[]; */
-
-  /**
-   * Product variants
-   * Example: same product in different sizes or colors
-   * Each variant has its own SKU, price, and quantity
-   */
-  @Prop({
-    type: [
-      {
-        size: String,
-        color: String,
-        sku: String,
-        price: Number,
-        quantity: Number,
-        isAvailable: Boolean,
-      },
-    ],
-    default: [],
-  })
-  variants: {
-    size?: string;
-    color?: string;
-    sku?: string;
-    price: number;
-    quantity: number;
-    isAvailable: boolean;
-  }[];
+  @Prop({ type: [String], required: true })
+  images: string[];
 
   // Base price of the product (before discount)
   @Prop({ required: true })
   price: number;
-
-  // Optional discount in percentage (e.g. 15%)
-  /*   @Prop({ default: 0 })
-  discountPercent: number; */
 
   // Is the product available in the store?
   @Prop({ default: true })
@@ -67,19 +35,23 @@ export class Product extends Document {
   @Prop({ default: false })
   isDeleted: boolean;
 
-  // Tags for search/filter (e.g. "men", "shoes", "summer")
-  @Prop({ type: [String], default: [] })
-  tags: string[];
+  @Prop()
+  category: string;
 
-  // Reference to a Category collection (_id of category)
-  /*  @Prop({ type: Types.ObjectId, ref: 'Category' })
-  category: Types.ObjectId; */
+  @Prop({ default: false })
+  featured: boolean;
+
+  @Prop({ default: false })
+  shipping: boolean;
+
+  @Prop({ type: [String], required: true })
+  colors: string[];
 
   /**
    * Embedded array of product reviews
    * Each review has: userId (who posted it), rating, comment, and timestamp
    */
-  /*   @Prop({
+  @Prop({
     type: [
       {
         userId: { type: Types.ObjectId, ref: 'User' },
@@ -96,7 +68,6 @@ export class Product extends Document {
     comment: string;
     createdAt: Date;
   }[];
- */
   // Automatically calculated number of reviews
   @Prop({ default: 0 })
   totalReviews: number;

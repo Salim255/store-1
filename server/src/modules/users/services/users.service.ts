@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { UserModel } from '../model/user.model';
 import {
   CreatedUserResponseDto,
@@ -46,22 +46,23 @@ export class UsersService {
   }
 
   async signIn(signinUserDto: SigninUserDto): Promise<SigninUserResponseDto> {
-    const { email, password } = signinUserDto;
+    const { email, password: comingPassword } = signinUserDto;
+    // Check if email and password exist
+    if (!email?.trim() || !comingPassword) {
+      throw new UnauthorizedException('Email and password are required');
+    }
     // Get user with the given email
     const findUser = await this.userModel.findByEmail(email);
-    if (!findUser) throw new Error();
 
     // Verify passwords
-    const storedPassword = findUser.password;
-    const comingPassword = password;
-    const correct: boolean = await bcrypt.compare(
-      comingPassword,
-      storedPassword,
-    );
-
-    if (!correct) {
-      throw new Error();
+    if (
+      !findUser ||
+      !(await bcrypt.compare(comingPassword, findUser.password))
+    ) {
+      // generic message—don't leak which part failed
+      throw new UnauthorizedException('Invalid email or password');
     }
+
     // Prepare user data to return as response
     const payload = { id: findUser._id };
 
@@ -70,9 +71,6 @@ export class UsersService {
     return {
       status: 'Success',
       token,
-      data: {
-        user: findUser,
-      },
     };
   }
 }

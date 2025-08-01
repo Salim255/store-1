@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { IonicModule } from '@ionic/angular';
     RouterOutlet,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CommonModule,
     IonicModule.forRoot()
   ],
