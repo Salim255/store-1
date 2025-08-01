@@ -86,4 +86,9 @@ export class ProductFilterDto {
   price?: string | { $gte?: string; $gt?: string; $lte?: string; $lt?: string };
   company?: string;
   category?: string;
+  sort?: 'price' | 'category' | 'company';
+}
+
+export class ProductSortDto {
+  sort: 'price' | 'category' | 'company';
 }
