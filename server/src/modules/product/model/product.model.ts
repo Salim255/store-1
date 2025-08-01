@@ -54,7 +54,7 @@ export class ProductModel {
     //  const excludeFields = ['sort', 'page', 'limit', 'fields'];
     //  excludeFields.forEach((el) => delete queryObj[el]);
 
-    // Sorting by price
+    // SORTING BY
     // api/v1/products?sort=-price
     // api/v1/products?sort=price
     // api/v1/products?sort=price,rating
@@ -68,6 +68,14 @@ export class ProductModel {
       // To get the last one been created
       query = query.sort('createdAt');
     }
+
+    // FIELD LIMITING
+    /*  if (filters.fields) {
+      const fieldsString = filters.fields.split(',').join(' ');
+      query = query.select(fieldsString);
+    } */
+    //query = query.select('-__v');
+
     //  EXECUTE THE QUERY
     const products = await query; // Filtering using  Mongoose methods
     //  find() retrieves all documents in the collection.
