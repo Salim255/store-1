@@ -22,38 +22,43 @@ export class ProductModel {
 
   async findAll(filters: ProductFilterDto): Promise<Product[]> {
     //  BUILD THE QUERY
-    const queyObject: ProductFilterDto = {};
+    const queryObject: ProductFilterDto = {};
     if (typeof filters.price === 'string') {
-      queyObject.price = filters.price;
+      queryObject.price = filters.price;
     } else if (typeof filters['price[gte]'] === 'string') {
-      queyObject.price = {};
-      queyObject.price.$gte = filters['price[gte]'];
+      queryObject.price = {};
+      queryObject.price.$gte = filters['price[gte]'];
       //console.log(queyObject);
     } else if (typeof filters['price[gt]'] === 'string') {
-      queyObject.price = {};
-      queyObject.price.$gt = filters['price[gt]'];
+      queryObject.price = {};
+      queryObject.price.$gt = filters['price[gt]'];
     } else if (typeof filters['price[lte]'] === 'string') {
-      queyObject.price = {};
-      queyObject.price.$lte = filters['price[lte]'];
+      queryObject.price = {};
+      queryObject.price.$lte = filters['price[lte]'];
     } else if (typeof filters['price[lt]'] === 'string') {
-      queyObject.price = {};
-      queyObject.price.$lt = filters['price[lt]'];
+      queryObject.price = {};
+      queryObject.price.$lt = filters['price[lt]'];
     }
     if (filters.category) {
-      queyObject.category = filters.category;
+      queryObject.category = filters.category;
     }
     if (filters.company) {
-      queyObject.company = filters.company;
+      queryObject.company = filters.company;
     }
 
     // FEATURED Products
     if (filters.featured) {
-      queyObject.featured = filters.featured;
+      queryObject.featured = filters.featured;
     }
 
+    // SEARCH PRODUCT
+    const searchQuery: { $text?: { $search: string } } = {};
+    if (filters.search && filters.search.trim() !== '') {
+      searchQuery.$text = { $search: filters.search.trim() };
+    }
     //  Filter first without await, so latter we can add sorting and pagination
     // {price: {$gte: 5}}
-    let query = this.productModel.find(queyObject);
+    let query = this.productModel.find({ ...searchQuery, ...queryObject });
     //  const query =  this.productModel.find({ price: 15099 }).exec(); */ // Filtering using Object query//
     //  const { price, company, category, name } = req.query;
     //  const excludeFields = ['sort', 'page', 'limit', 'fields'];

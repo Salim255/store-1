@@ -79,3 +79,25 @@ export class Product extends Document {
 
 // Generate Mongoose schema from the class definition
 export const ProductSchema = SchemaFactory.createForClass(Product);
+
+// Add a text index for full-text search with weights
+ProductSchema.index(
+  {
+    name: 'text',
+    description: 'text',
+    company: 'text',
+    category: 'text',
+    colors: 'text',
+  },
+  {
+    // That weights object in the MongoDB text index is telling Mongo how important each field is.
+    weights: {
+      name: 5, // most important
+      description: 2,
+      company: 3,
+      category: 2,
+      colors: 1, // least important
+    },
+    default_language: 'english',
+  },
+);

@@ -92,4 +92,5 @@ export class ProductFilterDto {
   limit?: any;
   name?: 'a-z' | 'z-a';
   featured?: string;
+  search?: string;
 }
