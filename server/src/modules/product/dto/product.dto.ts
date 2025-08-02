@@ -88,4 +88,6 @@ export class ProductFilterDto {
   category?: string;
   sort?: string;
   fields?: string;
+  page?: any;
+  limit?: any;
 }
