@@ -64,7 +64,7 @@ export class ProductModel {
       // sort(price) or sort(price rating)
     } else {
       // To get the last one been created
-      query = query.sort('createdAt');
+      //query = query.sort('createdAt');
     }
 
     // FIELD LIMITING
@@ -73,6 +73,11 @@ export class ProductModel {
       query = query.select(fieldsString);
     } */
     //query = query.select('-__v');
+
+    // SORTING Alphabetic a-z or z-a
+    if (filters.name) {
+      query = query.sort({ name: filters.name === 'a-z' ? 1 : -1 });
+    }
 
     // Pagination
     // {{URL}}api/v1/products?page=2&limit=4
