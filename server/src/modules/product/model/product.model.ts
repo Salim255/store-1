@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from '../schema/product.schema';
 import { Model } from 'mongoose';
@@ -59,10 +59,8 @@ export class ProductModel {
     // api/v1/products?sort=price
     // api/v1/products?sort=price,rating
     if (filters.sort) {
-      //console.log(filters);
       const sortString = filters.sort.split(',').join(' ');
       query = query.sort(sortString);
-      console.log(sortString);
       // sort(price) or sort(price rating)
     } else {
       // To get the last one been created
@@ -76,8 +74,27 @@ export class ProductModel {
     } */
     //query = query.select('-__v');
 
+    // Pagination
+    // {{URL}}api/v1/products?page=2&limit=4
+    // This means 4 result by page, and skip means skip the the first page, then give me pages from second page every page has 4 result
+    // 1- 4 for page1, and 4-8 are for page 2, and 8 -12 are for page 3
+    const page = filters.page * 1 || 1;
+    const limit = filters.limit * 1 || 4;
+
+    // So this number here is all the results come before the request that we are requesting now
+    const skip = (page - 1) * limit; // page -1 means the previous page
+    query = query.skip(skip).limit(limit);
+
+    // Avoid empty page
+    if (filters.page) {
+      const countProducts = await this.productModel.countDocuments();
+      if (skip >= countProducts) {
+        throw new NotFoundException('This page does not exist');
+      }
+    }
+
     //  EXECUTE THE QUERY
-    const products = await query; // Filtering using  Mongoose methods
+    const products = await query.exec(); // Filtering using  Mongoose methods
     //  find() retrieves all documents in the collection.
     //  exec() turns it into a real Promise (recommended for consistency).
 
