@@ -50,7 +50,7 @@ export class ProductsController {
   }
 
   // GET /products
-  @Get()
+  @Get(['', 'featured-products'])
   async getAllProducts(
     @Query() filters: ProductFilterDto,
   ): Promise<GetALLProductsDto> {
