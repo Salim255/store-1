@@ -91,4 +91,5 @@ export class ProductFilterDto {
   page?: any;
   limit?: any;
   name?: 'a-z' | 'z-a';
+  featured?: string;
 }

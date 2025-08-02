@@ -46,6 +46,11 @@ export class ProductModel {
       queyObject.company = filters.company;
     }
 
+    // FEATURED Products
+    if (filters.featured) {
+      queyObject.featured = filters.featured;
+    }
+
     //  Filter first without await, so latter we can add sorting and pagination
     // {price: {$gte: 5}}
     let query = this.productModel.find(queyObject);
