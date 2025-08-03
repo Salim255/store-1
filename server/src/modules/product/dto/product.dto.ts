@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Product } from '../schema/product.schema';
+import { ApiMetaData } from 'utils/api-features';
 
 export class GetALLProductsDto {
   @ApiProperty({
@@ -12,6 +13,12 @@ export class GetALLProductsDto {
   data: {
     products: Product[];
   };
+
+  @ApiProperty({
+    description:
+      'Metadata related to the API response, including pagination details and available filters such as categories and companies.',
+  })
+  meta: ApiMetaData;
 }
 export const ProductExampleDto = {
   _id: '6888cdb8e8dcbe8b27576971',

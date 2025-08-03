@@ -1,5 +1,17 @@
-import { Document, Query } from 'mongoose';
+import { Document, ObjectId, Query } from 'mongoose';
 import { ProductFilterDto } from '../src/modules/product/dto/product.dto';
+
+interface CategoryCompany {
+  _id: ObjectId;
+  company: string;
+  category: string;
+}
+
+export interface ApiMetaData {
+  pagination: { pageSize: number; pageCount: number; total: number };
+  categories: string[];
+  companies: string[];
+}
 
 export class APIFeatures<T extends Document> {
   query: Query<T[], T>;
@@ -93,5 +105,29 @@ export class APIFeatures<T extends Document> {
     const skip = (page - 1) * limit; // page -1 means the previous page
     this.query.skip(skip).limit(limit);
     return this;
+  }
+
+  async buildApiMeta(): Promise<ApiMetaData> {
+    const pageSize = this.queryString.limit * 1 || 4;
+    const total = await this.query.clone().countDocuments();
+    const pageCount = Math.ceil(total / pageSize);
+
+    // Get all categories and companies from the full database (not filtered)
+    const rawAllProducts = await this.query.model.find<CategoryCompany>(
+      {},
+      'category company',
+    ); //Use lean() for plain objects.
+
+    const categoriesSet = new Set(rawAllProducts.map((p) => p.category));
+    const companiesSet = new Set(rawAllProducts.map((p) => p.company));
+
+    const categories = ['all', ...Array.from(categoriesSet)];
+    const companies = ['all', ...Array.from(companiesSet)];
+
+    return {
+      pagination: { pageSize, pageCount, total },
+      categories,
+      companies,
+    };
   }
 }
