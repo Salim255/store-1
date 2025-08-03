@@ -3,6 +3,7 @@ import { ProductsService } from "./services/products.service";
 import { filter, Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { Product } from "./model/product.model";
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: 'app-products',
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.productsService.getAllProducts().subscribe();
+    const params = new HttpParams();
+    this.productsService.getAllProducts(params).subscribe();
     this.subscribeToProducts();
  /*  this.subscribeToProducts();
     this.router.events.pipe( filter(event => event instanceof NavigationEnd))

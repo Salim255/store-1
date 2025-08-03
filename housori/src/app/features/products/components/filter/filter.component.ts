@@ -1,6 +1,7 @@
+import { HttpParams } from "@angular/common/http";
 import { Component, signal } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { single } from "rxjs";
+import { ProductsService } from "../../services/products.service";
 
 export  type EditProfilePayload = {
   search: string;
@@ -35,15 +36,35 @@ export class FilterComponent {
   categoryOptions = ['Chairs', 'Tables', 'Beds', 'Sofas'];
   companyOptions = ['Savanna Craft', 'Elevara Home', 'IvoryNest', 'Tusker Living', 'Luxora'];
   sortOptions = ['a-z', 'z-a', 'high', 'low'];
-  constructor(private formBuilder: FormBuilder){}
+
+  constructor(
+    private productsService: ProductsService,
+    private formBuilder: FormBuilder,
+  ){}
 
   ngOnInit(): void {
     this.buildForm();
     this.listenToFormChange();
   }
 
-  submitSearch(){
-    console.log(this.filterFormFields)
+  submitSearch() {
+    let params = new HttpParams();
+
+    const price = this.filterFormFields.get('price')?.value;
+    const search = this.filterFormFields.get('search')?.value;
+    const company = this.filterFormFields.get('company')?.value
+    const category = this.filterFormFields.get('category')?.value;
+    const sort =  this.filterFormFields.get('sort')?.value;
+
+    if (price) params = params.set('price[lte]', price.toString());
+   if (search) params = params.set('search', search);
+    if (company) params = params.set('company', company);
+    if (category) params = params.set('category', category);
+    if (sort) params = params.set('name', sort);
+
+    //this.http.get(`${this.API_URL}/products`, { params }).subscribe();
+    console.log(params)
+    this.productsService.getAllProducts(params).subscribe();
   }
   resetFilter(){
     this.filterFormFields.reset();
@@ -56,9 +77,9 @@ export class FilterComponent {
   buildForm(): void{
     this.filterFormFields = this.formBuilder.group({
       search: [null],
-      category: ['all'],
-      company: ['all'],
-      sortBy: ['all'],
+      category: [null],
+      company: [null],
+      sortBy: [null],
       price: [null],
       shipping: [null],
     });
