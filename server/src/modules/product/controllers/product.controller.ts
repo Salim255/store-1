@@ -17,6 +17,7 @@ import {
 } from '../dto/product.dto';
 import { ProductsService } from '../services/products.service';
 import { Request } from 'express';
+import { ApiMetaData } from 'utils/api-features';
 
 @ApiTags('Products')
 @Controller('products') // Base root : /products
@@ -54,13 +55,14 @@ export class ProductsController {
   async getAllProducts(
     @Query() filters: ProductFilterDto,
   ): Promise<GetALLProductsDto> {
-    const products: Product[] =
+    const data: { products: Product[]; meta: ApiMetaData } =
       await this.productsService.getAllProducts(filters);
     return {
       status: 'Success',
       data: {
-        products,
+        products: data.products,
       },
+      meta: data.meta,
     };
   }
 
