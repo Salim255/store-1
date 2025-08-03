@@ -2,13 +2,12 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
-  NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from '../schema/product.schema';
 import { Model } from 'mongoose';
 import { CreateProductDto, ProductFilterDto } from '../dto/product.dto';
-import { APIFeatures } from '../middlewares/api-features.middleware';
+import { APIFeatures } from '../../../../utils/api-features';
 
 @Injectable()
 export class ProductModel {
@@ -29,76 +28,6 @@ export class ProductModel {
   async findAll(filters: ProductFilterDto): Promise<Product[]> {
     try {
       console.log(filters);
-      //  BUILD THE QUERY
-      //const queryObject: ProductFilterDto = {};
-  /*     if (typeof filters.price === 'string') {
-        queryObject.price = filters.price;
-      } else if (typeof filters['price[gte]'] === 'string') {
-        queryObject.price = {};
-        queryObject.price.$gte = filters['price[gte]'];
-  
-      } else if (typeof filters['price[gt]'] === 'string') {
-        queryObject.price = {};
-        queryObject.price.$gt = filters['price[gt]'];
-      } else if (typeof filters['price[lte]'] === 'string') {
-        queryObject.price = {};
-        queryObject.price.$lte = filters['price[lte]'];
-      } else if (typeof filters['price[lt]'] === 'string') {
-        queryObject.price = {};
-        queryObject.price.$lt = filters['price[lt]'];
-      }
-      if (filters.category) {
-        queryObject.category = filters.category.trim();
-        console.log(queryObject, 'Hello from category');
-      }
-      if (filters.company) {
-        queryObject.company = filters.company.trim();
-      } */
-
-      // FEATURED Products
-     /*  if (filters.featured) {
-        queryObject.featured = filters.featured;
-      }
- */
-      // SEARCH PRODUCT
-     /*  const searchQuery: { $text?: { $search: string } } = {};
-      if (filters.search && filters.search.trim() !== '') {
-        searchQuery.$text = { $search: filters.search.trim() };
-      } */
-      //  Filter first without await, so latter we can add sorting and pagination
-      // {price: {$gte: 5}}
-      //let query = this.productModel.find({ ...searchQuery, ...queryObject });
-      //  const query =  this.productModel.find({ price: 15099 }).exec(); */ // Filtering using Object query//
-      //  const { price, company, category, name } = req.query;
-      //  const excludeFields = ['sort', 'page', 'limit', 'fields'];
-      //  excludeFields.forEach((el) => delete queryObj[el]);
-
-      // SORTING BY
-      // api/v1/products?sort=-price
-      // api/v1/products?sort=price
-      // api/v1/products?sort=price,rating
-      if (filters.sort) {
-        /* const sortString = filters.sort.split(',').join(' ');
-        console.log(sortString, 'hello sorting');
-        query = query.sort(sortString); */
-        // sort(price) or sort(price rating)
-      } else {
-        // To get the last one been created
-        //query = query.sort('createdAt');
-      }
-
-      // FIELD LIMITING
-      /*  if (filters.fields) {
-        const fieldsString = filters.fields.split(',').join(' ');
-        query = query.select(fieldsString);
-      } */
-      //query = query.select('-__v');
-
-      // SORTING Alphabetic a-z or z-a
-      /* if (filters.name) {
-        query = query.sort({ name: filters.name.trim() === 'a-z' ? 1 : -1 });
-      } */
-
       // Pagination
       // {{URL}}api/v1/products?page=2&limit=4
       // This means 4 result by page, and skip means skip the the first page, then give me pages from second page every page has 4 result
@@ -119,10 +48,11 @@ export class ProductModel {
       } */
 
       //  EXECUTE THE QUERY
-      const features = new APIFeatures(
-        this.productModel.find(),
-        filters,
-      ).filter();
+      const features = new APIFeatures(this.productModel.find(), filters)
+        .filter()
+        .sort()
+        .featuredProduct()
+        .paginate();
 
       const products: Product[] = await features.query.exec();
       // const products = await query.exec(); // Filtering using  Mongoose methods
