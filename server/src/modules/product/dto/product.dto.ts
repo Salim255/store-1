@@ -90,7 +90,7 @@ export class ProductFilterDto {
   fields?: string;
   page?: any;
   limit?: any;
-  name?: 'a-z' | 'z-a';
+  alphaSort?: 'a-z' | 'z-a';
   featured?: string;
   search?: string;
 }
