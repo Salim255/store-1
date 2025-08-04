@@ -14,7 +14,7 @@
         <div class="selected-price__title">select price </div>
         <div class="selected-price__current-price">${{ priceValue() }}</div>
       </div>
-      <ion-range formControlName="price"></ion-range>
+      <ion-range formControlName="price" [min]="10" [max]="100000" [step]="100"></ion-range>
     </div>
   </div>
   <!-- Filter category section -->
@@ -28,7 +28,7 @@
           label-placement="floating"
           [interfaceOptions]="customPopoverOptions" interface="popover">
           <ion-select-option
-            *ngFor="let item of categoryOptions; let index" >
+            *ngFor="let item of metaData.categories; let index" >
             {{ item }}
           </ion-select-option>
         </ion-select>
@@ -48,7 +48,7 @@
         [selectedText]="companyValue()"
         label-placement="floating"   [interfaceOptions]="customPopoverOptions" interface="popover">
           <ion-select-option
-            *ngFor="let item of companyOptions; let index" >
+            *ngFor="let item of metaData.companies; let index" >
             {{ item }}
           </ion-select-option>
         </ion-select>
@@ -64,7 +64,7 @@
       <p>sort by</p>
         <ion-item>
           <ion-select
-            formControlName="sortBy"
+            formControlName="alphaSort"
             [selectedText]="sortValue()"
             label-placement="floating" [interfaceOptions]="customPopoverOptions" interface="popover">
             <ion-select-option
