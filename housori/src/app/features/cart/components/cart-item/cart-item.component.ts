@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input, SimpleChanges } from "@angular/core";
+import { Product } from "src/app/features/products/model/product.model";
 
 @Component({
   selector: 'app-cart-item',
@@ -8,5 +9,17 @@ import { Component } from "@angular/core";
 })
 
 export class CartItemComponent {
+  @Input() item!: Product;
 
+  get itemImage(): string {
+    return this.item?.images[0] ?? '' ;
+  }
+
+  get itemPrice(): number {
+    return this.item?.price ?? 0;
+  }
+
+  get itemDescription(): string {
+    return this.item?.name ?? '';
+  }
 }

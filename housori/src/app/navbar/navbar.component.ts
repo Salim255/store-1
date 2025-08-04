@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit, signal } from "@angular/core";
+import { CartDetails, CartService } from "../features/cart/services/cart-service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-navbar",
@@ -7,6 +9,28 @@ import { Component } from "@angular/core";
   standalone: false
 })
 
-export class NavbarComponent {
-  constructor(){}
+export class NavbarComponent implements OnInit, OnDestroy {
+  cartState = signal< CartDetails | null>(null);
+  cartStateSubscription!: Subscription;
+  constructor(private cartService: CartService){}
+
+  ngOnInit(): void {
+    this.subscribeToCartState();
+  }
+
+  subscribeToCartState(){
+    this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
+      console.log(cartState, "Hello from here")
+      this.cartState.set(cartState)
+    })
+  }
+
+  get numItemInCart(): number{
+    const numItem = this.cartState()?.numItemInCart;
+    return numItem ?? 0;
+  }
+
+  ngOnDestroy(): void {
+    this.cartStateSubscription.unsubscribe();
+  }
 }

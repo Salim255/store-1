@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../../products/model/product.model";
-import { BehaviorSubject } from "rxjs";
-interface CartDetails {
+import { BehaviorSubject, Observable } from "rxjs";
+
+export interface CartDetails {
   numItemInCart: number;
   cartItems: Product [];
   cartTotal: number;
@@ -32,7 +33,9 @@ export class CartService {
     cart.shipping =+ product.shipping ? 0: 10;
     cart.tax =+ 10;
     cart.orderTotal =+ cart.cartTotal+ cart.tax;
+    console.log(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
+    this.updateCart(cart);
   }
 
   removeItemFromCart(product: Product){
@@ -44,5 +47,9 @@ export class CartService {
     cart.tax =+ 10;
     cart.orderTotal =- cart.cartTotal+ cart.tax;
     localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  get getCartState(): Observable<CartDetails> {
+    return this.cartStateSubject.asObservable();
   }
 }
