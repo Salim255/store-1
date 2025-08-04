@@ -16,7 +16,7 @@
       <li class="app-navbar__links--item"><a class="nav-link__inactive" routerLink="/cart" routerLinkActive="nav-link__active">Cart</a></li>
     </ul>
     <div routerLink="/cart"  class="app-navbar__cart nav-link__inactive">
-      <ion-badge color="primary">47</ion-badge>
+      <ion-badge color="primary">{{ numItemInCart }}</ion-badge>
       <ion-icon name="cart-outline"></ion-icon>
     </div>
   </nav>
