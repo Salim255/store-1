@@ -4,6 +4,7 @@ import { Product } from "../../model/product.model";
 import { ApiMetaData } from "../../services/products-http.service";
 import { HttpParams } from "@angular/common/http";
 import { ProductsService } from "../../services/products.service";
+import { SingleProductService } from "../../services/single-product.service";
 
 @Component({
   selector: "app-products-list",
@@ -20,6 +21,7 @@ export class ProductsListComponent {
   currentPage = signal<number>(1);
 
   constructor(
+    private singleProductService: SingleProductService,
     private productsService: ProductsService,
     private router: Router,
   ) {}
@@ -28,8 +30,9 @@ export class ProductsListComponent {
     this.generatePageNumbers();
   }
 
-  onProduct(){
-    this.router.navigateByUrl('/products/2')
+  onProduct(product: Product){
+    this.singleProductService.setSingleProduct(product);
+    this.router.navigateByUrl(`/products/${product._id}`);
   }
 
   generatePageNumbers(): void {
