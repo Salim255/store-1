@@ -8,7 +8,8 @@
     </div>
 
     <div class="products-list__items">
-      <div class="products-list__items--item description" *ngFor="let item of products" (click)="onProduct()">
+      <div class="products-list__items--item description"
+       *ngFor="let item of products" (click)="onProduct(item)">
        <div class="description__details">
           <img class="description__details--img" [src]="item.images[0]" alt="Product">
           <div class="description__details--title">
