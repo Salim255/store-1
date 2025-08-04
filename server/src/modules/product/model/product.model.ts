@@ -34,6 +34,7 @@ export class ProductModel {
         .filter()
         .sort()
         .featuredProduct()
+        .search()
         .paginate();
 
       const products: Product[] = await features.query.exec();

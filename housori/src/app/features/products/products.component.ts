@@ -4,6 +4,7 @@ import { filter, Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { Product } from "./model/product.model";
 import { HttpParams } from "@angular/common/http";
+import { ApiMetaData } from "./services/products-http.service";
 
 @Component({
   selector: 'app-products',
@@ -15,6 +16,8 @@ import { HttpParams } from "@angular/common/http";
 export class ProductsComponent implements OnInit, OnDestroy {
   private productsSubscription!: Subscription;
   allProducts = signal< Product[]>([]);
+  metaData = signal<ApiMetaData>({});
+
   constructor(
     private productsService: ProductsService,
     private router: Router
@@ -33,10 +36,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private subscribeToProducts(){
     this.productsSubscription = this.productsService.productsSourceBehavior
-    .subscribe((products) => {
-      console.log(products);
-      if (products){
-        this.allProducts.set(products);
+    .subscribe((data) => {
+      //console.log(products);
+      if (data){
+       this.allProducts.set(data.products);
+       this.metaData.set(data.meta);
       }
     });
   }

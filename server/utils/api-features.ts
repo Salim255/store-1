@@ -8,7 +8,12 @@ interface CategoryCompany {
 }
 
 export interface ApiMetaData {
-  pagination: { pageSize: number; pageCount: number; total: number };
+  pagination: {
+    productsByPage: number;
+    pageCount: number;
+    total: number;
+    currentPage: number;
+  };
   categories: string[];
   companies: string[];
 }
@@ -48,6 +53,9 @@ export class APIFeatures<T extends Document> {
       queryObject.company = this.queryString.company.trim();
     }
 
+    if (this.queryString.shipping) {
+      queryObject.shipping = this.queryString.shipping;
+    }
     //  Filter first without await, so latter we can add sorting and pagination
     this.query = this.query.find(queryObject);
     return this;
@@ -66,9 +74,11 @@ export class APIFeatures<T extends Document> {
   search() {
     // SEARCH PRODUCT
     const searchQuery: { $text?: { $search: string } } = {};
-    if (this.queryString.search?.trim()) {
-      searchQuery.$text = { $search: this.queryString.search.trim() };
+    const keyWord = this.queryString.search?.trim();
+    if (keyWord) {
+      searchQuery.$text = { $search: keyWord };
     }
+    console.log(keyWord);
     this.query.find(searchQuery);
     return this;
   }
@@ -78,6 +88,7 @@ export class APIFeatures<T extends Document> {
     // api/v1/products?sort=price
     // api/v1/products?sort=price,rating
     // api/v1/products?alphaSort='a-z'
+    console.log(this.queryString.alphaSort?.trim());
     if (this.queryString.alphaSort?.trim().length) {
       this.query.sort({
         name: this.queryString.alphaSort.trim() === 'a-z' ? 1 : -1,
@@ -99,6 +110,8 @@ export class APIFeatures<T extends Document> {
     // This means 4 result by page, and skip means skip the the first page, then give me pages from second page every page has 4 result
     // 1- 4 for page1, and 4-8 are for page 2, and 8 -12 are for page 3
     const page = this.queryString.page * 1 || 1;
+
+    // Product per page
     const limit = this.queryString.limit * 1 || 4;
 
     // So this number here is all the results come before the request that we are requesting now
@@ -108,9 +121,17 @@ export class APIFeatures<T extends Document> {
   }
 
   async buildApiMeta(): Promise<ApiMetaData> {
-    const pageSize = this.queryString.limit * 1 || 4;
-    const total = await this.query.clone().countDocuments();
-    const pageCount = Math.ceil(total / pageSize);
+    // Current page number
+    const currentPage = this.queryString.page * 1;
+
+    // N or 4 products per page
+    const productsByPage = this.queryString.limit * 1 || 4;
+
+    // The total products in the DB
+    const total = await this.query.model.find().clone().countDocuments();
+
+    // All possible pages
+    const pageCount = Math.ceil(total / productsByPage);
 
     // Get all categories and companies from the full database (not filtered)
     const rawAllProducts = await this.query.model.find<CategoryCompany>(
@@ -125,7 +146,7 @@ export class APIFeatures<T extends Document> {
     const companies = ['all', ...Array.from(companiesSet)];
 
     return {
-      pagination: { pageSize, pageCount, total },
+      pagination: { productsByPage, pageCount, total, currentPage },
       categories,
       companies,
     };

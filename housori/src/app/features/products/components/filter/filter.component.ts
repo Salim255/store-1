@@ -1,7 +1,8 @@
 import { HttpParams } from "@angular/common/http";
-import { Component, signal } from "@angular/core";
+import { Component, Input, signal } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ProductsService } from "../../services/products.service";
+import { ApiMetaData } from "../../services/products-http.service";
 
 export  type EditProfilePayload = {
   search: string;
@@ -20,6 +21,7 @@ export  type EditProfilePayload = {
 })
 
 export class FilterComponent {
+  @Input() metaData!: ApiMetaData;
   products = ['Laptop', 'Phone', 'Headphones']; // Example
   filterFormFields!: FormGroup;
   selectedProduct = '';
@@ -36,7 +38,7 @@ export class FilterComponent {
   categoryOptions = ['Chairs', 'Tables', 'Beds', 'Sofas'];
   companyOptions = ['Savanna Craft', 'Elevara Home', 'IvoryNest', 'Tusker Living', 'Luxora'];
   sortOptions = ['a-z', 'z-a', 'high', 'low'];
-
+   params = new HttpParams();
   constructor(
     private productsService: ProductsService,
     private formBuilder: FormBuilder,
@@ -48,23 +50,23 @@ export class FilterComponent {
   }
 
   submitSearch() {
-    let params = new HttpParams();
-
     const price = this.filterFormFields.get('price')?.value;
     const search = this.filterFormFields.get('search')?.value;
     const company = this.filterFormFields.get('company')?.value
     const category = this.filterFormFields.get('category')?.value;
-    const sort =  this.filterFormFields.get('sort')?.value;
+    const sort =  this.filterFormFields.get('alphaSort')?.value;
+    const shipping = this.filterFormFields.get('shipping')?.value;
 
-    if (price) params = params.set('price[lte]', price.toString());
-   if (search) params = params.set('search', search);
-    if (company) params = params.set('company', company);
-    if (category) params = params.set('category', category);
-    if (sort) params = params.set('name', sort);
+    if (price) this.params = this.params.set('price[lte]', price.toString());
+    if (search) this.params = this.params.set('search', search);
+    if (company) this.params = this.params.set('company', company);
+    if (category) this.params = this.params.set('category', category);
+    if (sort) this.params = this.params.set('alphaSort', sort);
+    if (shipping) this.params = this.params.set('shipping', shipping);
 
-    //this.http.get(`${this.API_URL}/products`, { params }).subscribe();
-    console.log(params)
-    this.productsService.getAllProducts(params).subscribe();
+    this.productsService.getAllProducts(this.params).subscribe(data =>{
+      console.log(data)
+    });
   }
   resetFilter(){
     this.filterFormFields.reset();
@@ -72,6 +74,8 @@ export class FilterComponent {
     this.companyValue.set('all');
     this.sortValue.set('all');
     this.priceValue.set(1000000);
+    this.params =  new HttpParams();
+    this.productsService.getAllProducts(this.params).subscribe()
   }
 
   buildForm(): void{
@@ -79,7 +83,7 @@ export class FilterComponent {
       search: [null],
       category: [null],
       company: [null],
-      sortBy: [null],
+      alphaSort: [null],
       price: [null],
       shipping: [null],
     });
@@ -94,7 +98,7 @@ export class FilterComponent {
       this.companyValue.set(value);
     });
 
-    this.filterFormFields.get('sortBy')?.valueChanges.subscribe(value => {
+    this.filterFormFields.get('alphaSort')?.valueChanges.subscribe(value => {
       this.sortValue.set(value);
     })
 

@@ -1,6 +1,10 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, signal, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { Product } from "../../model/product.model";
+import { ApiMetaData } from "../../services/products-http.service";
+import { HttpParams } from "@angular/common/http";
+import { ProductsService } from "../../services/products.service";
+
 @Component({
   selector: "app-products-list",
   templateUrl: "./products-list.component.html",
@@ -9,9 +13,53 @@ import { Product } from "../../model/product.model";
 })
 
 export class ProductsListComponent {
-@Input() products!: Product[];
-  constructor(private router: Router) {}
+  @Input() products!: Product[];
+  @Input() pagination!: ApiMetaData['pagination']
+  pages: number[] = [];
+  params = new HttpParams();
+  currentPage = signal<number>(1);
+
+  constructor(
+    private productsService: ProductsService,
+    private router: Router,
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.generatePageNumbers();
+  }
+
   onProduct(){
     this.router.navigateByUrl('/products/2')
+  }
+
+  generatePageNumbers(): void {
+    if(!this.pagination?.pageCount) return;
+    this.pages = Array.from({length: this.pagination?.pageCount }, (_, i) => i + 1);
+  }
+
+  goToPage(page: number): void {
+    if (this.currentPage() === page) return;
+    this.currentPage.set(page);
+    this.fetchProducts();
+  }
+
+  goToPrevPage(): void {
+    if (this.currentPage() <= 1) return;
+    this.currentPage.set(this.currentPage() - 1);
+    this.fetchProducts();
+  }
+
+  goToNextPage(): void{
+    if (
+      !this.pagination?.pageCount
+      || this.currentPage() >= this.pagination?.pageCount
+    ) return;
+    this.currentPage.set(this.currentPage() + 1);
+    this.fetchProducts();
+  }
+
+  fetchProducts(): void{
+    this.params = this.params.set('page', this.currentPage());
+    this.productsService.getAllProducts(this.params).subscribe();
   }
 }
