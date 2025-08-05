@@ -1,9 +1,8 @@
 import { Component, Input } from "@angular/core";
+import { CartDetails } from "src/app/features/cart/services/cart-service";
 
-type TotalOrderItem = {
-  name: string;
-  value: number;
-}
+export type TotalOrderDetails = Omit<CartDetails, 'cartItems'>;
+
 @Component({
   selector: 'app-order-total',
   templateUrl: './order-total.component.html',
@@ -12,6 +11,6 @@ type TotalOrderItem = {
 })
 
 export class OrderTotalComponent {
-  @Input() totalDetails!: TotalOrderItem [];
+  @Input() totalDetails!: TotalOrderDetails | null;
   constructor(){}
 }

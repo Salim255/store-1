@@ -4,6 +4,10 @@ import { SingleProductService } from "../products/services/single-product.servic
 import { Product } from "../products/model/product.model";
 import { CartService } from "../cart/services/cart-service";
 
+export type CartItem  =  Product & {
+  amount: number;
+};
+
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -52,8 +56,10 @@ export class SingleProductComponent{
   }
 
   onAddProduct(): void {
-    if (!this.singleProduct()) return;
-    this.cartService.addItemToCart(this.singleProduct() as Product);
+    const product = this.singleProduct();
+    if (!product) return;
+    const item: CartItem = { ...product, amount: 1 };
+    this.cartService.addItemToCart(item);
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../../products/model/product.model";
 import { BehaviorSubject, Observable } from "rxjs";
+import { CartItem } from "../../single-product/single-product.component";
 
 export interface CartDetails {
   numItemInCart: number;
-  cartItems: Product [];
+  cartItems: CartItem [];
   cartTotal: number;
   shipping: number;
   tax: number;
@@ -25,14 +26,19 @@ export class CartService {
   this.cartStateSubject.next(cart)
  }
   //cartStat: CartDetails
-  addItemToCart(product: Product){
-    const cart = this.cartStateSubject.value;
-    cart.cartItems.push(product);
-    cart.cartTotal =+ product.price;
+  addItemToCart(product:  CartItem ){
+    const cart =  this.cartStateSubject.value;
+    const item = cart.cartItems.find((item) => item._id === product._id);
+
+    if (item) item.amount += product.amount;
+    else cart.cartItems.push(product);
+
+
+    cart.cartTotal += product.price;
     cart.numItemInCart++;
-    cart.shipping =+ product.shipping ? 0: 10;
-    cart.tax =+ 10;
-    cart.orderTotal =+ cart.cartTotal+ cart.tax;
+    cart.shipping += product.shipping ? 0: 10;
+    cart.tax += 10;
+    cart.orderTotal = cart.cartTotal + cart.tax +   cart.shipping;
     console.log(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
     this.updateCart(cart);
