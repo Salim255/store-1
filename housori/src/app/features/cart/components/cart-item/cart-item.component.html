@@ -8,12 +8,15 @@
     </figcaption>
   </figure>
   <div class="cart-item__amount">
-    <p>amount</p>
-    <ion-item>
-      <ion-select>
-      <ion-select-option></ion-select-option>
-    </ion-select>
-    </ion-item>
+     <p>amount</p>
+   <ion-item>
+      <ion-button
+        (click)="decreaseAmount(item._id, item.amount - 1)"
+        [disabled]="item.amount === 1"> — </ion-button>
+      <ion-text> {{ item.amount }} </ion-text>
+      <ion-button (click)="increaseAmount(item._id, item.amount + 1)"> + </ion-button>
+  </ion-item>
+  <ion-button (click)="removeItem(item._id)">remove</ion-button>
   </div>
    <div class="cart-item__price">
     <p> {{ itemPrice }}</p>
