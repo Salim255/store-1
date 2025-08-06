@@ -1,19 +1,23 @@
-<div class="order-total">
-  <ion-item>
-    <p>subtotal</p>
-    <p>{{ totalDetails?.cartTotal | currency }}</p>
-  </ion-item>
+<div  class="order-total">
+    <div class="order-total__details">
     <ion-item>
-    <p> shipping</p>
-    <p>{{ totalDetails?.shipping | currency }}</p>
-  </ion-item>
-    <ion-item>
-    <p>tax</p>
-    <p>{{ totalDetails?.tax | currency }}</p>
-  </ion-item>
-  <ion-item lines="none">
-    <p>order total</p>
-    <p>{{ totalDetails?.orderTotal | currency }}</p>
-  </ion-item>
+      <p>subtotal</p>
+      <p>{{ cartTotal | currency }}</p>
+    </ion-item>
+      <ion-item>
+      <p> shipping</p>
+      <p>{{ shipping | currency }}</p>
+    </ion-item>
+      <ion-item>
+      <p>tax</p>
+      <p>{{ tax | currency }}</p>
+    </ion-item>
+    <ion-item lines="none">
+      <p>order total</p>
+      <p>{{ orderTotal | currency }}</p>
+    </ion-item>
+  </div>
+  <div class="order-total__btn">
+    <ion-button [disabled]="!orderTotal" (click)="onClear()"> clear cart</ion-button>
+  </div>
 </div>
-
