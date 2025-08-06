@@ -1,4 +1,17 @@
 <header>
+  <section class="header-auth">
+    <div class="header-auth__login">
+      <a (click)="onAlert()">Sign in</a> / <a> Guest</a>
+    </div>
+    <div class="header-auth__register">
+     <a [routerLink]="['/auth']" > Create Account</a>
+    </div>
+    <section class="header-auth__modal">
+       <div  class="header-auth__modal--content">
+         <app-auth></app-auth>
+       </div>
+    </section>
+  </section>
   <nav class="app-navbar">
     <a routerLink="/" class="app-navbar__logo">Housori</a>
     <ul class="app-navbar__links">
@@ -25,4 +38,5 @@
 <main>
   <router-outlet></router-outlet>
 </main>
+
 

@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeToCartState();
+      document.body.style.overflow = 'hidden';
   }
 
   subscribeToCartState(){
@@ -30,6 +31,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return numItem ?? 0;
   }
 
+  onAlert(){
+
+  }
   ngOnDestroy(): void {
     this.cartStateSubscription.unsubscribe();
   }

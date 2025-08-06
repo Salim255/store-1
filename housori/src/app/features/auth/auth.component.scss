@@ -1,0 +1,15 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &__form{
+    flex: 1;
+    margin-bottom: auto;
+  }
+  &__btns {
+  margin: auto;
+  display: flex;         // <--- puts buttons in a row
+  flex-direction: column;
+  width: 50%;
+  }
+}
