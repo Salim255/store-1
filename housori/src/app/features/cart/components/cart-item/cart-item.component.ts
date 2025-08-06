@@ -1,5 +1,6 @@
 import { Component, Input, SimpleChanges } from "@angular/core";
-import { Product } from "src/app/features/products/model/product.model";
+import { CartItem } from "../../services/cart-service";
+import { CartService } from "../../services/cart-service";
 
 @Component({
   selector: 'app-cart-item',
@@ -9,7 +10,9 @@ import { Product } from "src/app/features/products/model/product.model";
 })
 
 export class CartItemComponent {
-  @Input() item!: Product;
+  @Input() item!: CartItem ;
+
+  constructor(private cartService: CartService){}
 
   get itemImage(): string {
     return this.item?.images[0] ?? '' ;
@@ -21,5 +24,17 @@ export class CartItemComponent {
 
   get itemDescription(): string {
     return this.item?.name ?? '';
+  }
+
+  increaseAmount(itemId: string, amount: number): void{
+    this.cartService.editItemAmount(itemId, amount);
+  }
+
+  decreaseAmount(itemId: string, amount: number): void{
+    this.cartService.editItemAmount(itemId, amount);
+  }
+
+  removeItem(itemId: string): void{
+    this.cartService.removeItemFromCart(itemId);
   }
 }

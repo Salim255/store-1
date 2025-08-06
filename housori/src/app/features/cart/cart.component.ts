@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { CartDetails, CartService } from "./services/cart-service";
+import { CartDetails, CartItem, CartService } from "./services/cart-service";
 import { Subscription } from "rxjs";
 import { Product } from "../products/model/product.model";
 import { TotalOrderDetails } from "src/app/shared/components/order-total/order-total.component";
@@ -13,12 +13,6 @@ import { TotalOrderDetails } from "src/app/shared/components/order-total/order-t
 
 export class CartComponent {
   cartState = signal<CartDetails | null>(null);
- /*   totalDetails = [
-    { name: 'subtotal', value: 45 },
-    {name: 'shipping', value: 45},
-    {name: 'tax', value: 45},
-    { name: 'order total', value: 45 },
-  ] */
 
   cartStateSubscription!: Subscription;
   constructor(private cartService : CartService ) {}
@@ -36,7 +30,7 @@ export class CartComponent {
         });
   }
 
-  get cartItems(): Product[]{
+  get cartItems(): CartItem[]{
     return this.cartState()?.cartItems ?? [];
   }
 

@@ -2,11 +2,9 @@ import { Component, signal } from "@angular/core";
 import { Subscription } from "rxjs";
 import { SingleProductService } from "../products/services/single-product.service";
 import { Product } from "../products/model/product.model";
-import { CartService } from "../cart/services/cart-service";
+import { CartItem, CartService } from "../cart/services/cart-service";
 
-export type CartItem  =  Product & {
-  amount: number;
-};
+
 
 @Component({
   selector: 'app-single-product',
