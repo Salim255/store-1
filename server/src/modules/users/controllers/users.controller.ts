@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   CreatedUserResponseDto,
@@ -7,11 +7,17 @@ import {
   SigninUserResponseDto,
 } from '../dto/users.dto';
 import { UsersService } from '../services/users.service';
+import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private usersService: UsersService,
+  ) {}
+
   @Post()
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({
@@ -28,10 +34,38 @@ export class UsersController {
   })
   async signUp(
     @Body() createUserDto: CreateUserDto,
-  ): Promise<CreatedUserResponseDto> {
+    @Res() response: Response,
+  ): Promise<Response> {
     const createUser: CreatedUserResponseDto =
       await this.usersService.signup(createUserDto);
-    return createUser;
+
+    const NODE_ENV = this.configService.get<string>('NODE_ENV');
+
+    // Cookie expiration value
+    const JWT_COOKIE_EXPIRE_IN = parseInt(
+      this.configService.get<string>('JWT_COOKIE_EXPIRE_IN') || '90',
+      10, // Base
+    );
+
+    // Cookie expiration date
+    const expires = Date.now() + JWT_COOKIE_EXPIRE_IN * 24 * 60 * 60 * 1000;
+
+    // Save the token in cookies
+    const cookieOptions = {
+      expires: new Date(expires),
+      secure: false, // The cookie will only be sent in encrypted connection Only https
+      httpOnly: true, // So cookie can't be access or modify by browser
+    };
+
+    // Set secure based on NODE_ENV
+    if (NODE_ENV === 'production') cookieOptions.secure = true;
+
+    response.cookie('jwt', createUser.token, cookieOptions);
+
+    // Remove the password from the output
+    createUser.data.user.password = undefined;
+
+    return response.status(200).json(createUser);
   }
 
   @Post('/sign-in')
