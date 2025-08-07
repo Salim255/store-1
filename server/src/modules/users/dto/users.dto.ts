@@ -34,6 +34,7 @@ export class CreateUserDto {
 
 export class CreatedUserDto extends OmitType(CreateUserDto, [
   'passwordConfirm',
+  'password',
 ]) {
   @ApiProperty({ description: 'User Id', example: '1234' })
   _id: Types.ObjectId;
@@ -48,7 +49,7 @@ export class CreatedUserDto extends OmitType(CreateUserDto, [
   email: string;
 
   @ApiProperty({ description: `User's password` })
-  password: string;
+  password?: string;
 
   @ApiProperty({ description: 'User created at', example: new Date() })
   createdAt: Date;

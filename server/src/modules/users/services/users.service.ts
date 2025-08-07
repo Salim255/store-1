@@ -38,6 +38,7 @@ export class UsersService {
     // Generate token
     const token = await this.jwtService.signAsync(payload);
 
+    //// Cookies
     return {
       status: 'Success',
       token,
