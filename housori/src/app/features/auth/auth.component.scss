@@ -1,15 +1,18 @@
 .auth {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   height: 100%;
   &__form{
-    flex: 1;
-    margin-bottom: auto;
+    flex: .7;
+    width: 80%;
+    margin: auto;
   }
   &__btns {
   margin: auto;
   display: flex;         // <--- puts buttons in a row
   flex-direction: column;
   width: 50%;
+  flex: .5;
   }
 }

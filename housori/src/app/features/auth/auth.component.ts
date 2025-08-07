@@ -16,28 +16,38 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
+    this.subscribeToAuthType();
   }
 
   subscribeToAuthType(): void{
     this.authTypeSubscription = this.authService.getAuthType.subscribe((authType) => {
+
       this.authType.set(authType);
+      console.log(this.authType(), "Hello")
     })
   }
 
   get switchTo(): string {
-    return this.authType() ===  AuthType.LOGIN ? 'Login' : 'Register' ;
+    return this.authType() ===  AuthType.LOGIN ? 'Register': 'Login';
   }
 
-  onSwitch(){
+  get getCurrentAuthType(): string{
+    return this.authType() ===  AuthType.LOGIN ? 'Login': 'Register';
+  }
+
+  onGuest(): void{
+    this.authService.setAuthType(AuthType.GUEST);
+  }
+
+  onSwitch(): void{
     if (this.authType() ===  AuthType.LOGIN) {
-      this.authType.set(AuthType.SIGNUP);
+      this.authService.setAuthType(AuthType.SIGNUP);
     } else {
-      this.authType.set(AuthType.LOGIN);
+      this.authService.setAuthType(AuthType.LOGIN);
     }
-
   }
+
   ngOnDestroy(): void {
-    this.authTypeSubscription?.unsubscribe
+    this.authTypeSubscription?.unsubscribe();
   }
 }

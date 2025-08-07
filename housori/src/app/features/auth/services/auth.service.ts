@@ -11,6 +11,7 @@ export class AuthService {
   private authTypeSubject = new BehaviorSubject<AuthType>(AuthType.GUEST);
 
   setAuthType(authType: AuthType ){
+    console.log('uptate auth')
     this.authTypeSubject.next(authType);
   }
 

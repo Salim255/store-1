@@ -1,16 +1,21 @@
 <header>
   <section class="header-auth">
-    <div class="header-auth__login">
-      <a (click)="onAlert()">Sign in</a> / <a> Guest</a>
-    </div>
-    <div class="header-auth__register">
-     <a [routerLink]="['/auth']" > Create Account</a>
-    </div>
-    <section class="header-auth__modal">
+    <ng-container *ngIf="getAuthType; else auth ">
+      <div class="header-auth__login" (click)="onSignUp()">
+        <a >Sign in</a> / <a> Guest</a>
+      </div>
+      <div (click)="onRegister()" class="header-auth__register">
+      <a > Create Account</a>
+      </div>
+    </ng-container>
+   <ng-template #auth>
+     <section class="header-auth__modal">
        <div  class="header-auth__modal--content">
          <app-auth></app-auth>
        </div>
     </section>
+   </ng-template>
+
   </section>
   <nav class="app-navbar">
     <a routerLink="/" class="app-navbar__logo">Housori</a>
