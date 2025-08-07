@@ -1,8 +1,18 @@
-<ng-container *ngIf="getAuthType; else name">
-  <h1>hello from login</h1>
-</ng-container>
-<ng-template #name>
-  <h1>hello from Register</h1>
-</ng-template>
+<form>
+  <ion-item *ngIf="!getAuthType">
+    <ion-input label="First name" labelPlacement="floating"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input  type="email" labelPlacement="floating" label="Your email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input  type="password" labelPlacement="floating" label="password"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="!getAuthType">
+    <ion-input type="password" labelPlacement="floating" label="confirm password"></ion-input>
+  </ion-item>
+</form>
+
+
 
 
