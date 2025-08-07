@@ -1,10 +1,13 @@
 <section class="auth">
+    <div class="auth__header">
+       <h1> {{getCurrentAuthType}}</h1>
+    </div>
     <div class="auth__form">
        <app-auth-form [authType]="authType()"></app-auth-form>
     </div>
     <div class="auth__btns">
-      <ion-button>{{ getCurrentAuthType }}</ion-button>
-      <ion-button (click)="onGuest()">Guest user</ion-button>
-      <ion-button (click)="onSwitch()" fill="outline">Switch to {{ switchTo }}</ion-button>
+      <button>{{ getCurrentAuthType }}</button>
+      <button (click)="onGuest()">Guest user</button>
+      <button (click)="onSwitch()" fill="outline">Switch to {{ switchTo }}</button>
     </div>
 </section>

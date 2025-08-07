@@ -1,15 +1,15 @@
-<form>
+<form class="form">
   <ion-item *ngIf="!getAuthType">
-    <ion-input label="First name" labelPlacement="floating"></ion-input>
+    <ion-input label="First name"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input  type="email" labelPlacement="floating" label="Your email"></ion-input>
+    <ion-input  type="email" label="Your email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input  type="password" labelPlacement="floating" label="password"></ion-input>
+    <ion-input  type="password" label="Password"></ion-input>
   </ion-item>
   <ion-item *ngIf="!getAuthType">
-    <ion-input type="password" labelPlacement="floating" label="confirm password"></ion-input>
+    <ion-input type="password" label="Confirm password"></ion-input>
   </ion-item>
 </form>
 
