@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { Order } from '../schema/order.schema';
 import { CreateOrderDto } from '../dto/orders.dto';
 
-export class UserModel {
+export class OrderModel {
   constructor(
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
@@ -13,7 +13,10 @@ export class UserModel {
     return createdOrder;
   }
 
-  async findAll() {}
+  async findAll() {
+    const orders = await this.orderModel.find();
+    return orders;
+  }
 
   async findById() {}
 
