@@ -2,7 +2,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Order } from '../schema/order.schema';
 import { CreateOrderDto } from '../dto/orders.dto';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class OrderModel {
   constructor(
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,

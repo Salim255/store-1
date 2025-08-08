@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { ProductsModule } from './modules/product/product.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { OrderModule } from './modules/orders/orders.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
     ProductsModule,
     UsersModule,
     AuthModule,
+    OrderModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
