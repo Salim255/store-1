@@ -1,6 +1,6 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schema/user.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateUserDto } from '../dto/users.dto';
 
 export class UserModel {
@@ -24,7 +24,11 @@ export class UserModel {
     return user;
   }
 
-  async findById() {}
+  async exist(_id: Types.ObjectId): Promise<boolean> {
+    const userId = new Types.ObjectId(_id);
+    const user = await this.userModel.findOne({ _id: userId });
+    return user?._id === _id;
+  }
 
   async update() {}
 

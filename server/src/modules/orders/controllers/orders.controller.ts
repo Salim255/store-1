@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  InternalServerErrorException,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Order } from '../schema/order.schema';
 import {
@@ -29,14 +38,25 @@ export class OrdersController {
   async createOrder(
     @Body() createOrderDto: CreateOrderDto,
   ): Promise<CreateOrderResponseDto> {
-    const createdOrder: Order =
-      await this.ordersService.createOrder(createOrderDto);
-    return {
-      status: 'Success',
-      data: {
-        product: createdOrder,
-      },
-    };
+    try {
+      const createdOrder: Order =
+        await this.ordersService.createOrder(createOrderDto);
+      return {
+        status: 'Success',
+        data: {
+          product: createdOrder,
+        },
+      };
+    } catch (error) {
+      //console.log(error.message);
+      const errorMessage =
+        error instanceof Error ? error.message : 'unknown error';
+      if (errorMessage === 'Invalid user ID') {
+        throw new BadRequestException(errorMessage);
+      }
+
+      throw new InternalServerErrorException('An unexpected error occurred.');
+    }
   }
 
   // GET /orders
