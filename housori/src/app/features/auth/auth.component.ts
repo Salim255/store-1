@@ -9,22 +9,29 @@ import { Subscription } from "rxjs";
 })
 
 export class AuthComponent implements OnInit {
+  validForm = signal<boolean>(false);
   authType = signal<AuthType>(AuthType.GUEST) ;
   private authTypeSubscription!: Subscription;
+  private formValidationSubscription!: Subscription;
   constructor(private authService: AuthService){}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.subscribeToAuthType();
+    this.subscribeToFormValidation();
   }
 
-  subscribeToAuthType(): void{
-    this.authTypeSubscription = this.authService.getAuthType.subscribe((authType) => {
-
-      this.authType.set(authType);
-      console.log(this.authType(), "Hello")
+  subscribeToFormValidation(){
+    this.formValidationSubscription =
+    this.authService.getAuthFormValidationStatus.subscribe(status => {
+      console.log(status, "heyy status")
+      this.validForm.set(status);
     })
+  }
+  subscribeToAuthType(): void{
+    this.authTypeSubscription =
+      this.authService.getAuthType.subscribe((authType) => { this.authType.set(authType) })
   }
 
   get switchTo(): string {
@@ -49,5 +56,6 @@ export class AuthComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.authTypeSubscription?.unsubscribe();
+    this.formValidationSubscription?.unsubscribe();
   }
 }
