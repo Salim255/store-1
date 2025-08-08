@@ -9,6 +9,7 @@ import {
 import { UsersService } from '../services/users.service';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { cookieOption } from 'src/config/cookie-options.config';
 
 @ApiTags('Users')
 @Controller('users')
@@ -47,15 +48,8 @@ export class UsersController {
       10, // Base
     );
 
-    // Cookie expiration date
-    const expires = Date.now() + JWT_COOKIE_EXPIRE_IN * 24 * 60 * 60 * 1000;
-
-    // Save the token in cookies
-    const cookieOptions = {
-      expires: new Date(expires),
-      secure: false, // The cookie will only be sent in encrypted connection Only https
-      httpOnly: true, // So cookie can't be access or modify by browser
-    };
+    // Built cookie options
+    const cookieOptions = cookieOption(JWT_COOKIE_EXPIRE_IN);
 
     // Set secure based on NODE_ENV
     if (NODE_ENV === 'production') cookieOptions.secure = true;
@@ -84,9 +78,25 @@ export class UsersController {
   })
   async signIn(
     @Body() signinUserDto: SigninUserDto,
-  ): Promise<SigninUserResponseDto> {
-    const createUser: SigninUserResponseDto =
+    @Res() response: Response,
+  ): Promise<Response> {
+    const user: SigninUserResponseDto =
       await this.usersService.signIn(signinUserDto);
-    return createUser;
+
+    const NODE_ENV = this.configService.get<string>('NODE_ENV');
+
+    // Cookie expiration value
+    const JWT_COOKIE_EXPIRE_IN = parseInt(
+      this.configService.get<string>('JWT_COOKIE_EXPIRE_IN') || '90',
+      10, // Base
+    );
+    // Built cookie options
+    const cookieOptions = cookieOption(JWT_COOKIE_EXPIRE_IN);
+
+    // Set secure based on NODE_ENV
+    if (NODE_ENV === 'production') cookieOptions.secure = true;
+
+    response.cookie('jwt', user.token, cookieOptions);
+    return response.status(200).json(user);
   }
 }
