@@ -58,7 +58,6 @@ export class OrdersController {
         },
       };
     } catch (error) {
-      //console.log(error.message);
       const errorMessage =
         error instanceof Error ? error.message : 'unknown error';
       if (errorMessage === 'Invalid user ID') {
