@@ -7,8 +7,15 @@ import {
   InternalServerErrorException,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Order } from '../schema/order.schema';
 import {
   CreateOrderDto,
@@ -16,6 +23,7 @@ import {
   GetALLOrdersDto,
 } from '../dto/orders.dto';
 import { OrdersService } from '../services/orders.service';
+import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
 
 @ApiTags('Orders')
 @Controller('orders') // Base root : /orders
@@ -24,6 +32,8 @@ export class OrdersController {
 
   // POST /orders
   @Post()
+  @UseGuards(AuthJwtGuard)
+  @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Create a new order' })
   @ApiResponse({
     status: 200,

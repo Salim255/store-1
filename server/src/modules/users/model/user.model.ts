@@ -25,9 +25,8 @@ export class UserModel {
   }
 
   async exist(_id: Types.ObjectId): Promise<boolean> {
-    const userId = new Types.ObjectId(_id);
-    const user = await this.userModel.findOne({ _id: userId });
-    return user?._id === _id;
+    const user = await this.userModel.findById(_id);
+    return user ? true : false;
   }
 
   async update() {}
