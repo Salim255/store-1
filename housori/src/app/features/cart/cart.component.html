@@ -2,8 +2,8 @@
   <section>Shipping cart</section>
   <section class="cart__content">
     <div class="cart__content--items">
-      <ion-item *ngFor="let item of  totalDetails">
-         <app-cart-item ></app-cart-item>
+      <ion-item *ngFor="let product of  cartItems; let index = index">
+         <app-cart-item  [item]="product" ></app-cart-item>
       </ion-item>
     </div>
     <div class="cart__content--order-total">

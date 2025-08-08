@@ -1,7 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CreateProductDto } from '../dto/product.dto';
-import { ProductModel } from '../models/product.model';
+import { CreateProductDto, ProductFilterDto } from '../dto/product.dto';
+import { ProductModel } from '../model/product.model';
 import { Product } from '../schema/product.schema';
+import { Request } from 'express';
+import { ApiMetaData } from 'utils/api-features';
 
 @Injectable()
 export class ProductsService {
@@ -13,8 +15,12 @@ export class ProductsService {
     return createdProduct;
   }
 
-  async getAllProducts(): Promise<Product[]> {
-    const products: Product[] = await this.productModel.findAll();
-    return products;
+  async getAllProducts(
+    filters: ProductFilterDto,
+  ): Promise<{ products: Product[]; meta: ApiMetaData }> {
+    //console.log(filters);
+    const data: { products: Product[]; meta: ApiMetaData } =
+      await this.productModel.findAll(filters);
+    return data;
   }
 }
