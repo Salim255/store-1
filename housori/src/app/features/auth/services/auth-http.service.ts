@@ -3,6 +3,14 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 
+export type AuthStatusPayload = {
+  status: string,
+  data : {
+    authenticated: boolean,
+    id: string,
+  }
+}
+
 @Injectable({providedIn: 'root'})
 export class AuthHttpService {
   private ENV = environment;
@@ -27,5 +35,8 @@ export class AuthHttpService {
         withCredentials: true      // ensures cookies are included/stored
       }
     );
+  }
+  authStatus(): Observable<AuthStatusPayload>{
+    return this.httpClient.get<AuthStatusPayload>(`${this.ENV.apiUrl}/auth/status`)
   }
 }

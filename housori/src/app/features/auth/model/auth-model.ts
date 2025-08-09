@@ -1,6 +1,6 @@
 export class UserAuthentication {
   constructor(
-    private userId: string,
+    public userId: string,
     private expirationTime: Date,
   ){}
 }
