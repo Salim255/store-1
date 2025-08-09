@@ -24,6 +24,19 @@ export class AuthService {
 
   }
 
+  get userIsAuthenticated(): Observable<boolean> {
+    return this.authHttpService.authStatus().pipe(
+      map((response) => {
+        return response.data.authenticated;
+      })
+    )
+  }
+
+  get userId(): Observable<string | null>{
+    return this.userAuth.asObservable().pipe(
+      map((data )=> data?.userId ?? null)
+    )
+  }
   setAuthType(authType: AuthType ){
     this.authTypeSubject.next(authType);
   }
