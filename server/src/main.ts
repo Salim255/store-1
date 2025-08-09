@@ -4,9 +4,10 @@ import { setupSwagger } from './config/swagger.config';
 import { HttpExceptionsErrorHandler } from './common/errors-handler/http-exception-errors-handler';
 import { processErrorHandler } from './common/errors-handler/process-errors-handler';
 import { Logger } from '@nestjs/common';
-import * as morgan from 'morgan';
 import { corsConfig } from './config/cors.config';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import * as morgan from 'morgan';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   // A built-in NestJS class that creates the application instance
@@ -18,6 +19,9 @@ async function bootstrap() {
   // Initialize Cors config
   corsConfig(app);
 
+  // Cookie parser
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  app.use(cookieParser());
   // Initialize Swagger
   setupSwagger(app);
 
