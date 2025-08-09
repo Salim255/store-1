@@ -4,7 +4,6 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-//import { JwtTokenService } from './jws-token-service';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
 
@@ -24,8 +23,8 @@ export class AuthJwtGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
-    const token = this.extractTokenFromHeader(request);
-
+    //const token = this.extractTokenFromHeader(request);
+    const token = this.extractTokenFromCookies(request);
     if (!token) {
       throw new UnauthorizedException(
         'Missing or invalid authorization header',
@@ -48,5 +47,11 @@ export class AuthJwtGuard implements CanActivate {
 
     const [type, token] = authHeader.split(' ');
     return type === 'Bearer' ? token : undefined;
+  }
+
+  private extractTokenFromCookies(request: Request): string | undefined {
+    // Type cast cookies as object with 'jwt' property for TypeScript safety
+    const cookies = request.cookies as { jwt?: string } | undefined;
+    return cookies?.jwt;
   }
 }
