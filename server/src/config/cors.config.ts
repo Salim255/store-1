@@ -9,6 +9,7 @@ export function corsConfig(app: INestApplication) {
       const allowedOrigins = [
         'http://localhost:3000',
         'http://localhost:57644',
+        'http://localhost:4200',
       ];
 
       if (!origin || allowedOrigins.includes(origin)) {
