@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from "@angular/core";
 import { AuthService, AuthType } from "./services/auth.service";
 import { Subscription } from "rxjs";
+import { AuthFormService } from "./services/auth-form.service";
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -13,7 +14,11 @@ export class AuthComponent implements OnInit {
   authType = signal<AuthType>(AuthType.GUEST) ;
   private authTypeSubscription!: Subscription;
   private formValidationSubscription!: Subscription;
-  constructor(private authService: AuthService){}
+
+  constructor(
+    private authFormService: AuthFormService,
+    private authService: AuthService,
+  ){}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -22,12 +27,16 @@ export class AuthComponent implements OnInit {
     this.subscribeToFormValidation();
   }
 
+  onSubmit(){
+    this.authFormService.setSubmitFormSubject('submit');
+  }
+
   subscribeToFormValidation(){
     this.formValidationSubscription =
-    this.authService.getAuthFormValidationStatus.subscribe(status => {
-      console.log(status, "heyy status")
-      this.validForm.set(status);
-    })
+      this.authFormService.getAuthFormValidationStatus.subscribe(status => {
+        console.log(status, "heyy status");
+        this.validForm.set(status);
+      })
   }
   subscribeToAuthType(): void{
     this.authTypeSubscription =
