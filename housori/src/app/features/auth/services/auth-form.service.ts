@@ -23,15 +23,6 @@ export class AuthFormService {
     this.submitFormSubject.next(submit);
   }
 
-  register(data: any): Observable<any>{
-    return this.authHttpService.register(data);
-  }
-
-  signIn(data: any): Observable<any>{
-    return this.authHttpService.signIn(data);
-  }
-
-
   get getSubmitForm(): Observable<boolean>{
     return this.submitFormSubject.asObservable().pipe(
       map((value) => {

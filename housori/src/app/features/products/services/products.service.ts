@@ -14,6 +14,7 @@ export class ProductsService {
   ): Observable<GetProductsResponseDto>{
     return this.productHttpService.fetchAllProducts(paramsObject).pipe(
       tap((response => {
+        console.log(response);
         if (response.data) {
           this.productsSourceBehavior.next({
             products: response.data.products,

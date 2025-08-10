@@ -69,9 +69,7 @@ export class UsersService {
 
     // Generate token
     const token = await this.jwtService.signAsync(payload);
-    return {
-      status: 'Success',
-      token,
-    };
+
+    return { token, user: findUser };
   }
 }
