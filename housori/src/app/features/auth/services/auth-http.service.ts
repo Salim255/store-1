@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
+import { User } from "../../users/model/user.model";
 
 export type AuthStatusPayload = {
   status: string,
@@ -11,24 +12,32 @@ export type AuthStatusPayload = {
   }
 }
 
+export type AuthResponsePayload = {
+  status: 'success',
+  data: {
+    user: User,
+  }
+}
+
 @Injectable({providedIn: 'root'})
 export class AuthHttpService {
   private ENV = environment;
   private baseUrl = `${this.ENV.apiUrl}/users/sign-in`;
 
   constructor(private httpClient: HttpClient ){}
-  register(data: any): Observable<any>{
-    return this.httpClient.post<any>(`${this.baseUrl}`,
-      data,
-      {
-        observe: 'response',       // gives full HTTP response
-        withCredentials: true      // ensures cookies are included/stored
-      },
-  );
+
+  register(data: any): Observable<HttpResponse<AuthResponsePayload>>{
+    return this.httpClient.post<AuthResponsePayload>(
+        `${this.baseUrl}`,
+        data,
+        { observe: 'response',       // gives full HTTP response
+          withCredentials: true      // ensures cookies are included/stored
+        },
+    );
   }
 
-  signIn(data: any): Observable<any>{
-    return this.httpClient.post<any>(`${this.baseUrl}`,
+  signIn(data: any): Observable<HttpResponse<AuthResponsePayload>>{
+    return this.httpClient.post<AuthResponsePayload>(`${this.baseUrl}`,
       data,
       {
         observe: 'response',       // gives full HTTP response
@@ -37,6 +46,6 @@ export class AuthHttpService {
     );
   }
   authStatus(): Observable<AuthStatusPayload>{
-    return this.httpClient.get<AuthStatusPayload>(`${this.ENV.apiUrl}/auth/status`)
+    return this.httpClient.get<AuthStatusPayload>(`${this.ENV.apiUrl}/auth/status`, { withCredentials: true })
   }
 }

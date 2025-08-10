@@ -24,11 +24,13 @@ export interface GetProductsResponseDto {
 @Injectable({ providedIn: 'root' })
 export class ProductHttpService {
   private ENV = environment;
-  private readonly basePath = `${this.ENV.apiUrl}/products`;
+  private readonly basePath = `${this.ENV.apiUrl}/products/`;
 
   constructor(private httpClient:  HttpClient ){}
 
   fetchAllProducts(params: HttpParams): Observable<GetProductsResponseDto>{
-    return this.httpClient.get<any>(`${this.basePath}`, { params });
+    return this.httpClient.get<GetProductsResponseDto>(
+        `${this.basePath}`, { params,   withCredentials: true }
+    );
   }
 }

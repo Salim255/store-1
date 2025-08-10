@@ -1,6 +1,6 @@
 <header>
   <section class="header-auth">
-    <ng-container *ngIf="getAuthType; else auth ">
+    <ng-container *ngIf="showAuthBar">
       <div class="header-auth__login" (click)="onSignUp()">
         <a >Sign in</a> / <a> Guest</a>
       </div>
@@ -8,14 +8,13 @@
       <a > Create Account</a>
       </div>
     </ng-container>
-   <ng-template #auth>
-     <section class="header-auth__modal">
+   <ng-container *ngIf="showAuthModal">
+      <section class="header-auth__modal">
        <div  class="header-auth__modal--content">
          <app-auth></app-auth>
        </div>
     </section>
-   </ng-template>
-
+   </ng-container>
   </section>
   <nav class="app-navbar">
     <a routerLink="/" class="app-navbar__logo">Housori</a>

@@ -16,6 +16,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   authType = signal<AuthType | null>(null)
   cartStateSubscription!: Subscription;
   authTypeSubscription!: Subscription;
+  authSubscription!: Subscription;
+  userIsAuthenticated: boolean = false;
+
   constructor(
     private authService: AuthService,
     private cartService: CartService,
@@ -24,7 +27,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeToCartState();
     this.subscribeToAuthType();
-    if (this.authType() !== AuthType.GUEST) document.body.style.overflow = 'hidden';
+    this.subscribeToUserAuthenticated();
+  }
+
+  subscribeToUserAuthenticated():void{
+    this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
+      console.log("💥💥💥")
+      if ((!auth && this.userIsAuthenticated) !== auth) {
+        this.userIsAuthenticated = auth;
+        this.authType.set(AuthType.LOGIN);
+        this.disableScroll();
+        this.authService.testAuth().subscribe();
+      }
+    })
   }
 
   subscribeToAuthType(){
@@ -46,12 +61,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   disableScroll():void{
-      if (this.authType() === AuthType.GUEST) {
-        document.body.style.overflow = 'auto';
-      } else {
-        document.body.style.overflow = 'hidden';
-      }
-    //else document.body.style.overflow = 'none';
+    if (this.authType() === AuthType.GUEST || this.userIsAuthenticated) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
   }
   onSignUp(): void{
     this.authService.setAuthType(AuthType.LOGIN);
@@ -60,10 +74,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authService.setAuthType(AuthType.SIGNUP);
   }
 
-  get getAuthType(): boolean {
-    return this.authType() === AuthType.GUEST;
+  get showAuthBar(): boolean {
+    return (this.authType() === AuthType.GUEST) && (!this.userIsAuthenticated);
   }
+
+  get showAuthModal(): boolean {
+    return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
+  }
+
+
   ngOnDestroy(): void {
-    this.cartStateSubscription.unsubscribe();
+    this.cartStateSubscription?.unsubscribe();
+    this.authSubscription?.unsubscribe();
   }
 }

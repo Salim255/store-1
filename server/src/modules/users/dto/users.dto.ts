@@ -1,5 +1,4 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 
 export const userObjectExample = {
   _id: '123IZN',
@@ -36,9 +35,6 @@ export class CreatedUserDto extends OmitType(CreateUserDto, [
   'passwordConfirm',
   'password',
 ]) {
-  @ApiProperty({ description: 'User Id', example: '1234' })
-  _id: Types.ObjectId;
-
   @ApiProperty({ description: `User's firstName`, example: 'Salim' })
   firstName: string;
 
@@ -86,6 +82,7 @@ export class SigninUserDto {
   password: string;
 }
 
-export class SigninUserResponseDto extends OmitType(CreatedUserResponseDto, [
-  'data',
-]) {}
+export class SigninUserResponseDto {
+  token: string;
+  user: CreatedUserDto;
+}

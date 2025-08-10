@@ -52,8 +52,8 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
       const password = this.authFormFields.get('password')?.value;
       if (this.authType === AuthType.LOGIN) {
         if (!email || ! password) return;
-        this.authFormService.signIn({email, password}).subscribe(response => {
-          console.log(response.headers);
+        this.authService.signIn({email, password}).subscribe(response => {
+          console.log(response.body);
         });
       }
       console.log(value, "submit",  email);

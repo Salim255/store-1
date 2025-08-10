@@ -80,7 +80,7 @@ export class UsersController {
     @Body() signinUserDto: SigninUserDto,
     @Res() response: Response,
   ): Promise<Response> {
-    const user: SigninUserResponseDto =
+    const data: SigninUserResponseDto =
       await this.usersService.signIn(signinUserDto);
 
     const NODE_ENV = this.configService.get<string>('NODE_ENV');
@@ -96,7 +96,13 @@ export class UsersController {
     // Set secure based on NODE_ENV
     if (NODE_ENV === 'production') cookieOptions.secure = true;
 
-    response.cookie('jwt', user.token, cookieOptions);
-    return response.status(200).json(user);
+    response.cookie('jwt', data.token, cookieOptions);
+    console.log(data.user);
+    return response.status(200).json({
+      status: 'success',
+      data: {
+        user: data.user,
+      },
+    });
   }
 }
