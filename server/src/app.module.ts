@@ -7,9 +7,11 @@ import { ProductsModule } from './modules/product/product.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { OrderModule } from './modules/orders/orders.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @Module({
   imports: [
+    PaymentsModule,
     DatabaseModule,
     ProductsModule,
     UsersModule,

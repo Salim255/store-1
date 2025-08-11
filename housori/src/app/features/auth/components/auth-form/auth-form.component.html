@@ -12,7 +12,11 @@
     <ion-input  formControlName="password" type="password" label="Password"></ion-input>
   </ion-item>
   <ion-item *ngIf="!isLogin">
-    <ion-input   [class.input-error]="passwordsMismatch && !isLogin" formControlName="passwordConfirm" type="password" label="Confirm password"></ion-input>
+    <ion-input
+      [class.input-error]="passwordsMismatch && !isLogin"
+      formControlName="passwordConfirm" type="password"
+      label="Confirm password">
+    </ion-input>
   </ion-item>
 </form>
 

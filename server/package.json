@@ -36,6 +36,7 @@
     "morgan": "^1.10.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "stripe": "^18.4.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
@@ -52,6 +53,7 @@
     "@types/jest": "^29.5.14",
     "@types/morgan": "^1.9.10",
     "@types/node": "^22.10.7",
+    "@types/stripe": "^8.0.416",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

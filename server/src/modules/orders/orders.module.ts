@@ -5,9 +5,11 @@ import { OrdersController } from './controllers/orders.controller';
 import { OrdersService } from './services/orders.service';
 import { OrderModel } from './model/order.model';
 import { UsersModule } from '../users/users.module';
+import { ProductsModule } from '../product/product.module';
 
 @Module({
   imports: [
+    ProductsModule,
     UsersModule,
     MongooseModule.forFeature([
       {

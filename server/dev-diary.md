@@ -321,3 +321,26 @@
 - There are two ways
   - 1. Filter object: find({price: 5})
   - 2. Use special mongoose methods: find().where('price').equal(5)
+
+# Payment with Stripe
+
+- Stripe is the best and the most popular and easiest to use software platform to integrate payments into any website .
+
+## Stripe workflow
+
+- 1. Backend:
+  - Secret Kay:
+  - Create Stripe Checkout Session
+- 2. FrontEnd:
+  - Public Key:
+    - Request Checkout Session
+    - Charge Credit card using Session
+- 3. Backend:
+  - Secret Key:
+    - Use Stripe WebHook to Create New Booking
+
+### Steps:
+
+- npm install stripe
+- npm install --save-dev @types/stripe
+- get stripe secret key
