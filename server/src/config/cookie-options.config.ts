@@ -10,7 +10,7 @@ export const cookieOption = (JWT_COOKIE_EXPIRE_IN: number): CookieOptions => {
     secure: false, // The cookie will only be sent in encrypted connection Only https
     httpOnly: true, // So cookie can't be access or modify by browser
     path: '/', // cookie valid for all backend routes
-    partitioned: true, // This for Firefox warning
+    //partitioned: true, // This for Firefox warning
   };
 
   return cookieOptions;

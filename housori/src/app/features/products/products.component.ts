@@ -36,12 +36,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private subscribeToProducts(){
     this.productsSubscription = this.productsService.productsSourceBehavior
-    .subscribe((data) => {
+    .subscribe({
+      next: (data) => {
       //console.log(products);
       if (data){
        this.allProducts.set(data.products);
        this.metaData.set(data.meta);
       }
+    }
     });
   }
   ngOnDestroy(): void {

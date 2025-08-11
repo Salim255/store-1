@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from "rxjs";
+import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from "rxjs";
 import { AuthHttpService, AuthResponsePayload } from "./auth-http.service";
 import { HttpResponse } from "@angular/common/http";
 
@@ -37,7 +37,8 @@ export class AuthService {
      return this.authHttpService.authStatus().pipe(
       map((response) => {
         return response.data.authenticated;
-      })
+      }),
+      catchError( () => of(false)) //// Wrap false in an Observable using 'of'
     )
   }
 

@@ -37,6 +37,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.authType.set(AuthType.LOGIN);
         this.disableScroll();
       }
+
+      console.log(this.authType(), "hello")
     })
   }
 
