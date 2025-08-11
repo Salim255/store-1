@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, signal} from "@angular/core";
 import { CartService } from "../cart/services/cart-service";
 import { Subscription } from "rxjs";
 import { TotalOrderDetails } from "src/app/shared/components/order-total/order-total.component";
+import { CheckoutService } from "./services/checkout.service";
 
 @Component({
   selector: 'app-checkout',
@@ -14,13 +15,15 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   private cartStateSubscription!: Subscription;
   totalDetails = signal< TotalOrderDetails | null>(null);
 
-  constructor (private cartService : CartService ) {}
+  constructor(
+    private checkoutService: CheckoutService,
+    private cartService: CartService,
+  ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.subscribeToCartState();
   }
+
   subscribeToCartState(){
     this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
       if (cartState) {
@@ -28,6 +31,16 @@ export class CheckoutComponent implements OnInit, OnDestroy{
         this.totalDetails.set(rest);
       }
     })
+  }
+
+  onPlaceOrder(){
+    const items =[
+      {
+        productId: "688cac7a02ee10a957d15ad2",
+        quantity: 1
+      }]
+
+    this.checkoutService.checkoutPayment(items).subscribe();
   }
 
   ngOnDestroy(): void {

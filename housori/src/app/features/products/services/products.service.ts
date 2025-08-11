@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiMetaData, GetProductsResponseDto, ProductHttpService } from "./products-http.service";
 import { Product } from "../model/product.model";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, catchError, Observable, of, tap } from "rxjs";
 import { HttpParams } from "@angular/common/http";
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +21,8 @@ export class ProductsService {
             meta: response.meta,
           })
         }
-      }))
+      })),
+      catchError((err) => of(err))
     );
   }
 }
