@@ -17,6 +17,7 @@ import { FeaturedProductsMiddleware } from './middlewares/featured-products.midd
   ],
   controllers: [ProductsController],
   providers: [ProductsService, ProductModel],
+  exports: [ProductModel],
 })
 export class ProductsModule {
   configure(consumer: MiddlewareConsumer) {

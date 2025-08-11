@@ -96,8 +96,12 @@ export class CartService {
   }
 
   clearCart(): void{
-    localStorage.setItem('cart',  JSON.stringify(defaultState));
-    this.cartStateSubject.next(defaultState);
+    console.log("Helloo from cleare");
+    const emptyCart = JSON.parse(JSON.stringify(defaultState));
+    // Save to localStorage
+    localStorage.setItem('cart', JSON.stringify(emptyCart));
+    // Notify subscribers with a fresh object
+    this.cartStateSubject.next(emptyCart);
   }
 
   get getCartState(): Observable<CartDetails> {

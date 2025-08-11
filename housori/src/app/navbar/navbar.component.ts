@@ -32,12 +32,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscribeToUserAuthenticated():void{
     this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
-      console.log("💥💥💥")
       if ((!auth && this.userIsAuthenticated) !== auth) {
         this.userIsAuthenticated = auth;
         this.authType.set(AuthType.LOGIN);
         this.disableScroll();
-        this.authService.testAuth().subscribe();
       }
     })
   }
@@ -51,6 +49,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscribeToCartState(){
     this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
+      console.log('Hello from cleared list')
       this.cartState.set(cartState);
     })
   }

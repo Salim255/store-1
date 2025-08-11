@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from '../schema/product.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateProductDto, ProductFilterDto } from '../dto/product.dto';
 import { APIFeatures, ApiMetaData } from '../../../../utils/api-features';
 
@@ -59,6 +59,13 @@ export class ProductModel {
         'Something went wrong while fetching products.',
       );
     }
+  }
+
+  async findManyByIds(ids: Types.ObjectId[]): Promise<Product[]> {
+    const products: Product[] = await this.productModel.find({
+      _id: { $in: ids },
+    });
+    return products;
   }
 
   async findById() {}

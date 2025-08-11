@@ -22,7 +22,7 @@ export type AuthResponsePayload = {
 @Injectable({providedIn: 'root'})
 export class AuthHttpService {
   private ENV = environment;
-  private baseUrl = `${this.ENV.apiUrl}/users/sign-in`;
+  private baseUrl = `${this.ENV.apiUrl}/users`;
 
   constructor(private httpClient: HttpClient ){}
 
@@ -37,7 +37,7 @@ export class AuthHttpService {
   }
 
   signIn(data: any): Observable<HttpResponse<AuthResponsePayload>>{
-    return this.httpClient.post<AuthResponsePayload>(`${this.baseUrl}`,
+    return this.httpClient.post<AuthResponsePayload>(`${this.baseUrl}/sign-in`,
       data,
       {
         observe: 'response',       // gives full HTTP response
@@ -46,6 +46,8 @@ export class AuthHttpService {
     );
   }
   authStatus(): Observable<AuthStatusPayload>{
-    return this.httpClient.get<AuthStatusPayload>(`${this.ENV.apiUrl}/auth/status`, { withCredentials: true })
+    return this.httpClient.get<AuthStatusPayload>(
+      `${this.ENV.apiUrl}/auth/status`, { withCredentials: true },
+    )
   }
 }

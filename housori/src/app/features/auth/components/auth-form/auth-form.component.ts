@@ -50,10 +50,18 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     this.submitFormSubscription = this.authFormService.getSubmitForm.subscribe(value => {
       const email = this.authFormFields.get('email')?.value;
       const password = this.authFormFields.get('password')?.value;
+      const passwordConfirm = this.authFormFields.get('passwordConfirm')?.value;
+      const firstName = this.authFormFields.get('firstName')?.value;
+      const lastName = this.authFormFields.get('lastName')?.value;
+
       if (this.authType === AuthType.LOGIN) {
         if (!email || ! password) return;
-        this.authService.signIn({email, password}).subscribe(response => {
-          console.log(response.body);
+        this.authService.signIn({email, password}).subscribe();
+
+      } else if (this.authType === AuthType.SIGNUP){
+        if (!email || ! password || !passwordConfirm || !firstName || !lastName ) return;
+        this.authService.register({ email, password, passwordConfirm , firstName , lastName }).subscribe(response => {
+          console.log(response);
         });
       }
       console.log(value, "submit",  email);

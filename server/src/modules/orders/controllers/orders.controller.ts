@@ -12,6 +12,7 @@ import {
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiCookieAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -25,6 +26,7 @@ import {
 import { OrdersService } from '../services/orders.service';
 import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
 
+@ApiCookieAuth()
 @ApiTags('Orders')
 @Controller('orders') // Base root : /orders
 export class OrdersController {
