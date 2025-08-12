@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges }
 import { AuthType } from "../../services/auth.service";
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ValidatorFn  } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
-import { combineLatest, Subscription, take } from "rxjs";
+import { combineLatest, Subscription} from "rxjs";
 import { AuthFormService } from "../../services/auth-form.service";
 
 const passwordMatchValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
@@ -59,12 +59,18 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
         this.authService.signIn({email, password}).subscribe();
 
       } else if (this.authType === AuthType.SIGNUP){
-        if (!email || ! password || !passwordConfirm || !firstName || !lastName ) return;
+        if (
+          !email
+          || ! password
+          || !passwordConfirm
+          || !firstName
+          || !lastName
+        ) return;
+
         this.authService.register({ email, password, passwordConfirm , firstName , lastName }).subscribe(response => {
           console.log(response);
         });
       }
-      console.log(value, "submit",  email);
     })
   }
 
