@@ -5,20 +5,11 @@
   <section class="checkout__shipping-info">
     <section class="checkout__shipping-info--address">
       <h3>Shipping information</h3>
-      <form>
-       <ion-item>
-         <ion-input label="Full name" aria-placeholder="receiver name" placeholder="Your full name" ></ion-input>
-       </ion-item>
-         <ion-item>
-         <ion-input label="Address" aria-placeholder="receiver address" placeholder="Your address..."></ion-input>
-       </ion-item>
-      </form>
-      <ion-item class="checkout-btn" lines="none">
-        <ion-button (click)="onPlaceOrder()">Place you order</ion-button>
-      </ion-item>
+      <app-shipping-address-form></app-shipping-address-form>
     </section>
     <section class="checkout__shipping-info--total">
-    <app-order-total [totalDetails]="totalDetails()"></app-order-total>
+      <app-order-total [totalDetails]="totalDetails()"></app-order-total>
     </section>
   </section>
 </main>
+
