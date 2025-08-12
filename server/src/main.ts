@@ -8,6 +8,7 @@ import { corsConfig } from './config/cors.config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as morgan from 'morgan';
 import * as cookieParser from 'cookie-parser';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   // A built-in NestJS class that creates the application instance
@@ -22,6 +23,13 @@ async function bootstrap() {
   // Cookie parser
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.use(cookieParser());
+
+  //
+  // Raw parser for Stripe webhook route
+  app.use(
+    '/api/v1/payments/webhook',
+    bodyParser.raw({ type: 'application/json' }),
+  );
 
   // Initialize Swagger
   setupSwagger(app);

@@ -1,4 +1,13 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Logger,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBody, ApiCookieAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
 import Stripe from 'stripe';
@@ -13,6 +22,7 @@ import { PaymentsService } from '../services/payments.service';
 @ApiTags('Payments')
 @Controller('payments')
 export class PaymentsController {
+  private logger = new Logger('Payment Controller');
   private stripe: Stripe;
   constructor(private paymentsService: PaymentsService) {}
 
@@ -34,5 +44,13 @@ export class PaymentsController {
         session,
       },
     };
+  }
+
+  // Webhook endpoint
+  @Post('webhook')
+  @HttpCode(200)
+  async handleWebhook(@Req() req: Request, @Res() res: Response) {
+    this.paymentsService.createOrderFromCheckout(req);
+    await res.json();
   }
 }

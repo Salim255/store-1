@@ -17,7 +17,7 @@ export class CheckoutService {
       tap((session)=> {
         console.log(session.body?.data.session.id)
         if (session.body?.data.session.id) {
-           this.startCheckout(session.body?.data.session.id);
+          this.startCheckout(session.body?.data.session.id);
         }
 
       })
