@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../../products/model/product.model";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, catchError, map, Observable } from "rxjs";
 
 export type CartItem  =  Product & {
   amount: number;
@@ -106,5 +106,9 @@ export class CartService {
 
   get getCartState(): Observable<CartDetails> {
     return this.cartStateSubject.asObservable();
+  }
+
+  get getCartDetailsForCheckout(): CartDetails {
+    return this.cartStateSubject.value;
   }
 }

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { CheckoutService } from "../../services/checkout.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
+import { ShippingAddress } from "../../services/checkout-http.service";
 
 @Component({
   selector: 'app-shipping-address-form',
@@ -26,20 +27,17 @@ export class ShippingAddressForm{
   }
 
   onPlaceOrder(){
-      const country = this.shippingFields.get('country')?.value;
-      const fullname = this.shippingFields.get('fullName')?.value;
-      const city = this.shippingFields.get('city')?.value;
-      const postalCode = this.shippingFields.get('postalCode')?.value;
-      const phone = this.shippingFields.get('phone')?.value;
-      const address = this.shippingFields.get('address')?.value;
-      /* const shippingAddress = {country, fullname, city, postalCode, phone, address};
-      const items =[
-        {
-          productId: "688cac7a02ee10a957d15ad2",
-          quantity: 1
-        }] */
+    const country = this.shippingFields.get('country')?.value;
+    const fullname = this.shippingFields.get('fullName')?.value;
+    const city = this.shippingFields.get('city')?.value;
+    const postalCode = this.shippingFields.get('postalCode')?.value;
+    const phone = this.shippingFields.get('phone')?.value;
+    const address = this.shippingFields.get('address')?.value;
 
-    //this.checkoutService.checkoutPayment(items).subscribe();
+    const shippingAddress:ShippingAddress =
+       {country, fullname, city, postalCode, phone, address};
+
+    this.checkoutService.checkoutPayment(shippingAddress).subscribe();
   }
 
   buildForm(){

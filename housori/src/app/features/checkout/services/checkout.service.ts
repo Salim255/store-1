@@ -1,19 +1,27 @@
 import { Injectable } from "@angular/core";
-import { CheckoutHttpService, CreatedSessionResponse } from "./checkout-http.service";
+import { CheckoutHttpService, CheckoutPayload, CreatedSessionResponse, ShippingAddress } from "./checkout-http.service";
 import { Observable, tap } from "rxjs";
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from "src/environments/environment";
 import { HttpResponse } from "@angular/common/http";
+import { CartDetails, CartService } from "../../cart/services/cart-service";
 
 @Injectable({providedIn: 'root'})
 
 export class CheckoutService {
   private ENV = environment;
 
-  constructor(private checkoutHttpService: CheckoutHttpService){}
+  constructor(
+    private cartService: CartService,
+    private checkoutHttpService: CheckoutHttpService,
+  ){}
 
-  checkoutPayment(items: any): Observable<HttpResponse<CreatedSessionResponse>>{
-    return this.checkoutHttpService.createCheckoutSession(items).pipe(
+  checkoutPayment(
+    shippingAddress: ShippingAddress,
+  ): Observable<HttpResponse<CreatedSessionResponse>>{
+    const order: CartDetails = this.cartService.getCartDetailsForCheckout;
+    const checkoutPayload: CheckoutPayload = { order, shippingAddress}
+    return this.checkoutHttpService.createCheckoutSession(checkoutPayload).pipe(
       tap((session)=> {
         console.log(session.body?.data.session.id)
         if (session.body?.data.session.id) {
