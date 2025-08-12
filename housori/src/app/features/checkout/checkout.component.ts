@@ -33,16 +33,6 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     })
   }
 
-  onPlaceOrder(){
-    const items =[
-      {
-        productId: "688cac7a02ee10a957d15ad2",
-        quantity: 1
-      }]
-
-    this.checkoutService.checkoutPayment(items).subscribe();
-  }
-
   ngOnDestroy(): void {
     this.cartStateSubscription?.unsubscribe();
   }
