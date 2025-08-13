@@ -83,6 +83,8 @@ export class PaymentComponent implements OnInit {
   stripe!: Stripe | null;
   payment!: StripePaymentElement;
   elements: StripeElements | null = null;
+  paymentElement: StripePaymentElement | null = null;
+  checkout: any;
   errorMessage: string = '';
   isLoading: boolean = false;
   stripeReady: boolean = false;
@@ -92,17 +94,57 @@ export class PaymentComponent implements OnInit {
     this.stripe = await loadStripe(`${this.ENV.stripePK}`); // Replace with your Stripe publishable key
 
     if (!this.stripe) {
+      console.log("Hello", this.stripe);
       return;
     }
+
+    this.paymentElementWithCheckout();
+  }
+
+  async paymentElementWithCheckout(){
+    const fetchClientSecret = 'cs_test_a1pmxcWFtTKoceAJfKoQcUk1ZJ7s7LpF4zJiTEKsNMYQU9Fq8S0XcUVoKH_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+      this.checkout = await this.stripe!.initCheckout({
+      fetchClientSecret: () => fetchClientSecret,
+      elementsOptions: {
+        appearance
+      }
+    } as any); // 👈 bypass TypeScript error
+    console.log(this.checkout, "hello checlot")
+    this.paymentElement = this.checkout.createPaymentElement(
+      { layout: {
+          type: 'tabs', // or 'accordion'
+        }
+      });
+    this.paymentElement!.mount('#payment-element');
+    this.stripeReady = true;
+  }
+   async handleSubmitWithCheckout() {
+
+    this.isLoading = true;
+    this.errorMessage = '';
+     console.log('hello from submit', this.checkout);
+    const { error } = await this.checkout!.confirm(
+
+        //return_url: 'http://localhost:4200/'
+
+    );
+    console.log('hello from submit')
+    if (error) {
+      this.errorMessage = error?.message!;
+    }
+
+    this.isLoading = false;
   }
 
   paymentElementWithPaymentIntent(){
     const clientSecret = 'cs_test_a1A8ljMTz07XNYuYDVeA9AYgdWO8E2lyaPWx6QPEBqSQNVmxrVo3GyN3kn_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
-     this.elements = this.stripe!.elements({clientSecret, appearance});
+    this.elements = this.stripe!.elements({clientSecret, appearance});
     this.payment = this.elements.create('payment', options);
     this.payment.mount('#payment-element');
     this.stripeReady = true;
   }
+
+
 
   async handleSubmit() {
 

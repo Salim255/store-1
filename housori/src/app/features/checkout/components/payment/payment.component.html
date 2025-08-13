@@ -1,5 +1,5 @@
 <!-- payment.component.html -->
-<form id="payment-form" (submit)="handleSubmit(); $event.preventDefault()" novalidate>
+<form id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
   <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
 
   <div *ngIf="errorMessage" class="error-message">
