@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CheckoutHttpService, CheckoutPayload, CreatedSessionResponse, ShippingAddress } from "./checkout-http.service";
+import { CheckoutHttpService, CheckoutPayload, CreatedSessionResponse, OrderItem, ShippingAddress } from "./checkout-http.service";
 import { Observable, tap } from "rxjs";
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from "src/environments/environment";
@@ -19,8 +19,13 @@ export class CheckoutService {
   checkoutPayment(
     shippingAddress: ShippingAddress,
   ): Observable<HttpResponse<CreatedSessionResponse>>{
-    const order: CartDetails = this.cartService.getCartDetailsForCheckout;
-    const checkoutPayload: CheckoutPayload = { order, shippingAddress}
+    const cartDetails: CartDetails = this.cartService.getCartDetailsForCheckout;
+    const items: OrderItem[]  = cartDetails.cartItems.map((product) => {
+      return {productId: product._id, quantity: product.amount}
+     } );
+
+    const checkoutPayload: CheckoutPayload = { items, shippingAddress}
+
     return this.checkoutHttpService.createCheckoutSession(checkoutPayload).pipe(
       tap((session)=> {
         console.log(session.body?.data.session.id)

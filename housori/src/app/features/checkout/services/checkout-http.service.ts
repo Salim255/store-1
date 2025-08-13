@@ -12,8 +12,12 @@ export interface CreatedSessionResponse {
   }
 }
 
+export interface OrderItem {
+    productId: string;
+    quantity: number
+}
 export interface CheckoutPayload {
-  order: CartDetails;
+  items: OrderItem[];
   shippingAddress: ShippingAddress
 }
 
