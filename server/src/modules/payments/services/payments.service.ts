@@ -19,17 +19,53 @@ export class PaymentsService {
     this.stripe = new Stripe(SecretAPIKey);
   }
 
+  async createPaymentIntent() {
+    // Step 1: Create the customer
+    const shippingInfo = {
+      email: 'salim@example.com',
+      name: 'Salim',
+      address: {
+        line1: '123 Rue de la Liberté',
+        city: 'Lille',
+        postal_code: '59000',
+        country: 'FR',
+      },
+    };
+
+    const customer = await this.stripe.customers.create(shippingInfo);
+    const paymentIntent = await this.stripe.paymentIntents.create({
+      amount: 1099,
+      currency: 'eur',
+      description: 'Order description, human readable',
+      receipt_email: 'customer@example.com',
+      customer: customer.id,
+      automatic_payment_methods: { enabled: true },
+      setup_future_usage: 'off_session',
+      metadata: {
+        order_id: '1234',
+        product_name: 'Premium Plan',
+        product_image: 'https://your-site.com/images/premium.png',
+        shipping_name: 'Salim',
+        shipping_city: 'Lille',
+        shipping_country: 'FR',
+      },
+    });
+
+    this.logger.log(paymentIntent);
+  }
   async createCheckoutSession(
     body: CreateCheckoutSession,
     req: Request,
   ): Promise<Stripe.Response<Stripe.Checkout.Session>> {
     try {
+      await this.createPaymentIntent();
       // 1. Convert product. ids into Type.Objectid
       const productIds = body.items.map(
         (item) => new Types.ObjectId(item.productId),
       );
 
-      this.logger.log(productIds);
+      this.logger.log(productIds, body.shippingAddress);
+      const shippingAddress = body.shippingAddress;
       // 2. Fetch products from DB based on IDs from frontend
       const products = await this.productModel.findManyByIds(productIds);
       // 2. Map to Stripe line items
@@ -56,20 +92,30 @@ export class PaymentsService {
         await this.stripe.checkout.sessions.create({
           payment_method_types: ['card', 'paypal'],
           mode: 'payment',
-          success_url: `${req.protocol}://localhost:4200/`, // With successful purchase, user will be redirected to this URL
-          cancel_url: `${req.protocol}://localhost:4200/checkout`,
+          ui_mode: 'custom',
+          //success_url: `${req.protocol}://localhost:4200/`, // With successful purchase, user will be redirected to this URL
+          //cancel_url: `${req.protocol}://localhost:4200/checkout`,
           // From the email we can get the user that created the order
           //customer_email: req.user.email,
-          billing_address_collection: 'required', // ← collect billing address
-          shipping_address_collection: {
-            allowed_countries: ['FR', 'US', 'GB'], // ← collect shipping address
-          },
 
           customer_creation: 'always',
           // This field: client_reference_id, will allows us to pass in some data
           // about the session that we are currently creating.
           // because with success purchase this field help us to create the order to our database
           client_reference_id: req.params.productId,
+
+          payment_intent_data: {
+            shipping: {
+              name: shippingAddress.fullName,
+              address: {
+                line1: shippingAddress.address,
+                city: shippingAddress.city,
+                state: shippingAddress.city,
+                postal_code: shippingAddress.postalCode,
+                country: shippingAddress.country,
+              },
+            },
+          },
 
           // Some details about order itself
           // 2) Information about order

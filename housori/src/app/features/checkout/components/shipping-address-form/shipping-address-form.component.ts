@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { CheckoutService } from "../../services/checkout.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
 import { ShippingAddress } from "../../services/checkout-http.service";
 
 @Component({
@@ -12,7 +11,6 @@ import { ShippingAddress } from "../../services/checkout-http.service";
 })
 
 export class ShippingAddressForm{
-  statusChangeSubscription = new Subscription();
   shippingFields!: FormGroup;
 
   constructor(
@@ -22,8 +20,6 @@ export class ShippingAddressForm{
 
   ngOnInit(): void {
     this.buildForm();
-
-    this.subscribeToStatusChange();
   }
 
   onPlaceOrder(){
@@ -51,16 +47,4 @@ export class ShippingAddressForm{
     })
   }
 
-  subscribeToStatusChange(){
-   this.statusChangeSubscription.unsubscribe();
-   this.statusChangeSubscription =  this.shippingFields.statusChanges.subscribe(text => {
-      console.log(text);
-    });
-  }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.statusChangeSubscription.unsubscribe();
-  }
 }
