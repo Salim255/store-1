@@ -96,9 +96,10 @@ export class PaymentsService {
           //success_url: `${req.protocol}://localhost:4200/`, // With successful purchase, user will be redirected to this URL
           //cancel_url: `${req.protocol}://localhost:4200/checkout`,
           // From the email we can get the user that created the order
-          //customer_email: req.user.email,
+          customer_email: 'salim@example.com',
+          return_url: 'http://localhost:4200/',
 
-          customer_creation: 'always',
+          //customer_creation: 'always',
           // This field: client_reference_id, will allows us to pass in some data
           // about the session that we are currently creating.
           // because with success purchase this field help us to create the order to our database
