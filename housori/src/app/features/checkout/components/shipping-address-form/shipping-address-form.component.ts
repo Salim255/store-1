@@ -32,7 +32,7 @@ export class ShippingAddressForm{
 
     const shippingAddress:ShippingAddress =
        {country, fullname, city, postalCode, phone, address};
-
+    this.checkoutService.setOrderIsPlaced(true);
     this.checkoutService.checkoutPayment(shippingAddress).subscribe();
   }
 

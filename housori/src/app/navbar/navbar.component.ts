@@ -3,6 +3,7 @@ import { CartDetails, CartService } from "../features/cart/services/cart-service
 import { Subscription } from "rxjs";
 import { AuthType } from "../features/auth/services/auth.service";
 import { AuthService } from "../features/auth/services/auth.service";
+import {CoreService} from "../core/services/core.service";
 
 @Component({
   selector: "app-navbar",
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated: boolean = false;
 
   constructor(
+    private coreService: CoreService,
     private authService: AuthService,
     private cartService: CartService,
   ){}
@@ -62,11 +64,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   disableScroll():void{
-    if (this.authType() === AuthType.GUEST || this.userIsAuthenticated) {
-      document.body.style.overflow = 'auto';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
+    this.coreService.setDisableScroll(
+      this.authType() === AuthType.GUEST || this.userIsAuthenticated
+    );
   }
   onSignUp(): void{
     this.authService.setAuthType(AuthType.LOGIN);

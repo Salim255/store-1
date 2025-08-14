@@ -1,1 +1,47 @@
 
+.payment-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__container{
+    backdrop-filter: blur(20px);
+    background-color: rgba(250, 250, 250, 0.4);
+    // Soft glass-style shadow
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.2),   // main soft shadow
+        0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    padding: 4rem 2rem;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    gap: 3rem;
+    &--form {
+      margin: auto;
+      flex: .6;
+      height: 80%;
+      justify-content: center;
+      display: flex;
+
+      flex-direction: column;
+      gap: 2rem;
+      .payment-submit-btn{
+        button {
+           //display: inline-block;
+      }
+      }
+    }
+    &--summary{
+      flex: .4;
+    }
+
+  }
+}
