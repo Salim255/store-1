@@ -102,14 +102,15 @@ export class PaymentComponent implements OnInit {
   }
 
   async paymentElementWithCheckout(){
-    const fetchClientSecret = 'cs_test_a1pmxcWFtTKoceAJfKoQcUk1ZJ7s7LpF4zJiTEKsNMYQU9Fq8S0XcUVoKH_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+    const fetchClientSecret = 'cs_test_a1tXIyaSFGLXvw9ZaNcexeUJgXGlcw2t5CQWr5gMTcook2NbDo5rdz3pd2_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
       this.checkout = await this.stripe!.initCheckout({
       fetchClientSecret: () => fetchClientSecret,
       elementsOptions: {
         appearance
       }
     } as any); // 👈 bypass TypeScript error
-    console.log(this.checkout, "hello checlot")
+    console.log(this.checkout, "hello checlot");
+
     this.paymentElement = this.checkout.createPaymentElement(
       { layout: {
           type: 'tabs', // or 'accordion'
@@ -117,20 +118,25 @@ export class PaymentComponent implements OnInit {
       });
     this.paymentElement!.mount('#payment-element');
     this.stripeReady = true;
+     console.log('hello from session', this.checkout.session());
   }
    async handleSubmitWithCheckout() {
 
     this.isLoading = true;
     this.errorMessage = '';
-     console.log('hello from submit', this.checkout);
-    const { error } = await this.checkout!.confirm(
 
+
+    const result = await this.checkout!.confirm(
+{
+  redirect: 'if_required'
+}
         //return_url: 'http://localhost:4200/'
 
     );
-    console.log('hello from submit')
-    if (error) {
-      this.errorMessage = error?.message!;
+    console.log('hello from submit', result);
+    localStorage.setItem('result', result);
+    if ( result.error) {
+      this.errorMessage =  result.error?.message!;
     }
 
     this.isLoading = false;

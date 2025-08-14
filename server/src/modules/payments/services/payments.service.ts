@@ -74,7 +74,7 @@ export class PaymentsService {
           const cartItem = body.items.find((i) => i.productId === product.id);
           return {
             price_data: {
-              currency: 'usd',
+              currency: 'eur',
               product_data: {
                 name: product.name,
                 description: product.description,
@@ -83,8 +83,10 @@ export class PaymentsService {
               unit_amount: product.price * 100, // Convert to cents
             },
             quantity: cartItem?.quantity,
+            tax_rates: ['txr_1Rvy6GFrWj4JpsgpBNszhgB0'],
           };
         });
+
       // 2) Create the Checkout session
       // There many of options but these coming three are required
       // 1 Information about the session
@@ -93,18 +95,24 @@ export class PaymentsService {
           payment_method_types: ['card', 'paypal'],
           mode: 'payment',
           ui_mode: 'custom',
-          //success_url: `${req.protocol}://localhost:4200/`, // With successful purchase, user will be redirected to this URL
-          //cancel_url: `${req.protocol}://localhost:4200/checkout`,
           // From the email we can get the user that created the order
           customer_email: 'salim@example.com',
           return_url: 'http://localhost:4200/',
-
           //customer_creation: 'always',
           // This field: client_reference_id, will allows us to pass in some data
           // about the session that we are currently creating.
           // because with success purchase this field help us to create the order to our database
           client_reference_id: req.params.productId,
-
+          shipping_options: [
+            {
+              shipping_rate_data: {
+                type: 'fixed_amount',
+                fixed_amount: { amount: 5000, currency: 'eur' }, // 50 EUR shipping
+                display_name: 'Standard Shipping',
+                tax_behavior: 'exclusive', // or 'exclusive' inclusive
+              },
+            },
+          ],
           payment_intent_data: {
             shipping: {
               name: shippingAddress.fullName,
@@ -121,7 +129,21 @@ export class PaymentsService {
           // Some details about order itself
           // 2) Information about order
           // Array of objects, on per item
-          line_items: lineItems,
+          line_items: [
+            ...lineItems,
+           /*  {
+              price_data: {
+                currency: 'eur',
+                product_data: {
+                  name: 'Shipping',
+                  description: 'Standard shipping fee for your order',
+                },
+                unit_amount: 100, // 5.00 EUR
+              },
+              quantity: 1, // single line item for all shipping
+              tax_rates: ['txr_1Rvy6GFrWj4JpsgpBNszhgB0'], // VAT for shipping
+            }, */
+          ],
         });
       return session;
     } catch (error) {
