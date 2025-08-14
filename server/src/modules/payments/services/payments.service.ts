@@ -129,21 +129,7 @@ export class PaymentsService {
           // Some details about order itself
           // 2) Information about order
           // Array of objects, on per item
-          line_items: [
-            ...lineItems,
-           /*  {
-              price_data: {
-                currency: 'eur',
-                product_data: {
-                  name: 'Shipping',
-                  description: 'Standard shipping fee for your order',
-                },
-                unit_amount: 100, // 5.00 EUR
-              },
-              quantity: 1, // single line item for all shipping
-              tax_rates: ['txr_1Rvy6GFrWj4JpsgpBNszhgB0'], // VAT for shipping
-            }, */
-          ],
+          line_items: lineItems,
         });
       return session;
     } catch (error) {

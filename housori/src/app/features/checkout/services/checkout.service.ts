@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CheckoutHttpService, CheckoutPayload, CreatedSessionResponse, OrderItem, ShippingAddress } from "./checkout-http.service";
-import { Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, tap } from "rxjs";
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from "src/environments/environment";
 import { HttpResponse } from "@angular/common/http";
@@ -10,15 +10,25 @@ import { CartDetails, CartService } from "../../cart/services/cart-service";
 
 export class CheckoutService {
   private ENV = environment;
+  private orderIsPlacedSubject = new BehaviorSubject<boolean>(false);
 
   constructor(
     private cartService: CartService,
     private checkoutHttpService: CheckoutHttpService,
   ){}
 
+  setOrderIsPlaced(placed: boolean): void {
+    this.orderIsPlacedSubject.next(placed);
+  }
+
+  get getOrderIsPlaced(): Observable<boolean> {
+    return this.orderIsPlacedSubject.asObservable();
+  }
+
   checkoutPayment(
     shippingAddress: ShippingAddress,
   ): Observable<HttpResponse<CreatedSessionResponse>>{
+
     const cartDetails: CartDetails = this.cartService.getCartDetailsForCheckout;
     const items: OrderItem[]  = cartDetails.cartItems.map((product) => {
       return {productId: product._id, quantity: product.amount}
@@ -30,6 +40,7 @@ export class CheckoutService {
       tap((session)=> {
         console.log(session.body?.data.session.id)
         if (session.body?.data.session.id) {
+          this.setOrderIsPlaced(true);
           this.startCheckout(session.body?.data.session.id);
         }
 

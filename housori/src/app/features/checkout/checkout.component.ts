@@ -13,6 +13,8 @@ import { CheckoutService } from "./services/checkout.service";
 
 export class CheckoutComponent implements OnInit, OnDestroy{
   private cartStateSubscription!: Subscription;
+  private orderIsPlacedSubscription!: Subscription;
+  orderIsPlaced = signal<boolean>(false);
   totalDetails = signal< TotalOrderDetails | null>(null);
 
   constructor(
@@ -22,8 +24,14 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.subscribeToCartState();
+    this.subscribeToOrderIsPlaced()
   }
 
+  subscribeToOrderIsPlaced(): void {
+    this.orderIsPlacedSubscription = this.checkoutService
+      .getOrderIsPlaced
+      .subscribe(isPlaced =>{ this.orderIsPlaced.set(isPlaced) })
+  }
   subscribeToCartState(){
     this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
       if (cartState) {
@@ -35,5 +43,6 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.cartStateSubscription?.unsubscribe();
+    this.orderIsPlacedSubscription?.unsubscribe();
   }
 }

@@ -1,13 +1,22 @@
 <!-- payment.component.html -->
-<form id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
-  <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
+<div class="payment-modal">
+  <div class="payment-modal__container">
+    <form class="payment-modal__container--form" id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
+      <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
 
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+     <div class="payment-submit-btn">
+       <button type="submit" [disabled]="isLoading || !stripeReady">
+        <span *ngIf="!isLoading">Pay</span>
+        <span *ngIf="isLoading">Processing...</span>
+      </button>
+    </div>
+    </form>
+    <section class="payment-modal__container--summary">
+       <app-order-total [pageName]="'payment'" [totalDetails]="totalDetails"></app-order-total>
+    </section>
   </div>
-
-  <button type="submit" [disabled]="isLoading || !stripeReady">
-    <span *ngIf="!isLoading">Pay</span>
-    <span *ngIf="isLoading">Processing...</span>
-  </button>
-</form>
+</div>

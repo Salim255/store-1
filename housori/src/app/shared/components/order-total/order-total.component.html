@@ -5,11 +5,11 @@
       <p>{{ cartTotal | currency }}</p>
     </ion-item>
       <ion-item>
-      <p> shipping</p>
+      <p> Shipping (Standard Shipping)</p>
       <p>{{ shipping | currency }}</p>
     </ion-item>
       <ion-item>
-      <p>tax</p>
+      <p>Sales tax (20%)</p>
       <p>{{ tax | currency }}</p>
     </ion-item>
     <ion-item lines="none">
@@ -17,7 +17,7 @@
       <p>{{ orderTotal | currency }}</p>
     </ion-item>
   </div>
-  <div class="order-total__btn">
+  <div class="order-total__btn" *ngIf="pageName !=='payment'">
     <ion-button [disabled]="!orderTotal" (click)="onClear()"> clear cart</ion-button>
   </div>
 </div>

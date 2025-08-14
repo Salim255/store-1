@@ -1,23 +1,24 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { Appearance, Stripe, StripeElements, StripePaymentElement, StripePaymentElementOptions, loadStripe } from '@stripe/stripe-js';
+import { TotalOrderDetails } from 'src/app/shared/components/order-total/order-total.component';
 import { environment } from 'src/environments/environment';
 
  const appearance: Appearance = {
  theme: 'flat',
  variables: {
-    colorPrimary: '#0570de',
-    colorBackground: '#019638',
+    colorPrimary: '',
+    colorBackground: '',
     colorText: '#30313d',
     colorDanger: '#df1b41',
     fontFamily: 'Ideal Sans, system-ui, sans-serif',
-    spacingUnit: '2px',
+    spacingUnit: '5px',
     borderRadius: '10px',
     // See all possible variables below
   },
   rules: {
       '.Tab': {
         border: '1px solid #E0E6EB',
-        boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(18, 42, 66, 0.02)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1)',
       },
 
       '.Tab:hover': {
@@ -79,6 +80,7 @@ const options: StripePaymentElementOptions = {
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
+  @Input() totalDetails!: TotalOrderDetails
   ENV = environment ;
   stripe!: Stripe | null;
   payment!: StripePaymentElement;
@@ -102,7 +104,7 @@ export class PaymentComponent implements OnInit {
   }
 
   async paymentElementWithCheckout(){
-    const fetchClientSecret = 'cs_test_a1tXIyaSFGLXvw9ZaNcexeUJgXGlcw2t5CQWr5gMTcook2NbDo5rdz3pd2_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+    const fetchClientSecret = 'cs_test_a1FBvhQPjLgPwKbxukKDXlChAuySaxK61mPb6vrEdXpn4FXodjTjwBAqhZ_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
       this.checkout = await this.stripe!.initCheckout({
       fetchClientSecret: () => fetchClientSecret,
       elementsOptions: {

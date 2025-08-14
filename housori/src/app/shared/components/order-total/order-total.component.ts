@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ɵɵInputTransformsFeature } from "@angular/core";
 import { CartDetails } from "src/app/features/cart/services/cart-service";
 import { CartService } from "src/app/features/cart/services/cart-service";
 
@@ -13,6 +13,7 @@ export type TotalOrderDetails = Omit<CartDetails, 'cartItems'>;
 
 export class OrderTotalComponent {
   @Input() totalDetails!: TotalOrderDetails | null;
+  @Input() pageName!: 'payment' | 'orders' | 'checkout';
   constructor(private cartService: CartService){}
 
   onClear(): void {
