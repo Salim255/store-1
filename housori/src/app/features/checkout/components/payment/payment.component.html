@@ -1,22 +1,32 @@
 <!-- payment.component.html -->
 <div class="payment-modal">
   <div class="payment-modal__container">
-    <form class="payment-modal__container--form" id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
-      <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
+    <form class="payment-modal__container--form  billing" id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
+      <div class="billinig__header">
+        <h3>Billing Information</h3>
+      </div>
+      <div class="billing__methods">
+        <p>payment methods</p>
+        <div class="billing__methods--secure">
+           <p>Secure and encrypted</p>
+          <ion-icon name="lock-closed"></ion-icon>
+        </div>
+      </div>
 
+      <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
      <div class="payment-submit-btn">
-       <button type="submit" [disabled]="isLoading || !stripeReady">
+       <ion-button type="submit" [disabled]="isLoading || !stripeReady">
         <span *ngIf="!isLoading">Pay</span>
         <span *ngIf="isLoading">Processing...</span>
-      </button>
+      </ion-button>
     </div>
     </form>
     <section class="payment-modal__container--summary">
-       <app-order-total [pageName]="'payment'" [totalDetails]="totalDetails"></app-order-total>
+       <app-summary></app-summary>
     </section>
   </div>
 </div>

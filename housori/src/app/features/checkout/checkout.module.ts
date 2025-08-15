@@ -7,12 +7,16 @@ import { IonicModule } from "@ionic/angular";
 import { SharedModule } from "src/app/shared/shared.module";
 import {ShippingAddressForm} from "./components/shipping-address-form/shipping-address-form.component"
 import { PaymentComponent } from "./components/payment/payment.component";
+import { SummaryComponent } from "./components/summary/summary";
+import { SummaryItemComponent } from "./components/summary/summary-item/summary-item.component";
 
 @NgModule({
   declarations: [
+    SummaryItemComponent,
+    SummaryComponent,
     CheckoutComponent,
     ShippingAddressForm,
-    PaymentComponent
+    PaymentComponent,
   ],
   imports: [
     CheckoutRoutingModule, ReactiveFormsModule,
