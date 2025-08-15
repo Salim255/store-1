@@ -4,21 +4,40 @@ import { TotalOrderDetails } from 'src/app/shared/components/order-total/order-t
 import { environment } from 'src/environments/environment';
 
  const appearance: Appearance = {
- theme: 'flat',
+ theme: 'stripe',
  variables: {
-    colorPrimary: '',
-    colorBackground: '',
-    colorText: '#30313d',
+    colorPrimary: '#0E766E',
+    colorBackground: '#FAF9F7',
+    //colorText: '#30313d',
     colorDanger: '#df1b41',
     fontFamily: 'Ideal Sans, system-ui, sans-serif',
     spacingUnit: '5px',
     borderRadius: '10px',
     // See all possible variables below
+
+    gridColumnSpacing: '10px',
+    gridRowSpacing: '2rem',
+    fontLineHeight: '1.5',
+    fontSizeBase: '1rem',
+    fontWeightNormal: '400',
+
+
   },
   rules: {
+      '.Label': {
+        fontWeight: '600',
+        color: '#8b0a0a',
+        fontSize: '1.2rem',
+      },
+      '.Input': {
+         colorText: '#8b0a0a',
+         fontSize: '1rem',
+          width: '100%',
+      },
       '.Tab': {
+
         border: '1px solid #E0E6EB',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1)',
+        boxShadow: '1 1px 1px rgba(0, 0, 0, 0.2), 1 1px 1px rgba(0, 0, 0, 0.1)',
       },
 
       '.Tab:hover': {
@@ -86,6 +105,8 @@ export class PaymentComponent implements OnInit {
   payment!: StripePaymentElement;
   elements: StripeElements | null = null;
   paymentElement: StripePaymentElement | null = null;
+  billingAddressElement: any = null;
+  shippingAddressElement: any = null;
   checkout: any;
   errorMessage: string = '';
   isLoading: boolean = false;
@@ -104,7 +125,7 @@ export class PaymentComponent implements OnInit {
   }
 
   async paymentElementWithCheckout(){
-    const fetchClientSecret = 'cs_test_a1FBvhQPjLgPwKbxukKDXlChAuySaxK61mPb6vrEdXpn4FXodjTjwBAqhZ_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+    const fetchClientSecret = 'cs_test_a1pYMqNdLJNu4nWYd0BhwkjaWJwGmQ3MVvzxJqJcSqOElRvK9reHDrqSmi_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
       this.checkout = await this.stripe!.initCheckout({
       fetchClientSecret: () => fetchClientSecret,
       elementsOptions: {
@@ -116,8 +137,25 @@ export class PaymentComponent implements OnInit {
     this.paymentElement = this.checkout.createPaymentElement(
       { layout: {
           type: 'tabs', // or 'accordion'
-        }
+        },
+        fields: {
+    billingDetails: {
+      name: 'auto', // Force name to always show
+      email: 'auto',  // Keep as auto or 'never' if collecting elsewhere
+      phone: 'auto',  // Keep as auto or 'never'
+      address: 'auto' // Keep as auto or 'never'
+    }
+  }
       });
+
+     // Create a separate billing address element
+    const test = this.checkout.getShippingAddressElement();
+    console.log(test, "hello from billing address");
+
+    // Create a separate shipping address element if needed
+    //this.shippingAddressElement = this.checkout.createShippingAddressElement();
+
+    //this.shippingAddressElement.mount('#shipping-address-element');
     this.paymentElement!.mount('#payment-element');
     this.stripeReady = true;
      console.log('hello from session', this.checkout.session());

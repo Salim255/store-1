@@ -1,0 +1,28 @@
+.summary-item {
+  display: flex;
+  width: 100%;
+  margin: 1rem 0;
+  &__product {
+    flex: 1;
+    &--figure {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: 1rem;
+      img {
+        height: 6rem;
+        width: 8rem;
+        border-radius: 1rem;
+      }
+    }
+  }
+  &__price-qnt{
+    display: flex;
+    gap: 2rem;
+    &--quantity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
