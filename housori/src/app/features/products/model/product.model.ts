@@ -8,6 +8,7 @@ export class Product {
     public featured: boolean,
     public price: number,
     public shipping: boolean,
+    public shippingPrice: number,
     public images: string [],
     public colors: string []
   ){
