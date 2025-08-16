@@ -1,5 +1,6 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { Appearance, Stripe, StripeElements, StripePaymentElement, StripePaymentElementOptions, loadStripe } from '@stripe/stripe-js';
+import { set } from 'mongoose';
 import { TotalOrderDetails } from 'src/app/shared/components/order-total/order-total.component';
 import { environment } from 'src/environments/environment';
 
@@ -125,89 +126,43 @@ export class PaymentComponent implements OnInit {
   }
 
   async paymentElementWithCheckout(){
-    const fetchClientSecret = 'cs_test_a1pYMqNdLJNu4nWYd0BhwkjaWJwGmQ3MVvzxJqJcSqOElRvK9reHDrqSmi_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+    const fetchClientSecret = 'cs_test_a1ppKYafjoP7SzwUOlFVoS8BFoexawYCf4hN4yEGQEdTrYjLlWRiEmzhCv_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
       this.checkout = await this.stripe!.initCheckout({
       fetchClientSecret: () => fetchClientSecret,
       elementsOptions: {
         appearance
       }
-    } as any); // 👈 bypass TypeScript error
-    console.log(this.checkout, "hello checlot");
+    } as any);
 
-    this.paymentElement = this.checkout.createPaymentElement(
-      { layout: {
-          type: 'tabs', // or 'accordion'
-        },
-        fields: {
-    billingDetails: {
-      name: 'auto', // Force name to always show
-      email: 'auto',  // Keep as auto or 'never' if collecting elsewhere
-      phone: 'auto',  // Keep as auto or 'never'
-      address: 'auto' // Keep as auto or 'never'
-    }
-  }
-      });
-
-     // Create a separate billing address element
-    const test = this.checkout.getShippingAddressElement();
-    console.log(test, "hello from billing address");
-
-    // Create a separate shipping address element if needed
-    //this.shippingAddressElement = this.checkout.createShippingAddressElement();
+    this.paymentElement =
+      this.checkout.createPaymentElement(
+          { layout: {
+              type: 'tabs', // or 'accordion'
+            },
+          },
+      );
 
     //this.shippingAddressElement.mount('#shipping-address-element');
     this.paymentElement!.mount('#payment-element');
     this.stripeReady = true;
-     console.log('hello from session', this.checkout.session());
+    //const session = this.checkout.session();
+    //console.log( session.total.total.amount,  'hello from session', session.email );
   }
-   async handleSubmitWithCheckout() {
 
+  async handleSubmitWithCheckout() {
     this.isLoading = true;
     this.errorMessage = '';
-
-
-    const result = await this.checkout!.confirm(
-{
-  redirect: 'if_required'
-}
-        //return_url: 'http://localhost:4200/'
-
-    );
-    console.log('hello from submit', result);
-    localStorage.setItem('result', result);
+    const result =
+      await this.checkout!.confirm({ redirect: 'if_required' });
     if ( result.error) {
       this.errorMessage =  result.error?.message!;
+      return
     }
 
-    this.isLoading = false;
-  }
+    setTimeout(() => {
+      this.isLoading = false;
+      this.checkout!.redirectToSuccessPage();
+    }, 1000);
 
-  paymentElementWithPaymentIntent(){
-    const clientSecret = 'cs_test_a1A8ljMTz07XNYuYDVeA9AYgdWO8E2lyaPWx6QPEBqSQNVmxrVo3GyN3kn_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
-    this.elements = this.stripe!.elements({clientSecret, appearance});
-    this.payment = this.elements.create('payment', options);
-    this.payment.mount('#payment-element');
-    this.stripeReady = true;
-  }
-
-
-
-  async handleSubmit() {
-
-    this.isLoading = true;
-    this.errorMessage = '';
-     console.log('hello from submit', this.elements);
-    const { error } = await this.stripe!.confirmPayment({
-      elements: this.elements!,
-      confirmParams: {
-        return_url: 'http://localhost:4200/'
-      }
-    });
-    console.log('hello from submit')
-    if (error) {
-      this.errorMessage = error?.message!;
-    }
-
-    this.isLoading = false;
   }
 }
