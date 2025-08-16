@@ -33,6 +33,7 @@ export const ProductExampleDto = {
   variants: [],
   createdAt: '2025-07-29T13:33:44.225+00:00',
   updatedAt: '2025-07-29T13:33:44.225+00:00',
+  shippingPrice: 50,
 };
 
 export class CreateProductDto {

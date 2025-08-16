@@ -44,6 +44,9 @@ export class Product extends Document {
   @Prop({ default: false })
   shipping: boolean;
 
+  @Prop({ default: 50 })
+  shippingPrice: number;
+
   @Prop({ type: [String], required: true })
   colors: string[];
 
