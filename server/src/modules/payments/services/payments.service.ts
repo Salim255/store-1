@@ -87,6 +87,12 @@ export class PaymentsService {
           };
         });
 
+      const totalShippingPrice: number = body.items.reduce((total, item) => {
+        const product = products.find((p) => p.id === item.productId);
+        if (!product) return total;
+        return total + product.shippingPrice * (item.quantity || 1);
+      }, 0);
+
       // 2) Create the Checkout session
       // There many of options but these coming three are required
       // 1 Information about the session
@@ -107,7 +113,7 @@ export class PaymentsService {
             {
               shipping_rate_data: {
                 type: 'fixed_amount',
-                fixed_amount: { amount: 5000, currency: 'eur' }, // 50 EUR shipping
+                fixed_amount: { amount: totalShippingPrice, currency: 'eur' }, // 50 EUR shipping
                 display_name: 'Standard Shipping',
                 tax_behavior: 'exclusive', // or 'exclusive' inclusive
               },
