@@ -30,6 +30,7 @@ export class CheckoutService {
   ): Observable<HttpResponse<CreatedSessionResponse>>{
 
     const cartDetails: CartDetails = this.cartService.getCartDetailsForCheckout;
+
     const items: OrderItem[]  = cartDetails.cartItems.map((product) => {
       return {productId: product._id, quantity: product.amount}
      } );
