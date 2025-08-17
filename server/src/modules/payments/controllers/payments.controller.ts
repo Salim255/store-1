@@ -35,13 +35,13 @@ export class PaymentsController {
     @Body() body: CreateCheckoutSession,
     @Req() req: Request,
   ): Promise<CreatedSessionResponse> {
-    const session: Stripe.Response<Stripe.Checkout.Session> =
+    const client_secret: string | null =
       await this.paymentsService.createCheckoutSession(body, req);
     // 3) Send it to the client as response
     return {
       status: 'success',
       data: {
-        session,
+        client_secret: client_secret,
       },
     };
   }

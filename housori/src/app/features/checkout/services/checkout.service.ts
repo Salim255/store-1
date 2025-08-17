@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CheckoutHttpService, CheckoutPayload, CreatedSessionResponse, OrderItem, ShippingAddress } from "./checkout-http.service";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, of, tap } from "rxjs";
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from "src/environments/environment";
 import { HttpResponse } from "@angular/common/http";
@@ -11,6 +11,7 @@ import { CartDetails, CartService } from "../../cart/services/cart-service";
 export class CheckoutService {
   private ENV = environment;
   private orderIsPlacedSubject = new BehaviorSubject<boolean>(false);
+  private clientSecretSubject = new BehaviorSubject<string | null>(null);
 
   constructor(
     private cartService: CartService,
@@ -34,30 +35,25 @@ export class CheckoutService {
     const items: OrderItem[]  = cartDetails.cartItems.map((product) => {
       return {productId: product._id, quantity: product.amount}
      } );
-
+     console.log(items, 'items from checkout service');
+    if (items.length === 0) throw new Error('No items in cart to checkout');
     const checkoutPayload: CheckoutPayload = { items, shippingAddress}
 
     return this.checkoutHttpService.createCheckoutSession(checkoutPayload).pipe(
       tap((session)=> {
-        console.log(session.body?.data.session.id)
-        if (session.body?.data.session.id) {
+        console.log(session.body?.data.client_secret, 'session client secret');
+        if (session.body?.data.client_secret) {
           this.setOrderIsPlaced(true);
-          this.startCheckout(session.body?.data.session.id);
+          const clientSecret = session.body?.data.client_secret;
+          console.log('Client Secret:', clientSecret);
+          this.clientSecretSubject.next(clientSecret);
         }
 
       })
     );
   }
 
- private async startCheckout(sessionId: string) {
-    const stripeJS = await loadStripe(this.ENV.stripePK);
-    if (!stripeJS) {
-      console.error('Stripe.js failed to load');
-      return;
-    }
-    const { error } = await stripeJS.redirectToCheckout({ sessionId });
-    if (error) {
-      console.error('Stripe redirect error:', error);
-    }
+  get getClientSecret(): Observable<string | null> {
+    return this.clientSecretSubject.asObservable();
   }
 }
