@@ -24,14 +24,14 @@ export class ShippingAddressForm{
 
   onPlaceOrder(){
     const country = this.shippingFields.get('country')?.value;
-    const fullname = this.shippingFields.get('fullName')?.value;
+    const fullName = this.shippingFields.get('fullName')?.value;
     const city = this.shippingFields.get('city')?.value;
     const postalCode = this.shippingFields.get('postalCode')?.value;
     const phone = this.shippingFields.get('phone')?.value;
     const address = this.shippingFields.get('address')?.value;
 
     const shippingAddress:ShippingAddress =
-       {country, fullname, city, postalCode, phone, address};
+       {country, fullName, city, postalCode, phone, address};
     this.checkoutService.setOrderIsPlaced(true);
     this.checkoutService.checkoutPayment(shippingAddress).subscribe();
   }

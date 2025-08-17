@@ -1,8 +1,16 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
-import { Appearance, Stripe, StripeElements, StripePaymentElement, StripePaymentElementOptions, loadStripe } from '@stripe/stripe-js';
-import { set } from 'mongoose';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  Appearance,
+  Stripe,
+  StripePaymentElement,
+  StripePaymentElementOptions,
+  loadStripe,
+} from '@stripe/stripe-js';
 import { TotalOrderDetails } from 'src/app/shared/components/order-total/order-total.component';
 import { environment } from 'src/environments/environment';
+import { CheckoutService } from '../../services/checkout.service';
+import { Subscription } from 'rxjs';
+import { Router } from "@angular/router";
 
  const appearance: Appearance = {
  theme: 'stripe',
@@ -104,7 +112,6 @@ export class PaymentComponent implements OnInit {
   ENV = environment ;
   stripe!: Stripe | null;
   payment!: StripePaymentElement;
-  elements: StripeElements | null = null;
   paymentElement: StripePaymentElement | null = null;
   billingAddressElement: any = null;
   shippingAddressElement: any = null;
@@ -112,23 +119,35 @@ export class PaymentComponent implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = false;
   stripeReady: boolean = false;
-  constructor() {}
+  clientSecretSubscription!: Subscription;
+  private clientSecret: string | null = null;
+
+  constructor(
+    private router: Router,
+    private checkoutService: CheckoutService,
+  ) {}
 
   async ngOnInit() {
     this.stripe = await loadStripe(`${this.ENV.stripePK}`); // Replace with your Stripe publishable key
-
     if (!this.stripe) {
-      console.log("Hello", this.stripe);
       return;
     }
 
-    this.paymentElementWithCheckout();
+    this.subscribeToClientSecret();
   }
 
+  subscribeToClientSecret(){
+     this.clientSecretSubscription = this.checkoutService.getClientSecret.subscribe((clientSecret) => {
+      if (clientSecret) {
+        this.clientSecret = clientSecret;
+        this.paymentElementWithCheckout();
+      }
+    });
+  }
   async paymentElementWithCheckout(){
-    const fetchClientSecret = 'cs_test_a1ppKYafjoP7SzwUOlFVoS8BFoexawYCf4hN4yEGQEdTrYjLlWRiEmzhCv_secret_fidwbEhqYWAnPydmcHZxamgneCUl';
+    if (!this.clientSecret) return;
       this.checkout = await this.stripe!.initCheckout({
-      fetchClientSecret: () => fetchClientSecret,
+      fetchClientSecret: () => this.clientSecret,
       elementsOptions: {
         appearance
       }
@@ -142,11 +161,8 @@ export class PaymentComponent implements OnInit {
           },
       );
 
-    //this.shippingAddressElement.mount('#shipping-address-element');
     this.paymentElement!.mount('#payment-element');
     this.stripeReady = true;
-    //const session = this.checkout.session();
-    //console.log( session.total.total.amount,  'hello from session', session.email );
   }
 
   async handleSubmitWithCheckout() {
@@ -156,12 +172,19 @@ export class PaymentComponent implements OnInit {
       await this.checkout!.confirm({ redirect: 'if_required' });
     if ( result.error) {
       this.errorMessage =  result.error?.message!;
-      return
     }
 
     setTimeout(() => {
       this.isLoading = false;
-      this.checkout!.redirectToSuccessPage();
+      this.checkoutService.setOrderIsPlaced(false);
+      this.clientSecretSubscription?.unsubscribe();
+      this.clientSecret = null;
+      this.paymentElement?.unmount();
+      this.paymentElement = null;
+      this.stripeReady = false;
+      this.checkout = null;
+      this.stripe = null;
+      this.router.navigate(['/orders']);
     }, 1000);
 
   }

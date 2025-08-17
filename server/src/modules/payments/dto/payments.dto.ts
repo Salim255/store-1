@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, ValidateNested } from 'class-validator';
-import Stripe from 'stripe';
 
 export class ShippingAddress {
   @ApiProperty({ description: 'Shipping country', example: 'France' })
@@ -49,6 +48,6 @@ export class CreateCheckoutSession {
 export class CreatedSessionResponse {
   status: 'success';
   data: {
-    session: Stripe.Response<Stripe.Checkout.Session>;
+    client_secret: string | null;
   };
 }

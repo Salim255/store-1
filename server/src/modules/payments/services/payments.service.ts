@@ -56,7 +56,7 @@ export class PaymentsService {
   async createCheckoutSession(
     body: CreateCheckoutSession,
     req: Request,
-  ): Promise<Stripe.Response<Stripe.Checkout.Session>> {
+  ): Promise<string | null> {
     try {
       await this.createPaymentIntent();
       // 1. Convert product. ids into Type.Objectid
@@ -113,7 +113,10 @@ export class PaymentsService {
             {
               shipping_rate_data: {
                 type: 'fixed_amount',
-                fixed_amount: { amount: totalShippingPrice, currency: 'eur' }, // 50 EUR shipping
+                fixed_amount: {
+                  amount: totalShippingPrice * 100,
+                  currency: 'eur',
+                }, // 50 EUR shipping
                 display_name: 'Standard Shipping',
                 tax_behavior: 'exclusive', // or 'exclusive' inclusive
               },
@@ -137,7 +140,7 @@ export class PaymentsService {
           // Array of objects, on per item
           line_items: lineItems,
         });
-      return session;
+      return session.client_secret ?? null;
     } catch (error) {
       this.logger.error(error);
       throw error;

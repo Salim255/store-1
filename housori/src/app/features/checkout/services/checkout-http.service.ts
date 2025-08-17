@@ -7,7 +7,7 @@ import Stripe from "stripe";
 export interface CreatedSessionResponse {
   status: 'success';
   data: {
-    session: Stripe.Response<Stripe.Checkout.Session>;
+    client_secret: string | null;
   }
 }
 
@@ -22,7 +22,7 @@ export interface CheckoutPayload {
 
 export interface ShippingAddress {
     country: string;
-    fullname: string;
+    fullName: string;
     city: string;
     postalCode: string;
     phone: string;
@@ -36,7 +36,8 @@ export class CheckoutHttpService {
   constructor(private httpClient: HttpClient){}
 
   createCheckoutSession(checkoutPayload: CheckoutPayload): Observable<HttpResponse<CreatedSessionResponse>>{
-    return this.httpClient.post<CreatedSessionResponse>(`${this.baseUrl}`, { checkoutPayload },
+    return this.httpClient.post<CreatedSessionResponse>(`${this.baseUrl}`,
+      checkoutPayload ,
       {
         observe: 'response',       // gives full HTTP response
         withCredentials: true      // ensures cookies are included/stored
