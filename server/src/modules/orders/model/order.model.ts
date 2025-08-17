@@ -15,12 +15,21 @@ export class OrderModel {
     return createdOrder;
   }
 
-  async findAll() {
-    const orders = await this.orderModel.find();
+  async findAll(): Promise<Order[]> {
+    const orders = await this.orderModel
+      .find()
+      .populate('items.productId', 'name price images description')
+      .exec();
     return orders;
   }
 
-  async findById() {}
+  async findByUserId(userId: string): Promise<Order[]> {
+    const orders = await this.orderModel
+      .find({ user: userId })
+      .populate('items.productId', 'name price images description')
+      .exec();
+    return orders;
+  }
 
   async update() {}
 

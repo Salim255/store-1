@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { Product } from 'src/modules/product/schema/product.schema';
 
 @Schema()
 export class ShippingFields {
@@ -13,9 +14,11 @@ export class ShippingFields {
 
 @Schema()
 export class OrderItems {
+  @Prop({ type: Types.ObjectId, ref: Product.name, required: true })
   productId: Types.ObjectId;
   name: string;
   price: number;
+  @Prop({ required: true })
   amount: number;
   image: string;
 }
