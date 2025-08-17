@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { OrdersService } from "./services/orders.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-orders',
@@ -10,5 +12,22 @@ import { Component } from "@angular/core";
 export class OrdersComponent {
   ordersList = ['1', '2', '3', '4', '5'];
   headerItems = ['items', 'qty', 'unit price', 'amount', 'date']
-  constructor(){}
+
+  private ordersSubscription!: Subscription;
+  constructor(private orderService: OrdersService){}
+  ngOnInit(): void {
+    this.subscribeToOrders();
+  }
+
+  private subscribeToOrders(): void {
+    this.ordersSubscription = this.orderService
+      .getOrders()
+      .subscribe(orders => {
+        console.log(orders.data.orders);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ordersSubscription?.unsubscribe();
+   }
 }
