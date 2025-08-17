@@ -7,6 +7,7 @@ import {
   InternalServerErrorException,
   Patch,
   Post,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -25,6 +26,11 @@ import {
 } from '../dto/orders.dto';
 import { OrdersService } from '../services/orders.service';
 import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
+import { Request } from 'express';
+
+export interface AuthRequest extends Request {
+  user: { id: string; email?: string }; // whatever fields your JWT adds
+}
 
 @ApiCookieAuth()
 @ApiTags('Orders')
@@ -72,6 +78,26 @@ export class OrdersController {
 
   // GET /orders
   @Get()
+  @UseGuards(AuthJwtGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: 'Get all orders' })
+  @ApiResponse({
+    status: 200,
+    description: 'Orders retrieved successfully',
+    type: GetALLOrdersDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request validation field',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+  })
   async getAllOrders(): Promise<GetALLOrdersDto> {
     const orders: Order[] = await this.ordersService.getAllOrders();
     return {
@@ -82,7 +108,36 @@ export class OrdersController {
     };
   }
 
-  // GET /orders/:1
+  // Get /orders/users/:userId
+  @Get('users')
+  @UseGuards(AuthJwtGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: 'Get orders by user ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'Orders retrieved successfully',
+    type: GetALLOrdersDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad request validation field',
+  })
+  async getOrdersByUserId(@Req() req: AuthRequest): Promise<GetALLOrdersDto> {
+    const userId = req.user.id; // Extract user ID from request object
+    // Assuming user ID is stored in the request object
+    if (!userId) {
+      throw new BadRequestException('User ID is required');
+    }
+    const orders: Order[] = await this.ordersService.getOrdersByUserId(userId);
+    return {
+      status: 'Success',
+      data: {
+        orders: orders,
+      },
+    };
+  }
+
+  // GET /orders/users/:1
   @Get('/:orderId')
   async getOrderById() {}
 

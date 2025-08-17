@@ -25,4 +25,9 @@ export class OrdersService {
     const orders: Order[] = await this.orderModel.findAll();
     return orders;
   }
+
+  async getOrdersByUserId(userId: string): Promise<Order[]> {
+    const orders: Order[] = await this.orderModel.findByUserId(userId);
+    return orders;
+  }
 }
