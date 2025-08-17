@@ -1,0 +1,47 @@
+.orders-item {
+  margin: 2rem 0;
+  &__container {
+    display: flex;
+    gap: 2rem;
+    .item-description {
+      display: flex;
+      flex: 1;
+      gap: 2rem;
+      &__figure {
+        background-color: var(--bg-secondary);
+        margin: 0;
+        box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
+        padding: .5rem;
+        border-radius: 1rem;
+        height: 12rem;
+        .figure-img {
+          height: 10rem;
+          width: 12rem;
+          object-fit: cover;
+          border-radius: 1rem;
+        }
+        .figure-caption {
+          text-align: center;
+        }
+      }
+      &__text {
+        //background-color: red;
+      }
+    }
+    .item-quantity, .item-unit-price, .item-total-amount, .item-date {
+      width: 10rem;
+      text-align: right;
+    }
+    .item-unit-price {
+
+    }
+
+    .item-total-amount {
+
+    }
+
+    .item-date{
+
+    }
+  }
+}

@@ -1,44 +1,31 @@
-<main class="orders">
-  <section class="orders__header">
+<section class="orders">
+  <div class="orders__header">
     <h3>Your orders</h3>
-  </section>
-  <ion-list class="orders__list">
-    <ion-list-header class="orders__list--orders-nb" >
-      <ion-label>TotalOrders: 3</ion-label>
-    </ion-list-header>
-    <ion-item class="orders__list--orders-fields" >
-       <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let item of headerItems; let index = index">
-            <ion-icon *ngIf="index === 0" color="danger" name="list-circle" size="large"></ion-icon>
-            {{ index === 0 ? '' : item }}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-     </ion-item>
-    <ion-item
-      class="orders__list--orders-item"
-      [button]="true" lines="none"
+  </div>
+  <div class="orders__list">
+    <div class="orders-nb" >
+      <h6>TotalOrders: 3</h6>
+    </div>
+    <header class="list-header">
+      <div class="list-header__items">
+        {{ headerItems[0] }}
+      </div>
+      <div class="list-header__qty">
+        {{ headerItems[1] }}
+      </div>
+      <div class="list-header__unit-price">
+        {{ headerItems[2] }}
+      </div>
+      <div class="list-header__amount">
+        {{ headerItems[3] }}
+      </div>
+      <div class="list-header__date">
+        {{ headerItems[4] }}
+      </div>
+    </header>
+     <div
       *ngFor="let item of ordersList; let index = index">
-       <ion-grid>
-        <ion-row>
-          <ion-col>
-             image
-          </ion-col>
-          <ion-col>
-            name
-          </ion-col>
-          <ion-col>
-            quantity
-          </ion-col>
-          <ion-col>
-            price
-          </ion-col>
-          <ion-col>
-            date
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-     </ion-item>
-  </ion-list>
-</main>
+      <app-orders-item></app-orders-item>
+     </div>
+  </div>
+</section>
