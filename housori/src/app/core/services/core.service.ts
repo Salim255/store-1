@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 export class CoreService {
   constructor(){}
   setDisableScroll(disable: boolean) {
-      document.body.style.overflow = disable ? 'hidden' : 'auto';
+      document.body.style.overflow = disable ? 'auto' : 'auto';
     }
 }

@@ -1,6 +1,6 @@
 .orders {
   background-color: var(--bg-secondary);
-  height: 100vh;
+  min-height: 100vh;
   width: 80%;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
@@ -9,10 +9,25 @@
   flex-direction: column;
 
   padding: 4rem 4rem;
-  &__list{
+  &__list {
     background-color: transparent;
-    &--orders-nb{}
-    &--orders-fields{}
-    &--orders-item{}
+    .orders-nb {
+    }
+    .list-header {
+      display: flex;
+      gap: 2rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--color-primary);
+      border-top: 2px solid var(--color-primary);
+      padding: .4rem 0;
+      &__items {
+        flex: 1;
+      }
+      &__qty,&__unit-price,&__amount,&__date {
+        width: 10rem;
+        text-align: right;
+      }
+
+    }
   }
 }

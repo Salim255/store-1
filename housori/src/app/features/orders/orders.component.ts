@@ -9,6 +9,6 @@ import { Component } from "@angular/core";
 
 export class OrdersComponent {
   ordersList = ['1', '2', '3', '4', '5'];
-  headerItems = ['image', 'name', 'quantity', 'price', 'date']
+  headerItems = ['items', 'qty', 'unit price', 'amount', 'date']
   constructor(){}
 }
