@@ -1,0 +1,29 @@
+<div class="summary">
+    <section  class="summary__orders">
+      <h3 class="summary__orders--title">Order Summary</h3>
+      <div class="summary__orders--list">
+        <app-summary-item  *ngFor="let item of cartItems"></app-summary-item>
+      </div>
+      <div class="checkout-summary__total">
+        <app-order-total [pageName]="'payment'"></app-order-total>
+      </div>
+  </section>
+  <section class="summary__shipping">
+    <h4>Shipping Information</h4>
+    <div>
+     <div class="summary__shipping--recipient">
+       <div> Recipient </div>
+        <div>
+          Salim Hassan
+        </div>
+     </div>
+    <div class="summary__shipping--address">
+        <div>Address</div>
+        <div>
+          <div> 5 rue d'isly</div>
+          <div>Lille, Lille 59000 France</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

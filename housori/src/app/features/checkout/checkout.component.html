@@ -1,24 +1,20 @@
-<main class="checkout">
-  <section class="checkout__header" >
-    Place your order
-  </section>
-  <section class="checkout__shipping-info">
-    <section class="checkout__shipping-info--address">
-      <h3>Shipping information</h3>
-      <form>
-       <ion-item>
-         <ion-input label="Full name" aria-placeholder="receiver name" placeholder="Your full name" ></ion-input>
-       </ion-item>
-         <ion-item>
-         <ion-input label="Address" aria-placeholder="receiver address" placeholder="Your address..."></ion-input>
-       </ion-item>
-      </form>
-      <ion-item class="checkout-btn" lines="none">
-        <ion-button>Place you order</ion-button>
-      </ion-item>
-    </section>
-    <section class="checkout__shipping-info--total">
-    <app-order-total [totalDetails]="totalDetails"></app-order-total>
-    </section>
-  </section>
-</main>
+<div class="checkout">
+  <div class="checkout__container">
+    <div class="checkout__content">
+      <section class="checkout__header" >
+        Place your order
+      </section>
+      <section class="checkout__shipping-info">
+        <div class="shipping-address">
+          <h3>Shipping information</h3>
+          <app-shipping-address-form></app-shipping-address-form>
+          <app-payment *ngIf="orderIsPlaced()" ></app-payment>
+        </div>
+        <div>
+          <app-order-total [totalDetails]="totalDetails()"></app-order-total>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+

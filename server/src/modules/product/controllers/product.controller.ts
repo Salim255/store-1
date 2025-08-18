@@ -1,13 +1,33 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBody,
+  ApiCookieAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Product } from '../schema/product.schema';
 import {
   CreateProductDto,
   CreateProductResponseDto,
   GetALLProductsDto,
+  ProductFilterDto,
 } from '../dto/product.dto';
 import { ProductsService } from '../services/products.service';
+import { Request } from 'express';
+import { ApiMetaData } from 'utils/api-features';
+import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
 
+@ApiCookieAuth()
 @ApiTags('Products')
 @Controller('products') // Base root : /products
 export class ProductsController {
@@ -40,14 +60,19 @@ export class ProductsController {
   }
 
   // GET /products
-  @Get()
-  async getAllProducts(): Promise<GetALLProductsDto> {
-    const products: Product[] = await this.productsService.getAllProducts();
+  @UseGuards(AuthJwtGuard)
+  @Get(['', 'featured-products'])
+  async getAllProducts(
+    @Query() filters: ProductFilterDto,
+  ): Promise<GetALLProductsDto> {
+    const data: { products: Product[]; meta: ApiMetaData } =
+      await this.productsService.getAllProducts(filters);
     return {
       status: 'Success',
       data: {
-        products,
+        products: data.products,
       },
+      meta: data.meta,
     };
   }
 

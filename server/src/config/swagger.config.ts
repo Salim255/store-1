@@ -6,6 +6,8 @@ export function setupSwagger(app: INestApplication): void {
     .setTitle('Store-1 API')
     .setDescription('API for modern e-commerce')
     .setVersion('1.0')
+    .addServer('/api/v1') // 👈 Add this line to fix the prefix issue
+    .addCookieAuth('optional-session-id')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

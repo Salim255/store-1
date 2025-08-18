@@ -1,8 +1,23 @@
-<div class="order-total">
-  <ion-item
-    [lines]="item.name === 'order total' ? 'none' : ''"
-    *ngFor="let item of totalDetails; let index = index">
-      <p>{{ item.name }}</p>
-      <p>{{ item.value | currency }}</p>
-  </ion-item>
+<div  class="order-total">
+    <div class="order-total__details">
+    <ion-item>
+      <p>subtotal</p>
+      <p>{{ cartTotal | currency }}</p>
+    </ion-item>
+      <ion-item>
+      <p> Shipping (Standard Shipping)</p>
+      <p>{{ shipping | currency }}</p>
+    </ion-item>
+      <ion-item>
+      <p>Sales tax (20%)</p>
+      <p>{{ tax | currency }}</p>
+    </ion-item>
+    <ion-item lines="none">
+      <p>order total</p>
+      <p>{{ orderTotal | currency }}</p>
+    </ion-item>
+  </div>
+  <div class="order-total__btn" *ngIf="pageName !=='payment'">
+    <ion-button [disabled]="!orderTotal" (click)="onClear()"> clear cart</ion-button>
+  </div>
 </div>

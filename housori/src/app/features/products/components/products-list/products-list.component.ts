@@ -1,5 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, Input, signal, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
+import { Product } from "../../model/product.model";
+import { ApiMetaData } from "../../services/products-http.service";
+import { HttpParams } from "@angular/common/http";
+import { ProductsService } from "../../services/products.service";
+import { SingleProductService } from "../../services/single-product.service";
+
 @Component({
   selector: "app-products-list",
   templateUrl: "./products-list.component.html",
@@ -8,13 +14,55 @@ import { Router } from "@angular/router";
 })
 
 export class ProductsListComponent {
-  products = [
-    {image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGRpbmluZyUyMHRhYmxlfGVufDB8fDB8fHww",name: "Product 1", description: "Product 1", price: 23},
-    {image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGRpbmluZyUyMHRhYmxlfGVufDB8fDB8fHww",name: "Product 2", description: "Product 2", price: 23},
-    {image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGRpbmluZyUyMHRhYmxlfGVufDB8fDB8fHww",name: "Product 3", description: "Product 3", price: 23}
-  ];
-  constructor(private router: Router) {}
-  onProduct(){
-    this.router.navigateByUrl('/products/2')
+  @Input() products!: Product[];
+  @Input() pagination!: ApiMetaData['pagination']
+  pages: number[] = [];
+  params = new HttpParams();
+  currentPage = signal<number>(1);
+
+  constructor(
+    private singleProductService: SingleProductService,
+    private productsService: ProductsService,
+    private router: Router,
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.generatePageNumbers();
+  }
+
+  onProduct(product: Product){
+    this.singleProductService.setSingleProduct(product);
+    this.router.navigateByUrl(`/products/${product._id}`);
+  }
+
+  generatePageNumbers(): void {
+    if(!this.pagination?.pageCount) return;
+    this.pages = Array.from({length: this.pagination?.pageCount }, (_, i) => i + 1);
+  }
+
+  goToPage(page: number): void {
+    if (this.currentPage() === page) return;
+    this.currentPage.set(page);
+    this.fetchProducts();
+  }
+
+  goToPrevPage(): void {
+    if (this.currentPage() <= 1) return;
+    this.currentPage.set(this.currentPage() - 1);
+    this.fetchProducts();
+  }
+
+  goToNextPage(): void{
+    if (
+      !this.pagination?.pageCount
+      || this.currentPage() >= this.pagination?.pageCount
+    ) return;
+    this.currentPage.set(this.currentPage() + 1);
+    this.fetchProducts();
+  }
+
+  fetchProducts(): void{
+    this.params = this.params.set('page', this.currentPage());
+    this.productsService.getAllProducts(this.params).subscribe();
   }
 }

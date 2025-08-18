@@ -1,0 +1,25 @@
+@import '../../../themes/styles/mixins';
+
+.about {
+  height: 100vh;
+  overflow: hidden;
+  &__container {
+    padding-top: 10rem;
+
+    .about-content {
+      @include page-layout();
+      display: flex;
+      gap: 4rem;
+      &__text {
+        flex: 1;
+      }
+      &__hero {
+        flex: .9;
+        img {
+          border-radius: 2rem;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
