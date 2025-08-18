@@ -24,8 +24,8 @@
       </div>
     </header>
      <div
-      *ngFor="let item of ordersList; let index = index">
-      <app-orders-item></app-orders-item>
+      *ngFor="let order of ordersList; let index = index">
+        <app-orders-item [orderItem]="order.items[0]"></app-orders-item>
      </div>
   </div>
 </section>
