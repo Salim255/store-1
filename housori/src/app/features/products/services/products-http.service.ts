@@ -17,7 +17,7 @@ export interface ApiMetaData {
 
 export interface GetProductsResponseDto {
   status: string;
-   data: { products: Product []};
+  data: { products: Product []};
   meta: ApiMetaData
 }
 

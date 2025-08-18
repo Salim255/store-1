@@ -10,37 +10,44 @@
     </ng-container>
    <ng-container *ngIf="showAuthModal">
       <section class="header-auth__modal">
-       <div  class="header-auth__modal--content">
+       <div class="auth-modal--content">
          <app-auth></app-auth>
        </div>
     </section>
    </ng-container>
   </section>
-  <nav class="app-navbar">
-    <a routerLink="/" class="app-navbar__logo">Housori</a>
-    <ul class="app-navbar__links">
-      <li class="app-navbar__links--item">
-        <a class="nav-link__inactive" routerLink="/home"
-          routerLinkActive="nav-link__active"
+  <nav class="header-navbar">
+    <a routerLink="/" class="header-navbar__logo">Housori</a>
+    <ul class="header-navbar__links">
+      <li class="navbar-item">
+        <a class="navbar-item__link navbar-item__link--inactive" routerLink="/home"
+          routerLinkActive="navbar-item__link--active"
           [routerLinkActiveOptions]="{ exact: true }">
             Home
         </a>
       </li>
-      <li class="app-navbar__links--item" ><a  class="nav-link__inactive" routerLink="/about" routerLinkActive="nav-link__active">About</a></li>
-      <li class="app-navbar__links--item"><a class="nav-link__inactive" routerLink="/products" routerLinkActive="nav-link__active">Products</a></li>
-      <li class="app-navbar__links--item"><a class="nav-link__inactive" routerLink="/orders" routerLinkActive="nav-link__active">Orders</a></li>
-      <li class="app-navbar__links--item"><a class="nav-link__inactive" routerLink="/checkout" routerLinkActive="nav-link__active">Checkout</a></li>
-      <li class="app-navbar__links--item"><a class="nav-link__inactive" routerLink="/cart" routerLinkActive="nav-link__active">Cart</a></li>
+      <li class="navbar-item" >
+        <a  class="navbar-item__link  navbar-item__link--inactive" routerLink="/about"  routerLinkActive="navbar-item__link--active">About</a>
+      </li>
+      <li class="navbar-item">
+        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/products" routerLinkActive="navbar-item__link--active">Products</a>
+      </li>
+      <li class="navbar-item">
+        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/orders" routerLinkActive="navbar-item__link--active">Orders</a>
+      </li>
+      <li class="navbar-item">
+        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/checkout" routerLinkActive="navbar-item__link--active">Checkout</a>
+      </li>
+      <li class="navbar-item">
+        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/cart" routerLinkActive="navbar-item__link--active">Cart</a>
+      </li>
     </ul>
-    <div routerLink="/cart"  class="app-navbar__cart nav-link__inactive">
+    <div routerLink="/cart"  class="header-navbar__cart navbar-item__link--inactive">
       <ion-badge color="primary">{{ numItemInCart }}</ion-badge>
       <ion-icon name="cart-outline"></ion-icon>
     </div>
   </nav>
 </header>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
-
+<router-outlet></router-outlet>
 
