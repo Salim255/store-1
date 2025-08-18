@@ -1,3 +1,7 @@
+@mixin item-text {
+  font-size: 1.4rem;
+  color: red;
+}
 .orders-item {
   margin: 2rem 0;
   &__container {
@@ -26,6 +30,7 @@
       }
       &__text {
         //background-color: red;
+        @include item-text();
       }
     }
     .item-quantity, .item-unit-price, .item-total-amount, .item-date {

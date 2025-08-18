@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { OrdersService } from "./services/orders.service";
 import { Subscription } from "rxjs";
+import { Order } from "./model/order.model";
 
 @Component({
   selector: 'app-orders',
@@ -10,7 +11,7 @@ import { Subscription } from "rxjs";
 })
 
 export class OrdersComponent {
-  ordersList = ['1', '2', '3', '4', '5'];
+  ordersList: Order [] = [];
   headerItems = ['items', 'qty', 'unit price', 'amount', 'date']
 
   private ordersSubscription!: Subscription;
@@ -24,6 +25,11 @@ export class OrdersComponent {
       .getOrders()
       .subscribe(orders => {
         console.log(orders.data.orders);
+
+        if (orders.data.orders) {
+          this.ordersList = orders.data.orders;
+          console.log(this.ordersList);
+        }
       });
   }
 

@@ -2,7 +2,7 @@
     <div class="orders-item__container">
       <div class="item-description">
         <figure class="item-description__figure">
-          <img class="figure-img" [src]="bedImage" alt="Order Item img">
+          <img class="figure-img" [src]="getImageUrl" alt="Order Item img">
           <figcaption class="figure-caption">
             Image
           </figcaption>
@@ -15,13 +15,13 @@
         </div>
       </div>
       <div class="item-quantity">
-        4
+        {{orderItem.amount}}
       </div>
       <div class="item-unit-price">
-        {{300 | currency:'USD':'symbol':'1.2-2'}}
+        {{ unitPrice | currency:'USD':'symbol':'1.2-2'}}
       </div>
       <div class="item-total-amount">
-        {{1200 | currency:'USD':'symbol':'1.2-2'}}
+        {{ unitPrice * orderItem.amount | currency:'USD':'symbol':'1.2-2'}}
       </div>
       <div class="item-date">
         {{'2023-10-01' | date:'shortDate'}}
