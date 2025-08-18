@@ -1,21 +1,24 @@
 @import '../../../themes/styles/mixins';
 
-.checkout{
+.checkout {
   height: 100vh;
+  overflow: hidden;
   &__container {
     padding-top: 10rem;
-  }
-  &__content {
-    @include page-layout();
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  &__shipping-info {
-    display: flex;
-    gap: 2rem;
-    &>div {
-      flex: 1;
+    .checkout-content {
+      @include page-layout();
+      display: flex;
+      gap: 2rem;
+      &>section {
+        flex: 1;
+      }
+      &__shipping-info {
+        display: flex;
+        gap: 2rem;
+        .shipping-address {
+          background-color: red;
+        }
+      }
     }
   }
 }

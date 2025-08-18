@@ -1,4 +1,11 @@
-main {
+@import '../../../themes/styles/mixins';
+
+.home {
+  &__container{
+    .home-content{
+      @include page-layout();
+    }
+  }
   height: 80vh;
   .home {
     background-color: var(--bg-secondary);
