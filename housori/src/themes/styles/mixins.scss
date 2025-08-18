@@ -1,0 +1,9 @@
+@mixin page-layout() {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  background-color: var(--bg-secondary);
+  width: 80%;
+  height: 100vh;
+  padding: 4rem 4rem;
+  margin: auto;
+}

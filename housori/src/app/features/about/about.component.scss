@@ -1,16 +1,25 @@
+@import '../../../themes/styles/mixins';
+
 .about {
   height: 100vh;
   overflow: hidden;
   &__container {
     padding-top: 10rem;
+
     .about-content {
-      border-top-left-radius: 2rem;
-      border-top-right-radius: 2rem;
-      background-color: var(--bg-secondary);
-      width: 80%;
-      height: 100vh;
-      padding: 4rem 4rem;
-      margin: auto;
+      @include page-layout();
+      display: flex;
+      gap: 4rem;
+      &__text {
+        flex: 1;
+      }
+      &__hero {
+        flex: .9;
+        img {
+          border-radius: 2rem;
+          width: 100%;
+        }
+      }
     }
   }
 }

@@ -1,28 +1,21 @@
+@import '../../../themes/styles/mixins';
+
 .checkout{
-  background-color: var(--bg-secondary);
   height: 100vh;
-  width: 80%;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 4rem 4rem;
-  position: relative;
+  &__container {
+    padding-top: 10rem;
+  }
+  &__content {
+    @include page-layout();
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
   &__shipping-info {
     display: flex;
     gap: 2rem;
-    &>section {
+    &>div {
       flex: 1;
     }
-    &--address{
-      .checkout-btn{
-        ion-button {
-          width: 100%;
-          cursor: pointer
-        }
-      }
-    }
-    &--total {}
   }
 }
