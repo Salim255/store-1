@@ -1,14 +1,24 @@
 <div class="about">
     <div class="about__container">
-        <section class="about-content">
-            <div class="about-content__header">
-              <h3>About Us</h3>
-            </div>
-            <div class="about-content__text">
-              <p>Welcome to our application! We are dedicated to providing the best service possible.</p>
-              <p>Our team is committed to ensuring customer satisfaction and delivering high-quality products.</p>
-              <p>Thank you for choosing us!</p>
-            </div>
-        </section>
+        <div class="about-content">
+           <section  class="about-content__text" >
+              <div>
+                <h1>About Housori</h1>
+              </div>
+              <div class="">
+                <p>Welcome to our application! We are dedicated to providing the best service possible.</p>
+                <p>Our team is committed to ensuring customer satisfaction and delivering high-quality products.</p>
+                <p>Thank you for choosing us!</p>
+              </div>
+              <div>
+                <h2>Ready to Explore Our Products?</h2>
+                <p>High-quality products, delivered fast and safely to your door.</p>
+                <button class="cta-btn" (click)="onShopNow()">Shop Now</button>
+              </div>
+           </section>
+          <section class="about-content__hero">
+            <img [src]="aboutHero" alt="About Us Img">
+         </section>
+        </div>
   </div>
 </div>
