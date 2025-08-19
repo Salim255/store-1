@@ -28,3 +28,8 @@
   - Which we optimize our interface for large screens, and therefore, we start writing CSS code for these large screens into our main CSS file, then later when we want to make it responsive we simply write queries.
 - The Mobile-first approach:
   - Where we start writing CSS code for smaller screens, to optimize our website for mobile small screens
+
+# Tints & Shades generator
+
+- search for: tints & shades
+- Then we get the darker and the lighter versions of our primary color

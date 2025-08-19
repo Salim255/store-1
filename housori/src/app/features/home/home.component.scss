@@ -5,27 +5,23 @@
     padding-top: 10rem;
     .home-content {
       @include page-layout();
+      //padding-top: 0;
       &__intro {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        //align-items: center;
+        gap: var(--x-l-spacing);
+        min-height:  calc(100vh - 10rem);
         .description-text {
-          flex: .4;
-          &__btn{
-            background-color: var(--color-primary);
-            border: none;
-            padding: 1rem;
-            border-radius: 1rem;
-            color: var(--text-on-dark);
-            cursor: pointer;
-            margin-top: 1rem;
+          p {
+            font-size: var(--text-2xl);
+            line-height: 1.5;
+            margin-bottom: var(--l-spacing);
           }
         }
 
         .description-hero {
-          flex: .6;
-          width: 50%;
+          max-width: 100%;
           border-radius: 1rem;
         }
 

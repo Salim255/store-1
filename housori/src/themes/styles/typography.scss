@@ -6,15 +6,18 @@
   // 2. FONT SIZES(px)
   // 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 /
   // 62 / 74 / 86 / 98
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
+  --text-xs: 1rem;
+  --text-sm: 1.2rem;
+  --text-base: 1.4rem;
+  --text-lg: 1.6rem;
+  --text-xl: 1.8rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.4rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.6rem;
+  --text-6xl: 4.4rem;
+  --text-7xl: 5.2rem;
+  --text-8xl: 6.2rem;
 
   // 3. FONT WEIGHTS
   --font-light: 300;
@@ -31,7 +34,8 @@
 
   // SPACING SYSTEM (px)
   // 2 / 4 / 8 / 12 / 16 / 24 / 32 / 32 / 48 / 64 / 80 / 96 / 128
-
+  --l-spacing: 3.2rem;
+  --x-l-spacing: 4.8rem;
 
   // 06 ====  Shadows =======
 
@@ -39,6 +43,43 @@
 
   // 08 ===== Whitespaces
   // UI Faces ==
+
 }
 
+// Heading
+// 01 Primary
+.heading-primary {
+  font-size: var(--text-7xl);
+  font-weight: var(--font-bold);
+  line-height: 1.05;
+  color: var(--text-color-heading);
+  letter-spacing: -.5px;
+  margin-bottom: var(--l-spacing);
+}
 
+.heading-secondary {
+
+}
+
+.heading-tertiary {
+
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    border: none;
+    padding: 1.6rem 3.2rem;
+    border-radius: 15px;
+    color: var(--text-on-dark);
+    box-shadow: 1rem 1rem  1rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: var(--text-2xl);
+    text-decoration: none;
+  &--outline {
+
+  }
+  &--full {
+
+  }
+}

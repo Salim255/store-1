@@ -2,8 +2,8 @@
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
   background-color: var(--bg-secondary);
-  width: 80%;
-  min-height: calc(100vh - 18rem);
-  padding: 4rem;
+  width: 90%;
+  min-height: calc(100vh - 10rem);
+  padding: var(--x-l-spacing);
   margin: auto;
 }
