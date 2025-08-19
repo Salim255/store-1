@@ -1,19 +1,10 @@
 .products-list {
-  background-color: var(--bg-secondary);
-  width: 80%;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  margin: auto;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   &__header {
     display: flex;
     justify-content: space-between;
-    ion-icon {
-
-    }
   }
   &__items {
     display: flex;
@@ -35,8 +26,6 @@
           width: 14rem;
           object-fit: cover;
           border-radius: 1rem;
-        }
-        &--title{
         }
       }
     }
