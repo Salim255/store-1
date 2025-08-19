@@ -3,7 +3,7 @@
   border-top-right-radius: 2rem;
   background-color: var(--bg-secondary);
   width: 80%;
-  height: 100vh;
+  min-height: calc(100vh - 18rem);
   padding: 4rem;
   margin: auto;
 }

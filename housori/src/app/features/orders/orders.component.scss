@@ -3,7 +3,6 @@
 .orders {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   &__container{
     padding-top: 10rem;
     .orders-content {

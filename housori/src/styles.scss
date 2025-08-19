@@ -2,13 +2,17 @@
 @import './themes/styles/typography.scss';
 @import './themes/styles/colors.scss';
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: var(--font-base);
   font-size: var(--text-base);
   color: var(--text-color-base);
   background-color: var(--bg-main);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1;
 }
 
 /* Example heading styles */
