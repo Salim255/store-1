@@ -2,16 +2,16 @@
 
 .home {
   &__container {
-    padding-top: 10rem;
+    padding-top: 14rem;
     .home-content {
       @include page-layout();
-      //padding-top: 0;
+      padding-top: 0;
       &__intro {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        //align-items: center;
+        align-items: center;
         gap: var(--x-l-spacing);
-        min-height:  calc(100vh - 10rem);
+        min-height:  calc(100vh - 14rem);
         .description-text {
           p {
             font-size: var(--text-2xl);
@@ -31,26 +31,27 @@
           display: flex;
           justify-content: space-around;
           align-items: center;
-          gap: 2rem;
+          gap:  var(--x-l-spacing);
           padding: 0 2rem;
           &__figure {
             background-color: var(--bg-secondary);
             margin: 0;
             width: 100%;
             box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
+            padding: 2rem;
             border-radius: 1rem;
             img {
-              height: 16rem;
+              height: 20rem;
               width: 100%;
               object-fit: cover;
               border-radius: 1rem;
             }
 
             .figure-caption {
-              padding-top: 1rem;
+              padding-top: 1.5rem;
               display: flex;
               justify-content: space-between;
+              font-size: var(--text-xl);
             }
           }
         }

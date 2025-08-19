@@ -10,15 +10,21 @@ header {
     display: flex;
     justify-content: right;
 
-    gap: 2rem;
+    gap: var(--l-spacing);
     &__login {
       cursor: pointer;
-       padding: .5rem 1rem;
+      padding: 1rem 1.5rem;
+      a {
+        font-size: var(--text-sm);
+      }
     }
 
     &__register {
       cursor: pointer;
-       padding: .5rem 1rem;
+      padding: 1rem 1.5rem;
+      a {
+        font-size: var(--text-sm);
+      }
     }
     &__modal{
       position: absolute;
@@ -49,26 +55,30 @@ header {
     &__logo{
       padding: .2rem .4rem;
       border-radius: .2rem;
-      font-weight: 600;
+      font-weight: var(--font-bold);
+      font-size: var(--text-2xl);
+      color: var(--text-color-base);
     }
     &__links{
       display: flex;
       justify-content: space-between;
       .navbar-item:not(:first-child) a {
-        margin-left: 3rem;
+        margin-left: var(--l-spacing);
       }
       .navbar-item {
         width: 100%;
         flex: 1;
         list-style: none;
         &__link  {
+          font-size: var(--text-2xl);
+          color: var(--text-color-base);
           &--inactive{
             background-color: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
           }
           &--active{
-            background-color: var(--bg-tertiary);
+            background-color: var(--color-tints);
           }
         }
       }
@@ -82,14 +92,14 @@ header {
         top: -5%;
         right: 10%;
         background-color: var(--color-primary);
-        font-size: .7rem;
+        font-size: var(--text-xs);
         border-radius: .5rem;
-        padding: 6px;
+        padding: 4px 6px;
         color: var(--bg-main);
         z-index: 1;
       }
       ion-icon {
-        font-size: 2rem;
+        font-size: var(--text-4xl);
       }
     }
   }

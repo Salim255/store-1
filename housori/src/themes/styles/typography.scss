@@ -58,7 +58,12 @@
 }
 
 .heading-secondary {
-
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  line-height: 1.05;
+  color: var(--text-color-heading);
+  letter-spacing: -.5px;
+  margin-bottom: var(--l-spacing);
 }
 
 .heading-tertiary {
