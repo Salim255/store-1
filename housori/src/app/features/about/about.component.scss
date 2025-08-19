@@ -10,9 +10,20 @@
       gap: 4rem;
       &__text {
         flex: 1;
+          p {
+            font-size: var(--text-2xl);
+            line-height: 1.5;
+            margin-bottom: var(--l-spacing);
+          }
+        .text-intro {
+
+        }
+        .text-sub-intro {
+
+        }
       }
       &__hero {
-        flex: .9;
+        flex: 1;
         img {
           border-radius: 2rem;
           width: 100%;

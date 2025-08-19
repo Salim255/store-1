@@ -16,24 +16,24 @@ html {
     color: var(--text-color-base);
     background-color: var(--bg-main);
     line-height: 1;
-  }
 
-  a,
-  a:link,
-  a:visited,
-  a:active{
-    text-decoration: none;
-    color: var(--text-main);
-    cursor: pointer;
-  }
+    a,
+    a:link,
+    a:visited,
+    a:active{
+      text-decoration: none;
+      //color: var(--text-main);
+      cursor: pointer;
+    }
 
-  select, input {
-    border: none;;
-    outline: none;
-  }
+    select, input {
+      border: none;;
+      outline: none;
+    }
 
-  ion-item {
-    --background: transparent;
+    ion-item {
+      --background: transparent;
+    }
   }
 }
 
