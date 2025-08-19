@@ -1,33 +1,32 @@
+@import '../../../themes/styles/mixins';
+
 .orders {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
-  width: 80%;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  margin: auto;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  &__container{
+    padding-top: 10rem;
+    .orders-content {
+      @include page-layout();
 
-  padding: 4rem 4rem;
-  &__list {
-    background-color: transparent;
-    .orders-nb {
-    }
-    .list-header {
-      display: flex;
-      gap: 2rem;
-      text-transform: uppercase;
-      border-bottom: 2px solid var(--color-primary);
-      border-top: 2px solid var(--color-primary);
-      padding: .4rem 0;
-      &__items {
-        flex: 1;
+      &__list {
+        background-color: transparent;
+        .list-header {
+          display: flex;
+          gap: 2rem;
+          text-transform: uppercase;
+          border-bottom: 2px solid var(--color-primary);
+          border-top: 2px solid var(--color-primary);
+          padding: .4rem 0;
+          &__items {
+            flex: 1;
+          }
+          &__qty,&__unit-price,&__amount,&__date {
+            width: 10rem;
+            text-align: right;
+          }
+        }
       }
-      &__qty,&__unit-price,&__amount,&__date {
-        width: 10rem;
-        text-align: right;
-      }
-
     }
   }
 }
