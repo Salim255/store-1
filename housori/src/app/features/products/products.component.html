@@ -1,10 +1,14 @@
-<main class="products">
-  <!-- Products filter -->
-  <section class="products__filter">
-    <app-filter  [metaData]="metaData()"></app-filter>
-  </section>
-  <!-- List products -->
-  <section class="products__list">
-    <app-products-list [pagination]="metaData().pagination" [products]="allProducts()"></app-products-list>
-  </section>
-</main>
+<div class="products">
+  <div class="products__container">
+    <div class="products-content">
+       <!-- Products filter -->
+      <section class="products__filter">
+        <app-filter  [metaData]="metaData()"></app-filter>
+      </section>
+      <!-- List products -->
+      <section class="products__list">
+        <app-products-list [pagination]="metaData().pagination" [products]="allProducts()"></app-products-list>
+      </section>
+    </div>
+  </div>
+</div>

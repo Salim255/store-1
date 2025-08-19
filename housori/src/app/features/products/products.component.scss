@@ -1,5 +1,13 @@
+@import '../../../themes/styles/mixins';
+
 .products {
-  &:first-child section {
-    margin-top: 2rem;
+  &__container {
+    padding-top: 10rem;
+   .products-content {
+      @include page-layout();
+      &:first-child section {
+        margin-top: 2rem;
+      }
+    }
   }
 }
