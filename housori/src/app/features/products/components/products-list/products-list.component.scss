@@ -1,31 +1,37 @@
 .products-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--x-l-spacing);
   &__header {
     display: flex;
     justify-content: space-between;
+    .header-btns{
+       display: flex;
+       gap: 2rem;
+       ion-icon {
+        font-size: (--text-4xl);
+       }
+    }
   }
   &__items {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    &--item{
-      display: flex;
-    }
-   .description {
+    .items-item{
       font-size: 1.4rem;
       display: flex;
       justify-content: space-between;
-
       &__details {
         display: flex;
         gap: 2rem;
-        &--img{
-          height: 10rem;
-          width: 14rem;
+        .details-img {
+          height: 16rem;
+          width: 24rem;
           object-fit: cover;
           border-radius: 1rem;
+        }
+        .details-title {
+
         }
       }
     }
