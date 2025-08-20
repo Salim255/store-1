@@ -6,7 +6,7 @@
    .products-content {
       @include page-layout();
       &:first-child section {
-        margin-top: 2rem;
+        margin-top: var(--x-l-spacing);
       }
     }
   }

@@ -1,9 +1,9 @@
 @mixin item-text {
-  font-size: 1.4rem;
-  color: red;
+  font-size: var(--text-xl);
+
 }
 .orders-item {
-  margin: 2rem 0;
+  margin: 4rem 0;
   &__container {
     display: flex;
     gap: 2rem;
@@ -17,10 +17,10 @@
         box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
         padding: .5rem;
         border-radius: 1rem;
-        height: 12rem;
+        height: 16rem;
         .figure-img {
-          height: 10rem;
-          width: 12rem;
+          height: 16rem;
+          width: 18rem;
           object-fit: cover;
           border-radius: 1rem;
         }
@@ -36,6 +36,7 @@
     .item-quantity, .item-unit-price, .item-total-amount, .item-date {
       width: 10rem;
       text-align: right;
+      font-size: var(--text-2xl);
     }
     .item-unit-price {
 
