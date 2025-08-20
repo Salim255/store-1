@@ -1,25 +1,25 @@
 <div class="products-list">
     <div class="products-list__header">
-      <p><span>{{products.length}}</span> Products </p>
-      <div class="products-list__header--btns">
-       <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
+      <h1><span>{{products.length}}</span> Products </h1>
+      <div class="header-btns">
+        <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
         <ion-button><ion-icon name="list-outline"></ion-icon></ion-button>
       </div>
     </div>
 
     <div class="products-list__items">
-      <div class="products-list__items--item description"
-       *ngFor="let item of products" (click)="onProduct(item)">
-       <div class="description__details">
-          <img class="description__details--img" [src]="item.images[0]" alt="Product">
-          <div class="description__details--title">
-            <h3>{{item.name}}</h3>
-            <p>{{item.company}}</p>
-          </div>
-       </div>
-       <div  class="description__price">
-         <span >{{item.price | currency}}</span>
-       </div>
+      <div class="items-item"
+        *ngFor="let item of products" (click)="onProduct(item)">
+        <div class="items-item__details">
+            <img class="details-img" [src]="item.images[0]" alt="Product">
+            <div class="details-title">
+              <h3> {{item.name}} </h3>
+              <p> {{item.company}} </p>
+            </div>
+        </div>
+        <div class="items-item__price">
+          <span >{{item.price | currency}}</span>
+        </div>
       </div>
     </div>
     <!-- Pagination section -->

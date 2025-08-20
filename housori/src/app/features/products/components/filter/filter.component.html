@@ -2,12 +2,11 @@
   <!--Filter search section -->
   <section class="filter__search">
     <div class="search-input">
-      <ion-item lines="none">
+      <div lines="none">
         <ion-label color="empty" position="stacked">Search products</ion-label>
-        <ion-input
-          formControlName="search" placeholder="Search product" >
-        </ion-input>
-      </ion-item>
+        <input formControlName="search" placeholder="Search product" />
+
+      </div>
     </div>
     <div class="search-range">
       <div class="selected-price">
@@ -20,19 +19,18 @@
   <!-- Filter category section -->
   <section class="filter__category">
     <div class="category-options">
-      <ion-item lines="none">
+      <div >
         <ion-label color="empty" position="stacked"> Select category </ion-label>
-        <ion-select
+        <select
           formControlName="category"
-          [selectedText]="categoryValue()"
           label-placement="floating"
-          [interfaceOptions]="customPopoverOptions" interface="popover">
-          <ion-select-option
+          >
+          <option
             *ngFor="let item of metaData.categories; let index" >
             {{ item }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
+          </option>
+        </select>
+      </div>
     </div>
     <div class="category--toggle">
       <ion-toggle formControlName="shipping" labelPlacement="stacked">Free shipping</ion-toggle>
@@ -41,7 +39,7 @@
   <!-- Filter company section -->
   <section class="filter__company">
     <div class="company-options">
-      <ion-item>
+      <div>
         <ion-label color="empty" position="stacked"> Select company </ion-label>
         <ion-select
         formControlName="company"
@@ -52,7 +50,7 @@
             {{ item }}
           </ion-select-option>
         </ion-select>
-      </ion-item>
+      </div>
     </div>
     <div class="filter__company--btn">
       <ion-button (click)="submitSearch()" > search btn</ion-button>
@@ -62,7 +60,7 @@
   <section class="filter__sort">
     <div class="sort-options">
 
-      <ion-item>
+      <div>
         <ion-label color="empty" position="stacked"> Sort by </ion-label>
         <ion-select
           formControlName="alphaSort"
@@ -73,7 +71,7 @@
             {{ item }}
           </ion-select-option>
         </ion-select>
-      </ion-item>
+      </div>
     </div>
     <div class="filter__sort--btn">
       <ion-button (click)="resetFilter()">reset</ion-button>

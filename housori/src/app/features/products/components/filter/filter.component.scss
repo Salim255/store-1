@@ -14,13 +14,15 @@
       ion-label {
         font-size: var(--text-5xl);
         font-weight: var(--font-bold);
-        margin-bottom: 1rem;
       }
-      ion-input {
+      input {
         width: 100%;
-        padding: .5rem;
+        padding: .5rem 1rem;
         border-radius: 1rem;
+        background-color: transparent;
         font-size: var(--text-3xl);
+        border: 2px solid rgb(237, 235, 235);
+        margin-top: 2rem;
       }
     }
 
@@ -71,14 +73,14 @@
         margin-bottom: 2rem;
       }
 
-      ion-select {
-        padding: 0 .8rem;
-        border-radius: 1rem;
+      select {
         width: 100%;
-        font-size: var(--text-3xl);
-      }
-      ion-item {
+        padding: .5rem 1rem;
         border-radius: 1rem;
+        background-color: transparent;
+        font-size: var(--text-3xl);
+        border: 2px solid rgb(237, 235, 235);
+        margin-top: 2rem;
       }
     }
     &--toggle {
