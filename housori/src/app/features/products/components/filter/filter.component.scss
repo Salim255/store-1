@@ -1,27 +1,40 @@
 .filter {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: var(--x-l-spacing);
+  p {
+    font-size: var(--text-xl);
+  }
   &__search{
     flex: 1;
     display: flex;
-    gap: 3rem;
+    gap: var(--l-spacing);
     flex-direction: column;
-    &--input {
-      input {
+    .search-input {
+      ion-label {
+        font-size: var(--text-5xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 1rem;
+      }
+      ion-input {
         width: 100%;
         padding: .5rem;
         border-radius: 1rem;
+        font-size: var(--text-3xl);
       }
     }
 
-    &--range {
+    .search-range {
       .selected-price{
         display: flex;
         justify-content: space-between;
-        &__title {}
+        &__title {
+          font-size: var(--text-2xl);
+          font-weight: var(--font-bold);
+        }
         &__current-price{
-
+          font-size: var(--text-2xl);
+          font-weight: var(--font-bold);
         }
       }
       ion-range{
@@ -30,6 +43,8 @@
           position: absolute;
           bottom: -1rem;
           white-space: nowrap;
+          font-size: var(--text-2xl);
+          font-weight: var(--font-bold);
         }
         &::before{
           content: "10";
@@ -49,11 +64,18 @@
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    &--options{
-      ion-select{
+    .category-options{
+      ion-label {
+        font-size: var(--text-5xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+
+      ion-select {
         padding: 0 .8rem;
         border-radius: 1rem;
         width: 100%;
+        font-size: var(--text-3xl);
       }
       ion-item {
         border-radius: 1rem;
@@ -65,8 +87,13 @@
         --track-background-checked: #ddd;
         --handle-background: var(--color-secondary);
         --handle-background-checked: var(--color-tertiary);
-      }
 
+      }
+    }
+    ion-toggle::part(label) {
+      font-size: 1.4rem;
+      font-weight: 600;
+      font-size: var(--text-3xl);
     }
   }
   &__company{
@@ -74,11 +101,17 @@
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    &--options{
-      select{
+    .company-options{
+      ion-label {
+        font-size: var(--text-5xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+      ion-select{
         padding: .5rem;
         border-radius: 1rem;
         width: 100%;
+        font-size: var(--text-3xl);
       }
     }
     &--btn {
@@ -89,16 +122,22 @@
     }
   }
 
-  &__sort{
+  &__sort {
     flex: 1;
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    &--options{
-      select{
+    .sort-options{
+      ion-label {
+        font-size: var(--text-5xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+      ion-select{
         padding: .5rem;
         border-radius: 1rem;
         width: 100%;
+        font-size: var(--text-3xl);
       }
     }
     &--btn{
