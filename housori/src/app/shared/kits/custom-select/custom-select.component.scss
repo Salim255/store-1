@@ -8,6 +8,7 @@
     padding: .7rem 1rem;
     position: relative;
     font-size: var(--text-xl);
+    background-color: var(--bg-main);
     span {
       display: inline-block;
     }
@@ -51,7 +52,7 @@
       font-size: var(--text-xl);
       &:hover,
       &.custom-select__item--selected {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: var(--color-tints);
       }
       &:last-child {
         border-bottom-right-radius: 1rem;

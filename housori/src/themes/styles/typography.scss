@@ -71,20 +71,30 @@
 }
 
 .btn {
-    display: inline-block;
-    background-color: var(--color-primary);
-    border: none;
-    padding: 1.6rem 3.2rem;
-    border-radius: 15px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  padding: 1.6rem 3.2rem;
+  border-radius: 15px;
+  font-size: var(--text-2xl);
+  &__primary {
+    &--outline {
+
+    }
+    &--full {
+
+    }
+  }
+  &__secondary {
     color: var(--text-on-dark);
     box-shadow: 1rem 1rem  1rem rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: var(--text-2xl);
-    text-decoration: none;
-  &--outline {
-
+    &--outline {
+      border-color: 2px solid var(--color-primary) ;
+    }
+    &--full {
+      background-color: var(--color-primary);
+    }
   }
-  &--full {
 
-  }
 }

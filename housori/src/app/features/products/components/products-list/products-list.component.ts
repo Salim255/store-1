@@ -15,7 +15,7 @@ import { SingleProductService } from "../../services/single-product.service";
 
 export class ProductsListComponent {
   @Input() products!: Product[];
-  @Input() pagination!: ApiMetaData['pagination']
+  @Input() pagination!: ApiMetaData['pagination'];
   pages: number[] = [];
   params = new HttpParams();
   currentPage = signal<number>(1);

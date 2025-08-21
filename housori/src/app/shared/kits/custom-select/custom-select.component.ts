@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class CustomSelectComponent implements OnInit, OnDestroy {
   @Input() options: string [] = [];
-  selectedOption = 'car';
+  selectedOption = 'all';
   private customSelectSubscription!: Subscription;
   dropdownOpen = false;
   constructor(private customSelectService: CustomSelectService){}

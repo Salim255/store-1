@@ -1,0 +1,22 @@
+<div class="pagination">
+    <button
+    [disabled]="currentPage() === 1"
+    (click)="goToPrevPage()"
+    >prev</button>
+  <!--  <button
+    (click)="goToPage(page)"
+    *ngFor="let page of pages"
+    [fill]="currentPage() === page ? 'solid' : 'outline'">
+    {{ page }}
+  </button> -->
+    <button
+    (click)="goToPage(page)"
+    *ngFor="let page of pages">
+    {{ page }}
+  </button>
+  <button
+    (click)="goToNextPage()"
+    [disabled]="currentPage() === pagination?.pageCount"
+    >next
+  </button>
+</div>

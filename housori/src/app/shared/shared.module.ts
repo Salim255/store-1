@@ -3,11 +3,16 @@ import { OrderTotalComponent } from "./components/order-total/order-total.compon
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { CustomSelectComponent } from "./kits/custom-select/custom-select.component";
+import { PaginationComponent } from "./components/pagination/pagination.component";
 
 @NgModule({
-  declarations: [CustomSelectComponent , OrderTotalComponent],
+  declarations: [
+    PaginationComponent,
+    CustomSelectComponent,
+    OrderTotalComponent,
+  ],
   imports: [CommonModule, IonicModule],
-  exports: [CustomSelectComponent , OrderTotalComponent]
+  exports: [PaginationComponent, CustomSelectComponent , OrderTotalComponent]
 })
 
 export class SharedModule{}

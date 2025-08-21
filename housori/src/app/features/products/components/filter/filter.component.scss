@@ -5,7 +5,7 @@
   p {
     font-size: var(--text-xl);
   }
-  &__search{
+  &__search {
     flex: 1;
     display: flex;
     gap: var(--l-spacing);
@@ -19,7 +19,7 @@
         width: 100%;
         padding: .5rem 1rem;
         border-radius: 1rem;
-        background-color: transparent;
+        background-color: var(--bg-main);
         font-size: var(--text-xl);
         border: 2px solid rgb(237, 235, 235);
         margin-top: 2rem;
@@ -98,7 +98,7 @@
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    .company-options{
+    .company-options {
       ion-label {
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
@@ -109,10 +109,9 @@
         margin-top: 2rem;
       }
     }
-    &--btn {
-      ion-button {
+    .company-btn {
+     button {
         width: 100%;
-        border: none;
       }
     }
   }
@@ -122,22 +121,21 @@
     display: flex;
     gap: 3rem;
     flex-direction: column;
-    .sort-options{
+    .sort-options {
       ion-label {
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
         margin-bottom: 2rem;
       }
 
-      &__select{
+      &__select {
         width: 100%;
         margin-top: 2rem;
       }
     }
-    &--btn{
-      ion-button {
+    .sort-btn {
+      button {
         width: 100%;
-        border: none;
       }
     }
   }
