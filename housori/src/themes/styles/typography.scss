@@ -98,3 +98,14 @@
   }
 
 }
+
+
+.app-shadow {
+  box-shadow: -10px 10px  10px  rgba(183, 183, 183, 0.4);
+  &__light {
+
+  }
+  &__solid {
+
+  }
+}
