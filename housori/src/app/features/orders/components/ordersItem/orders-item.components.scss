@@ -2,52 +2,42 @@
   font-size: var(--text-xl);
 
 }
+
 .orders-item {
-  margin: 4rem 0;
-  &__container {
+  display: flex;
+  gap: 4rem;
+  &__details {
+    flex: .5;
     display: flex;
-    gap: 2rem;
-    .item-description {
-      display: flex;
+  }
+  &__figure {
+    display: flex;
+    gap: 4rem;
+  }
+  &__figure-img {
+    //flex: 1;
+    width: 16rem;
+    height: 14rem;
+    border-radius: 1rem;
+  }
+  &__figure-caption {
+    flex: 1;
+  }
+  &__title {
+    margin-bottom: 2rem;
+    font-size: var(--text-xl);
+  }
+  &__description {
+    font-size: var(--text-base);
+  }
+
+  &__metadata {
+    display: flex;
+    flex: .5;
+    div {
       flex: 1;
-      gap: 2rem;
-      &__figure {
-        background-color: var(--bg-secondary);
-        margin: 0;
-        box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
-        padding: .5rem;
-        border-radius: 1rem;
-        height: 16rem;
-        .figure-img {
-          height: 16rem;
-          width: 18rem;
-          object-fit: cover;
-          border-radius: 1rem;
-        }
-        .figure-caption {
-          text-align: center;
-        }
-      }
-      &__text {
-        //background-color: red;
-        @include item-text();
-      }
-    }
-    .item-quantity, .item-unit-price, .item-total-amount, .item-date {
-      width: 10rem;
       text-align: right;
       font-size: var(--text-2xl);
-    }
-    .item-unit-price {
-
-    }
-
-    .item-total-amount {
-
-    }
-
-    .item-date{
-
     }
   }
 }

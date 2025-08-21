@@ -1,32 +1,27 @@
 <div class="orders-item">
-    <div class="orders-item__container">
-      <div class="item-description">
-        <figure class="item-description__figure">
-          <img class="figure-img" [src]="getImageUrl" alt="Order Item img">
-          <figcaption class="figure-caption">
-            {{'name'}}
-          </figcaption>
-        </figure>
-        <div class="item-description__text">
-         <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia,
-            dignissimos deserunt. Sunt dolorem id consequuntur exercitationem delectus.
-            Nostrum, neque quod autem deserunt quos facere temporibus totam, quaerat cum dolor tempore?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
-         </p>
-        </div>
-      </div>
-      <div class="item-quantity">
-        <span>{{orderItem.amount}}</span>
-      </div>
-      <div class="item-unit-price">
-        <span>{{ unitPrice | currency:'USD':'symbol':'1.2-2'}}</span>
-      </div>
-      <div class="item-total-amount">
-        <span>{{ unitPrice * orderItem.amount | currency:'USD':'symbol':'1.2-2'}}</span>
-      </div>
-      <div class="item-date">
-        <span>{{'2023-10-01' | date:'shortDate'}}</span>
-      </div>
+  <section class="orders-item__details">
+    <figure class="orders-item__figure">
+      <img class="orders-item__figure-img" [src]="getImageUrl" alt="Order Item img">
+      <figcaption class="orders-item__figure-caption">
+        <h5 class="orders-item__title">{{ orderItem.productId.name }}</h5>
+        <p class="orders-item__description">
+          {{ orderItem.productId.description }}
+        </p>
+      </figcaption>
+    </figure>
+  </section>
+  <section class="orders-item__metadata">
+    <div class="orders-item__quantity">
+      <span>{{orderItem.amount}}</span>
     </div>
+    <div class="orders-item__unit-price">
+      <span>{{ unitPrice | currency:'USD':'symbol':'1.2-2'}}</span>
+    </div>
+    <div class="orders-item__total-amount">
+      <span>{{ unitPrice * orderItem.amount | currency:'USD':'symbol':'1.2-2'}}</span>
+    </div>
+    <div class="orders-item__item-date">
+      <span>{{'2023-10-01' | date:'shortDate'}}</span>
+    </div>
+  </section>
 </div>

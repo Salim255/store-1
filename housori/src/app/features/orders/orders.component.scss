@@ -5,30 +5,25 @@
   flex-direction: column;
   &__container{
     padding-top: 14rem;
-    .orders-content {
-      @include page-layout();
+  }
 
-      &__list {
-        background-color: transparent;
-        .list-header {
-          display: flex;
-          gap: 2rem;
-          text-transform: uppercase;
-          border-bottom: 2px solid var(--color-primary);
-          //border-top: 2px solid var(--color-primary);
-          padding: .4rem 0;
-          span {
-            font-size: var(--text-3xl);
-          }
-          &__items {
-            flex: 1;
-          }
-          &__qty,&__unit-price,&__amount,&__date {
-            width: 16rem;
-            text-align: right;
-          }
-        }
-      }
-    }
+  &__content {
+    @include page-layout();
+  }
+
+  &__list {
+    background-color: transparent;
+  }
+
+  &__nb {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--md-spacing);
+  }
+
+  &__item {
+   margin-top: 4rem;
+   &:hover {
+    cursor: pointer;
+   }
   }
 }

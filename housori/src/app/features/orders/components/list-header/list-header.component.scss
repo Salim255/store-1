@@ -1,0 +1,25 @@
+.list-header {
+  display: flex;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--bg-tertiary);
+  gap: 4rem;
+  &__description{
+    flex: .5;
+  }
+  &__metadata {
+    flex: .5;
+    display: flex;
+    margin-bottom: var(--2xs-spacing);
+  }
+  span {
+    font-size: var(--text-base);
+  }
+
+  &__qty,
+  &__unit-price ,
+  &__amount,
+  &__date {
+    text-align: right;
+    flex: 1;
+  }
+}

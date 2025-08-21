@@ -1,36 +1,36 @@
 <div class="products-list">
-    <div class="products-list__header">
-      <h1><span>{{products.length}}</span> Products </h1>
-      <div class="header-btns">
-        <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
-        <ion-button><ion-icon name="list-outline"></ion-icon></ion-button>
-      </div>
-    </div>
-
-    <div class="products-list__items">
-      <div class="items-item"
-        *ngFor="let item of products" (click)="onProduct(item)">
-        <div class="items-item__details">
-            <img class="details-img" [src]="item.images[0]" alt="Product">
-            <div class="details-title">
-              <h3> {{item.name}} </h3>
-              <p> {{item.company}} </p>
-            </div>
-        </div>
-        <div class="items-item__price">
-          <span >{{item.price | currency}}</span>
-        </div>
-      </div>
-    </div>
-    <!-- Pagination section -->
-    <div
-      aria-label="Pagination Navigation"
-      class="products-list__pagination">
-      <app-pagination
-        (goToPageEmitter)="goToPage($event)"
-        (goToPrevPageEmitter)="goToPrevPage($event)"
-        (goToNextPageEmitter)="goToNextPage($event)"
-        [pages]="pages">
-      </app-pagination>
+  <div class="products-list__header">
+    <h1><span>{{products.length}}</span> Products </h1>
+    <div class="header-btns">
+      <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
+      <ion-button><ion-icon name="list-outline"></ion-icon></ion-button>
     </div>
   </div>
+
+  <div class="products-list__items">
+    <div class="items-item"
+      *ngFor="let item of products" (click)="onProduct(item)">
+      <div class="items-item__details">
+          <img class="details-img" [src]="item.images[0]" alt="Product">
+          <div class="details-title">
+            <h3> {{item.name}} </h3>
+            <p> {{item.company}} </p>
+          </div>
+      </div>
+      <div class="items-item__price">
+        <span >{{item.price | currency}}</span>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination section -->
+  <div
+    aria-label="Pagination Navigation"
+    class="products-list__pagination">
+    <app-pagination
+      (goToPageEmitter)="goToPage($event)"
+      (goToPrevPageEmitter)="goToPrevPage($event)"
+      (goToNextPageEmitter)="goToNextPage($event)"
+      [pages]="pages">
+    </app-pagination>
+  </div>
+</div>
