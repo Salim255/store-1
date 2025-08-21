@@ -1,19 +1,24 @@
 .pagination {
   display: flex;
-
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  //background-color: red;
+  gap: 4px;
   &__prev,
   &__next,
   &__current {
     border: none;
-    background-color: var(--bg-secondary);
-    padding: 1rem;
-    border-radius: .5rem;
+    background-color: var(--bg-main);
+    padding-left: 1rem;
+    padding-right: 1rem;
+   // border-radius: .5rem;
     cursor: pointer;
   }
 
   &__current {
+    padding: 1rem 1.5rem;
     &--active {
-      background-color: red;
+      background-color: var(--color-tints);
     }
   }
   &__next {}
