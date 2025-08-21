@@ -26,6 +26,11 @@
     <div
       aria-label="Pagination Navigation"
       class="products-list__pagination">
-      <app-pagination [pages]="pages"></app-pagination>
+      <app-pagination
+        (goToPageEmitter)="goToPage($event)"
+        (goToPrevPageEmitter)="goToPrevPage($event)"
+        (goToNextPageEmitter)="goToNextPage($event)"
+        [pages]="pages">
+      </app-pagination>
     </div>
   </div>

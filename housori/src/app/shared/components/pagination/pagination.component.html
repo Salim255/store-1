@@ -1,20 +1,20 @@
-<div class="pagination">
-    <button
+<div class="app-shadow pagination">
+  <button
+    class="app-shadow pagination__prev"
     [disabled]="currentPage() === 1"
     (click)="goToPrevPage()"
-    >prev</button>
-  <!--  <button
-    (click)="goToPage(page)"
-    *ngFor="let page of pages"
-    [fill]="currentPage() === page ? 'solid' : 'outline'">
-    {{ page }}
-  </button> -->
+    >
+    prev
+  </button>
     <button
+    class="pagination__current"
+    [ngClass]="{'pagination__current--active': currentPage() === page}"
     (click)="goToPage(page)"
     *ngFor="let page of pages">
     {{ page }}
   </button>
   <button
+  class="pagination__next"
     (click)="goToNextPage()"
     [disabled]="currentPage() === pagination?.pageCount"
     >next

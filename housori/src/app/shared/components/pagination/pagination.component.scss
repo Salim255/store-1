@@ -1,3 +1,21 @@
 .pagination {
   display: flex;
+
+  &__prev,
+  &__next,
+  &__current {
+    border: none;
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+  }
+
+  &__current {
+    &--active {
+      background-color: red;
+    }
+  }
+  &__next {}
+
 }
