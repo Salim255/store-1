@@ -4,7 +4,7 @@
     <div class="search-input">
       <div lines="none">
         <ion-label color="empty" position="stacked">Search Products</ion-label>
-        <input formControlName="search" placeholder="car" />
+        <input formControlName="search" placeholder="search" />
       </div>
     </div>
     <div class="search-range">
@@ -35,8 +35,8 @@
         <app-custom-select [options]="metaData.companies || []"></app-custom-select>
       </div>
     </div>
-    <div class="filter__company--btn">
-      <ion-button (click)="submitSearch()" > search btn</ion-button>
+    <div class="company-btn">
+      <button class="btn btn__secondary btn__secondary--full" (click)="submitSearch()" > search </button>
     </div>
   </section>
   <!-- Filter sort section -->
@@ -47,8 +47,8 @@
         <app-custom-select [options]="sortOptions || []"></app-custom-select>
       </div>
     </div>
-    <div class="filter__sort--btn">
-      <ion-button (click)="resetFilter()">reset</ion-button>
+    <div class="sort-btn">
+      <button class="btn btn__secondary btn__secondary--full " (click)="resetFilter()">reset</button>
     </div>
   </section>
 </form>

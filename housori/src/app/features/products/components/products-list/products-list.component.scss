@@ -16,14 +16,15 @@
   &__items {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
+    position: relative;
     .items-item{
       font-size: 1.4rem;
       display: flex;
       justify-content: space-between;
       &__details {
         display: flex;
-        gap: 2rem;
+        gap: 4rem;
         .details-img {
           height: 16rem;
           width: 24rem;
@@ -31,12 +32,23 @@
           border-radius: 1rem;
         }
         .details-title {
-
+          h3 {
+            margin-bottom: 1rem;
+          }
         }
+      }
+      &__price {
+        font-size: var(--text-xl);
       }
     }
   }
-  &__pagination{
-    text-align: right;
+  &__pagination {
+    position: fixed;
+    bottom: 1%;
+    right: 0;
+    margin-right: 5%;
+    ion-button {
+      font-size: 1.5rem;
+    }
   }
 }
