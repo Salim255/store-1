@@ -3,9 +3,8 @@
   <section class="filter__search">
     <div class="search-input">
       <div lines="none">
-        <ion-label color="empty" position="stacked">Search products</ion-label>
-        <input formControlName="search" placeholder="Search product" />
-
+        <ion-label color="empty" position="stacked">Search Products</ion-label>
+        <input formControlName="search" placeholder="car" />
       </div>
     </div>
     <div class="search-range">
@@ -19,17 +18,9 @@
   <!-- Filter category section -->
   <section class="filter__category">
     <div class="category-options">
-      <div >
-        <ion-label color="empty" position="stacked"> Select category </ion-label>
-        <select
-          formControlName="category"
-          label-placement="floating"
-          >
-          <option
-            *ngFor="let item of metaData.categories; let index" >
-            {{ item }}
-          </option>
-        </select>
+      <ion-label color="empty" position="stacked"> Select Category </ion-label>
+      <div class="category-options__select">
+        <app-custom-select [options]="metaData.categories || []"></app-custom-select>
       </div>
     </div>
     <div class="category--toggle">
@@ -39,17 +30,9 @@
   <!-- Filter company section -->
   <section class="filter__company">
     <div class="company-options">
-      <div>
-        <ion-label color="empty" position="stacked"> Select company </ion-label>
-        <ion-select
-        formControlName="company"
-        [selectedText]="companyValue()"
-        label-placement="floating"   [interfaceOptions]="customPopoverOptions" interface="popover">
-          <ion-select-option
-            *ngFor="let item of metaData.companies; let index" >
-            {{ item }}
-          </ion-select-option>
-        </ion-select>
+      <ion-label color="empty" position="stacked"> Select Company </ion-label>
+      <div class="company-options__select">
+        <app-custom-select [options]="metaData.companies || []"></app-custom-select>
       </div>
     </div>
     <div class="filter__company--btn">
@@ -59,18 +42,9 @@
   <!-- Filter sort section -->
   <section class="filter__sort">
     <div class="sort-options">
-
-      <div>
-        <ion-label color="empty" position="stacked"> Sort by </ion-label>
-        <ion-select
-          formControlName="alphaSort"
-          [selectedText]="sortValue()"
-          label-placement="floating" [interfaceOptions]="customPopoverOptions" interface="popover">
-          <ion-select-option
-            *ngFor="let item of sortOptions; let index" >
-            {{ item }}
-          </ion-select-option>
-        </ion-select>
+      <ion-label color="empty" position="stacked"> Sort By </ion-label>
+      <div class="sort-options__select">
+        <app-custom-select [options]="sortOptions || []"></app-custom-select>
       </div>
     </div>
     <div class="filter__sort--btn">
@@ -78,3 +52,4 @@
     </div>
   </section>
 </form>
+
