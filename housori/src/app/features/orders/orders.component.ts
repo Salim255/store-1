@@ -12,7 +12,6 @@ import { Order } from "./model/order.model";
 
 export class OrdersComponent {
   ordersList: Order [] = [];
-  headerItems = ['items', 'qty', 'unit price', 'amount', 'date']
 
   private ordersSubscription!: Subscription;
   constructor(private orderService: OrdersService){}

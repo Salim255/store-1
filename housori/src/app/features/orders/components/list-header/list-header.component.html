@@ -1,0 +1,10 @@
+  <header class="list-header" >
+    <div class="list-header__description">
+      <span> items </span>
+    </div>
+    <div class="list-header__metadata">
+      <div [class]="'list-header__' + (item === 'unit price' ? 'unit-price' : item) " *ngFor="let item of headerItems" >
+       <span> {{ item }} </span>
+      </div>
+    </div>
+</header>
