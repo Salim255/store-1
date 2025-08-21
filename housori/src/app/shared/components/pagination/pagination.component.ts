@@ -22,21 +22,18 @@ import { Subscription } from "rxjs";
   constructor(private paginationService: PaginationService){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
     this.subscribeToCurrentPage();
   }
   subscribeToCurrentPage() {
     this.currentPageSubscription = this.paginationService
       .getCurrentPage.
       subscribe(currentPage => {
-        console.log(currentPage);
         if (!currentPage) return;
         this.currentPage.set(currentPage);
         })
   }
-  goToPrevPage(): void {
 
+  goToPrevPage(): void {
     this.goToPrevPageEmitter.emit();
   }
 

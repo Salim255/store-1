@@ -14,9 +14,9 @@
     {{ page }}
   </button>
   <button
-  class="pagination__next"
+    class="pagination__next"
     (click)="goToNextPage()"
-    [disabled]="currentPage() === pagination?.pageCount"
+    [disabled]="currentPage() === pages.length"
     >next
   </button>
 </div>
