@@ -1,0 +1,12 @@
+ <div class="custom-select" (click)="toggleDropdown()">
+  <div class="custom-select__selected" [class.custom-select__selected--active]="dropdownOpen">
+    <span> {{ selectedOption }} </span>
+  </div>
+  <ul class="custom-select__items" [class.custom-select__items--hidden]="!dropdownOpen">
+    <li *ngFor="let option of options"
+         (click)="selectOption(option, $event)"
+         [class.custom-select__item--selected]="option === selectedOption">
+      {{ option }}
+    </li>
+  </ul>
+</div>

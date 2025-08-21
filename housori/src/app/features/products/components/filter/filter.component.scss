@@ -12,7 +12,7 @@
     flex-direction: column;
     .search-input {
       ion-label {
-        font-size: var(--text-5xl);
+        font-size: var(--text-3xl);
         font-weight: var(--font-bold);
       }
       input {
@@ -20,7 +20,7 @@
         padding: .5rem 1rem;
         border-radius: 1rem;
         background-color: transparent;
-        font-size: var(--text-3xl);
+        font-size: var(--text-xl);
         border: 2px solid rgb(237, 235, 235);
         margin-top: 2rem;
       }
@@ -68,18 +68,13 @@
     flex-direction: column;
     .category-options{
       ion-label {
-        font-size: var(--text-5xl);
+        font-size: var(--text-3xl);
         font-weight: var(--font-bold);
         margin-bottom: 2rem;
       }
 
-      select {
+      &__select{
         width: 100%;
-        padding: .5rem 1rem;
-        border-radius: 1rem;
-        background-color: transparent;
-        font-size: var(--text-3xl);
-        border: 2px solid rgb(237, 235, 235);
         margin-top: 2rem;
       }
     }
@@ -105,15 +100,13 @@
     flex-direction: column;
     .company-options{
       ion-label {
-        font-size: var(--text-5xl);
+        font-size: var(--text-3xl);
         font-weight: var(--font-bold);
         margin-bottom: 2rem;
       }
-      ion-select{
-        padding: .5rem;
-        border-radius: 1rem;
+      &__select{
         width: 100%;
-        font-size: var(--text-3xl);
+        margin-top: 2rem;
       }
     }
     &--btn {
@@ -131,15 +124,14 @@
     flex-direction: column;
     .sort-options{
       ion-label {
-        font-size: var(--text-5xl);
+        font-size: var(--text-3xl);
         font-weight: var(--font-bold);
         margin-bottom: 2rem;
       }
-      ion-select{
-        padding: .5rem;
-        border-radius: 1rem;
+
+      &__select{
         width: 100%;
-        font-size: var(--text-3xl);
+        margin-top: 2rem;
       }
     }
     &--btn{
@@ -150,4 +142,3 @@
     }
   }
 }
-
