@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { CheckoutService } from '../../services/checkout.service';
 import { Subscription } from 'rxjs';
 import { Router } from "@angular/router";
+import { CartService } from 'src/app/features/cart/services/cart-service';
 
  const appearance: Appearance = {
  theme: 'stripe',
@@ -108,7 +109,7 @@ const options: StripePaymentElementOptions = {
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  @Input() totalDetails!: TotalOrderDetails
+  @Input() totalDetails!: TotalOrderDetails;
   ENV = environment ;
   stripe!: Stripe | null;
   payment!: StripePaymentElement;
@@ -123,6 +124,7 @@ export class PaymentComponent implements OnInit {
   private clientSecret: string | null = null;
 
   constructor(
+    private cartService: CartService,
     private router: Router,
     private checkoutService: CheckoutService,
   ) {}
@@ -138,6 +140,7 @@ export class PaymentComponent implements OnInit {
 
   subscribeToClientSecret(){
      this.clientSecretSubscription = this.checkoutService.getClientSecret.subscribe((clientSecret) => {
+      clientSecret = "cs_test_b1QrQ5svPBm9KultXJTAdbNwFRypO2nmo5OEwlp5PIxFnJm9Y1FL5UUVrO_secret_fidwbEhqYWAnPydmcHZxamgneCUl"
       if (clientSecret) {
         this.clientSecret = clientSecret;
         this.paymentElementWithCheckout();
@@ -155,12 +158,12 @@ export class PaymentComponent implements OnInit {
 
     this.paymentElement =
       this.checkout.createPaymentElement(
-          { layout: {
-              type: 'tabs', // or 'accordion'
-            },
+        {
+          layout: {
+            type: 'tabs', // or 'accordion'
           },
+        },
       );
-
     this.paymentElement!.mount('#payment-element');
     this.stripeReady = true;
   }

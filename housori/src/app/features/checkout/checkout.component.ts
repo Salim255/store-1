@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, signal} from "@angular/core";
-import { CartService } from "../cart/services/cart-service";
+import { CartItem, CartService } from "../cart/services/cart-service";
 import { Subscription } from "rxjs";
 import { TotalOrderDetails } from "src/app/shared/components/order-total/order-total.component";
 import { CheckoutService } from "./services/checkout.service";
@@ -16,7 +16,7 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   private orderIsPlacedSubscription!: Subscription;
   orderIsPlaced = signal<boolean>(false);
   totalDetails = signal< TotalOrderDetails | null>(null);
-
+  cartItems = signal<  CartItem []>([]);
   constructor(
     private checkoutService: CheckoutService,
     private cartService: CartService,
@@ -37,6 +37,7 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
       if (cartState) {
         const {cartItems, ...rest} = cartState;
+        this.cartItems.set(cartItems);
         this.totalDetails.set(rest);
       }
     })
