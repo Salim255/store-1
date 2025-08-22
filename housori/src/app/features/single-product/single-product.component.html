@@ -2,12 +2,18 @@
   <div class="single-product__container">
     <div class="single-product__content">
       <figure class="single-product__figure">
-        <img class="single-product__img" alt="single product" [src]="firstImage">
+        <div class="single-product__img">
+          <img  alt="single product" [src]="firstImage">
+        </div>
         <figcaption class="single-product__description">
           <h4 class="heading-quaternary">{{ title}}</h4>
           <p class="single-product__price"> {{ productPrice | currency }} </p>
           <p class="single-product__paragraph">{{ description }}</p>
-          <button class="btn btn__secondary btn__secondary--full single-product__add-btn"  (click)="onAddProduct()">add to basket</button>
+          <button
+            class="btn btn__secondary btn__secondary--full single-product__add-btn"
+            (click)="onAddProduct()">
+            add to basket
+          </button>
         </figcaption>
       </figure>
     </div>
