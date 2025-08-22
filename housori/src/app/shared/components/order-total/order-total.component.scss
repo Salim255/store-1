@@ -1,13 +1,26 @@
 .order-total{
-  ion-item {
-    p{
-      text-transform: capitalize;
-    }
-    p:first-child{
-      margin-right: auto;
+  &__definition-list{
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--md-spacing);
+      font-size: var(--text-2xl);
     }
   }
-  ion-item:last-child {
+  &__btn {
     border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+    &:hover{
+      transform: scale(1.01);
+      cursor: pointer;
+    }
+    &:active {
+      transform: scale(.8);
+    }
   }
 }

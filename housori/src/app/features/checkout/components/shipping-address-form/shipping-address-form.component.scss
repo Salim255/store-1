@@ -2,7 +2,7 @@
   &__group {
     display: flex;
     flex-direction: column;
-    font-size: 2rem;
+    font-size: var(--text-2xl);
     margin-top: var(--md-spacing);
   }
   &__label {
@@ -15,7 +15,7 @@
     padding: .5rem 1rem;
     font-size: 2rem;
   }
-  &__btn{
+  &__btn {
     width: 100%;
     margin-top: var(--x-l-spacing) ;
     border-radius: var(--radius-lg);
