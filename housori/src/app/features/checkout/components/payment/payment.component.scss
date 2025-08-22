@@ -9,7 +9,7 @@
   align-items: center;
   z-index: 1000;
 
-  &__container{
+  &__container {
     backdrop-filter: blur(20px);
     background-color: rgba(192, 192, 192, 0.4);
     // Soft glass-style shadow
@@ -17,48 +17,48 @@
         0 4px 20px rgba(0, 0, 0, 0.2),   // main soft shadow
         0 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 2rem;
-    padding: 4rem 4rem;
+    padding: var(--l-spacing);
     width: 90%;
     height: 90%;
     margin: auto;
     display: flex;
-    gap: 6rem;
-    &--form {
-
-      flex: .5;
-      display: flex;
-      flex-direction: column;
-      //gap: 2rem;
-
-      .payment-submit-btn{
-        margin-top: 3rem;
-        ion-button {
-          width: 100%;
-        }
-      }
-    }
+    gap: var(--x-l-spacing);
     .billing {
       &__methods {
         display: flex;
         justify-content: space-between;
         margin-bottom: 1rem;
-        &--title {
-          font-weight: 600;
-          font-size: var(--text-lg);
-          color: #8b0a0a;
-        }
-        &--secure {
-          display: flex;
-          gap: 2px;
-          ion-icon {
-            align-self: center;
-          }
+      }
+      &__secure {
+        display: flex;
+        gap: 2px;
+        ion-icon {
+          align-self: center;
         }
       }
+      &__title {
+        font-weight: 600;
+        font-size: var(--text-lg);
+      }
     }
-    &--summary{
-      flex: .5;
-    }
-
   }
+  &__form {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    .payment-submit-btn{
+
+    }
+  }
+  &__summary{
+    flex: .5;
+  }
+
+  &__submit-btn {
+    margin-top: 3rem;
+    button {
+      width: 100%;
+    }
+  }
+
 }
