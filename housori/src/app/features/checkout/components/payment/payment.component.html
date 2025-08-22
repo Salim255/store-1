@@ -1,13 +1,14 @@
 <!-- payment.component.html -->
 <div class="payment-modal">
   <div class="payment-modal__container">
-    <form class="payment-modal__container--form  billing" id="payment-form" (submit)="handleSubmitWithCheckout(); $event.preventDefault()" novalidate>
-      <div class="billinig__header">
-        <h3>Billing Information</h3>
-      </div>
+    <form class="payment-modal__form  billing"
+      id="payment-form"
+      (submit)="handleSubmitWithCheckout();
+      $event.preventDefault()" novalidate>
+      <h1 class="heading-primary">Billing Information</h1>
       <div class="billing__methods">
-        <p class="billing__methods--title">Payment methods</p>
-        <div class="billing__methods--secure">
+        <p class="billing__title">Payment methods</p>
+        <div class="billing__secure">
            <p>Secure and encrypted</p>
           <ion-icon name="lock-closed"></ion-icon>
         </div>
@@ -18,14 +19,14 @@
         {{ errorMessage }}
       </div>
 
-     <div class="payment-submit-btn">
-       <ion-button type="submit" [disabled]="isLoading || !stripeReady">
+      <button class="payment-modal__submit-btn btn btn__secondary btn__secondary--full"
+        type="submit"
+        [disabled]="isLoading || !stripeReady">
         <span *ngIf="!isLoading">Pay</span>
         <span *ngIf="isLoading">Processing...</span>
-      </ion-button>
-    </div>
+      </button>
     </form>
-    <section class="payment-modal__container--summary">
+    <section class="payment-modal__summary">
        <app-summary></app-summary>
     </section>
   </div>

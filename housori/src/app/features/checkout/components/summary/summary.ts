@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { CartService } from "src/app/features/cart/services/cart-service";
 
 @Component({
   selector: 'app-summary',
