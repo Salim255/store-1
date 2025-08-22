@@ -1,12 +1,14 @@
 <div class="cart">
   <div class="cart__container">
-    <div class="cart-content">
-      <section>Shipping cart</section>
-      <section class="cart-content__body">
-        <section class="order-items">
-          <ion-item *ngFor="let product of  cartItems; let index = index">
+    <div class="cart__content">
+      <h1 class="heading-primary">Shipping cart</h1>
+
+      <section class="cart__body">
+        <section class="cart__items">
+          <h4 class="heading-quaternary cart__items-nb">1 product in your cart</h4>
+          <div class="cart__item" *ngFor="let product of  cartItems; let index = index">
             <app-cart-item  [item]="product" ></app-cart-item>
-          </ion-item>
+          </div>
         </section>
         <section class="order-total">
           <app-order-total [totalDetails]="totalDetails"></app-order-total>

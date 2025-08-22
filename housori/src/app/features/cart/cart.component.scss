@@ -3,25 +3,23 @@
 .cart {
   &__container {
     padding-top: 14rem;
-
-    .cart-content {
-      @include page-layout();
-      display: flex;
-      flex-direction: column;
-      &__body {
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-        .order-items{
-          ion-item {
-            --inner-padding-end: 0;
-            --inner-padding-start: 0;
-            --padding-end: 0;
-            --padding-start: 0;
-            margin-top: 1rem;
-          }
-        }
-      }
-    }
+  }
+  &__content {
+    @include page-layout();
+    display: flex;
+    flex-direction: column;
+  }
+  &__body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--x-l-spacing);
+  }
+  &__items-nb {
+    border-bottom: 2px solid var(--bg-tertiary);
+    padding-bottom: var(--2xs-spacing);
+  }
+  &__item{
+    margin-top: var(--x-l-spacing);
   }
 }
 

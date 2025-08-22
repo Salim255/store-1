@@ -76,7 +76,7 @@
   font-weight: var(--font-bold);
   line-height: 1.05;
   color: var(--text-color-heading);
-  letter-spacing: -.5px;
+  letter-spacing: -.4px;
   margin-bottom: var(--l-spacing);
 }
 
@@ -85,8 +85,17 @@
   font-weight: var(--font-bold);
   line-height: 1.05;
   color: var(--text-color-heading);
-  letter-spacing: -.5px;
+  letter-spacing: -.3px;
   margin-bottom: var(--l-spacing);
+}
+
+.heading-quaternary {
+  font-size: var(--text-lg); // slightly smaller than heading-tertiary
+  font-weight: var(--font-bold);
+  line-height: 1.05;
+  color: var(--text-color-heading);
+  letter-spacing: -.2px;
+  margin-bottom: var(--xs-spacing);
 }
 
 .btn {
