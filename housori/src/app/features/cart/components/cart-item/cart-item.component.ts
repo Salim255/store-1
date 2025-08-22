@@ -22,8 +22,11 @@ export class CartItemComponent {
     return this.item?.price ?? 0;
   }
 
-  get itemDescription(): string {
+  get itemTitle(): string {
     return this.item?.name ?? '';
+  }
+  get ItemCompany(): string{
+    return this.item?.company ?? '';
   }
 
   increaseAmount(itemId: string, amount: number): void{
