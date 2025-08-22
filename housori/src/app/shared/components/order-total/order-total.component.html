@@ -1,23 +1,27 @@
 <div  class="order-total">
-    <div class="order-total__details">
-    <ion-item>
-      <p>subtotal</p>
-      <p>{{ cartTotal | currency }}</p>
-    </ion-item>
-      <ion-item>
-      <p> Shipping (Standard Shipping)</p>
-      <p>{{ shipping | currency }}</p>
-    </ion-item>
-      <ion-item>
-      <p>Sales tax (20%)</p>
-      <p>{{ tax | currency }}</p>
-    </ion-item>
-    <ion-item lines="none">
-      <p>order total</p>
-      <p>{{ orderTotal | currency }}</p>
-    </ion-item>
-  </div>
-  <div class="order-total__btn" *ngIf="pageName !=='payment'">
-    <ion-button [disabled]="!orderTotal" (click)="onClear()"> clear cart</ion-button>
-  </div>
+  <dl class="order-total__definition-list">
+    <div class="order-total__subtotal">
+      <dt>subtotal</dt>
+      <dd>{{ cartTotal | currency }}</dd>
+    </div>
+    <div>
+      <dt> Shipping (Standard Shipping)</dt>
+      <dd>{{ shipping | currency }}</dd>
+    </div>
+    <div>
+      <dt>Sales tax (20%)</dt>
+      <dd>{{ tax | currency }}</dd>
+    </div>
+    <div>
+      <dt>order total</dt>
+      <dd>{{ orderTotal | currency }}</dd>
+    </div>
+  </dl>
+
+  <button
+    class="order-total__btn" *ngIf="pageName !=='payment'"
+    [disabled]="!orderTotal" (click)="onClear()">
+    clear cart
+  </button>
+
 </div>
