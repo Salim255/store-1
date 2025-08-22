@@ -1,14 +1,17 @@
 <div class="checkout">
   <div class="checkout__container">
-    <div class="checkout-content">
-      <section class="checkou-content__shipping-info">
-        <h1 class="heading-primary">Place your order</h1>
-        <h3 class="heading-tertiary">Shipping information: </h3>
-        <app-shipping-address-form></app-shipping-address-form>
-      </section>
-      <section class="checkout-content__order-details">
-        <app-order-total [totalDetails]="totalDetails()"></app-order-total>
-      </section>
+    <div class="checkout__content">
+      <h1 class="checkout__header heading-primary">Place your order</h1>
+      <div class="checkout__body">
+        <section class="checkou__shipping-info">
+          <h3 class="heading-tertiary">Shipping information: </h3>
+          <app-shipping-address-form></app-shipping-address-form>
+        </section>
+        <section class="checkout__order-details">
+          <h3 class="heading-tertiary">Order summary:</h3>
+          <app-order-total [totalDetails]="totalDetails()"></app-order-total>
+        </section>
+      </div>
     </div>
   </div>
 </div>

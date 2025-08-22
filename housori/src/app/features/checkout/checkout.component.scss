@@ -4,16 +4,20 @@
   &__container {
     padding-top: 14rem;
     .checkout-content {
-      @include page-layout();
-      display: flex;
-      gap: 2rem;
-      &>section {
-        flex: 1;
-      }
       &__shipping-info {
         display: flex;
         gap: 2rem;
       }
+    }
+  }
+  &__content{
+    @include page-layout();
+  }
+  &__body {
+    display: flex;
+    gap: var(--x-l-spacing);
+    &>section {
+      flex: 1;
     }
   }
 }
