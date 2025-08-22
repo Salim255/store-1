@@ -12,7 +12,7 @@
         <div
           class="orders__item"
           *ngFor="let order of ordersList; let index = index">
-            <app-orders-item [orderItem]="order.items[0]"></app-orders-item>
+            <app-orders-item [orderItem]="order.items[0]" [updatedAt]="order.updatedAt"></app-orders-item>
         </div>
       </div>
   </section>

@@ -1,58 +1,16 @@
- <form [formGroup]="shippingFields">
-    <ion-item>
-      <ion-input
-        formControlName="fullName"
-        label="Full name"
-        aria-placeholder="receiver full name"
-        placeholder="Full name" >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        formControlName="country"
-        label="Country"
-        aria-placeholder="receiver country"
-        placeholder="Country">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        formControlName="address"
-        label="Address"
-        aria-placeholder="receiver address"
-        placeholder="Address line">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        formControlName="city"
-        label="City" aria-placeholder="receiver city"
-        placeholder="City">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        formControlName="postalCode"
-        label="Postal code"
-        aria-placeholder="receiver postal code"
-        placeholder="Postal code">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        formControlName="phone"
-        label="Phone"
-        aria-placeholder="receiver phone number"
-        placeholder="Phone number">
-      </ion-input>
-    </ion-item>
-
-    <ion-item class="checkout-btn" lines="none">
-      <ion-button
-        type="submit"
-        [disabled]="shippingFields.invalid"
-        (click)="onPlaceOrder()">
-          Place you order
-      </ion-button>
-    </ion-item>
+ <form class="form" [formGroup]="shippingFields">
+    <div class="form__group" *ngFor="let field of fromFields">
+      <label class="form__label" for="fullName"> {{field.label}}</label>
+      <input
+        class="form__input"
+        [formControlName]="field.formControlName"
+        [placeholder]="field.placeHolder" />
+    </div>
+    <button
+      class="form__btn btn btn__secondary btn__secondary--full"
+      type="submit"
+      [disabled]="shippingFields.invalid"
+      (click)="onPlaceOrder()">
+        Place you order
+    </button>
 </form>
