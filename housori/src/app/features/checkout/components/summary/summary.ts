@@ -1,6 +1,8 @@
-import { Component, signal } from "@angular/core";
+import { Component, OnDestroy, OnInit, signal } from "@angular/core";
 import { Subscription } from "rxjs";
 import { CartDetails, CartItem, CartService } from "src/app/features/cart/services/cart-service";
+import { CheckoutService } from "../../services/checkout.service";
+import { ShippingAddress } from "../../services/checkout-http.service";
 
 @Component({
   selector: 'app-summary',
@@ -9,28 +11,66 @@ import { CartDetails, CartItem, CartService } from "src/app/features/cart/servic
   standalone: false,
 })
 
-export class SummaryComponent {
+export class SummaryComponent implements OnInit, OnDestroy {
+  private shippingAddressSubscription!: Subscription;
   private cartSubscription!: Subscription;
-  cart = signal< CartDetails | null>(null);
-  constructor(private cartService: CartService) {}
+  shippingAddress = signal<ShippingAddress | null>(null);
+  cart = signal<CartDetails | null>(null);
+
+  constructor(
+    private checkoutService: CheckoutService,
+    private cartService: CartService,
+  ) {}
 
   ngOnInit(): void {
     this.subscribeToCart();
   }
 
-  subscribeToCart():void{
-    this.cartSubscription = this.cartService.getCartState.subscribe(cart => {
-      console.log(cart);
-      this.cart.set(cart);
-    })
+  subscribeToShippingAddress(){
+    this.shippingAddressSubscription = this.checkoutService
+      .getShippingAddress
+      .subscribe(address => {
+        this.shippingAddress.set(address);
+        },
+      )
   }
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.cartSubscription?.unsubscribe();
+
+  subscribeToCart():void{
+    this.cartSubscription = this.cartService
+    .getCartState
+    .subscribe(cart => {
+      this.cart.set(cart);
+     },
+    )
   }
 
   get getItems(): CartItem[] | []{
     return this.cart()?.cartItems || []
+  }
+  get getTotalDetails(): Omit<CartDetails, 'cartItems'> | null {
+    const cartValue = this.cart() ;
+    if(!cartValue) return null;
+    const { cartItems, ...rest} = cartValue;
+    return rest;
+  }
+
+  get fullName(): string{
+    return this.shippingAddress()?.fullName || '';
+  }
+
+   get addressLine(): string {
+    const value = this.shippingAddress();
+    if (!value) return '';
+    return `${value.address}`
+  }
+  get cityCountry(): string {
+    const value = this.shippingAddress();
+    if (!value) return '';
+    const addressString = `${value.city}, ${value.postalCode} ${value.country}`;
+    return addressString;
+  }
+  ngOnDestroy(): void {
+    this.cartSubscription?.unsubscribe();
+    this.shippingAddressSubscription?.unsubscribe();
   }
 }

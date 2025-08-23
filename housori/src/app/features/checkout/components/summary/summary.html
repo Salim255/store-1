@@ -5,7 +5,7 @@
         <app-summary-item  *ngFor="let item of getItems" [item]="item"></app-summary-item>
       </div>
       <div class="summary__total">
-        <app-order-total [pageName]="'payment'"></app-order-total>
+        <app-order-total [pageName]="'payment'" [totalDetails]="getTotalDetails"></app-order-total>
       </div>
   </section>
   <section class="summary__shipping">
@@ -13,13 +13,13 @@
     <div>
       <dl class="summary__shipping-recipient">
         <dt> Recipient </dt>
-        <dd> Salim Hassan</dd>
+        <dd> {{ fullName }}</dd>
       </dl>
       <dl class="summary__shipping-address">
         <dt>Address</dt>
         <div>
-          <dd> 5 rue d'isly</dd>
-          <dd>Lille, 59000 France</dd>
+          <dd> {{ addressLine }}</dd>
+          <dd> {{ cityCountry }}</dd>
         </div>
         </dl>
     </div>
