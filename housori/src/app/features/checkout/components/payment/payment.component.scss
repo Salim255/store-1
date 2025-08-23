@@ -46,8 +46,8 @@
     flex: .5;
     display: flex;
     flex-direction: column;
-    .payment-submit-btn{
-
+    #payment-element {
+      min-height: 35%;
     }
   }
   &__summary{

@@ -25,16 +25,19 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.subscribeToCartState();
     this.subscribeToOrderIsPlaced();
-    console.log('Checkout component initialized', this. orderIsPlaced ());
   }
 
   subscribeToOrderIsPlaced(): void {
     this.orderIsPlacedSubscription = this.checkoutService
       .getOrderIsPlaced
-      .subscribe(isPlaced =>{ this.orderIsPlaced.set(isPlaced) })
+      .subscribe(isPlaced => {
+         this.orderIsPlaced.set(isPlaced) }
+      )
   }
   subscribeToCartState(){
-    this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
+    this.cartStateSubscription = this.cartService
+    .getCartState
+    .subscribe(cartState => {
       if (cartState) {
         const {cartItems, ...rest} = cartState;
         this.cartItems.set(cartItems);
