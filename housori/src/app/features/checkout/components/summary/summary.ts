@@ -24,6 +24,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeToCart();
+    this. subscribeToShippingAddress();
   }
 
   subscribeToShippingAddress(){

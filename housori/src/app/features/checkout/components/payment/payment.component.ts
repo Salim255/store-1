@@ -140,7 +140,7 @@ export class PaymentComponent implements OnInit {
 
   subscribeToClientSecret(){
      this.clientSecretSubscription = this.checkoutService.getClientSecret.subscribe((clientSecret) => {
-      clientSecret = "cs_test_b1QrQ5svPBm9KultXJTAdbNwFRypO2nmo5OEwlp5PIxFnJm9Y1FL5UUVrO_secret_fidwbEhqYWAnPydmcHZxamgneCUl"
+      //clientSecret = "cs_test_b1QrQ5svPBm9KultXJTAdbNwFRypO2nmo5OEwlp5PIxFnJm9Y1FL5UUVrO_secret_fidwbEhqYWAnPydmcHZxamgneCUl"
       if (clientSecret) {
         this.clientSecret = clientSecret;
         this.paymentElementWithCheckout();
@@ -175,6 +175,8 @@ export class PaymentComponent implements OnInit {
       await this.checkout!.confirm({ redirect: 'if_required' });
     if ( result.error) {
       this.errorMessage =  result.error?.message!;
+      this.isLoading = false;
+      return;
     }
 
     setTimeout(() => {
@@ -187,6 +189,7 @@ export class PaymentComponent implements OnInit {
       this.stripeReady = false;
       this.checkout = null;
       this.stripe = null;
+      this.cartService.clearCart();
       this.router.navigate(['/orders']);
     }, 1000);
 
