@@ -1,15 +1,15 @@
 <div class="summary">
     <section class="summary__orders">
-      <h2 class="heading-secondary">Order Summary</h2>
+      <h1 class="heading-primary">Order Summary</h1>
       <div class="summary__items">
-        <app-summary-item  *ngFor="let item of cartItems"></app-summary-item>
+        <app-summary-item  *ngFor="let item of getItems" [item]="item"></app-summary-item>
       </div>
       <div class="summary__total">
         <app-order-total [pageName]="'payment'"></app-order-total>
       </div>
   </section>
   <section class="summary__shipping">
-    <h2 class="heading-secondary">Shipping Information</h2>
+    <h1 class="heading-primary">Shipping Information</h1>
     <div>
       <dl class="summary__shipping-recipient">
         <dt> Recipient </dt>

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { CartItem } from "src/app/features/cart/services/cart-service";
 
 @Component({
   selector: 'app-summary-item',
@@ -7,5 +8,6 @@ import { Component } from "@angular/core";
 })
 
 export class SummaryItemComponent {
+  @Input() item!: CartItem;
   constructor() {}
 }
