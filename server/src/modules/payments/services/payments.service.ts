@@ -4,7 +4,7 @@ import { Types } from 'mongoose';
 import { ProductModel } from 'src/modules/product/model/product.model';
 import Stripe from 'stripe';
 import { CreateCheckoutSession } from '../dto/payments.dto';
-import { Request, Response } from 'express';
+import { AuthenticatedRequest } from '../controllers/payments.controller';
 
 @Injectable()
 export class PaymentsService {
@@ -19,52 +19,17 @@ export class PaymentsService {
     this.stripe = new Stripe(SecretAPIKey);
   }
 
-  async createPaymentIntent() {
-    // Step 1: Create the customer
-    const shippingInfo = {
-      email: 'salim@example.com',
-      name: 'Salim',
-      address: {
-        line1: '123 Rue de la Liberté',
-        city: 'Lille',
-        postal_code: '59000',
-        country: 'FR',
-      },
-    };
-
-    const customer = await this.stripe.customers.create(shippingInfo);
-    const paymentIntent = await this.stripe.paymentIntents.create({
-      amount: 1099,
-      currency: 'eur',
-      description: 'Order description, human readable',
-      receipt_email: 'customer@example.com',
-      customer: customer.id,
-      automatic_payment_methods: { enabled: true },
-      setup_future_usage: 'off_session',
-      metadata: {
-        order_id: '1234',
-        product_name: 'Premium Plan',
-        product_image: 'https://your-site.com/images/premium.png',
-        shipping_name: 'Salim',
-        shipping_city: 'Lille',
-        shipping_country: 'FR',
-      },
-    });
-
-    this.logger.log(paymentIntent);
-  }
   async createCheckoutSession(
     body: CreateCheckoutSession,
-    req: Request,
+    req: AuthenticatedRequest,
   ): Promise<string | null> {
     try {
-      await this.createPaymentIntent();
       // 1. Convert product. ids into Type.Objectid
       const productIds = body.items.map(
         (item) => new Types.ObjectId(item.productId),
       );
 
-      this.logger.log(productIds, body.shippingAddress);
+      this.logger.log(req.user);
       const shippingAddress = body.shippingAddress;
       // 2. Fetch products from DB based on IDs from frontend
       const products = await this.productModel.findManyByIds(productIds);
@@ -102,7 +67,7 @@ export class PaymentsService {
           mode: 'payment',
           ui_mode: 'custom',
           // From the email we can get the user that created the order
-          customer_email: 'salim@example.com',
+          customer_email: req.user.email,
           return_url: 'http://localhost:4200/',
           //customer_creation: 'always',
           // This field: client_reference_id, will allows us to pass in some data
@@ -147,7 +112,7 @@ export class PaymentsService {
     }
   }
 
-  createOrderFromCheckout(req: Request) {
+  createOrderFromCheckout(req: AuthenticatedRequest) {
     const sig = req.headers['stripe-signature'] as string;
     let event: Stripe.Event;
     try {

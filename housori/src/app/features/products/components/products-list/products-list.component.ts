@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, signal, SimpleChanges } from "@angular/core";
+import { Component, Input, signal, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { Product } from "../../model/product.model";
 import { ApiMetaData } from "../../services/products-http.service";
@@ -8,9 +8,9 @@ import { SingleProductService } from "../../services/single-product.service";
 import { PaginationService } from "src/app/shared/components/pagination/pagination-service";
 
 @Component({
-  selector: "app-products-list",
-  templateUrl: "./products-list.component.html",
-  styleUrls: ["./products-list.component.scss"],
+  selector: 'app-products-list',
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.scss'],
   standalone: false
 })
 
@@ -73,8 +73,6 @@ export class ProductsListComponent {
     this.productsService.getAllProducts(this.params).subscribe();
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.currentPage.set(1);
   }
 }
