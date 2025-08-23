@@ -33,7 +33,7 @@ export class UsersService {
     const newUser = createdUser;
     // JWT
     // 1) Build the payload, _id and the secret
-    const payload = { id: newUser._id };
+    const payload = { id: newUser._id, email: newUser.email };
 
     // Generate token
     const token = await this.jwtService.signAsync(payload);
@@ -65,7 +65,7 @@ export class UsersService {
     }
 
     // Prepare user data to return as response
-    const payload = { id: findUser._id };
+    const payload = { id: findUser._id, email: findUser.email };
 
     // Generate token
     const token = await this.jwtService.signAsync(payload);

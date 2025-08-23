@@ -18,6 +18,10 @@ import {
 } from '../dto/payments.dto';
 import { PaymentsService } from '../services/payments.service';
 
+export interface AuthenticatedRequest extends Request {
+  user: { id: string; email: string };
+}
+
 @ApiCookieAuth()
 @ApiTags('Payments')
 @Controller('payments')
@@ -33,7 +37,7 @@ export class PaymentsController {
   @ApiBody({ type: CreateCheckoutSession })
   async getCheckoutSession(
     @Body() body: CreateCheckoutSession,
-    @Req() req: Request,
+    @Req() req: AuthenticatedRequest,
   ): Promise<CreatedSessionResponse> {
     const client_secret: string | null =
       await this.paymentsService.createCheckoutSession(body, req);
@@ -49,7 +53,7 @@ export class PaymentsController {
   // Webhook endpoint
   @Post('webhook')
   @HttpCode(200)
-  async handleWebhook(@Req() req: Request, @Res() res: Response) {
+  async handleWebhook(@Req() req: AuthenticatedRequest, @Res() res: Response) {
     this.paymentsService.createOrderFromCheckout(req);
     await res.json();
   }

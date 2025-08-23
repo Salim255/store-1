@@ -9,12 +9,13 @@ import { JwtService } from '@nestjs/jwt';
 
 export type JwtTokenPayload = {
   id: string;
+  email: string;
   exp: number;
   iat: number;
 };
 
 interface AuthenticatedRequest extends Request {
-  user?: { id: string };
+  user?: { id: string; email: string };
 }
 
 @Injectable()
@@ -34,7 +35,7 @@ export class AuthJwtGuard implements CanActivate {
     try {
       const decoded: JwtTokenPayload = await this.jwtService.verifyAsync(token);
       // Set decode as user in request
-      request.user = { id: decoded.id };
+      request.user = { id: decoded.id, email: decoded.email };
       return true;
     } catch {
       throw new UnauthorizedException('Invalid or expired token');
