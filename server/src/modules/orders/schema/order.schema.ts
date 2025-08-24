@@ -16,11 +16,7 @@ export class ShippingFields {
 export class OrderItems {
   @Prop({ type: Types.ObjectId, ref: Product.name, required: true })
   productId: Types.ObjectId;
-  name: string;
-  price: number;
-  @Prop({ required: true })
-  amount: number;
-  image: string;
+  quantity: number;
 }
 
 @Schema({ timestamps: true })

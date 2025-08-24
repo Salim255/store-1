@@ -22,7 +22,7 @@ export class CreateOrderDto {
   user: Types.ObjectId;
 
   @ApiProperty()
-  items: OrderItems;
+  items: OrderItems[];
 
   @ApiProperty()
   shippingAddress: {
