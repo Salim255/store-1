@@ -7,12 +7,16 @@ import { CreateCheckoutSession } from '../dto/payments.dto';
 import { AuthenticatedRequest } from '../controllers/payments.controller';
 import { PaymentFeatures } from 'utils/payment-features';
 import { Product } from 'src/modules/product/schema/product.schema';
+import { OrderModel } from 'src/modules/orders/model/order.model';
+import { CreateOrderDto } from 'src/modules/orders/dto/orders.dto';
+import { OrderItems } from 'src/modules/orders/schema/order.schema';
 
 @Injectable()
 export class PaymentsService {
   logger = new Logger('Payments');
   private stripe: Stripe;
   constructor(
+    private orderModel: OrderModel,
     private readonly configService: ConfigService,
     private productModel: ProductModel,
   ) {
@@ -43,11 +47,30 @@ export class PaymentsService {
         this.configService,
       )
         .calcShippingPrice()
-        .buildLineItems();
+        .buildLineItems()
+        .calcTotalItemsPrice()
+        .calcTotalTax()
+        .calcTotalWithTax();
 
       // ====== CREATE CHECKOUT SESSION ======
       const session: Stripe.Response<Stripe.Checkout.Session> =
         await paymentFeature.checkoutSession();
+
+      // CREATE DB ORDER
+      const orderPriceDetails = paymentFeature.getOrderPriceDetails();
+      const userId = new Types.ObjectId(req.user.id);
+      const items: OrderItems[] = body.items;
+      const orderPayload: CreateOrderDto = {
+        ...orderPriceDetails,
+        paymentMethod: 'paypal',
+        user: userId,
+        shippingAddress: body.shippingAddress,
+        items,
+      };
+
+      await this.orderModel.create(orderPayload);
+
+      // RETURN THE CLIENT SECRET
       return session.client_secret ?? null;
     } catch (error) {
       this.logger.error(error);

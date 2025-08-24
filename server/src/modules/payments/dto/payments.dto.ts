@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, ValidateNested } from 'class-validator';
+import { OrderItems } from 'src/modules/orders/schema/order.schema';
 
 export class ShippingAddress {
   @ApiProperty({ description: 'Shipping country', example: 'France' })
@@ -34,10 +35,7 @@ export class CreateCheckoutSession {
     },
   })
   @IsNotEmpty()
-  items: {
-    productId: string;
-    quantity: number;
-  }[];
+  items: OrderItems[];
 
   @ApiProperty({ description: 'Shipping address of the Order' })
   @IsNotEmpty()

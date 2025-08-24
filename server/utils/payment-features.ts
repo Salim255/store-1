@@ -7,12 +7,17 @@ import { Product } from 'src/modules/product/schema/product.schema';
 import Stripe from 'stripe';
 import { ConfigService } from '@nestjs/config';
 
+const TAX_RATE = 0.2;
+const STANDARD_SHIPPING = 50;
 export class PaymentFeatures {
   private stripe: Stripe;
   private req: AuthenticatedRequest;
   private body: CreateCheckoutSession;
   private baseUrl: string;
   private totalShippingPrice: number;
+  private totalPrice: number;
+  private totalPriceWithTax: number;
+  private totalTax: number;
   private shippingAddress: ShippingAddress;
   private lineItems: Stripe.Checkout.SessionCreateParams.LineItem[];
   private products: Product[];
@@ -32,16 +37,38 @@ export class PaymentFeatures {
     this.products = products;
     this.shippingAddress = body.shippingAddress;
     this.taxRate = this.configService.get<string>('TAX_RATE') || '';
+    this.totalPriceWithTax = 0;
+    this.totalTax = 0;
   }
 
   public calcShippingPrice = (): this => {
     this.totalShippingPrice = this.body.items.reduce((total, item) => {
       const product = this.products.find((p) => p.id === item.productId);
       if (!product) return total;
-      return total + product.shippingPrice * (item.quantity || 1);
+      return total + STANDARD_SHIPPING * (item.quantity || 1);
     }, 0);
     return this;
   };
+
+  public calcTotalTax(): this {
+    this.totalTax = (this.totalPrice + this.totalShippingPrice) * TAX_RATE;
+    return this;
+  }
+
+  public calcTotalWithTax(): this {
+    this.totalPriceWithTax =
+      this.totalPrice + this.totalTax + this.totalShippingPrice;
+    return this;
+  }
+
+  public calcTotalItemsPrice(): this {
+    this.totalPrice = this.body.items.reduce((total, item) => {
+      const product = this.products.find((p) => p.id === item.productId);
+      if (!product) return total;
+      return total + product.price * (item.quantity || 1);
+    }, 0);
+    return this;
+  }
 
   public buildLineItems = (): this => {
     this.lineItems = this.products.map((product) => {
@@ -62,6 +89,20 @@ export class PaymentFeatures {
     });
     return this;
   };
+
+  public getOrderPriceDetails(): {
+    taxPrice: number;
+    shippingPrice: number;
+    totalPrice: number;
+    itemsPrice: number;
+  } {
+    return {
+      taxPrice: this.totalTax,
+      shippingPrice: this.totalShippingPrice,
+      totalPrice: this.totalPriceWithTax,
+      itemsPrice: this.totalPrice,
+    };
+  }
   public async checkoutSession(): Promise<
     Stripe.Response<Stripe.Checkout.Session>
   > {
