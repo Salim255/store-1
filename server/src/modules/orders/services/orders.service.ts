@@ -3,6 +3,7 @@ import { CreateOrderDto } from '../dto/orders.dto';
 import { OrderModel } from '../model/order.model';
 import { Order } from '../schema/order.schema';
 import { UserModel } from 'src/modules/users/model/user.model';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class OrdersService {
@@ -13,7 +14,8 @@ export class OrdersService {
   ) {}
 
   async createOrder(data: CreateOrderDto): Promise<Order> {
-    const userExists = await this.userModel.exist(data.user);
+    const userId = new Types.ObjectId(data.user);
+    const userExists = await this.userModel.exist(userId);
     if (!userExists) {
       throw new Error('Invalid user ID');
     }

@@ -58,12 +58,11 @@ export class PaymentsService {
 
       // CREATE DB ORDER
       const orderPriceDetails = paymentFeature.getOrderPriceDetails();
-      const userId = new Types.ObjectId(req.user.id);
       const items: OrderItems[] = body.items;
       const orderPayload: CreateOrderDto = {
         ...orderPriceDetails,
         paymentMethod: 'paypal',
-        user: userId,
+        user: req.user.id,
         shippingAddress: body.shippingAddress,
         items,
       };
