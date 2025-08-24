@@ -46,6 +46,10 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     })
   }
 
+  get isEmpty(): boolean{
+    return this.cartItems.length === 0;
+  }
+
   ngOnDestroy(): void {
     this.cartStateSubscription?.unsubscribe();
     this.orderIsPlacedSubscription?.unsubscribe();

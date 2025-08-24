@@ -10,8 +10,9 @@
       }
     }
   }
-  &__content{
+  &__content {
     @include page-layout();
+    position: relative;
   }
   &__body {
     display: flex;
@@ -19,5 +20,9 @@
     &>section {
       flex: 1;
     }
+  }
+
+  &__place-holder{
+
   }
 }
