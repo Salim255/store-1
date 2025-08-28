@@ -74,8 +74,8 @@ header {
           color: var(--text-color-base);
           &--inactive{
             background-color: var(--bg-secondary);
-            padding: 1rem 1.5rem;
-            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-strong);
           }
           &--active{
             background-color: var(--color-tints);
@@ -87,7 +87,8 @@ header {
     &__cart {
       position: relative;
       padding: .5rem;
-      ion-badge{
+      cursor: pointer;
+      ion-badge {
         position: absolute;
         top: -5%;
         right: 10%;
@@ -100,6 +101,10 @@ header {
       }
       ion-icon {
         font-size: var(--text-4xl);
+        transition: all .2s;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
   }

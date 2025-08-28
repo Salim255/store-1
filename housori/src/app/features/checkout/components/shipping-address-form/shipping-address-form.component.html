@@ -6,11 +6,13 @@
         [formControlName]="field.formControlName"
         [placeholder]="field.placeHolder" />
     </div>
+  <div class="form__btn">
     <button
-      class="form__btn btn btn__secondary btn__secondary--full"
+      class="btn btn__primary btn__primary--full"
       type="submit"
       [disabled]="shippingFields.invalid"
       (click)="onPlaceOrder()">
         Place your order
     </button>
+  </div>
 </form>

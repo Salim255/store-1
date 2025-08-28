@@ -8,6 +8,8 @@
       @include page-layout();
       display: flex;
       gap: 4rem;
+      justify-content: center;
+      align-items: center;
       &__text {
         flex: 1;
           p {

@@ -10,7 +10,7 @@
     <div class="search-range">
       <div class="selected-price">
         <ion-label class="selected-price__title"> Select price </ion-label>
-        <output class="selected-price__current-price"> ${{ priceValue() }} </output>
+        <output class="selected-price__current-price"> {{ priceValue() | currency }} </output>
       </div>
       <ion-range formControlName="price" [min]="10" [max]="100000" [step]="100"></ion-range>
     </div>
@@ -23,7 +23,7 @@
         <app-custom-select [options]="metaData.categories || []"></app-custom-select>
       </div>
     </div>
-    <div class="category--toggle">
+    <div class="category-toggle">
       <ion-toggle formControlName="shipping" labelPlacement="stacked">Free shipping</ion-toggle>
     </div>
   </section>
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="sort-btn">
-      <button class="btn btn__secondary btn__secondary--full " (click)="resetFilter()">reset</button>
+      <button class="btn btn__secondary btn__secondary--full" (click)="resetFilter()">reset</button>
     </div>
   </section>
 </form>
