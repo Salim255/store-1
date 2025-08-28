@@ -3,12 +3,6 @@
 .checkout {
   &__container {
     padding-top: 14rem;
-    .checkout-content {
-      &__shipping-info {
-        display: flex;
-        gap: 2rem;
-      }
-    }
   }
   &__content {
     @include page-layout();
@@ -22,7 +16,12 @@
     }
   }
 
-  &__place-holder{
+  &__place-holder {
+    background-color: green;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
 
   }
 }

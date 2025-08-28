@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   orderIsPlaced = signal<boolean>(false);
   totalDetails = signal< TotalOrderDetails | null>(null);
   cartItems = signal<  CartItem []>([]);
+
   constructor(
     private checkoutService: CheckoutService,
     private cartService: CartService,
@@ -38,16 +39,13 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     this.cartStateSubscription = this.cartService
     .getCartState
     .subscribe(cartState => {
+      console.log(cartState, "hello");
       if (cartState) {
         const {cartItems, ...rest} = cartState;
         this.cartItems.set(cartItems);
         this.totalDetails.set(rest);
       }
     })
-  }
-
-  get isEmpty(): boolean{
-    return this.cartItems.length === 0;
   }
 
   ngOnDestroy(): void {

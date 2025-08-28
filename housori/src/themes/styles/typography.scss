@@ -44,7 +44,7 @@
   --x-l-spacing: 4.8rem;
 
   // 06 ====  Shadows =======
-
+  --box-shadow-light:  0rem 1rem  2rem rgba(0, 0, 0, 0.2);
   // 07 === Border Radius ======
   --radius-none: 0;
   --radius-sm: 0.2rem;
@@ -53,7 +53,7 @@
   --radius-xl: 1.2rem;
   --radius-2xl: 1.6rem;
   --radius-3xl: 2rem;
-
+  --radius-strong: 10rem;
   --radius-full: 50%; // pill/circle
   // 08 ===== Whitespaces
   // UI Faces ==
@@ -103,20 +103,40 @@
   cursor: pointer;
   text-decoration: none;
   border: none;
-  padding: .5rem 1rem;
   font-size: var(--text-lg);
-
+  transition: all .2s ease-in;
+  position: relative;
+  color: white;
+  &:link,
+  &:active,
+  &:hover {
+    color: white;
+  }
   &__primary {
-    &--outline {
-
-    }
+    border-radius: var(--radius-strong);
+    padding: 2rem 4rem;
+    font-size: var(--text-2xl);
     &--full {
+      background-color: var(--color-primary);
+    }
 
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--box-shadow-light);
+    }
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: var(--box-shadow-light);
+    }
+    &:hover::after {
+      background-color: var(--color-primary);;
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;// To fade up
     }
   }
   &__secondary {
     color: var(--text-on-dark);
-    box-shadow: 1rem 1rem  1rem rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow-light);
     border-radius: var(--radius-lg);;
     &--outline {
       border-color: 2px solid var(--color-primary) ;
@@ -125,16 +145,17 @@
       background-color: var(--color-primary);
     }
   }
-
+  &::after{
+    content: "";
+    display: inline-block;
+    border-radius: var(--radius-strong);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
 }
 
-
-.app-shadow {
-  box-shadow: -10px 10px  10px  rgba(183, 183, 183, 0.4);
-  &__light {
-
-  }
-  &__solid {
-
-  }
-}
