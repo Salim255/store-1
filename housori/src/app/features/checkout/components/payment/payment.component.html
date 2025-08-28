@@ -19,7 +19,7 @@
         {{ errorMessage }}
       </div>
 
-      <button class="payment-modal__submit-btn btn btn__secondary btn__secondary--full"
+      <button class="payment-modal__submit-btn btn btn__primary btn__primary--full"
         type="submit"
         [disabled]="isLoading || !stripeReady">
         <span *ngIf="!isLoading">Pay</span>

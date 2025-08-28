@@ -3,12 +3,12 @@
   cursor: pointer;
 
   &__selected {
-    border: 2px solid rgb(237, 235, 235);
-    border-radius: 1rem;
-    padding: .7rem 1rem;
+    border-radius: var(--radius-strong);
+    padding: .8rem 1.6rem;
     position: relative;
     font-size: var(--text-xl);
     background-color: var(--bg-main);
+    box-shadow: var(--box-shadow-light-small);
     span {
       display: inline-block;
     }
@@ -31,28 +31,31 @@
 
   &__items {
     position: absolute;
-    border: 2px solid rgb(237, 235, 235);
     backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 1rem;
     left: 0;
     right: 0;
     z-index: 99;
     color: var(--text-color-base);
+    box-shadow: var(--box-shadow-light);
+    margin-top: .5rem;
     &--hidden {
       display: none;
     }
 
     li {
       color: var(--text-color-base);
-      padding: 8px 16px;
+      padding: 1rem 16px;
       cursor: pointer;
       user-select: none;
       list-style: none;
       font-size: var(--text-xl);
+      transition: all .1s;
       &:hover,
       &.custom-select__item--selected {
-        background-color: var(--color-tints);
+        transform: translateY(3px);
+        color: var(--color-primary);
       }
       &:last-child {
         border-bottom-right-radius: 1rem;

@@ -14,11 +14,13 @@
     background-color: var(--bg-main);
     padding: .5rem 1rem;
     font-size: 2rem;
-    border: 2px solid rgb(237, 235, 235);;
+    border: 2px solid rgb(237, 235, 235);
   }
   &__btn {
-    width: 100%;
-    margin-top: var(--x-l-spacing) ;
-    border-radius: var(--radius-lg);
+   text-align: center;
+   margin-top: var(--x-l-spacing);
+   button {
+    display: inline-block;
+   }
   }
 }

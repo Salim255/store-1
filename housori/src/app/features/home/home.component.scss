@@ -5,7 +5,6 @@
     padding-top: 14rem;
     .home-content {
       @include page-layout();
-      padding-top: 0;
       &__intro {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -37,7 +36,7 @@
             background-color: var(--bg-secondary);
             margin: 0;
             width: 100%;
-            box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 5px 0px  rgba(0, 0, 0, 0.1);
             padding: 2rem;
             border-radius: 1rem;
             img {

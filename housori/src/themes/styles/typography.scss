@@ -41,10 +41,12 @@
   --sm-spacing: 1.6rem;
   --md-spacing: 2.4rem;
   --l-spacing: 3.2rem;
-  --x-l-spacing: 4.8rem;
+  --x-l-spacing: 4rem;
 
   // 06 ====  Shadows =======
   --box-shadow-light:  0rem 1rem  2rem rgba(0, 0, 0, 0.2);
+  --box-shadow-light-medium: 0rem .5rem  1rem rgba(0, 0, 0, 0.2);
+  --box-shadow-light-small:  0rem .25rem  1rem rgba(0, 0, 0, 0.07);
   // 07 === Border Radius ======
   --radius-none: 0;
   --radius-sm: 0.2rem;
@@ -106,15 +108,16 @@
   font-size: var(--text-lg);
   transition: all .2s ease-in;
   position: relative;
-  color: white;
+  color: var(--bg-main);
+  box-shadow: var(--box-shadow-light);
+  border-radius: var(--radius-strong);
   &:link,
   &:active,
   &:hover {
-    color: white;
+    color: var(--bg-main);
   }
   &__primary {
-    border-radius: var(--radius-strong);
-    padding: 2rem 4rem;
+    padding: 1.5rem 3rem;
     font-size: var(--text-2xl);
     &--full {
       background-color: var(--color-primary);
@@ -135,14 +138,26 @@
     }
   }
   &__secondary {
-    color: var(--text-on-dark);
     box-shadow: var(--box-shadow-light);
-    border-radius: var(--radius-lg);;
+    padding: 1rem 2rem;
     &--outline {
       border-color: 2px solid var(--color-primary) ;
     }
     &--full {
       background-color: var(--color-primary);
+    }
+     &:hover {
+      transform: translateY(-1.5px);
+      box-shadow: var(--box-shadow-light);
+    }
+    &:active {
+      transform: translateY(-.5px);
+      box-shadow: var(--box-shadow-light);
+    }
+    &:hover::after {
+      background-color: var(--color-primary);;
+      transform: scaleX(1.1) scaleY(1.5);
+      opacity: 0;// To fade up
     }
   }
   &::after{
