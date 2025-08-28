@@ -20,5 +20,7 @@
     }
   }
   &__next {}
-
+  &__prev{
+    border-radius: 1rem 0;
+  }
 }

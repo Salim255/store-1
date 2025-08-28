@@ -2,26 +2,36 @@
   <div class="products-list__header">
     <h1><span>{{products.length}}</span> Products </h1>
     <div class="header-btns">
-      <ion-button> <ion-icon name="grid-outline"></ion-icon></ion-button>
-      <ion-button><ion-icon name="list-outline"></ion-icon></ion-button>
+      <button (click)="onListToggle('gallery')"
+        [class]="isGallery()==='gallery'
+          ? 'header-btns__btn header-btns__btn--active'
+          : 'header-btns__btn header-btns__btn--inActive'">
+        <ion-icon name="grid-outline"></ion-icon>
+      </button>
+      <button (click)="onListToggle('list')"
+       [class]="isGallery()==='list'
+          ? 'header-btns__btn header-btns__btn--active'
+          :'header-btns__btn header-btns__btn--inActive'">
+         <ion-icon name="list-outline"></ion-icon></button>
     </div>
   </div>
 
-  <div class="products-list__items">
-    <div class="items-item"
-      *ngFor="let item of products" (click)="onProduct(item)">
-      <div class="items-item__details">
-          <img class="details-img" [src]="item.images[0]" alt="Product">
-          <div class="details-title">
-            <h3> {{item.name}} </h3>
-            <p> {{item.company}} </p>
-          </div>
-      </div>
-      <div class="items-item__price">
-        <span >{{item.price | currency}}</span>
-      </div>
-    </div>
+
+  <div [class]="isGallery()==='list'
+    ? 'products-list__items'
+    : 'products-list__items-grid'">
+    <ng-container *ngIf="isGallery()==='list'; else gallery">
+      <app-list-item (click)="onProduct(item)"
+        *ngFor="let item of products" [product]="item">
+      </app-list-item>
+    </ng-container>
+    <ng-template #gallery>
+      <app-gallery-item (click)="onProduct(item)"
+        *ngFor="let item of products" [product]="item">
+      </app-gallery-item>
+    </ng-template>
   </div>
+
   <!-- Pagination section -->
   <div
     class="products-list__pagination">
