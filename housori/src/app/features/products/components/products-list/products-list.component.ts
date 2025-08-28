@@ -20,7 +20,7 @@ export class ProductsListComponent {
   pages: number[] = [];
   params = new HttpParams();
   currentPage = signal<number>(1);
-
+  isGallery = signal<'list' | 'gallery'>('gallery');
   constructor(
     private paginationService: PaginationService,
     private singleProductService: SingleProductService,
@@ -71,6 +71,10 @@ export class ProductsListComponent {
   fetchProducts(): void{
     this.params = this.params.set('page', this.currentPage());
     this.productsService.getAllProducts(this.params).subscribe();
+  }
+
+  onListToggle(view: 'list' | 'gallery'): void{
+    this.isGallery.set(view);
   }
   ngOnDestroy(): void {
     this.currentPage.set(1);
