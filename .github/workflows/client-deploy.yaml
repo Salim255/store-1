@@ -5,7 +5,7 @@ name: deploy-client # Workflow name
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'client/**'
 jobs:
