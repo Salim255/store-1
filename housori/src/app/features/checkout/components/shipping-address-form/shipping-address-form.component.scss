@@ -3,18 +3,25 @@
     display: flex;
     flex-direction: column;
     font-size: var(--text-2xl);
-    margin-top: var(--md-spacing);
+    margin-top: var(--xs-spacing);
   }
   &__label {
-    margin-bottom: var(--2xs-spacing);
+    margin-bottom: var(--4xs-spacing);
+
   }
   &__input {
     background-color: transparent;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-strong);
     background-color: var(--bg-main);
-    padding: .5rem 1rem;
-    font-size: 2rem;
-    border: 2px solid rgb(237, 235, 235);
+    padding: 1rem 1.5rem;
+    font-size: var(--text-base);
+    //border: 2px solid rgb(237, 235, 235);
+
+    transition: all .2s;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--box-shadow-light-small);
+    }
   }
   &__btn {
    text-align: center;

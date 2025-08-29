@@ -1,7 +1,7 @@
 .list-header {
   display: flex;
   text-transform: uppercase;
-  border-bottom: 2px solid var(--bg-tertiary);
+  border-bottom: 2px solid var(--color-primary);
   gap: 4rem;
   &__description{
     flex: .5;
