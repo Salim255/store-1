@@ -1,5 +1,5 @@
 # Stage1: Build Angular app
-FROM node:18-apline AS build
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
