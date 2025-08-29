@@ -5,12 +5,19 @@
     padding-top: 14rem;
     .home-content {
       @include page-layout();
+      @include respond(phone) {
+        //padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--2x-l-spacing);
+      }
       &__intro {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
         gap: var(--x-l-spacing);
         min-height:  calc(100vh - 14rem);
+
         .description-text {
           p {
             font-size: var(--text-2xl);
@@ -23,7 +30,12 @@
           max-width: 100%;
           border-radius: 1rem;
         }
+        @include respond(phone) {
+          grid-template-columns: 1fr;
+          min-height: 0;
+          gap: var(--2x-l-spacing);
 
+        }
       }
       &__featured-products {
         .featured-content {
@@ -40,7 +52,7 @@
             padding: 2rem;
             border-radius: 1rem;
             img {
-              height: 26rem;
+              height: 20rem;
               width: 100%;
               object-fit: cover;
               border-radius: 1rem;

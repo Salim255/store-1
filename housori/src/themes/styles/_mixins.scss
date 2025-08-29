@@ -31,7 +31,10 @@
  - tab-portrait
  - tab-land
  - big-desktop
+
+ ORDER: Base + typography > general layout + grid > page layout > components
 */
+
 @mixin respond($breakpoint){
   // 600/16 = 37,5em as 1em = 16 px;
   @if $breakpoint == phone {

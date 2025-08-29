@@ -1,8 +1,8 @@
 .pagination {
   display: flex;
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: var(--bg-secondary);
-  gap: 4px;
+  gap: .4rem;
   &__prev,
   &__next,
   &__current {
