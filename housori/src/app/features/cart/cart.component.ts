@@ -40,6 +40,9 @@ export class CartComponent {
     const { cartItems, ...rest} = cart;
     return rest;
   }
+  get productsNm(): number {
+    return this.cartItems.length;
+  }
 
   ngOnDestroy(): void {
     this.cartStateSubscription?.unsubscribe();

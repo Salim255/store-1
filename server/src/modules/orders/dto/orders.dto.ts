@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 import { OrderItems } from '../schema/order.schema';
 
 export class CreateOrderDto {
@@ -19,10 +18,10 @@ export class CreateOrderDto {
   itemsPrice: number;
 
   @ApiProperty()
-  user: Types.ObjectId;
+  user: string;
 
   @ApiProperty()
-  items: OrderItems;
+  items: OrderItems[];
 
   @ApiProperty()
   shippingAddress: {

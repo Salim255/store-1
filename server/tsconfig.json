@@ -20,6 +20,9 @@
   },
   "include": [
     "src/**/*",
-    "jest.integration.config.js"
-, "src/common/errors-handler/process-errors-handler.ts", "src/common/errors-handler/http-exception-errors-handler.ts", "utils/api-features.ts"  ]
+    "jest.integration.config.js",
+    "src/common/errors-handler/process-errors-handler.ts",
+    "src/common/errors-handler/http-exception-errors-handler.ts",
+    "utils/**/*", 
+  ]
 }

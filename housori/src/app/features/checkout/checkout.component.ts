@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, signal} from "@angular/core";
-import { CartService } from "../cart/services/cart-service";
+import { CartItem, CartService } from "../cart/services/cart-service";
 import { Subscription } from "rxjs";
 import { TotalOrderDetails } from "src/app/shared/components/order-total/order-total.component";
 import { CheckoutService } from "./services/checkout.service";
@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   private orderIsPlacedSubscription!: Subscription;
   orderIsPlaced = signal<boolean>(false);
   totalDetails = signal< TotalOrderDetails | null>(null);
+  cartItems = signal<  CartItem []>([]);
 
   constructor(
     private checkoutService: CheckoutService,
@@ -25,18 +26,23 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.subscribeToCartState();
     this.subscribeToOrderIsPlaced();
-    console.log('Checkout component initialized', this. orderIsPlaced ());
   }
 
   subscribeToOrderIsPlaced(): void {
     this.orderIsPlacedSubscription = this.checkoutService
       .getOrderIsPlaced
-      .subscribe(isPlaced =>{ this.orderIsPlaced.set(isPlaced) })
+      .subscribe(isPlaced => {
+         this.orderIsPlaced.set(isPlaced) }
+      )
   }
   subscribeToCartState(){
-    this.cartStateSubscription = this.cartService.getCartState.subscribe(cartState => {
+    this.cartStateSubscription = this.cartService
+    .getCartState
+    .subscribe(cartState => {
+      console.log(cartState, "hello");
       if (cartState) {
         const {cartItems, ...rest} = cartState;
+        this.cartItems.set(cartItems);
         this.totalDetails.set(rest);
       }
     })

@@ -1,11 +1,23 @@
 :root {
- /* === Brand Colors === */
+  // 01 ==== colors
+  // a. Primary color
+  // b. Tints: Darker
+  //
+  --color-tints: #cfe4e2;
+  // c. Shads: Lighter
+  // d. Accents
+  // e. Grays
+
+
+ // === Brand Colors ===
   --color-primary: #0E766E ;        // deep red-violet
   --ion-color-primary: #0E766E ;
   --color-secondary: #F4EDE4;      // creamy beige
   --color-tertiary: #2E2E2E;       // charcoal dark
+  --color-danger:  #eb7769;
+  --color-danger-tints: #ffb199;
 
-  /* === Background Colors === */
+  // === Background Colors ===
   --bg-main: #FFFFFF;              // main content background
   --bg-secondary: #FAF9F7;         // subtle sections, cards
   --bg-tertiary: #F4EDE4;          // matches secondary color

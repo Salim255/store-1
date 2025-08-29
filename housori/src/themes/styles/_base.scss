@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  // Percentage for user's browser font-size setting
+  font-size: 62.5%; // 10 / 16 = 0.625 * 100;
+
+  @include respond(tab-land) {
+    font-size: 50%; // 1 rem = 8 px =>  8/16 = 0.5=> 56.25%
+  }
+
+  @include respond(tab-port) {
+    font-size: 37.5%; // 1rem = 6 This the content that we passed into the mixin
+  }
+
+  @include respond(phone) {
+    font-size: 25%; // 1rem = 4 This the content that we passed into the mixin
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1 rem = 12 / 16 = 0.75 => 75%
+  }
+  body {
+    font-family: var(--font-base);
+    color: var(--text-color-base);
+    background-color: var(--bg-main);
+    line-height: 1;
+
+    a,
+    a:link,
+    a:visited,
+    a:active{
+      text-decoration: none;
+      //color: var(--text-main);
+      cursor: pointer;
+    }
+
+    select, input {
+      border: none;;
+      outline: none;
+    }
+
+    ion-item {
+      --background: transparent;
+    }
+  }
+}

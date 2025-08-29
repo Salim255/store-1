@@ -10,15 +10,21 @@ header {
     display: flex;
     justify-content: right;
 
-    gap: 2rem;
+    gap: var(--l-spacing);
     &__login {
       cursor: pointer;
-       padding: .5rem 1rem;
+      padding: 1rem 1.5rem;
+      a {
+        font-size: var(--text-sm);
+      }
     }
 
     &__register {
       cursor: pointer;
-       padding: .5rem 1rem;
+      padding: 1rem 1.5rem;
+      a {
+        font-size: var(--text-sm);
+      }
     }
     &__modal{
       position: absolute;
@@ -26,7 +32,7 @@ header {
       width: 100%;
       z-index: 3;
       display: flex;
-      &--content {
+      .auth-modal--content {
        margin: auto;
        backdrop-filter: blur(20px);
        background-color: rgba(250, 250, 250, 0.4);
@@ -36,68 +42,74 @@ header {
        padding: 2rem;
        // Soft glass-style shadow
        box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.2),   // main soft shadow
-        0 2px 6px rgba(0, 0, 0, 0.1);
+        0 .4rem 2rem rgba(0, 0, 0, 0.2),   // main soft shadow
+        0 .2rem .6rem rgba(0, 0, 0, 0.1);
           }
     }
   }
-  .app-navbar {
+  .header-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     &__logo{
       padding: .2rem .4rem;
       border-radius: .2rem;
-      font-weight: 600;
+      font-weight: var(--font-bold);
+      font-size: 3rem;
+      color: var(--text-color-base);
+      letter-spacing: .5rem;
+      text-transform: uppercase;
+      color: var(--color-primary);
     }
     &__links{
       display: flex;
       justify-content: space-between;
-      &--item {
+      .navbar-item:not(:first-child) a {
+        margin-left: var(--l-spacing);
+      }
+      .navbar-item {
         width: 100%;
         flex: 1;
         list-style: none;
-
-        .nav-link {
-          &__inactive{
+        &__link  {
+          font-size: var(--text-2xl);
+          color: var(--text-color-base);
+          &--inactive{
             background-color: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-strong);
           }
-          &__active{
-            background-color: var(--bg-tertiary);
+          &--active{
+            background-color: var(--color-tints);
           }
         }
+      }
 
-      }
-      &--item:not(:first-child) a {
-        margin-left: 3rem;
-      }
     }
     &__cart {
       position: relative;
       padding: .5rem;
-      ion-badge{
+      cursor: pointer;
+      ion-badge {
         position: absolute;
         top: -5%;
         right: 10%;
         background-color: var(--color-primary);
-        font-size: .7rem;
+        font-size: var(--text-xs);
         border-radius: .5rem;
-        padding: 6px;
+        padding: .4rem .6rem;
         color: var(--bg-main);
         z-index: 1;
       }
       ion-icon {
-        font-size: 2rem;
+        font-size: var(--text-4xl);
+        transition: all .2s;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
   }
 }
-
-main {
-  //margin-top: 10rem;
-}
-
 

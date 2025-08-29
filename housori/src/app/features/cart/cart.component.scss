@@ -1,24 +1,25 @@
+@import '../../../themes/styles/mixins';
+
 .cart {
-  background-color: var(--bg-secondary);
-  height: 100vh;
-  width: 80%;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 4rem 4rem;
+  &__container {
+    padding-top: 14rem;
+  }
   &__content {
+    @include page-layout();
+    display: flex;
+    flex-direction: column;
+  }
+  &__body {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    &--items{
-      ion-item {
-        --inner-padding-end: 0;
-        --inner-padding-start: 0;
-        --padding-end: 0;
-        --padding-start: 0;
-        margin-top: 1rem;
-      }
-    }
+    grid-template-columns: 2fr 1fr;
+    gap: var(--x-l-spacing);
+  }
+  &__items-nb {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--2xs-spacing);
+  }
+  &__item {
+    margin-top: var(--x-l-spacing);
   }
 }
+

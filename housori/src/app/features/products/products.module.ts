@@ -7,11 +7,25 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
-
-
+import { SharedModule } from "src/app/shared/shared.module";
+import { ListItemComponent } from "./components/list-item/list-item.component";
+import { GalleryItemComponent } from "./components/gallery-item/gallery-item.component";
 @NgModule({
-  declarations: [ ProductsComponent, FilterComponent, ProductsListComponent],
-  imports: [ ProductsRoutingModule, CommonModule, FormsModule,  ReactiveFormsModule , IonicModule],
+  declarations: [
+    GalleryItemComponent,
+    ListItemComponent,
+    ProductsComponent,
+    FilterComponent,
+    ProductsListComponent,
+  ],
+  imports: [
+    SharedModule,
+    ProductsRoutingModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+  ],
 })
 
 export class ProductsModule{}

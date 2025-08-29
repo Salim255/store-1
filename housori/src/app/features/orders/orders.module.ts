@@ -4,9 +4,14 @@ import { OrdersRoutingModule } from "./orders-routing.module";
 import { IonicModule } from "@ionic/angular";
 import { CommonModule } from "@angular/common";
 import { OrdersItemComponent } from "./components/ordersItem/orders-item.components";
+import { ListHeader } from "./components/list-header/list-header.component";
 
 @NgModule({
-  declarations: [OrdersItemComponent, OrdersComponent],
+  declarations: [
+    ListHeader,
+    OrdersItemComponent,
+    OrdersComponent,
+  ],
   imports: [OrdersRoutingModule, IonicModule, CommonModule],
 })
 

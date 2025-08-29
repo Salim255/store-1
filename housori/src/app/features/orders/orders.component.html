@@ -1,31 +1,20 @@
-<section class="orders">
-  <div class="orders__header">
-    <h3>Your orders</h3>
+<div class="orders">
+  <div class="orders__container">
+    <section class="orders__content">
+      <div class="orders__header">
+        <h1 class="heading-primary">Your orders</h1>
+      </div>
+      <div class="orders__list">
+        <div class="orders__nb" >
+          <h4>TotalOrders: {{ ordersList.length }}</h4>
+        </div>
+        <app-list-header></app-list-header>
+        <div
+          class="orders__item"
+          *ngFor="let order of ordersList; let index = index">
+            <app-orders-item [orderItem]="order.items[0]" [updatedAt]="order.updatedAt"></app-orders-item>
+        </div>
+      </div>
+  </section>
   </div>
-  <div class="orders__list">
-    <div class="orders-nb" >
-      <h6>TotalOrders: 3</h6>
-    </div>
-    <header class="list-header">
-      <div class="list-header__items">
-        {{ headerItems[0] }}
-      </div>
-      <div class="list-header__qty">
-        {{ headerItems[1] }}
-      </div>
-      <div class="list-header__unit-price">
-        {{ headerItems[2] }}
-      </div>
-      <div class="list-header__amount">
-        {{ headerItems[3] }}
-      </div>
-      <div class="list-header__date">
-        {{ headerItems[4] }}
-      </div>
-    </header>
-     <div
-      *ngFor="let order of ordersList; let index = index">
-        <app-orders-item [orderItem]="order.items[0]"></app-orders-item>
-     </div>
-  </div>
-</section>
+</div>

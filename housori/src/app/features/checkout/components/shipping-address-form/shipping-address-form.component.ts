@@ -3,23 +3,39 @@ import { CheckoutService } from "../../services/checkout.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ShippingAddress } from "../../services/checkout-http.service";
 
+type Field = {
+  label: string;
+  placeHolder: string;
+  formControlName: string;
+ }
 @Component({
   selector: 'app-shipping-address-form',
   templateUrl: './shipping-address-form.component.html',
   styleUrls: ['./shipping-address-form.component.scss'],
   standalone: false
 })
-
 export class ShippingAddressForm{
   shippingFields!: FormGroup;
-
+  fromFields: Field [] = [];
   constructor(
     private formBuilder: FormBuilder,
     private checkoutService: CheckoutService,
-  ){}
+  ){
+    this.fromFields = [
+      { label: 'Full name', placeHolder: 'Full name',  formControlName: 'fullName'},
+      { label: 'Country', placeHolder: 'Country',  formControlName: 'country'},
+      { label: 'Address', placeHolder: 'Address line',  formControlName: 'address'},
+      { label: 'City', placeHolder: 'City',  formControlName: 'city'},
+      { label: 'Postal code', placeHolder: 'Postal code',  formControlName: 'postalCode'},
+      { label: 'Phone', placeHolder: 'Phone',  formControlName: 'phone'},
+    ]
+  }
 
   ngOnInit(): void {
     this.buildForm();
+    this.shippingFields.get('country')?.valueChanges.subscribe(result=> {
+      console.log(result)
+    })
   }
 
   onPlaceOrder(){
