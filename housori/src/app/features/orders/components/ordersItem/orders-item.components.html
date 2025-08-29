@@ -21,7 +21,7 @@
       <span>{{ unitPrice * orderItem.amount | currency:'USD':'symbol':'1.2-2'}}</span>
     </div>
     <div class="orders-item__item-date">
-      <span>{{ updatedAt | date:"hh:mm a - MMM d, y" | lowercase}}</span>
+      <span>{{ updatedAt | date:"MMM d, y" | lowercase}}</span>
     </div>
   </section>
 </div>

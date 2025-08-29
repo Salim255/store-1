@@ -15,17 +15,17 @@
      &:after {
       content: "";
       position: absolute;
-      top: 14px;
-      right: 10px;
+      top: 1.4rem;
+      right: 1rem;
       width: 0;
       height: 0;
-      border: 6px solid transparent;
+      border: .6rem solid transparent;
       border-color: var(--color-primary)  transparent  transparent transparent ;
     }
 
      &--active:after {
       border-color: transparent transparent var(--color-primary) transparent;
-      top: 7px;
+      top: .7rem;
     }
   }
 
@@ -46,7 +46,7 @@
 
     li {
       color: var(--text-color-base);
-      padding: 1rem 16px;
+      padding: 1rem 1.6rem;
       cursor: pointer;
       user-select: none;
       list-style: none;
