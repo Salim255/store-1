@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - 'client/**'
+      - 'housori/**'
 jobs:
 # ===== Client deployment jobs ====
   server-deploy:
