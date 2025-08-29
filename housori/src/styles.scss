@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import './themes/styles/typography.scss';
 @import './themes/styles/colors.scss';
+@import './themes/styles/mixins';
 
 * {
   padding: 0;
@@ -11,6 +12,17 @@ html {
   // Percentage for user's browser font-size setting
   font-size: 62.5%; // 10 / 16 = 0.625 * 100;
 
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1 rem = 9 px =>  9/16 = 0.5625=> 56.25%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem = 8 This the content that we passed into the mixin
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1 rem = 12 / 16 = 0.75 => 75%
+  }
   body {
     font-family: var(--font-base);
     color: var(--text-color-base);
