@@ -10,13 +10,22 @@
       gap: 4rem;
       justify-content: center;
       align-items: center;
+      @include respond(phone) {
+        gap: var(--2x-l-spacing);
+        flex-direction: column;
+        align-items: unset;
+        justify-content: unset;
+      }
       &__text {
         flex: 1;
-          p {
-            font-size: var(--text-2xl);
-            line-height: 1.5;
-            margin-bottom: var(--l-spacing);
-          }
+        @include respond(phone) {
+          flex: unset;
+        }
+        p {
+          font-size: var(--text-2xl);
+          line-height: 1.5;
+          margin-bottom: var(--l-spacing);
+        }
       }
       &__hero {
         flex: 1;
