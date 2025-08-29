@@ -15,10 +15,10 @@
     gap: var(--x-l-spacing);
   }
   &__items-nb {
-    border-bottom: 2px solid var(--bg-tertiary);
+    border-bottom: 2px solid var(--color-primary);
     padding-bottom: var(--2xs-spacing);
   }
-  &__item{
+  &__item {
     margin-top: var(--x-l-spacing);
   }
 }
