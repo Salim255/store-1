@@ -42,13 +42,13 @@
       ion-range {
         --bar-background: var(--bg-main);
         --bar-background-active: var(--color-tints);
-        --bar-height: 12px;
-        --bar-border-radius: 8px;
+        --bar-height: 1.2rem;
+        --bar-border-radius: .8rem;
         --knob-background: var(--color-primary);
-        --knob-size: 24px;
-        --knob-spacing: 6px;
+        --knob-size: 2.4rem;
+        --knob-spacing: .6rem;
         --pin-background: var(--color-primary);
-        padding-inline: 4px;
+        padding-inline: .4rem;
         position: relative;
         &::before, &::after {
           position: absolute;
@@ -98,14 +98,14 @@
         --handle-background: var(--color-danger);
         --handle-background-checked: var(--color-primary);
 
-        --handle-width: 25px;
-        --handle-height: 25px;
+        --handle-width: 2.5rem;
+        --handle-height: 2.5rem;
         --handle-max-height: auto;
         --handle-box-shadow: var(--box-shadow-light);
       }
 
       ion-toggle::part(track) {
-        width: 50px;
+        width: 5rem;
         padding: .5rem 0;
         /* Required for iOS handle to overflow the height of the track */
         overflow: visible;
