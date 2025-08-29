@@ -19,7 +19,6 @@ import { PaymentsModule } from './modules/payments/payments.module';
     OrderModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
     }),
   ],
   controllers: [AppController],
