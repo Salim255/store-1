@@ -1,5 +1,5 @@
 # Stage 1: Build the Nestjs application
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Production image
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -33,4 +33,4 @@ ENV PORT=3000
 EXPOSE $PORT
 
 # Start the server
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/src/main.js"]
