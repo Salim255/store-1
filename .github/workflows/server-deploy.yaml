@@ -57,7 +57,7 @@ jobs:
           export PATH="$HOME/.railway/bin:$PATH"
 
       - name: Trigger Railway Deploy
-        run: railway redeploy --service housori-server
+        run: railway redeploy --service housori-server --yes
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
 
