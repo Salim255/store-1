@@ -12,8 +12,6 @@ jobs:
 # ===== Server deployment jobs ====
   server-deploy:
     runs-on: ubuntu-latest
-    env:
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
 
     steps:
@@ -64,8 +62,10 @@ jobs:
 
       - name: Link Railway project
         run: railway link --project ${{ secrets.PROJECT_ID }}
-    
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
 
       - name: Rollout existing Docker image
         run: railway deploy --detach
-       
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
