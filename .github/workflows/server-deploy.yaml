@@ -57,7 +57,7 @@ jobs:
           export PATH="$HOME/.railway/bin:$PATH"
 
       - name: Link Railway project
-        run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }} --yes
+        run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
 
       # Trigger Railway deploy (pull existing Docker image)
       - name: Deploy to Railway
