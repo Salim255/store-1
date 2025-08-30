@@ -50,5 +50,11 @@ jobs:
       
       # Trigger Railway deploy via webhook
       - name: Trigger Railway deploy
-        run: curl -X POST https://deploy.railway.app/my-webhok_url
+        run: |
+          curl -X POST https://backboard.railway.app/graphql \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}" \
+          -d '{
+            "query": "mutation { deployService(id: \"2ce4a271-626b-4c59-bcab-4671edf6ef9f\") { id } }"
+          }'
 
