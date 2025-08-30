@@ -55,6 +55,5 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${{ secrets.RAILWAY_API_TOKEN }}" \
           -d '{
-            "query": "mutation { deployService(id: \"2ce4a271-626b-4c59-bcab-4671edf6ef9f\") { id } }"
+            "query": "mutation { deployService(id: \"${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }}\") { id } }"
           }'
-
