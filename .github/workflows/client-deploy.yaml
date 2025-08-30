@@ -13,7 +13,6 @@ jobs:
   server-deploy:
     runs-on: ubuntu-latest
 
-
     steps:
       # Checkout the code from GitHub
       - name: Checkout code
@@ -48,7 +47,8 @@ jobs:
           docker push crawan/housori-client:${{ github.sha }}
           docker push crawan/housori-client:latest
       
-      # Trigger Vercel deploy via webhook
-      - name: Trigger Vercel deploy
-        run: curl -X POST https://vercel.com/my-webhok_url
+      # Trigger Render redeploy (pulls existing Docker image)
+      - name: Trigger Render deploy
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
 
