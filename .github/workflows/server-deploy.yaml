@@ -56,12 +56,17 @@ jobs:
           curl -fsSL https://railway.app/install.sh | sh
           export PATH="$HOME/.railway/bin:$PATH"
 
-      - name: Deploy to Railway
-        uses: bervProject/railway-deploy@main
+      - name: Trigger Railway Deploy
+        run: railway redeploy --service housori-server
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
-        with:
-          service: "housori-server"
+
+     # - name: Deploy to Railway
+      #  uses: bervProject/railway-deploy@main
+       # env:
+        #  RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
+        #with:
+         # service: "housori-server"
       #- name: Link Railway project
        # run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
        # env:
