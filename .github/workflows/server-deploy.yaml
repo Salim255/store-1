@@ -57,4 +57,4 @@ jobs:
           curl -X POST https://backboard.railway.app/graphql/v2 \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $RAILWAY_TOKEN" \
-            -d "$(jq -n --arg id "$SERVICE_ID" '{query: "mutation { deployService(id: \"\($id)\") { id } }"}')"
+            -d '{"query": "mutation { deployService(id: \"'"$SERVICE_ID"'\" ) { id } }"}'
