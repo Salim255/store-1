@@ -56,8 +56,10 @@ jobs:
           curl -fsSL https://railway.app/install.sh | sh
           export PATH="$HOME/.railway/bin:$PATH"
 
-      #- name: Link Railway project
-       # run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
+      - name: Link Railway project
+        run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
 
       # Trigger Railway deploy (pull existing Docker image)
       - name: Deploy to Railway
