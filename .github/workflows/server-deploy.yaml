@@ -54,8 +54,9 @@ jobs:
           SERVICE_ID: ${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }}
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         run: |
-          curl -X POST https://backboard.railway.app/graphql/v2 \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_TOKEN" \
-            -H "User-Agent: Mozilla/5.0" \
-            -d "$(jq -n --arg id "$SERVICE_ID" '{query: "mutation { deployService(id: \"" + $id + "\") { id } }"}')"
+            jq -n --arg id "$SERVICE_ID" '{query: "mutation { deployService(id: \"" + $id + "\") { id } }"}' > payload.json
+            curl -X POST https://backboard.railway.app/graphql/v2 \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $RAILWAY_TOKEN" \
+              -H "User-Agent: Mozilla/5.0" \
+              -d @payload.json
