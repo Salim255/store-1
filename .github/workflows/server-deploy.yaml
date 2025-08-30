@@ -12,7 +12,8 @@ jobs:
 # ===== Server deployment jobs ====
   server-deploy:
     runs-on: ubuntu-latest
-
+    env:
+      RAILWAY_TOKEN: ${{ secretS.RAILWAY_PROJECT_TOKEN }}
 
     steps:
       # Checkout the code from GitHub
@@ -56,16 +57,5 @@ jobs:
           export PATH="$HOME/.railway/bin:$PATH"
 
       # Trigger Railway deploy (pull existing Docker image)
-      #- name: Deploy to Railway
-       # run: |
-        #  railway deploy --service ${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }} --detach
-
-     # - name: Link Railway project
-      #  run: railway link --project ${{ secrets.PROJECT_ID }}
-      #  env:
-      #    RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
-
-      - name: Rollout existing Docker image
-        run: railway deploy --detach
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+      - name: Deploy to Railway
+        run: railway up --service=${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }}
