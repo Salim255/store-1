@@ -60,10 +60,10 @@ jobs:
        # run: |
         #  railway deploy --service ${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }} --detach
 
-      - name: Link Railway project
-        run: railway link --project ${{ secrets.PROJECT_ID }}
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
+     # - name: Link Railway project
+      #  run: railway link --project ${{ secrets.PROJECT_ID }}
+      #  env:
+      #    RAILWAY_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
 
       - name: Rollout existing Docker image
         run: railway deploy --detach
