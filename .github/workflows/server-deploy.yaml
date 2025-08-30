@@ -56,9 +56,6 @@ jobs:
           curl -fsSL https://railway.app/install.sh | sh
           export PATH="$HOME/.railway/bin:$PATH"
 
-      - name: Railway login
-        run: railway login --token ${{ secrets.RAILWAY_API_TOKEN }}
-
       #- name: Link Railway project
        # run: railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
 
