@@ -49,17 +49,19 @@ jobs:
           docker push crawan/housori-server:latest
       
       # Trigger Railway deploy via webhook
-      # 4️⃣ Install Railway CLI
+      # Install Railway CLI
       - name: Install Railway CLI
         run: |
           curl -fsSL https://railway.app/install.sh | sh
           export PATH="$HOME/.railway/bin:$PATH"
 
-      # 5️⃣ Authenticate Railway CLI
+      # Authenticate Railway CLI
       - name: Authenticate Railway CLI
-        run: railway login --apiKey ${{ secrets.RAILWAY_API_TOKEN }}
+        run: |
+          railway login --browserless
+          railway link --project ${{ secrets.PROJECT_ID }} --environment ${{ secrets.RAIMWAY_HOUSORI_ENV_ID }}
 
-      # 6️⃣ Trigger Railway deploy (pull existing Docker image)
+      # Trigger Railway deploy (pull existing Docker image)
       - name: Deploy to Railway
         run: |
           railway up --service ${{ secrets.RAILWAY_HOUSORI_SERVICE_ID }} --detach
