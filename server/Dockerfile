@@ -32,5 +32,5 @@ COPY --from=build /app/dist/ ./dist
 ENV PORT=3000
 EXPOSE $PORT
 
-## Start the server
+# Start the server
 CMD ["node", "dist/src/main.js"]
