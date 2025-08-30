@@ -58,4 +58,4 @@ jobs:
 
       # Trigger Railway deploy (pull existing Docker image)
       - name: Deploy to Railway
-        run: railway deploy --project=${{ secrets.PROJECT_ID }}
+        run: railway deploy --detach
