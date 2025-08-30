@@ -10,6 +10,7 @@ export function corsConfig(app: INestApplication) {
         'http://localhost:3000',
         'http://localhost:57644',
         'http://localhost:4200',
+        'https://housori.onrender.com',
       ];
 
       if (!origin || allowedOrigins.includes(origin)) {
