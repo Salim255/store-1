@@ -58,4 +58,4 @@ jobs:
 
       # Trigger Railway deploy (pull existing Docker image)
       - name: Deploy to Railway
-        run: railway deploy --detach
+        run: railway deploy
