@@ -1,9 +1,15 @@
+@import '../../../../../themes/styles/mixins';
+
 .filter {
   display: flex;
   justify-content: space-between;
   gap: var(--x-l-spacing);
   p {
     font-size: var(--text-xl);
+  }
+
+  @include respond(phone) {
+   flex-direction: column;
   }
   &__search {
     flex: 1;

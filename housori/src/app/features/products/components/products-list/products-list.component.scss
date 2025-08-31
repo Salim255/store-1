@@ -1,3 +1,5 @@
+@import '../../../../../themes/styles/_mixins';
+
 .products-list {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    padding: 0 4rem;
+    padding: var(--x-l-spacing);
     .header-btns {
        display: flex;
        gap: 2rem;
@@ -53,6 +55,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     padding: 0 4rem;
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+      padding: 0 2rem;
+    }
   }
   &__pagination {
     position: fixed;
