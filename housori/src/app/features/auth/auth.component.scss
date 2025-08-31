@@ -19,7 +19,7 @@
     .btns {
       flex: .4;
       margin: auto;
-      display: flex;         // <--- puts buttons in a row
+      display: flex;
       flex-direction: column;
       width: 30%;
       gap: var(--sm-spacing);
