@@ -60,7 +60,10 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
         .signIn({email, password})
         .subscribe(
           (response => {
-            console.log("response", response.body?.data)
+            const user = response.body?.data.user;
+            if (user) {
+              this.authService.authenticateUser().subscribe();
+            }
           })
         );
 
