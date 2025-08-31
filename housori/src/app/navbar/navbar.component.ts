@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscribeToUserAuthenticated():void{
     this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
+      console.log(auth,"Hellof rom auth")
       if ((!auth && this.userIsAuthenticated) !== auth) {
         this.userIsAuthenticated = auth;
         this.authType.set(AuthType.LOGIN);
