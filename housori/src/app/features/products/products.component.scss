@@ -8,9 +8,15 @@
       padding: 0;
       .filter {
         padding: 4rem;
+        @include respond(phone) {
+          padding: var(--sm-spacing);
+        }
       }
       &:first-child section {
         margin-top: var(--x-l-spacing);
+        @include respond(phone) {
+         margin-top: var(--sm-spacing);
+        }
       }
     }
   }
