@@ -26,13 +26,13 @@
   <section class="filter__bottom-section">
     <div class="price-range">
       <div class="price-range__label">
-        <ion-label class="title"> Select price </ion-label>
+        <ion-label class="title"> Select Price </ion-label>
         <output > {{ priceValue() | currency }} </output>
       </div>
       <ion-range formControlName="price" [min]="10" [max]="100000" [step]="100"></ion-range>
     </div>
     <div class="free-shipping">
-      <ion-label >Free shipping</ion-label>
+      <ion-label >Free Shipping</ion-label>
       <ion-toggle formControlName="shipping"></ion-toggle>
     </div>
     <div class="search-btn">

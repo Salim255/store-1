@@ -27,6 +27,8 @@
       ion-label {
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
+        margin-bottom: var(--md-spacing);
+        display: inline-block;
       }
     }
     .category-options,
@@ -46,7 +48,7 @@
         display: flex;
         justify-content: space-between;
         ion-label {
-          font-size: var(--text-2xl);
+          font-size: var(--text-3xl);
           font-weight: var(--font-bold);
         }
         output {
@@ -101,6 +103,10 @@
      justify-content: center;
      justify-items: center;
      gap: var(--md-spacing);
+     ion-label {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+     }
      ion-label,
      ion-toggle {
       align-self: center;
