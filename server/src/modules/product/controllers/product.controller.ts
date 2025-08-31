@@ -6,7 +6,6 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -25,7 +24,6 @@ import {
 import { ProductsService } from '../services/products.service';
 import { Request } from 'express';
 import { ApiMetaData } from 'utils/api-features';
-import { AuthJwtGuard } from 'src/modules/auth/auth-jwt.guard';
 
 @ApiCookieAuth()
 @ApiTags('Products')
@@ -60,7 +58,7 @@ export class ProductsController {
   }
 
   // GET /products
-  @UseGuards(AuthJwtGuard)
+  //@UseGuards(AuthJwtGuard)
   @Get(['', 'featured-products'])
   async getAllProducts(
     @Query() filters: ProductFilterDto,
