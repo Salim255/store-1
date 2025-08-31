@@ -56,7 +56,16 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
 
       if (this.authType === AuthType.LOGIN) {
         if (!email || ! password) return;
-        this.authService.signIn({email, password}).subscribe();
+        this.authService
+        .signIn({email, password})
+        .subscribe(
+          (response => {
+            const user = response.body?.data.user;
+            if(user) {
+              this.authService.authenticateUser().subscribe();
+            }
+          })
+        );
 
       } else if (this.authType === AuthType.SIGNUP){
         if (
@@ -67,7 +76,15 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
           || !lastName
         ) return;
 
-        this.authService.register({ email, password, passwordConfirm , firstName , lastName }).subscribe(response => {
+        this.authService
+        .register({
+          email,
+          password,
+          passwordConfirm,
+          firstName,
+          lastName,
+        })
+        .subscribe(response => {
           console.log(response);
         });
       }

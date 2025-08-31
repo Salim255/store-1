@@ -56,9 +56,6 @@ export class UsersController {
 
     response.cookie('jwt', createUser.token, cookieOptions);
 
-    // Remove the password from the output
-    createUser.data.user.password = undefined;
-
     return response.status(200).json(createUser);
   }
 
@@ -97,7 +94,8 @@ export class UsersController {
     if (NODE_ENV === 'production') cookieOptions.secure = true;
 
     response.cookie('jwt', data.token, cookieOptions);
-    console.log(data.user);
+    // Remove the password from the output
+    data.user.password = undefined;
     return response.status(200).json({
       status: 'success',
       data: {

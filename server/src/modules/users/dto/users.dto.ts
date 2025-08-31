@@ -5,8 +5,6 @@ export const userObjectExample = {
   firstName: 'Salim',
   lastName: 'Hassan',
   email: 'test@gmail.com',
-  password: '123',
-  passwordConfirm: '123',
   isEmailVerified: false,
   isActive: true,
   role: 'customer',
