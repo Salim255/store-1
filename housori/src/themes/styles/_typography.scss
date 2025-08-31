@@ -121,13 +121,17 @@
   &:link,
   &:active,
   &:hover {
-    color: var(--bg-main);
+   // color: var(--bg-main);
   }
   &__primary {
     padding: 1.5rem 3rem;
     font-size: var(--text-2xl);
     &--full {
       background-color: var(--color-primary);
+    }
+    &--outline {
+      outline: 1px solid var(--color-primary);
+      color: var(--color-primary);
     }
 
     &:hover {

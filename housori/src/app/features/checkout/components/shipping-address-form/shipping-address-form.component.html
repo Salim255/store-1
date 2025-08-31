@@ -1,6 +1,6 @@
  <form class="form" [formGroup]="shippingFields">
     <div class="form__group" *ngFor="let field of fromFields">
-      <label class="form__label" for="fullName"> {{field.label}}</label>
+      <label class="form__label" for="fullName"> {{ field.label}}</label>
       <input
         class="form__input"
         [formControlName]="field.formControlName"

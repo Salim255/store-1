@@ -1,23 +1,27 @@
 <form [formGroup]="authFormFields" class="form">
-  <ion-item *ngIf="!isLogin">
-    <ion-input formControlName="firstName" label="First name"></ion-input>
-  </ion-item>
-   <ion-item *ngIf="!isLogin">
-    <ion-input formControlName="lastName" label="Last name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input formControlName="email" type="email" label="Your email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input  formControlName="password" type="password" label="Password"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="!isLogin">
-    <ion-input
+  <div *ngIf="!isLogin" class="form__group">
+    <label for="firstName" class="form__label"> First name </label>
+    <input formControlName="firstName" class="form__input" />
+  </div>
+   <div *ngIf="!isLogin" class="form__group">
+    <label for="lastName" class="form__label"> Last name </label>
+    <input formControlName="lastName"  class="form__input"/>
+  </div>
+  <div class="form__group">
+    <label for="email" class="form__label"> Your email </label>
+    <input formControlName="email" type="email" class="form__input"/>
+  </div>
+  <div class="form__group">
+    <label for="password" class="form__label">Password</label>
+    <input  formControlName="password" type="password" class="form__input"/>
+  </div>
+  <div *ngIf="!isLogin" class="form__group">
+    <label for="passwordConfirm" class="form__label">Confirm password</label>
+    <input
       [class.input-error]="passwordsMismatch && !isLogin"
       formControlName="passwordConfirm" type="password"
-      label="Confirm password">
-    </ion-input>
-  </ion-item>
+      class="form__input" />
+  </div>
 </form>
 
 
