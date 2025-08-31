@@ -96,7 +96,6 @@ export class UsersController {
     response.cookie('jwt', data.token, cookieOptions);
     // Remove the password from the output
     data.user.password = undefined;
-    console.log(data.user);
     return response.status(200).json({
       status: 'success',
       data: {
