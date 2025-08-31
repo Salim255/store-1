@@ -1,46 +1,55 @@
 @import '../../../../../themes/styles/mixins';
 
 .filter {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--x-l-spacing);
-  p {
-    font-size: var(--text-xl);
-  }
-
-  @include respond(phone) {
-   flex-direction: column;
-  }
-  &__search {
-    flex: 1;
+  &__top-section {
     display: flex;
-    gap: var(--l-spacing);
-    flex-direction: column;
+    gap: var(--x-l-spacing);
+    margin-bottom: var(--x-l-spacing);
+    @include respond(phone) {
+      flex-direction: column;
+    }
     .search-input {
-      ion-label {
-        font-size: var(--text-3xl);
-        font-weight: var(--font-bold);
-      }
       input {
         width: 100%;
         padding: .8rem 1.6rem;
         border-radius: var(--radius-strong);
         background-color: var(--bg-main);
         font-size: var(--text-xl);
-        margin-top: 2rem;
         box-shadow: var(--box-shadow-light-small);
       }
     }
 
-    .search-range {
-      .selected-price {
+    .search-input,
+    .category-options,
+    .company-options,
+    .sort-options  {
+      flex: 1;
+      ion-label {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-bold);
+      }
+    }
+    .category-options,
+    .company-options,
+    .sort-options  {
+      ion-label {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  &__bottom-section {
+    display: flex;
+    gap: var(--x-l-spacing);
+    .price-range {
+      flex: 1;
+      &__label {
         display: flex;
         justify-content: space-between;
-        &__title {
+        ion-label {
           font-size: var(--text-2xl);
           font-weight: var(--font-bold);
         }
-        &__current-price{
+        output {
           font-size: var(--text-base);
           font-weight: var(--font-bold);
         }
@@ -76,99 +85,41 @@
         }
       }
     }
-  }
-  &__category{
-    flex: 1;
-    display: flex;
-    gap: 3rem;
-    flex-direction: column;
 
-    .category-options {
-      ion-label {
-        font-size: var(--text-3xl);
-        font-weight: var(--font-bold);
-        margin-bottom: 2rem;
-      }
-
-      &__select{
-        width: 100%;
-        margin-top: 2rem;
-      }
-    }
-    .category-toggle {
-      text-align: center;
-      ion-toggle {
-        --track-background: var(--bg-main);
-        --track-background-checked: var(--bg-main);
-
-        --handle-background: var(--color-danger);
-        --handle-background-checked: var(--color-primary);
-
-        --handle-width: 2.5rem;
-        --handle-height: 2.5rem;
-        --handle-max-height: auto;
-        --handle-box-shadow: var(--box-shadow-light);
-      }
-
-      ion-toggle::part(track) {
-        width: 5rem;
-        padding: .5rem 0;
-        /* Required for iOS handle to overflow the height of the track */
-        overflow: visible;
-      }
-      ion-toggle::part(label) {
-        font-size: 1.4rem;
-        font-weight: 600;
-        font-size: var(--text-3xl);
-      }
-    }
-
-  }
-  &__company{
-    flex: 1;
-    display: flex;
-    gap: 3rem;
-    flex-direction: column;
-    .company-options {
-      ion-label {
-        font-size: var(--text-3xl);
-        font-weight: var(--font-bold);
-        margin-bottom: 2rem;
-      }
-      &__select{
-        width: 100%;
-        margin-top: 2rem;
-      }
-    }
-    .company-btn {
-      margin-top: auto;
-     button {
-        width: 100%;
-      }
-    }
-  }
-
-  &__sort {
-    flex: 1;
-    display: flex;
-    gap: 3rem;
-    flex-direction: column;
-    .sort-options {
-      ion-label {
-        font-size: var(--text-3xl);
-        font-weight: var(--font-bold);
-        margin-bottom: 2rem;
-      }
-
-      &__select {
-        width: 100%;
-        margin-top: 2rem;
-      }
-    }
-    .sort-btn {
-      margin-top: auto;
+    .search-btn,
+    .reset-btn,
+    .free-shipping {
+      flex: 1;
+      align-self: center;
       button {
         width: 100%;
+      }
+    }
+    .free-shipping {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     justify-items: center;
+     gap: var(--md-spacing);
+     ion-label,
+     ion-toggle {
+      align-self: center;
+     }
+
+     @include respond(phone){
+       width: 100%;
+       flex-direction: row;
+       justify-content: space-between;
+     }
+    }
+    @include respond(phone) {
+      flex-direction: column;
+      .search-btn,
+      .reset-btn {
+        width: 100%;
+        button {
+          width: 100%;
+        }
       }
     }
   }

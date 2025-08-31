@@ -46,7 +46,6 @@
   }
   &__items {
     display: flex;
-    //gap: 5rem;
     position: relative;
     flex-direction: column;
   }
@@ -57,7 +56,7 @@
     padding: 0 4rem;
     @include respond(phone) {
       grid-template-columns: 1fr;
-      padding: 0 2rem;
+      padding: 0;
     }
   }
   &__pagination {
