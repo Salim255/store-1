@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NavbarService } from "../../services/navbar.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,4 +8,10 @@ import { Component } from "@angular/core";
   standalone: false,
 })
 
-export class SidebarComponent {}
+export class SidebarComponent {
+  constructor(private navbarService: NavbarService){}
+
+  onClose(){
+    this.navbarService.onCloseSideBar();
+  }
+}
