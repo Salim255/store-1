@@ -97,7 +97,6 @@
      flex-direction: column;
      justify-content: center;
      justify-items: center;
-     gap: var(--xs-spacing);;
      ion-label {
       font-size: var(--text-3xl);
       font-weight: var(--font-bold);
@@ -108,29 +107,25 @@
      }
 
     ion-toggle {
-      padding: 12px;
+      padding: var(--xs-spacing);
       --track-background: var(--color-tints);
       --track-background-checked: var(--color-primary);
       --handle-max-height: auto;
+      transform: scale(0.8);
      }
 
-    ion-toggle::part(track) {
-      height: 3.5rem;
-      width: 6rem;
-     }
 
     ion-toggle::part(handle) {
-      border-radius: 2rem;
-      height: 3rem;
-      width: 3rem;
       background-color: var(--bg-main);
     }
-
 
      @include respond(phone){
        width: 100%;
        flex-direction: row;
        justify-content: space-between;
+       ion-toggle {
+         transform: scale(0.7);
+       }
      }
     }
     @include respond(phone) {
