@@ -1,3 +1,5 @@
+@import '../../themes/styles/mixins';
+
 header {
   position: fixed;
   margin-left: 0;
@@ -6,11 +8,16 @@ header {
   z-index: 1000;
   top: 0;
   background-color: var(--bg-main);
-  .header-auth{
+
+
+  .header-auth {
     display: flex;
     justify-content: right;
 
     gap: var(--l-spacing);
+    @include respond(phone){
+      display: none;
+    }
     &__login {
       cursor: pointer;
       padding: 1rem 1.5rem;
@@ -53,7 +60,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    &__logo{
+    &__logo {
       padding: .2rem .4rem;
       border-radius: .2rem;
       font-weight: var(--font-bold);
@@ -63,7 +70,7 @@ header {
       text-transform: uppercase;
       color: var(--color-primary);
     }
-    &__links{
+    &__links {
       display: flex;
       justify-content: space-between;
       .navbar-item:not(:first-child) a {
@@ -86,7 +93,9 @@ header {
           }
         }
       }
-
+      @include respond(phone){
+        display: none;
+      }
     }
     &__cart {
       position: relative;

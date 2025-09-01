@@ -14,7 +14,8 @@ import {CoreService} from "../core/services/core.service";
 
 export class NavbarComponent implements OnInit, OnDestroy {
   cartState = signal< CartDetails | null>(null);
-  authType = signal<AuthType | null>(null)
+  authType = signal<AuthType | null>(null);
+  openMenu = signal<boolean>(false);
   cartStateSubscription!: Subscription;
   authTypeSubscription!: Subscription;
   authSubscription!: Subscription;
@@ -84,6 +85,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
   }
 
+  onMenu(): void{
+    this.openMenu.set(true);
+  };
 
   ngOnDestroy(): void {
     this.cartStateSubscription?.unsubscribe();
