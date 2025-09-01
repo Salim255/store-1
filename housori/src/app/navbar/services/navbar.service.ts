@@ -1,13 +1,17 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({providedIn: 'root'})
 
 export class NavbarService {
-
+  private closeSidebarSubject = new BehaviorSubject<'close' | null>(null)
   constructor(){}
 
   onCloseSideBar(): void{
-    console.log('Close sidebar')
+    this.closeSidebarSubject.next('close')
+  }
+
+  get getSidebarStatus(): Observable<'close' | null> {
+    return this.closeSidebarSubject.asObservable();
   }
 }
