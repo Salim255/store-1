@@ -13,6 +13,9 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--x-l-spacing);
+    @include respond(tab-port) {
+      grid-template-columns: 1fr
+    }
   }
   &__items-nb {
     border-bottom: .2rem solid var(--color-primary);
