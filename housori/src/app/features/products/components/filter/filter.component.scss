@@ -27,15 +27,8 @@
       ion-label {
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
-        margin-bottom: var(--md-spacing);
         display: inline-block;
-      }
-    }
-    .category-options,
-    .company-options,
-    .sort-options  {
-      ion-label {
-        margin-bottom: 2rem;
+        margin-bottom: var(--xs-spacing);
       }
     }
   }
@@ -47,9 +40,11 @@
       &__label {
         display: flex;
         justify-content: space-between;
+
         ion-label {
           font-size: var(--text-3xl);
           font-weight: var(--font-bold);
+
         }
         output {
           font-size: var(--text-base);
@@ -59,13 +54,13 @@
       ion-range {
         --bar-background: var(--bg-main);
         --bar-background-active: var(--color-tints);
-        --bar-height: 1.2rem;
-        --bar-border-radius: .8rem;
+        --bar-height: 2rem;
+        --bar-border-radius: 2rem;
         --knob-background: var(--color-primary);
-        --knob-size: 2.4rem;
+        --knob-size: 3rem;
         --knob-spacing: .6rem;
         --pin-background: var(--color-primary);
-        padding-inline: .4rem;
+        padding-inline: 1rem;
         position: relative;
         &::before, &::after {
           position: absolute;
@@ -102,15 +97,35 @@
      flex-direction: column;
      justify-content: center;
      justify-items: center;
-     gap: var(--md-spacing);
+     gap: var(--xs-spacing);;
      ion-label {
-      font-size: var(--text-2xl);
+      font-size: var(--text-3xl);
       font-weight: var(--font-bold);
      }
      ion-label,
      ion-toggle {
       align-self: center;
      }
+
+    ion-toggle {
+      padding: 12px;
+      --track-background: var(--color-tints);
+      --track-background-checked: var(--color-primary);
+      --handle-max-height: auto;
+     }
+
+    ion-toggle::part(track) {
+      height: 3.5rem;
+      width: 6rem;
+     }
+
+    ion-toggle::part(handle) {
+      border-radius: 2rem;
+      height: 3rem;
+      width: 3rem;
+      background-color: var(--bg-main);
+    }
+
 
      @include respond(phone){
        width: 100%;
