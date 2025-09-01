@@ -17,7 +17,8 @@
    </ng-container>
   </section>
   <nav class="header-navbar">
-    <a routerLink="/" class="header-navbar__logo">Housori</a>
+      <a routerLink="/" class="header-navbar__logo" (click)="onMenu()">Housori</a>
+<!--     <a routerLink="/" class="header-navbar__logo">Housori</a> -->
     <ul class="header-navbar__links">
       <li class="navbar-item">
         <a class="navbar-item__link navbar-item__link--inactive" routerLink="/home"
@@ -48,6 +49,6 @@
     </div>
   </nav>
 </header>
-
+<app-sidebar *ngIf="openMenu()"></app-sidebar>
 <router-outlet></router-outlet>
 
