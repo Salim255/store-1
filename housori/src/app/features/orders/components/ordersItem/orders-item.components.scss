@@ -1,13 +1,8 @@
 @import '../../../../../themes/styles/mixins';
 
-@mixin item-text {
-  font-size: var(--text-xl);
-
-}
-
 .orders-item {
   display: flex;
-  gap: 4rem;
+  gap: var(--x-l-spacing);
   @include respond(tab-port) {
    flex-direction: column;
   }
@@ -17,7 +12,7 @@
   }
   &__figure {
     display: flex;
-    gap: 4rem;
+    gap: var(--x-l-spacing);
     @include respond(tab-port) {
       width: 100%;
     }
@@ -29,7 +24,6 @@
     @include respond(tab-port) {
       height: 24rem;
       flex: 1;
-      margin-right: auto;
     }
   }
   &__figure-caption {
