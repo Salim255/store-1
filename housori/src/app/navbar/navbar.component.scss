@@ -15,7 +15,7 @@ header {
     justify-content: right;
 
     gap: var(--l-spacing);
-    @include respond(phone){
+    @include respond(tab-port){
       display: none;
     }
     &__login {
@@ -93,7 +93,7 @@ header {
           }
         }
       }
-      @include respond(phone){
+      @include respond(tab-port){
         display: none;
       }
     }
