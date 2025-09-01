@@ -4,6 +4,7 @@ import { Subscription } from "rxjs";
 import { AuthType } from "../features/auth/services/auth.service";
 import { AuthService } from "../features/auth/services/auth.service";
 import {CoreService} from "../core/services/core.service";
+import { NavbarService } from "./services/navbar.service";
 
 @Component({
   selector: "app-navbar",
@@ -14,13 +15,16 @@ import {CoreService} from "../core/services/core.service";
 
 export class NavbarComponent implements OnInit, OnDestroy {
   cartState = signal< CartDetails | null>(null);
-  authType = signal<AuthType | null>(null)
+  authType = signal<AuthType | null>(null);
+  openMenu = signal<boolean>(false);
   cartStateSubscription!: Subscription;
   authTypeSubscription!: Subscription;
   authSubscription!: Subscription;
+  sidBarStatusSubscription!: Subscription;
   userIsAuthenticated: boolean = false;
 
   constructor(
+    private navbarService: NavbarService,
     private coreService: CoreService,
     private authService: AuthService,
     private cartService: CartService,
@@ -30,8 +34,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscribeToCartState();
     this.subscribeToAuthType();
     this.subscribeToUserAuthenticated();
+    this.subscribeToSideBarStatus();
   }
 
+  subscribeToSideBarStatus(): void{
+    this.sidBarStatusSubscription = this.navbarService.getSidebarStatus.subscribe(status => {
+        this.openMenu.set(false);
+    })
+  }
   subscribeToUserAuthenticated():void{
     this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
       console.log(auth,"Hellof rom auth")
@@ -84,8 +94,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
   }
 
+  onMenu(): void{
+    this.openMenu.set(true);
+  };
 
   ngOnDestroy(): void {
+    this.sidBarStatusSubscription?.unsubscribe();
     this.cartStateSubscription?.unsubscribe();
     this.authSubscription?.unsubscribe();
   }

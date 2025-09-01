@@ -1,0 +1,46 @@
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(3px);
+  background-color: rgba(192, 192, 192, 0.1);
+  z-index: 10000;
+  overflow: hidden;
+
+  &__list {
+    background-color: var(--bg-secondary);
+    padding: var(--sm-spacing);
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    list-style: none;
+    margin: var(--2xs-spacing);
+    border-radius: 1rem;
+    padding: var(--2xs-spacing);
+    &:active,
+    &:hover {
+      background-color: var(--color-tints);
+    }
+  }
+  &__link {
+    &:link,
+    &:active,
+    &:visited {
+      color: var(--text-main);
+    }
+
+    &--inactive{
+      //background-color: var(--bg-secondary);
+     /*  padding: 1.5rem 2rem;
+      border-radius: var(--radius-strong); */
+    }
+    &--active{
+      background-color: var(--color-tints);
+    }
+  }
+
+}

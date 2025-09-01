@@ -5,7 +5,7 @@
     display: flex;
     gap: var(--x-l-spacing);
     margin-bottom: var(--x-l-spacing);
-    @include respond(phone) {
+    @include respond(tab-port) {
       flex-direction: column;
     }
     .search-input {
@@ -27,15 +27,8 @@
       ion-label {
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
-        margin-bottom: var(--md-spacing);
         display: inline-block;
-      }
-    }
-    .category-options,
-    .company-options,
-    .sort-options  {
-      ion-label {
-        margin-bottom: 2rem;
+        margin-bottom: var(--xs-spacing);
       }
     }
   }
@@ -47,9 +40,11 @@
       &__label {
         display: flex;
         justify-content: space-between;
+
         ion-label {
           font-size: var(--text-3xl);
           font-weight: var(--font-bold);
+
         }
         output {
           font-size: var(--text-base);
@@ -59,13 +54,13 @@
       ion-range {
         --bar-background: var(--bg-main);
         --bar-background-active: var(--color-tints);
-        --bar-height: 1.2rem;
-        --bar-border-radius: .8rem;
+        --bar-height: 2rem;
+        --bar-border-radius: 2rem;
         --knob-background: var(--color-primary);
-        --knob-size: 2.4rem;
+        --knob-size: 3rem;
         --knob-spacing: .6rem;
         --pin-background: var(--color-primary);
-        padding-inline: .4rem;
+        padding-inline: 1rem;
         position: relative;
         &::before, &::after {
           position: absolute;
@@ -102,9 +97,8 @@
      flex-direction: column;
      justify-content: center;
      justify-items: center;
-     gap: var(--md-spacing);
      ion-label {
-      font-size: var(--text-2xl);
+      font-size: var(--text-3xl);
       font-weight: var(--font-bold);
      }
      ion-label,
@@ -112,13 +106,29 @@
       align-self: center;
      }
 
-     @include respond(phone){
+    ion-toggle {
+      padding: var(--xs-spacing);
+      --track-background: var(--color-tints);
+      --track-background-checked: var(--color-primary);
+      --handle-max-height: auto;
+      transform: scale(0.8);
+     }
+
+
+    ion-toggle::part(handle) {
+      background-color: var(--bg-main);
+    }
+
+     @include respond(tab-port){
        width: 100%;
        flex-direction: row;
        justify-content: space-between;
+       ion-toggle {
+         transform: scale(0.7);
+       }
      }
     }
-    @include respond(phone) {
+    @include respond(tab-port) {
       flex-direction: column;
       .search-btn,
       .reset-btn {

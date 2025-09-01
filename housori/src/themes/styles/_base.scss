@@ -8,15 +8,15 @@ html {
   font-size: 62.5%; // 10 / 16 = 0.625 * 100;
 
   @include respond(tab-land) {
-    font-size: 50%; // 1 rem = 8 px =>  8/16 = 0.5=> 56.25%
+    font-size: 56.25%; // 1 rem = 9 px =>  8/16 = 0.5=> 56.25%
   }
 
   @include respond(tab-port) {
-    font-size: 37.5%; // 1rem = 6 This the content that we passed into the mixin
+    font-size: 50%; // 1rem = 8 This the content that we passed into the mixin
   }
 
   @include respond(phone) {
-    font-size: 25%; // 1rem = 4 This the content that we passed into the mixin
+    //font-size: 25%; // 1rem = 4 This the content that we passed into the mixin
   }
 
   @include respond(big-desktop) {

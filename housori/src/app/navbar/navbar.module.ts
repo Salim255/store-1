@@ -4,6 +4,7 @@ import { AuthModule } from "../features/auth/auth.module";
 import { CommonModule } from "@angular/common";
 import { NavbarComponent } from "./navbar.component";
 import { IonicModule } from "@ionic/angular";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
 
 @NgModule({
   imports:[
@@ -12,6 +13,6 @@ import { IonicModule } from "@ionic/angular";
     CommonModule,
     IonicModule.forRoot(),
   ],
-  declarations: [ NavbarComponent ]
+  declarations: [SidebarComponent, NavbarComponent ]
 })
 export class NavbarModule { }
