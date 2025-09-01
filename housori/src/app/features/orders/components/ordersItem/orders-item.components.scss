@@ -1,3 +1,5 @@
+@import '../../../../../themes/styles/mixins';
+
 @mixin item-text {
   font-size: var(--text-xl);
 
@@ -6,6 +8,9 @@
 .orders-item {
   display: flex;
   gap: 4rem;
+  @include respond(tab-port) {
+   flex-direction: column;
+  }
   &__details {
     flex: .5;
     display: flex;
@@ -13,18 +18,45 @@
   &__figure {
     display: flex;
     gap: 4rem;
+    @include respond(tab-port) {
+      width: 100%;
+    }
   }
   &__figure-img {
-    //flex: 1;
     width: 16rem;
     height: 14rem;
     border-radius: 1rem;
+    @include respond(tab-port) {
+      height: 24rem;
+      flex: 1;
+      margin-right: auto;
+    }
   }
   &__figure-caption {
     flex: 1;
+    width: 100%;
+
+    dl {
+      display: none;
+      margin-bottom: var(--xs-spacing);
+      font-size: var(--text-base);
+      div {
+        display: flex;
+        gap: var(--xs-spacing);
+        margin-bottom: var(--xs-spacing);
+      }
+    }
+     @include respond(tab-port) {
+      dl {
+        display: inline;
+      }
+      p {
+        display: none;
+      }
+    }
   }
   &__title {
-    margin-bottom: 2rem;
+    margin-bottom: var(--sm-spacing);
     font-size: var(--text-xl);
   }
   &__description {
@@ -35,10 +67,15 @@
   &__metadata {
     display: flex;
     flex: .5;
+    @include respond(tab-port) {
+      display: none;
+    }
     div {
       flex: 1;
       text-align: right;
       font-size: var(--text-base);
     }
   }
+
 }
+

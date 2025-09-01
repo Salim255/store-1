@@ -54,7 +54,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     padding: 0 4rem;
-    @include respond(phone) {
+    @include respond(tab-port) {
       grid-template-columns: 1fr;
       padding: 0;
     }

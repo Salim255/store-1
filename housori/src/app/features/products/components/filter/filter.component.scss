@@ -5,7 +5,7 @@
     display: flex;
     gap: var(--x-l-spacing);
     margin-bottom: var(--x-l-spacing);
-    @include respond(phone) {
+    @include respond(tab-port) {
       flex-direction: column;
     }
     .search-input {
@@ -119,7 +119,7 @@
       background-color: var(--bg-main);
     }
 
-     @include respond(phone){
+     @include respond(tab-port){
        width: 100%;
        flex-direction: row;
        justify-content: space-between;
@@ -128,7 +128,7 @@
        }
      }
     }
-    @include respond(phone) {
+    @include respond(tab-port) {
       flex-direction: column;
       .search-btn,
       .reset-btn {
