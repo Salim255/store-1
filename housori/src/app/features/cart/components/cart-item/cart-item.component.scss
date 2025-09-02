@@ -23,8 +23,8 @@
     gap: var(--sm-spacing);
     margin: 0;
     img {
-      width: 20rem;
-      height: 14rem;
+      width: 16rem;
+      height: 10rem;
       border-radius: 2rem;
       @include respond(phone) {
         height: 10rem;
