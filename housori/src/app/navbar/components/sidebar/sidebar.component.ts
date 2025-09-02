@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NavbarService } from "../../services/navbar.service";
+import { AuthService, AuthType } from "src/app/features/auth/services/auth.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +10,15 @@ import { NavbarService } from "../../services/navbar.service";
 })
 
 export class SidebarComponent {
-  constructor(private navbarService: NavbarService){}
+  constructor(
+    private authService  : AuthService,
+    private navbarService: NavbarService){}
 
-  onClose(){
+  onClose(): void{
     this.navbarService.onCloseSideBar();
+  }
+  onLogin(): void {
+    console.log("hello")
+    this.authService.setAuthType(AuthType.LOGIN);
   }
 }
