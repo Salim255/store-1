@@ -64,11 +64,15 @@ header {
       padding: .2rem .4rem;
       border-radius: .2rem;
       font-weight: var(--font-bold);
-      font-size: 3rem;
+      font-size: var(--text-4xl);
       color: var(--text-color-base);
       letter-spacing: .5rem;
       text-transform: uppercase;
       color: var(--color-primary);
+      display: flex ;
+      ion-icon {
+        align-self: center;
+      }
     }
     &__links {
       display: flex;
