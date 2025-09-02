@@ -5,6 +5,7 @@ import { AuthType } from "../features/auth/services/auth.service";
 import { AuthService } from "../features/auth/services/auth.service";
 import {CoreService} from "../core/services/core.service";
 import { NavbarService } from "./services/navbar.service";
+import { ToastService } from "../shared/services/toast.service";
 
 @Component({
   selector: "app-navbar",
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated: boolean = false;
 
   constructor(
+    private toastService: ToastService,
     private navbarService: NavbarService,
     private coreService: CoreService,
     private authService: AuthService,
@@ -35,6 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscribeToAuthType();
     this.subscribeToUserAuthenticated();
     this.subscribeToSideBarStatus();
+    this.toastService.success('success');
   }
 
   subscribeToSideBarStatus(): void{
@@ -44,20 +47,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   subscribeToUserAuthenticated():void{
     this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
-      console.log(auth,"Hellof rom auth")
       if ((!auth && this.userIsAuthenticated) !== auth) {
         this.userIsAuthenticated = auth;
         this.authType.set(AuthType.LOGIN);
         this.disableScroll();
       }
-
-      console.log(this.authType(), "hello")
     })
   }
 
   subscribeToAuthType(){
     this.authTypeSubscription = this.authService.getAuthType.subscribe(type => {
-      console.log('hello auth type', type)
       this.authType.set(type);
       this.disableScroll();
     })
@@ -92,7 +91,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   get showAuthModal(): boolean {
-    console.log("hello from shomoal", (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated))
     return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
   }
 

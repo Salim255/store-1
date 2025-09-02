@@ -25,9 +25,11 @@
     margin: auto;
     display: flex;
     gap: var(--x-l-spacing);
+
     @include respond(tab-port){
       flex-direction: column;
       overflow-y: auto;
+      padding-bottom: var(--x-l-spacing);
     }
     .billing {
       &__methods {
