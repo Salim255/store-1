@@ -38,11 +38,7 @@
 
   }
 
-  &__amount {
-     @include respond(tab-port) {
 
-    }
-  }
   &__adjust-btns {
     display: flex;
     justify-content: center;
