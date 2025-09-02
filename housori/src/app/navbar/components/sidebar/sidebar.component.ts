@@ -20,5 +20,6 @@ export class SidebarComponent {
   onLogin(): void {
     console.log("hello")
     this.authService.setAuthType(AuthType.LOGIN);
+    this.onClose();
   }
 }
