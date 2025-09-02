@@ -21,6 +21,8 @@
       right: 2%;
       height: 3rem;
       width: 3rem;
+      background-color: transparent;
+      border: none;
       &::after,
       &::before {
         content: "";
