@@ -27,6 +27,7 @@
     gap: var(--x-l-spacing);
     @include respond(tab-port){
       flex-direction: column;
+      overflow-y: auto;
     }
     .billing {
       &__methods {
