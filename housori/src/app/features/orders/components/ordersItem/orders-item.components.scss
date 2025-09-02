@@ -6,6 +6,9 @@
   @include respond(tab-port) {
    flex-direction: column;
   }
+  @include respond(phone) {
+   flex-direction: column;
+  }
   &__details {
     flex: .5;
     display: flex;
@@ -24,6 +27,9 @@
     @include respond(tab-port) {
       height: 24rem;
       flex: 1;
+    }
+    @include respond(phone) {
+    //height: 10rem;
     }
   }
   &__figure-caption {
