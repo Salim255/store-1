@@ -1,3 +1,5 @@
+@import '../../../../../../themes/styles/mixins';
+
 .summary-item {
   display: flex;
   width: 100%;
@@ -14,6 +16,10 @@
         height: 10rem;
         width: 16rem;
         border-radius: var(--radius-lg);
+        @include respond(phone) {
+          height: 10rem;
+          width: 12rem;
+        }
       }
   }
   &__name{
