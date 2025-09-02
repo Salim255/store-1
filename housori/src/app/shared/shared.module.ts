@@ -5,6 +5,7 @@ import { IonicModule } from "@ionic/angular";
 import { CustomSelectComponent } from "./kits/custom-select/custom-select.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { Placeholder } from "./components/place-holder/place-holder.component";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,11 @@ import { Placeholder } from "./components/place-holder/place-holder.component";
     CustomSelectComponent,
     OrderTotalComponent,
   ],
-  imports: [CommonModule, IonicModule],
+  imports: [
+    ToastrModule,
+    CommonModule,
+    IonicModule,
+  ],
   exports: [
     Placeholder,
     PaginationComponent,

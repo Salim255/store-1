@@ -21,7 +21,7 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
