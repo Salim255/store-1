@@ -67,10 +67,10 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
             if(user) {
               this.authService.authenticateUser().subscribe();
             }
-            this.toastService.success('succs')
+            this.toastService.success('Login successful! Let’s make things happen')
           },
           error: (err) => {
-            this.toastService.error(err);
+            this.toastService.error("Login failed. Please check your credentials and try again.");
           }
           }
         );
