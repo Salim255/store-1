@@ -1,4 +1,9 @@
+@import '../../../../../themes/styles/mixins';
+
 .form {
+  @include respond(tab-port){
+    padding-bottom: var(--x-l-spacing);
+  }
   &__group {
     display: flex;
     flex-direction: column;
@@ -23,6 +28,7 @@
   &__btn {
    text-align: center;
    margin-top: var(--x-l-spacing);
+
    button {
     display: inline-block;
    }
