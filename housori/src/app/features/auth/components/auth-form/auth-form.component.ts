@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, 
 import { AuthService } from "../../services/auth.service";
 import { combineLatest, Subscription} from "rxjs";
 import { AuthFormService } from "../../services/auth-form.service";
+import { ToastService } from "src/app/shared/services/toast.service";
 
 const passwordMatchValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
   const password = group.get('password')?.value;
@@ -30,6 +31,7 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   private submitFormSubscription!: Subscription;
 
   constructor(
+    private toastService: ToastService,
     private authFormService: AuthFormService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -59,12 +61,18 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
         this.authService
         .signIn({email, password})
         .subscribe(
-          (response => {
+          {
+          next: (response) => {
             const user = response.body?.data.user;
             if(user) {
               this.authService.authenticateUser().subscribe();
             }
-          })
+            this.toastService.success('succs')
+          },
+          error: (err) => {
+            this.toastService.error(err);
+          }
+          }
         );
 
       } else if (this.authType === AuthType.SIGNUP){

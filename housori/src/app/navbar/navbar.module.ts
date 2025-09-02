@@ -5,9 +5,11 @@ import { CommonModule } from "@angular/common";
 import { NavbarComponent } from "./navbar.component";
 import { IonicModule } from "@ionic/angular";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports:[
+    ToastrModule,
     NavbarRoutingModule,
     AuthModule,
     CommonModule,
