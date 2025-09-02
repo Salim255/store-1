@@ -1,3 +1,5 @@
+@import '../../../themes/styles/_mixins';
+
 .auth {
   height: 100%;
   padding: var(--x-l-spacing);
@@ -12,7 +14,9 @@
       width: 60%;
       margin: auto;
       flex: .6;
-
+      @include respond(phone) {
+        width: 100%;
+      }
       display: flex;
       align-items: center;
     }
@@ -22,8 +26,11 @@
       margin: auto;
       display: flex;
       flex-direction: column;
-      width: 30%;
+      width: 40%;
       gap: var(--sm-spacing);
+      @include respond(phone) {
+        width: 100%;
+      }
     }
   }
 }

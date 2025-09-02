@@ -16,7 +16,10 @@ header {
 
     gap: var(--l-spacing);
     @include respond(tab-port){
-      display: none;
+      &__login,
+      &__register{
+        display: none;
+      }
     }
     &__login {
       cursor: pointer;
@@ -32,6 +35,7 @@ header {
       a {
         font-size: var(--text-sm);
       }
+
     }
     &__modal{
       position: absolute;
@@ -64,11 +68,15 @@ header {
       padding: .2rem .4rem;
       border-radius: .2rem;
       font-weight: var(--font-bold);
-      font-size: 3rem;
+      font-size: var(--text-4xl);
       color: var(--text-color-base);
       letter-spacing: .5rem;
       text-transform: uppercase;
       color: var(--color-primary);
+      display: flex ;
+      ion-icon {
+        align-self: center;
+      }
     }
     &__links {
       display: flex;

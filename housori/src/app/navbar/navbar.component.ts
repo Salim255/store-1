@@ -57,6 +57,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscribeToAuthType(){
     this.authTypeSubscription = this.authService.getAuthType.subscribe(type => {
+      console.log('hello auth type', type)
       this.authType.set(type);
       this.disableScroll();
     })
@@ -91,6 +92,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   get showAuthModal(): boolean {
+    console.log("hello from shomoal", (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated))
     return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
   }
 
