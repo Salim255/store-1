@@ -64,13 +64,23 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
           {
           next: (response) => {
             const user = response.body?.data.user;
+            console.log(user);
             if(user) {
-              this.authService.authenticateUser().subscribe();
+              this.authService.authenticateUser().subscribe(
+                {
+                  next: ()=> {
+                    this.toastService.success('Login successful! Let’s make things happen')
+                  },
+                  error: () => {
+                      this.toastService.error("Login failed. Please check your credentials and try again.");
+                  }
+                }
+              );
             }
-            this.toastService.success('succs')
+
           },
           error: (err) => {
-            this.toastService.error(err);
+            this.toastService.error("Login failed. Please check your credentials and try again.");
           }
           }
         );
