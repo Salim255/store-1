@@ -1,9 +1,11 @@
-<div class="sidebar" (click)="onClose()">
+<div class="sidebar" >
  <ul class="sidebar__list">
+  <div class="close-btn" (click)="onClose()"></div>
   <li class="sidebar__item">
     <a
       class="sidebar__link sidebar__link--inactive"
       routerLink="/home"
+      (click)="onClose()"
       routerLinkActive="navbar__link--active"
       [routerLinkActiveOptions]="{ exact: true }">
         Home
@@ -14,21 +16,36 @@
       class="sidebar__link
       sidebar__link--inactive"
       routerLink="/about"
+      (click)="onClose()"
       routerLinkActive="sidebar__link--active">
       About
     </a>
   </li>
   <li class="sidebar__item">
-    <a class="sidebar__link  sidebar__link--inactive" routerLink="/products" routerLinkActive="navbar-item__link--active">Products</a>
+    <a
+      class="sidebar__link
+      sidebar__link--inactive"
+      routerLink="/products"
+      (click)="onClose()"
+      routerLinkActive="navbar-item__link--active">
+      Products
+    </a>
   </li>
   <li class="sidebar__item">
-    <a class="sidebar__link  sidebar__link--inactive" routerLink="/orders" routerLinkActive="navbar-item__link--active">Orders</a>
+    <a
+      class="sidebar__link
+      sidebar__link--inactive"
+      routerLink="/orders"
+      (click)="onClose()"
+      routerLinkActive="navbar-item__link--active"
+      >Orders</a>
   </li>
   <li class="sidebar__item">
     <a
       class="sidebar__link
       sidebar__link--inactive"
       routerLink="/checkout"
+      (click)="onClose()"
       routerLinkActive="sidebar__link--active">
       Checkout
     </a>
@@ -38,6 +55,7 @@
       class="sidebar__link
       sidebar__link--inactive"
       routerLink="/cart"
+      (click)="onClose()"
       routerLinkActive="sidebar__link--active">
       Cart
     </a>

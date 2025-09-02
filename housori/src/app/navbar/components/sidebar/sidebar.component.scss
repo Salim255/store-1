@@ -14,6 +14,30 @@
     width: 70%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    .close-btn {
+      position: absolute;
+      top: 1%;
+      right: 2%;
+      height: 3rem;
+      width: 3rem;
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-color: var(--color-primary);
+        top: 50%;
+        right: 0;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
   }
 
   &__item {
@@ -23,10 +47,11 @@
     padding: var(--2xs-spacing);
     &:active,
     &:hover {
-      background-color: var(--color-tints);
+      color: var(--color-primary);
     }
   }
   &__link {
+    font-size: var(--text-3xl);
     &:link,
     &:active,
     &:visited {
