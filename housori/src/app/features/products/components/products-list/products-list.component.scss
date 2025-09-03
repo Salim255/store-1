@@ -3,19 +3,31 @@
 .products-list {
   display: flex;
   flex-direction: column;
-  gap: var(--x-l-spacing);
+  //gap: var(--x-l-spacing);
   padding-bottom: 4rem;
   &__header {
     display: flex;
     justify-content: space-between;
-    padding: var(--x-l-spacing);
+    margin: var(--x-l-spacing);
+    margin-top: var(--2x-l-spacing);
+
+    @include respond(phone) {
+      margin-left:  0;
+      margin-right: 0;
+    }
+    .header-text {
+      font-size: var(--text-base);
+      font-weight: var(--font-bold);
+      align-self: center;
+    }
     .header-btns {
        display: flex;
-       gap: 2rem;
+       gap: var(--sm-spacing);
+
        &__btn {
         border: none;
         background-color: transparent;
-        box-shadow: var(--box-shadow-light-small);
+        box-shadow: var(--box-shadow-light);
         cursor: pointer;
           transition: all .2s;
           &:hover {
@@ -26,8 +38,8 @@
           }
         &--active {
           background-color: var(--color-primary);
-          border-radius: 1rem 0;
-          padding: .5rem 1rem;
+          border-radius: 1rem;
+          padding: 1rem 1.5rem;
           ion-icon {
             color: var(--bg-main);
           }
@@ -35,12 +47,12 @@
         }
         &--inActive {
           background-color: var(--color-tints);
-          border-radius: 1rem 0;
-          padding: .5rem 1rem;
+          border-radius: 1rem;
+          padding: 1rem 1.5rem;
         }
        }
        ion-icon {
-        font-size: (--text-4xl);
+        font-size: (--text-5xl);
        }
     }
   }
@@ -54,6 +66,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     padding: 0 4rem;
+    @include respond(tab-land){
+      grid-template-columns: repeat(2, 1fr);
+    }
     @include respond(tab-port) {
       grid-template-columns: 1fr;
       padding: 0;
@@ -63,7 +78,7 @@
     position: fixed;
     bottom: 0%;
     right: 0;
-    transform: translate(0, -100%);
+    transform: translate(0, -50%);
     margin-right: 5%;
   }
 }
