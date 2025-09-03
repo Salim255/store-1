@@ -1,9 +1,19 @@
-.items-item{
+@import '../../../../../themes/styles/mixins';
+
+.items-item {
   font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
   transition: all .2s;
-  padding: 2rem 4rem;
+  padding: 2rem;
+  margin: 1rem 0;
+  @include respond(tab-port){
+    box-shadow: var(--box-shadow-light-small);
+  }
+  @include respond(phone){
+    box-shadow: var(--box-shadow-light-small);
+    border-radius: 2rem;
+  }
   &:hover {
     cursor: pointer;
     transform: translateY(-3px);

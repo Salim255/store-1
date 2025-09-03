@@ -6,17 +6,15 @@
    .products-content {
       @include page-layout();
       padding: 0;
-      .filter {
-        padding: 4rem;
+      &__filter {
+        padding: var(--x-l-spacing) var(--x-l-spacing) 0 var(--x-l-spacing);
+
         @include respond(phone) {
-          padding: var(--sm-spacing);
+          padding: var(--sm-spacing) var(--sm-spacing) 0 var(--sm-spacing);
         }
       }
-      &:first-child section {
-        margin-top: var(--x-l-spacing);
-        @include respond(phone) {
-         margin-top: var(--sm-spacing);
-        }
+      &__list {
+
       }
     }
   }

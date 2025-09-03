@@ -13,7 +13,6 @@ export function corsConfig(app: INestApplication) {
       callback: (err: Error | null, allow?: boolean) => void,
     ) => {
       if (!origin || allowedOrigins.includes(origin)) {
-        console.log(origin);
         callback(null, (origin as any) || true);
       } else {
         callback(new Error(`Origin not allowed by CORS: ${origin}`));
