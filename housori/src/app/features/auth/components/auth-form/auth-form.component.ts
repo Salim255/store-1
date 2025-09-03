@@ -72,7 +72,7 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
                     this.toastService.success('Login successful! Let’s make things happen')
                   },
                   error: () => {
-                      this.toastService.error("Login failed. Please check your credentials and try again.");
+                    this.toastService.error("Login failed. Please check your credentials and try again.");
                   }
                 }
               );
