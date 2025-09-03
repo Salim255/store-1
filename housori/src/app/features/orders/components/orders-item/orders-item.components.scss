@@ -5,13 +5,14 @@
   gap: var(--x-l-spacing);
   @include respond(tab-port) {
    flex-direction: column;
+   box-shadow: var(--box-shadow-light-small);
+   border-radius: 1rem;
   }
-  @include respond(phone) {
-   flex-direction: column;
-  }
+
   &__details {
     flex: .5;
     display: flex;
+
   }
   &__figure {
     display: flex;
@@ -23,19 +24,23 @@
   &__figure-img {
     width: 16rem;
     height: 14rem;
+    object-fit: cover;
     border-radius: 1rem;
     @include respond(tab-port) {
       height: 24rem;
       flex: 1;
     }
     @include respond(phone) {
-    //height: 10rem;
+      height: 16rem;
+      flex: 1;
     }
   }
   &__figure-caption {
     flex: 1;
     width: 100%;
-
+    @include respond(tab-port) {
+      padding: 2rem 2rem 0 0;
+    }
     dl {
       display: none;
       margin-bottom: var(--xs-spacing);
