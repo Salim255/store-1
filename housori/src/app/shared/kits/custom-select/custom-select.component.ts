@@ -63,6 +63,8 @@ export class CustomSelectComponent implements OnInit, OnDestroy {
   writeValue(value: any): void {
     if (value !== undefined && value !== null) {
       this.selectedOption = value;
+    } else {
+      this.selectedOption = 'all'; // fallback when reset() clears to null
     }
   }
 

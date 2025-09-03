@@ -101,5 +101,5 @@ export class ProductFilterDto {
   alphaSort?: 'a-z' | 'z-a';
   featured?: string;
   search?: string;
-  shipping?: boolean;
+  shipping?: 'true';
 }
