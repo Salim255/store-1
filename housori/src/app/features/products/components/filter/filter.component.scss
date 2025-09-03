@@ -44,7 +44,6 @@
         ion-label {
           font-size: var(--text-3xl);
           font-weight: var(--font-bold);
-
         }
         output {
           font-size: var(--text-base);
@@ -106,26 +105,27 @@
       align-self: center;
      }
 
+     ion-label {
+       margin-bottom: var(--md-spacing);
+     }
     ion-toggle {
-      padding: var(--xs-spacing);
+      @include respond(tab-port) {
+       padding: 0;
+      }
       --track-background: var(--color-tints);
       --track-background-checked: var(--color-primary);
       --handle-max-height: auto;
-      transform: scale(0.8);
+      //transform: scale(0.8);
      }
 
-
-    ion-toggle::part(handle) {
-      background-color: var(--bg-main);
-    }
+     ion-toggle::part(handle) {
+       background-color: var(--bg-main);
+     }
 
      @include respond(tab-port){
        width: 100%;
        flex-direction: row;
        justify-content: space-between;
-       ion-toggle {
-         transform: scale(0.7);
-       }
      }
     }
     @include respond(tab-port) {
