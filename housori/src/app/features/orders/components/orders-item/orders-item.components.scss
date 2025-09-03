@@ -22,12 +22,12 @@
     }
   }
   &__figure-img {
-    width: 16rem;
-    height: 14rem;
+    width: 18rem;
+    height: 12rem;
     object-fit: cover;
     border-radius: 1rem;
     @include respond(tab-port) {
-      height: 24rem;
+      height: 20rem;
       flex: 1;
     }
     @include respond(phone) {
