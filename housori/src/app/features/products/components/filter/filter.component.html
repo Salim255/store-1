@@ -7,19 +7,26 @@
     <div class="category-options">
       <ion-label color="empty" position="stacked"> Select Category </ion-label>
       <div class="category-options__select">
-        <app-custom-select [options]="metaData.categories || []"></app-custom-select>
+        <app-custom-select
+        formControlName="category"
+        [options]="metaData.categories || []">
+        </app-custom-select>
       </div>
     </div>
     <div class="company-options">
       <ion-label color="empty" position="stacked"> Select Company </ion-label>
       <div class="company-options__select">
-        <app-custom-select [options]="metaData.companies || []"></app-custom-select>
+        <app-custom-select
+        formControlName="company"
+        [options]="metaData.companies || []"></app-custom-select>
       </div>
     </div>
     <div class="sort-options">
       <ion-label color="empty" position="stacked"> Sort By </ion-label>
       <div class="sort-options__select">
-        <app-custom-select [options]="sortOptions || []"></app-custom-select>
+        <app-custom-select
+          formControlName="alphaSort"
+          [options]="sortOptions || []"></app-custom-select>
       </div>
   </div>
   </section>
