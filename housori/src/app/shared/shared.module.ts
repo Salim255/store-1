@@ -6,6 +6,7 @@ import { CustomSelectComponent } from "./kits/custom-select/custom-select.compon
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { Placeholder } from "./components/place-holder/place-holder.component";
 import { ToastrModule } from 'ngx-toastr';
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
     PaginationComponent,
     CustomSelectComponent,
     OrderTotalComponent,
+    SpinnerComponent
   ],
   imports: [
     ToastrModule,
@@ -24,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     PaginationComponent,
     CustomSelectComponent,
     OrderTotalComponent,
+    SpinnerComponent
   ]
 })
 
