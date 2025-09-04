@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { SpinnerService } from "../../services/spinner.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-spinner',
@@ -6,4 +8,7 @@ import { Component } from "@angular/core";
   styleUrls: ['./spinner.component.scss'],
   standalone: false,
 })
-export class SpinnerComponent {}
+export class SpinnerComponent {
+  isLoading$ = this.spinnerService.isLoading;
+  constructor(private spinnerService: SpinnerService){}
+}
