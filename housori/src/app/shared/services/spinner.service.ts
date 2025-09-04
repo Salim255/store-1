@@ -11,7 +11,7 @@ export class SpinnerService {
   private showTimeout: ReturnType<typeof setTimeout> | null = null;
 
   // Minimum visible time (ms) to prevent flicker
-  private minShowTime = 300;
+  private minShowTime = 2000;
 
   // Track when spinner was shown (for min display logic)
   private lastShowTime = 0;

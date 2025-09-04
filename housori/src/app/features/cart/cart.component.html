@@ -14,7 +14,7 @@
           <app-order-total [totalDetails]="totalDetails"></app-order-total>
         </section>
       </section>
-       <div class="cart__place-holder">
+       <div class="cart__place-holder" *ngIf="productsNm === 0">
         <app-place-holder  [componentName]="'cart'"></app-place-holder>
       </div>
     </div>
