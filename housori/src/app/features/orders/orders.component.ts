@@ -32,6 +32,9 @@ export class OrdersComponent {
       });
   }
 
+  get isEmpty():boolean{
+    return this.ordersList.length === 0;
+  }
   ngOnDestroy(): void {
     this.ordersSubscription?.unsubscribe();
    }
