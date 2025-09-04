@@ -27,6 +27,8 @@ export class Placeholder {
         this.mainText = this.placeHolderData[0].text;
         return;
       default:
+        this.btnText = this.placeHolderData[0].btn;
+        this.mainText = this.placeHolderData[0].text;
         return;
     }
   }
