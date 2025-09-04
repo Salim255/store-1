@@ -13,7 +13,7 @@
         </section>
       </div>
       <div class="checkout__place-holder">
-        <app-place-holder *ngIf="!cartItems().length"></app-place-holder>
+        <app-place-holder *ngIf="!cartItems().length" [componentName]="'checkout'"></app-place-holder>
       </div>
     </div>
   </div>
