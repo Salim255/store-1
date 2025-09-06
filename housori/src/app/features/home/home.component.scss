@@ -5,6 +5,7 @@
     padding-top: 14rem;
     .home-content {
       @include page-layout();
+
       @include respond(tab-port) {
         display: flex;
         flex-direction: column;
@@ -36,6 +37,7 @@
         }
       }
       &__featured-products {
+         padding-bottom: var(--x-l-spacing);
         .featured-content {
           display: flex;
           justify-content: space-around;

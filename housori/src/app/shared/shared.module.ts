@@ -7,6 +7,7 @@ import { PaginationComponent } from "./components/pagination/pagination.componen
 import { Placeholder } from "./components/place-holder/place-holder.component";
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     SpinnerComponent
   ],
   imports: [
+    RouterModule,
     ToastrModule,
     CommonModule,
     IonicModule,
