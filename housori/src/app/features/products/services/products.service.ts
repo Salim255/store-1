@@ -7,6 +7,8 @@ import { HttpParams } from "@angular/common/http";
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
   productsSourceBehavior = new BehaviorSubject<{ products: Product[], meta: ApiMetaData } | null>(null);
+  private featuredProductsSourceBehavior = new BehaviorSubject< { products: Product[] } | null>(null);
+  getFeaturedProductsSource$ = this.featuredProductsSourceBehavior.asObservable();
   constructor(private productHttpService: ProductHttpService){}
 
   getAllProducts(
@@ -25,4 +27,18 @@ export class ProductsService {
       catchError((err) => of(err))
     );
   }
+
+   getFeaturedProducts(): Observable<GetProductsResponseDto>{
+    return this.productHttpService.fetchFeaturedProducts().pipe(
+      tap((response => {
+        if (response.data, "hello") {
+          this. featuredProductsSourceBehavior.next({
+            products: response.data.products,
+          })
+        }
+      })),
+      catchError((err) => of(err))
+    );
+  }
+
 }
