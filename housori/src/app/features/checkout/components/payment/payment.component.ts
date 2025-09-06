@@ -17,35 +17,32 @@ import { CartService } from 'src/app/features/cart/services/cart-service';
  theme: 'stripe',
  variables: {
     colorPrimary: '#0E766E',
-    colorBackground: '#FAF9F7',
-    //colorText: '#30313d',
-    colorDanger: '#df1b41',
+    colorBackground: '#FFFFFF',
+    colorText: '#042321s',
+    colorDanger: '#eb7769',
     fontFamily: 'Ideal Sans, system-ui, sans-serif',
-    spacingUnit: '5px',
+    spacingUnit: '4px',
     borderRadius: '10px',
     // See all possible variables below
 
     gridColumnSpacing: '10px',
-    gridRowSpacing: '2rem',
+    gridRowSpacing: '1rem',
     fontLineHeight: '1.5',
     fontSizeBase: '1rem',
     fontWeightNormal: '400',
-
-
   },
   rules: {
       '.Label': {
         fontWeight: '600',
-        color: '#8b0a0a',
+        color: '#042321s',
         fontSize: '1.2rem',
       },
       '.Input': {
-         colorText: '#8b0a0a',
-         fontSize: '1rem',
-          width: '100%',
+        colorText: '#042321s',
+        fontSize: '1rem',
+        width: '100%',
       },
       '.Tab': {
-
         border: '1px solid #E0E6EB',
         boxShadow: '1 1px 1px rgba(0, 0, 0, 0.2), 1 1px 1px rgba(0, 0, 0, 0.1)',
       },
@@ -76,32 +73,6 @@ import { CartService } from 'src/app/features/cart/services/cart-service';
     }
 };
 
-
-const options: StripePaymentElementOptions = {
-  layout: 'tabs', // Use 'accordion' if you have >4 payment methods
-  fields: {
-    billingDetails: {
-      name: 'auto',
-      email: 'auto',
-      address: 'auto'
-    }
-  },
-  defaultValues: {
-    billingDetails: {
-      name: 'Salim Hassan',
-      email: 'salim@example.com',
-      address: {
-        line1: '123 Rue de la Liberté',
-        city: 'Lille',
-        postal_code: '59000',
-        country: 'FR'
-      }
-    }
-  },
-  business: {
-    name: 'SalimTech'
-  }
-};
 
 @Component({
   selector: 'app-payment',

@@ -107,7 +107,7 @@ export class PaymentFeatures {
     Stripe.Response<Stripe.Checkout.Session>
   > {
     return await this.stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'paypal'],
+      payment_method_types: ['card'],
       mode: 'payment',
       ui_mode: 'custom',
       // From the email we get the user that created the order

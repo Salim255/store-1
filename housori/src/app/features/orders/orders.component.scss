@@ -9,6 +9,8 @@
 
   &__content {
     @include page-layout();
+    position: relative;
+    background-color: yellow;
   }
 
   &__list {
@@ -25,5 +27,12 @@
    &:hover {
     cursor: pointer;
    }
+  }
+
+  &__place-holder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

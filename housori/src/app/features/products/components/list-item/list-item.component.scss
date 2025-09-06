@@ -24,13 +24,20 @@
   }
   &__details {
     display: flex;
-    gap: 4rem;
+    gap: var(--x-l-spacing);
+    @include respond(phone){
+      gap: var(--md-spacing);
+    }
     .details-img {
       height: 16rem;
       width: 24rem;
       object-fit: cover;
       border-radius: 1rem;
       transition: all .2s;
+      @include respond(phone){
+        height: 14rem;
+        width: 20rem;
+      }
       cursor: pointer;
       &:hover {
         //transform: scaleY(1.02);

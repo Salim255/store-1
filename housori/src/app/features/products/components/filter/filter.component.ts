@@ -62,7 +62,7 @@ export class FilterComponent {
     if (company) this.params = this.params.set('company', company);
     if (category) this.params = this.params.set('category', category);
     if (sort) this.params = this.params.set('alphaSort', sort);
-    if (shipping) this.params = this.params.set('shipping', shipping);
+    if (typeof shipping === 'boolean') this.params = this.params.set('shipping', shipping);
 
     this.productsService.getAllProducts(this.params).subscribe(data =>{
       console.log(data)
@@ -107,6 +107,7 @@ export class FilterComponent {
     })
 
      this.filterFormFields.get('shipping')?.valueChanges.subscribe(value => {
+      console.log(value);
       this.shippingValue.set(value);
     })
 

@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
+import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -11,7 +13,18 @@ import { ToastrModule } from 'ngx-toastr';
       // This ensures the toast container is global
       //toastComponent: undefined,
     }),
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true
+    },
   ]
 })
 
-export class CoreModule {}
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule ){
+    if (parentModule) {
+      throw new Error('CoreModule is already loaded. Import it only on AppModule')
+    }
+  }
+}
