@@ -52,7 +52,7 @@
       }
       ion-range {
         --bar-background: var(--bg-main);
-        --bar-background-active: var(--color-tints);
+        --bar-background-active: var(--color-primary-tints);
         --bar-height: 2rem;
         --bar-border-radius: 2rem;
         --knob-background: var(--color-primary);
@@ -112,7 +112,7 @@
       @include respond(tab-port) {
        padding: 0;
       }
-      --track-background: var(--color-tints);
+      --track-background: var(--color-primary-tints);
       --track-background-checked: var(--color-primary);
       --handle-max-height: auto;
       //transform: scale(0.8);

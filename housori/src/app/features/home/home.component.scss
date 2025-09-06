@@ -36,48 +36,6 @@
           gap: var(--2x-l-spacing);
         }
       }
-      &__featured-products {
-         padding-bottom: var(--x-l-spacing);
-        .featured-content {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          gap:  var(--x-l-spacing);
-          padding: 0 2rem;
-          &__figure {
-            background-color: var(--bg-secondary);
-            margin: 0;
-            width: 100%;
-            box-shadow: 0px 5px 0px  rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            border-radius: 1rem;
-            img {
-              height: 20rem;
-              width: 100%;
-              object-fit: cover;
-              border-radius: 1rem;
-            }
-
-            .figure-caption {
-              padding-top: 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              font-size: var(--text-xl);
-            }
-          }
-
-          @include respond(tab-port){
-            flex-direction: column;
-            padding: 0 .5rem;
-             &__figure {
-              box-shadow: 0px 2px 10px  2px rgba(0, 0, 0, 0.1);
-              img {
-                height: 30rem;
-              }
-             }
-          };
-        }
-      }
     }
   }
 }

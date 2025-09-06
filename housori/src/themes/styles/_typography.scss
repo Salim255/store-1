@@ -1,7 +1,6 @@
 @import '../styles/_mixins';
 
 :root {
-  --hero-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnVybml0dXJlfGVufDB8fDB8fHww');
   // 1. FONT FAMILY
   --font-base: 'Inter', sans-serif;
   --font-heading: 'Poppins', sans-serif;
@@ -28,10 +27,6 @@
   --font-medium: 500;
   --font-bold: 700;
 
-  // 4. FONT COLORS
-  --text-color-base: #1e1e1e;
-  --text-color-muted: #555;
-  --text-color-heading: #111;
 
   // 5. LINE HEIGHT
 
@@ -65,10 +60,7 @@
   --radius-2xl: 1.6rem;
   --radius-3xl: 2rem;
   --radius-strong: 10rem;
-  --radius-full: 50%; // pill/circle
-  // 08 ===== Whitespaces
-  // UI Faces ==
-
+  --radius-full: 50%;
 }
 
 // Heading
@@ -77,9 +69,7 @@
   font-size: var(--text-7xl);
   font-weight: var(--font-bold);
   line-height: 1.05;
-  color: var(--text-color-heading);
   letter-spacing: -.5px;
-  margin-bottom: var(--l-spacing);
   @include respond(phone) {
     //height: 10rem;
     font-size: var(--text-5xl);
@@ -88,29 +78,34 @@
 
 .heading-secondary {
   font-size: var(--text-5xl);
-  font-weight: var(--font-bold);
-  line-height: 1.05;
-  color: var(--text-color-heading);
   letter-spacing: -.4px;
-  margin-bottom: var(--l-spacing);
 }
 
 .heading-tertiary {
   font-size: var(--text-3xl);
-  font-weight: var(--font-bold);
-  line-height: 1.05;
-  color: var(--text-color-heading);
   letter-spacing: -.3px;
-  margin-bottom: var(--l-spacing);
 }
 
 .heading-quaternary {
   font-size: var(--text-lg); // slightly smaller than heading-tertiary
-  font-weight: var(--font-bold);
-  line-height: 1.05;
-  color: var(--text-color-heading);
   letter-spacing: -.2px;
   margin-bottom: var(--xs-spacing);
+}
+
+
+.heading-primary,
+.heading-secondary {
+  margin-bottom: var(--l-spacing);
+}
+
+.heading-primary,
+.heading-secondary,
+.heading-tertiary
+.heading-quaternary {
+  color: var(--grey-1);
+  font-weight: var(--font-bold);
+  font-weight: var(--font-bold);
+  line-height: 1.05;
 }
 
 .btn {
@@ -124,11 +119,6 @@
   color: var(--bg-main);
   box-shadow: var(--box-shadow-light);
   border-radius: var(--radius-strong);
-  &:link,
-  &:active,
-  &:hover {
-   // color: var(--bg-main);
-  }
   &__primary {
     padding: 1.5rem 3rem;
     font-size: var(--text-2xl);
