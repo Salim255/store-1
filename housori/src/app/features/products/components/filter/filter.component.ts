@@ -32,7 +32,7 @@ export class FilterComponent {
   companyValue = signal<string>("all");
   categoryValue = signal<string>("all");
   sortValue = signal<string>("all");
-  priceValue = signal<number>(10000);
+  priceValue = signal<number>(100000);
   shippingValue = signal<boolean>(false);
 
   categoryOptions = ['Chairs', 'Tables', 'Beds', 'Sofas'];
@@ -69,7 +69,7 @@ export class FilterComponent {
     });
   }
   resetFilter(){
-    this.filterFormFields.reset();
+    this.buildForm();
     this.categoryValue.set('all');
     this.companyValue.set('all');
     this.sortValue.set('all');
@@ -84,7 +84,7 @@ export class FilterComponent {
       category: [null],
       company: [null],
       alphaSort: [null],
-      price: [null],
+      price: [100000],
       shipping: [null],
     });
   }
