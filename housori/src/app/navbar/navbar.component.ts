@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscribeToAuthType();
     this.subscribeToUserAuthenticated();
     this.subscribeToSideBarStatus();
-    this.toastService.success('success');
   }
 
   subscribeToSideBarStatus(): void{
