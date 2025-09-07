@@ -2,7 +2,7 @@
   &__group {
     display: flex;
     flex-direction: column;
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
     margin-top: var(--xs-spacing);
   }
 
@@ -14,9 +14,8 @@
     border-radius: var(--radius-strong);
     background-color: var(--bg-main);
     padding: 1rem 1.5rem;
-    font-size: var(--text-2xl);
-    //border: 2px solid rgb(237, 235, 235);
-
+    font-size: var(--text-xl);
+    color: var(--grey-3);
     transition: all .2s;
     &:hover {
       transform: translateY(-1px);
