@@ -65,10 +65,12 @@
   &__title {
     margin-bottom: var(--sm-spacing);
     font-size: var(--text-xl);
+    font-weight: var(--font-medium);
+    color: var(--grey-2);
   }
   &__description {
     font-size: var(--text-base);
-    color: #042321;
+    color: var(--grey-3);
   }
 
   &__metadata {

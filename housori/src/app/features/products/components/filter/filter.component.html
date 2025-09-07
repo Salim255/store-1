@@ -1,11 +1,11 @@
 <form [formGroup]="filterFormFields" class="filter">
   <section class="filter__top-section">
     <div class="search-input">
-      <ion-label color="empty" position="stacked">Search Products</ion-label>
+      <label for="search">Search Products</label>
       <input formControlName="search" placeholder="search" />
     </div>
     <div class="category-options">
-      <ion-label color="empty" position="stacked"> Select Category </ion-label>
+      <label for="category"> Select Category </label>
       <div class="category-options__select">
         <app-custom-select
         formControlName="category"
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="company-options">
-      <ion-label color="empty" position="stacked"> Select Company </ion-label>
+      <label for="company"> Select Company </label>
       <div class="company-options__select">
         <app-custom-select
         formControlName="company"
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="sort-options">
-      <ion-label color="empty" position="stacked"> Sort By </ion-label>
+      <label for="alphaSort" color="empty" position="stacked"> Sort By </label>
       <div class="sort-options__select">
         <app-custom-select
           formControlName="alphaSort"
@@ -33,7 +33,7 @@
   <section class="filter__bottom-section">
     <div class="price-range">
       <div class="price-range__label">
-        <ion-label class="title"> Price </ion-label>
+        <label for="price" class="title"> Price </label>
         <output > {{ priceValue() | currency }} </output>
       </div>
       <ion-range
@@ -43,7 +43,7 @@
       </ion-range>
     </div>
     <div class="free-shipping">
-      <ion-label >Free Shipping</ion-label>
+      <label for="shipping" > Free Shipping </label>
       <ion-toggle formControlName="shipping"></ion-toggle>
     </div>
     <div class="search-btn">

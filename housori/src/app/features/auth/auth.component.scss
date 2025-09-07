@@ -2,7 +2,7 @@
 
 .auth {
   height: 100%;
-  padding: var(--x-l-spacing);
+  padding: var(--md-spacing);
   &__header {
     text-align: center;
   }
@@ -10,8 +10,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+
     .form {
-      width: 60%;
+      width: 50%;
       margin: auto;
       flex: .6;
       @include respond(phone) {
@@ -28,6 +29,9 @@
       flex-direction: column;
       width: 40%;
       gap: var(--sm-spacing);
+      button {
+        padding: 1.2rem 2.8rem
+      }
       @include respond(phone) {
         width: 100%;
       }

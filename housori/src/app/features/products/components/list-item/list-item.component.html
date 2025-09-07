@@ -1,11 +1,11 @@
 <div class="items-item">
-  <section class="items-item__details">
+  <figure class="items-item__details">
     <img class="details-img" [src]="product.images[0]" alt="Product">
-    <div class="details-title">
-      <h3> {{ product.name }} </h3>
-      <p> {{ product.company }} </p>
-    </div>
-  </section>
+    <figcaption class="details-title">
+      <p class="product-name"> {{ product.name }} </p>
+      <p class="product-company"> {{ product.company }} </p>
+    </figcaption>
+  </figure>
   <section class="items-item__price">
     <span >{{ product.price | currency }}</span>
   </section>

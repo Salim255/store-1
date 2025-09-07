@@ -10,7 +10,7 @@
     <button
       class="btn btn__primary btn__primary--full"
       type="submit"
-      [disabled]="shippingFields.invalid"
+      [disabled]="!isValid"
       (click)="onPlaceOrder()">
         Place your order
     </button>

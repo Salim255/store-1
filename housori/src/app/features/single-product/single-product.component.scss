@@ -28,12 +28,20 @@
       border-radius: var(--radius-3xl);
       @include respond(tab-port){
         height: 40rem;
-        flex: unset;
       }
+    }
+    @include respond(tab-port){
+      flex: unset;
     }
   }
   &__description {
     flex: 1;
+  }
+  &__name{
+    font-weight: var(--font-bold);
+    color: var(--grey-2);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sm-spacing);
   }
   &__paragraph, &__price{
     font-size: var(--text-base);
@@ -41,6 +49,7 @@
   }
   &__price {
     margin-bottom: var(--sm-spacing);
+    font-size: var(--text-lg);
   }
   &__add-btn{
     border: none;

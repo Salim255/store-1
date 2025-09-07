@@ -51,8 +51,14 @@
       @include respond(tab-port){
         padding: 2rem 0rem 0 0;
       }
-      h3 {
+      font-size: var(--text-xl);
+      .product-name {
         margin-bottom: 1rem;
+        font-weight: var(--font-medium);
+        color: var(--grey-2);
+      }
+      .product-company {
+        font-size: var(--text-lg);
       }
     }
   }

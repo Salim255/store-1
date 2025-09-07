@@ -28,7 +28,6 @@ export class AuthService {
   authenticateUser(): Observable<AuthStatusPayload> {
     return this.authHttpService.authStatus().pipe(
       tap((response) => {
-        console.log(response, "hello");
         const authenticated: boolean = response.data.authenticated
         this.userIsAuthenticatedSubject.next(authenticated);
       }),
