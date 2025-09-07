@@ -4,7 +4,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: var(--color-primary-tints);
+  background-color: var(--grey-4);
   transform: translate(-50%, -50%);
   transform-origin: center center;
   box-shadow: -2px 4px 2px rgba(0,0,0, 0.05);
@@ -31,11 +31,19 @@
         width: 12rem;
       }
     }
+    figCaption {
 
-    p{
-      font-size: var(--text-base);
+      .product-name {
+        font-weight: var(--font-medium);
+        color: var(--grey-2);
+        margin-bottom: var(--xs-spacing);
+        font-size: var(--text-xl);
+      }
+
+      .product-company {
+        font-size: var(--text-lg);
+      }
     }
-
   }
 
 

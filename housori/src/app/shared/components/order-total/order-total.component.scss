@@ -6,6 +6,9 @@
       margin-bottom: var(--md-spacing);
       font-size: var(--text-2xl);
     }
+    dd {
+      font-size: var(--text-lg);
+    }
   }
   &__btn {
     border: none;

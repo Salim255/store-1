@@ -18,10 +18,14 @@
     padding-top: 1.5rem;
     display: flex;
     justify-content: space-between;
-    font-size: var(--text-xl);
+
     .caption-name {
       font-weight: var(--font-medium);
       color: var(--grey-2);
+      font-size: var(--text-xl);
+    }
+    .caption-price {
+      font-size: var(--text-lg);
     }
   }
 
