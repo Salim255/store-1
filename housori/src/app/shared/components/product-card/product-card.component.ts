@@ -1,13 +1,13 @@
-import { Component, Input, signal } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Product } from "src/app/features/products/model/product.model";
 
 @Component({
-  selector: 'app-featured-item',
-  templateUrl: './featured-item.component.html',
-  styleUrls: ['./featured-item.component.scss'],
+  selector: 'app-product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.scss'],
   standalone: false,
 })
-export class FeaturedItemComponent {
+export class ProductCardComponent {
   @Input() product!:Product;
   constructor(){}
 

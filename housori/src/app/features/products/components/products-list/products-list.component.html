@@ -25,9 +25,11 @@
       </app-list-item>
     </ng-container>
     <ng-template #gallery>
-      <app-gallery-item (click)="onProduct(item)"
-        *ngFor="let item of products" [product]="item">
-      </app-gallery-item>
+      <app-product-card
+        (click)="onProduct(item)"
+        *ngFor="let item of products"
+        [product]="item">
+      </app-product-card>
     </ng-template>
   </div>
 
