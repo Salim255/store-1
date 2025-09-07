@@ -3,19 +3,20 @@ import { HomeComponent } from "./home.component";
 import { HomeRoutingModule } from "./home-routing.module";
 import { FeaturedComponent } from "./components/featured/featured.component";
 import { CommonModule } from "@angular/common";
-import { FeaturedItemComponent } from "./components/featured-item/featured-item.component";
 import { IntroComponent } from "./components/intro/intro.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [
     IntroComponent,
-    FeaturedItemComponent,
     HomeComponent,
     FeaturedComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
-    HomeRoutingModule],
+    HomeRoutingModule,
+  ],
 })
 
 export class HomeModule { }

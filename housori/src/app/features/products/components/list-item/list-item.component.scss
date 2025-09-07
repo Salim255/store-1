@@ -46,9 +46,6 @@
           box-shadow: unset;
         }
       }
-      &:active {
-        //transform: scaleY(1.1);
-      }
     }
     .details-title {
       @include respond(tab-port){
