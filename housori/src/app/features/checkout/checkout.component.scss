@@ -14,7 +14,19 @@
     &>section {
       flex: 1;
     }
-
+    .shipping-info {
+      app-shipping-address-form {
+        margin-top: var(--md-spacing);
+        display: inline-block;
+        width: 100%;
+      }
+    }
+    .order-details {
+      app-order-total {
+        margin-top: var(--md-spacing);
+        display: inline-block;
+      }
+    }
     @include respond(tab-port) {
       flex-direction: column-reverse;
     }

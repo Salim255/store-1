@@ -3,8 +3,8 @@
 .list-header {
   display: flex;
   text-transform: uppercase;
-  border-bottom: .2rem solid var(--color-primary);
-  gap: 4rem;
+  border-bottom: 1px solid var(--grey-5);
+  gap: var(--x-l-spacing);
   &__description{
     flex: .5;
   }
@@ -15,6 +15,7 @@
   }
   span {
     font-size: var(--text-base);
+    color: var(--grey-1);
   }
 
   &__qty,

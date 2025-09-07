@@ -8,9 +8,10 @@
     </div>
   <div class="form__btn">
     <button
-      class="btn btn__primary btn__primary--full"
+      class="btn btn__primary"
+      [ngClass]="!isValid ? 'btn__primary--disabled' : 'btn__primary--full'"
       type="submit"
-      [disabled]="shippingFields.invalid"
+      [disabled]="!isValid"
       (click)="onPlaceOrder()">
         Place your order
     </button>
