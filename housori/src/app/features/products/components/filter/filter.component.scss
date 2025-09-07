@@ -1,6 +1,12 @@
 @import '../../../../../themes/styles/mixins';
 
 .filter {
+  label {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-medium);
+    color: var(--grey-1);
+    display: inline-block;
+  }
   &__top-section {
     display: flex;
     gap: var(--x-l-spacing);
@@ -24,12 +30,8 @@
     .company-options,
     .sort-options  {
       flex: 1;
-      ion-label {
-        font-size: var(--text-3xl);
-        font-weight: var(--font-bold);
-        display: inline-block;
-        color: var(--grey-1);
-        margin-bottom: var(--sm-spacing);
+      label {
+        margin-bottom: var(--xs-spacing);
       }
     }
   }
@@ -42,11 +44,6 @@
         display: flex;
         justify-content: space-between;
 
-        ion-label {
-          font-size: var(--text-3xl);
-          font-weight: var(--font-bold);
-          color: var(--grey-1);
-        }
         output {
           font-size: var(--text-base);
           font-weight: var(--font-bold);
@@ -98,17 +95,13 @@
      flex-direction: column;
      justify-content: center;
      justify-items: center;
-     ion-label {
-      font-size: var(--text-3xl);
-      font-weight: var(--font-bold);
-      color: var(--grey-1);
-     }
-     ion-label,
+
+     label,
      ion-toggle {
       align-self: center;
      }
 
-     ion-label {
+     label {
        margin-bottom: var(--md-spacing);
      }
     ion-toggle {
