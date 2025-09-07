@@ -28,7 +28,8 @@
         font-size: var(--text-3xl);
         font-weight: var(--font-bold);
         display: inline-block;
-        margin-bottom: var(--xs-spacing);
+        color: var(--grey-1);
+        margin-bottom: var(--sm-spacing);
       }
     }
   }
@@ -44,6 +45,7 @@
         ion-label {
           font-size: var(--text-3xl);
           font-weight: var(--font-bold);
+          color: var(--grey-1);
         }
         output {
           font-size: var(--text-base);
@@ -56,7 +58,7 @@
         --bar-height: 2rem;
         --bar-border-radius: 2rem;
         --knob-background: var(--color-primary);
-        --knob-size: 3rem;
+        --knob-size: 4rem;
         --knob-spacing: .6rem;
         --pin-background: var(--color-primary);
         padding-inline: 1rem;
@@ -99,6 +101,7 @@
      ion-label {
       font-size: var(--text-3xl);
       font-weight: var(--font-bold);
+      color: var(--grey-1);
      }
      ion-label,
      ion-toggle {
@@ -115,7 +118,7 @@
       --track-background: var(--color-primary-tints);
       --track-background-checked: var(--color-primary);
       --handle-max-height: auto;
-      //transform: scale(0.8);
+      transform: scale(1.4);
      }
 
      ion-toggle::part(handle) {
