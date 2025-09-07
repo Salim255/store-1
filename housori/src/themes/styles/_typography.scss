@@ -8,8 +8,8 @@
   // 2. FONT SIZES(px)
   // 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 /
   // 62 / 74 / 86 / 98
-  --text-xs: 1rem;
-  --text-sm: 1.2rem;
+  --text-xs: .8rem;
+  --text-sm: 1rem;
   --text-base: 1.4rem;
   --text-lg: 1.6rem;
   --text-xl: 1.8rem;
@@ -99,6 +99,7 @@
 .heading-tertiary {
   font-size: var(--text-3xl);
   letter-spacing: -.3px;
+  color: var(--grey-2);
 }
 
 .heading-quaternary {
@@ -144,7 +145,12 @@
       outline: 2px solid var(--color-primary);
       color: var(--color-primary);
     }
-
+    &--disabled {
+      background-color: #cccccc;   // soft grey background
+      color: #666666;              // muted text
+      border: none;
+      cursor: not-allowed;
+    }
     &:hover {
       transform: translateY(-3px);
       box-shadow: var(--box-shadow-light);

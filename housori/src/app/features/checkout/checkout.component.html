@@ -3,12 +3,12 @@
     <div class="checkout__content">
       <h1 class="checkout__header heading-primary">Place your order</h1>
       <div class="checkout__body" *ngIf="cartItems().length" >
-        <section class="checkou__shipping-info">
-          <h3 class="heading-tertiary">Shipping information: </h3>
+        <section class="shipping-info">
+          <h3 class="heading-tertiary"> Shipping information: </h3>
           <app-shipping-address-form ></app-shipping-address-form>
         </section>
-        <section class="checkout__order-details">
-          <h3 class="heading-tertiary">Order summary:</h3>
+        <section class="order-details">
+          <h3 class="heading-tertiary"> Order summary: </h3>
           <app-order-total [totalDetails]="totalDetails()"></app-order-total>
         </section>
       </div>

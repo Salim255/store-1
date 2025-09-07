@@ -34,7 +34,7 @@ export class ShippingAddressForm{
   ngOnInit(): void {
     this.buildForm();
     this.shippingFields.get('country')?.valueChanges.subscribe(result=> {
-      console.log(result)
+      console.log(this.shippingFields.valid)
     })
   }
 
@@ -63,4 +63,7 @@ export class ShippingAddressForm{
     })
   }
 
+  get isValid():boolean{
+    return this.shippingFields.valid;
+  }
 }
