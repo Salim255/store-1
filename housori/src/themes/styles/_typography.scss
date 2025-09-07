@@ -70,15 +70,31 @@
   font-weight: var(--font-bold);
   line-height: 1.05;
   letter-spacing: -.5px;
-  @include respond(phone) {
-    //height: 10rem;
+
+  @include respond(tab-land) {
+    font-size: var(--text-6xl);
+  }
+  @include respond(tab-port) {
     font-size: var(--text-5xl);
   }
+  @include respond(phone) {
+    font-size: var(--text-4xl);
+  }
+
 }
 
 .heading-secondary {
   font-size: var(--text-5xl);
   letter-spacing: -.4px;
+  @include respond(tab-land) {
+    font-size: var(--text-4xl);
+  }
+  @include respond(tab-port) {
+    font-size: var(--text-3xl);
+  }
+  @include respond(phone) {
+    font-size: var(--text-2xl);
+  }
 }
 
 .heading-tertiary {

@@ -2,9 +2,9 @@
 
 .intro {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 55%;
   align-items: center;
-  gap: var(--x-l-spacing);
+  justify-content: space-between;
   min-height:  calc(100vh - 14rem);
   &__description{
     p {
