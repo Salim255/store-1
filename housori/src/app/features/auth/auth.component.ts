@@ -21,8 +21,6 @@ export class AuthComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.subscribeToAuthType();
     this.subscribeToFormValidation();
   }
@@ -34,7 +32,6 @@ export class AuthComponent implements OnInit {
   subscribeToFormValidation(){
     this.formValidationSubscription =
       this.authFormService.getAuthFormValidationStatus.subscribe(status => {
-        console.log(status, "heyy status");
         this.validForm.set(status);
       })
   }

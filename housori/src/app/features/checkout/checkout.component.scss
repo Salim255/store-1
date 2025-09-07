@@ -25,6 +25,7 @@
       app-order-total {
         margin-top: var(--md-spacing);
         display: inline-block;
+        width: 100%;
       }
     }
     @include respond(tab-port) {

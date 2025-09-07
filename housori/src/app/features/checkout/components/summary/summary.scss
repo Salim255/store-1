@@ -13,6 +13,9 @@
   &__shipping {
     margin-top: var(--x-l-spacing);
     font-size: var(--text-2xl);
+    dd {
+      font-size: var(--text-lg);
+    }
   }
   &__shipping-recipient{
     display: flex;
