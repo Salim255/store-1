@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { AuthType } from "../features/auth/services/auth.service";
 import { AuthService } from "../features/auth/services/auth.service";
 import {CoreService} from "../core/services/core.service";
-import { NavbarService } from "./services/navbar.service";
+import { LikeContent, NavbarService } from "./services/navbar.service";
 
 @Component({
   selector: "app-navbar",
@@ -17,19 +17,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
   cartState = signal< CartDetails | null>(null);
   authType = signal<AuthType | null>(null);
   openMenu = signal<boolean>(false);
-  showMenu = signal<boolean>(false);
+  showMenuBtn = signal<boolean>(false);
   cartStateSubscription!: Subscription;
   authTypeSubscription!: Subscription;
   authSubscription!: Subscription;
   sidBarStatusSubscription!: Subscription;
   userIsAuthenticated: boolean = false;
+  navLinks: LikeContent[];
 
   constructor(
     private navbarService: NavbarService,
     private coreService: CoreService,
     private authService: AuthService,
     private cartService: CartService,
-  ){}
+  ){
+    this.navLinks = this.navbarService.navLinks;
+  }
 
   ngOnInit(): void {
     this.subscribeToCartState();
@@ -39,7 +42,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
      window.addEventListener('resize', () => {
       const currentWidth = window.innerWidth;
-      this.showMenu.set(currentWidth<=896);
+      this.showMenuBtn.set(currentWidth<=896);
       // 896
      });
   }
@@ -99,9 +102,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onMenu(): void {
-    if(this.showMenu()) {
-      this.openMenu.set(true);
-    }
+    this.openMenu.set(this.showMenuBtn());
   };
 
   ngOnDestroy(): void {
