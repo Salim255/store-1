@@ -17,7 +17,7 @@
         justify-content: unset;
       }
       &__text {
-        flex: 1;
+        flex: .4;
         @include respond(tab-port) {
           flex: unset;
         }
@@ -28,7 +28,7 @@
         }
       }
       &__hero {
-        flex: 1;
+        flex: .6;
         img {
           border-radius: 2rem;
           width: 100%;

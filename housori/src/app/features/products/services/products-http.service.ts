@@ -33,4 +33,10 @@ export class ProductHttpService {
         `${this.basePath}`, { params,   withCredentials: true }
     );
   }
+
+  fetchFeaturedProducts(): Observable<GetProductsResponseDto>{
+    return this.httpClient.get<GetProductsResponseDto>(
+        `${this.basePath}featured-products?featured=true`, { withCredentials: true }
+    );
+  }
 }

@@ -10,7 +10,6 @@
   &__content {
     @include page-layout();
     position: relative;
-    background-color: yellow;
   }
 
   &__list {

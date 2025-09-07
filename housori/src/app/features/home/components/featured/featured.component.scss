@@ -1,0 +1,19 @@
+@import '../../../../../themes/styles/mixins';
+
+.featured-products {
+  padding-bottom: var(--x-l-spacing);
+  .featured-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap:  var(--x-l-spacing);
+    padding: 0 2rem;
+    app-product-card {
+      width: 100%;
+    }
+    @include respond(tab-port){
+      flex-direction: column;
+      padding: 0 .5rem;
+    };
+  }
+}

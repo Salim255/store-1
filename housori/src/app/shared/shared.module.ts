@@ -8,9 +8,11 @@ import { Placeholder } from "./components/place-holder/place-holder.component";
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { RouterModule } from "@angular/router";
+import { ProductCardComponent } from "./components/product-card/product-card.component";
 
 @NgModule({
   declarations: [
+    ProductCardComponent,
     Placeholder,
     PaginationComponent,
     CustomSelectComponent,
@@ -24,6 +26,7 @@ import { RouterModule } from "@angular/router";
     IonicModule,
   ],
   exports: [
+    ProductCardComponent,
     Placeholder,
     PaginationComponent,
     CustomSelectComponent,
