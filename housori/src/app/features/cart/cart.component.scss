@@ -30,6 +30,10 @@
     transform: translate(-50%, -50%);
     left: 35%;
     top: 60%;
+
+    @include respond(tab-port) {
+      left: 50%;
+    }
   }
 }
 

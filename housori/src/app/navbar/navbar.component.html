@@ -17,32 +17,20 @@
    </ng-container>
   </section>
   <nav class="header-navbar">
-      <a routerLink="/" class="header-navbar__logo" (click)="onMenu()">
-        <ion-icon name="menu"></ion-icon>
-        <span>Housori </span>
-      </a>
+    <a routerLink="/" class="header-navbar__logo" (click)="onMenu()">
+      <ion-icon name="menu"></ion-icon>
+      <span>Housori </span>
+    </a>
     <ul class="header-navbar__links">
-      <li class="navbar-item">
-        <a class="navbar-item__link navbar-item__link--inactive" routerLink="/home"
+      <li class="navbar-item" *ngFor="let link of navLinks">
+        <a
+          class="navbar-item__link navbar-item__link--inactive"
+          [routerLink]="link.path"
           routerLinkActive="navbar-item__link--active"
-          [routerLinkActiveOptions]="{ exact: true }">
-            Home
+          [routerLinkActiveOptions]="{ exact: link.exact || false }"
+        >
+          {{ link.label }}
         </a>
-      </li>
-      <li class="navbar-item" >
-        <a  class="navbar-item__link  navbar-item__link--inactive" routerLink="/about"  routerLinkActive="navbar-item__link--active">About</a>
-      </li>
-      <li class="navbar-item">
-        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/products" routerLinkActive="navbar-item__link--active">Products</a>
-      </li>
-      <li class="navbar-item">
-        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/orders" routerLinkActive="navbar-item__link--active">Orders</a>
-      </li>
-      <li class="navbar-item">
-        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/checkout" routerLinkActive="navbar-item__link--active">Checkout</a>
-      </li>
-      <li class="navbar-item">
-        <a class="navbar-item__link  navbar-item__link--inactive" routerLink="/cart" routerLinkActive="navbar-item__link--active">Cart</a>
       </li>
     </ul>
     <div routerLink="/cart"  class="header-navbar__cart navbar-item__link--inactive">

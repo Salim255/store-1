@@ -9,33 +9,29 @@ header {
   top: 0;
   background-color: var(--bg-main);
 
-
   .header-auth {
     display: flex;
     justify-content: right;
-
     gap: var(--l-spacing);
+    margin: auto;
     @include respond(tab-port){
       &__login,
       &__register{
         display: none;
+        a {
+          font-size: var(--text-sm);
+        }
       }
     }
     &__login {
       cursor: pointer;
       padding: 1rem 1.5rem;
-      a {
-        font-size: var(--text-sm);
-      }
-    }
 
+    }
     &__register {
       cursor: pointer;
       padding: 1rem 1.5rem;
-      a {
-        font-size: var(--text-sm);
-      }
-
+      padding-right: 2rem;
     }
     &__modal{
       position: absolute;
@@ -52,7 +48,6 @@ header {
        width: 100%;
        border-radius: 2rem;
        padding: 2rem;
-       // Soft glass-style shadow
        box-shadow:
         0 .4rem 2rem rgba(0, 0, 0, 0.2),   // main soft shadow
         0 .2rem .6rem rgba(0, 0, 0, 0.1);
@@ -93,7 +88,7 @@ header {
           color: var(--text-color-base);
           &--inactive{
             background-color: var(--bg-secondary);
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             border-radius: var(--radius-strong);
           }
           &--active{

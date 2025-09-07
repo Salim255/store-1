@@ -1,7 +1,7 @@
 <figure  class="product-card">
   <img [src]="image" alt="featured product" class="product-card__img" />
   <figcaption class="product-card__caption">
-    <p class="caption-name">Dining Table</p>
-    <p class="caption-price">$99.99</p>
+    <p class="caption-name"> {{ product.name }}</p>
+    <p class="caption-price">{{ product.price | currency }}</p>
   </figcaption>
 </figure>

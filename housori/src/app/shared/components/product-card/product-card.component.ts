@@ -15,4 +15,5 @@ export class ProductCardComponent {
     const img = this.product?.images[0];
     return img;
   }
+
 }
