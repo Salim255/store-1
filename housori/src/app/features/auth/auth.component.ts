@@ -26,6 +26,7 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log("Hell fom submit")
     this.authFormService.setSubmitFormSubject('submit');
   }
 
