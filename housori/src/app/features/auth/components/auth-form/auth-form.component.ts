@@ -49,16 +49,10 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSubmit():void {
-
     this.submitFormSubscription = this.authFormService
     .getSubmitForm
     .subscribe(value => {
-      const email = this.authFormFields.get('email')?.value;
-      const password = this.authFormFields.get('password')?.value;
-      const passwordConfirm = this.authFormFields.get('passwordConfirm')?.value;
-      const firstName = this.authFormFields.get('firstName')?.value;
-      const lastName = this.authFormFields.get('lastName')?.value;
-
+      const { email, password, passwordConfirm, firstName, lastName } = this.authFormFields.value;
       if (this.authType === AuthType.LOGIN) {
         this.handleLogin(email, password);
       } else if (this.authType === AuthType.SIGNUP){
@@ -70,17 +64,7 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
           || !lastName
         ) return;
 
-        this.authService
-        .register({
-          email,
-          password,
-          passwordConfirm,
-          firstName,
-          lastName,
-        })
-        .subscribe(response => {
-          console.log(response);
-        });
+        this.handleSignup(email, password, passwordConfirm, firstName, lastName);
       }
     })
   }
@@ -112,6 +96,35 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
       }
       }
     );
+  }
+
+  private handleSignup(
+    email: string,
+    password: string,
+    passwordConfirm: string,
+    firstName: string,
+    lastName: string,
+  ){
+    if (
+    !email
+    || ! password
+    || !passwordConfirm
+    || !firstName
+    || !lastName
+    ) return;
+
+    this.authService
+    .register({
+      email,
+      password,
+      passwordConfirm,
+      firstName,
+      lastName,
+      })
+      .subscribe(response => {
+        console.log(response);
+      });
+
   }
   buildForm(): void {
     this.previousState = 'INVALID';
