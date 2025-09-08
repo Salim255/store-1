@@ -21,6 +21,11 @@
     font-size: var(--text-lg);
     transition: all .2s;
     color: var(--grey-2);
+    &::placeholder {
+      font-style: italic;
+      font-size: var(--text-md);
+      opacity: .5;
+    }
     &:hover {
       transform: translateY(-1px);
       box-shadow: var(--box-shadow-light-small);
