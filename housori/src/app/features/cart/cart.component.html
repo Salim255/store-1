@@ -5,7 +5,7 @@
 
       <section class="cart__body">
         <section class="cart__items">
-          <h4 class="heading-quaternary cart__items-nb"> {{ productsNm }} product in your cart</h4>
+          <p class="cart__items-nb"> {{ productsNm }} product in your cart</p>
           <div class="cart__item" *ngFor="let product of  cartItems; let index = index">
             <app-cart-item  [item]="product" ></app-cart-item>
           </div>

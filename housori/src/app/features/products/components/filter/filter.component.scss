@@ -2,7 +2,7 @@
 
 .filter {
   label {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
     font-weight: var(--font-medium);
     color: var(--grey-1);
     display: inline-block;
@@ -46,7 +46,7 @@
 
         output {
           font-size: var(--text-base);
-          font-weight: var(--font-bold);
+          font-weight: var(--font-medium);
         }
       }
       ion-range {
@@ -66,7 +66,7 @@
           white-space: nowrap;
           font-size: var(--text-xs);
           font-weight: var(--font-bold);
-          color: var(--text-muted);
+          color: var(--grey-3);
         }
         &::before{
           content: "$10";

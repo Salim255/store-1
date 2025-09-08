@@ -84,7 +84,7 @@ header {
         flex: 1;
         list-style: none;
         &__link  {
-          font-size: var(--text-2xl);
+          font-size: var(--text-xl);
           color: var(--text-color-base);
           &--inactive{
             background-color: var(--bg-secondary);
