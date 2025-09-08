@@ -114,22 +114,17 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     ) return;
 
     this.authService
-    .register({
-      email,
-      password,
-      passwordConfirm,
-      firstName,
-      lastName,
-      })
-      .subscribe(response => {
+    .register({email,password,passwordConfirm,firstName,lastName})
+    .subscribe(response => {
         console.log(response);
-      });
+    });
 
   }
   buildForm(): void {
     this.previousState = 'INVALID';
      this.authFormService.setFormValidationStatus('INVALID');
-    this.authFormFields = this.formBuilder.group(
+    this.authFormFields = this.formBuilder
+    .group(
       this.formFields(),
       { validators: passwordMatchValidator },
     );
