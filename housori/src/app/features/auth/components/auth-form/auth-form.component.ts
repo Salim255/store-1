@@ -3,7 +3,7 @@ import { AuthType } from "../../services/auth.service";
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ValidatorFn  } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { combineLatest, Subscription} from "rxjs";
-import { AuthFormService } from "../../services/auth-form.service";
+import { AuthField, AuthFormService } from "../../services/auth-form.service";
 import { ToastService } from "src/app/shared/services/toast.service";
 
 const passwordMatchValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
@@ -23,7 +23,7 @@ const passwordMatchValidator: ValidatorFn = (group: AbstractControl): Validation
 })
 export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   @Input() authType!: AuthType;
-
+  formInputData: AuthField []
   passwordMismatchLive = signal<boolean>(false);
   authFormFields!: FormGroup;
   private previousState: 'VALID' | 'INVALID' = 'INVALID';
@@ -35,7 +35,9 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     private authFormService: AuthFormService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-  ){}
+  ){
+    this.formInputData = this.authFormService.formFields;
+  }
 
   ngOnInit(): void {
     this.onSubmit();
