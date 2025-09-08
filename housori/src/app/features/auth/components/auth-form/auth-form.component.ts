@@ -49,9 +49,15 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSubmit():void {
+
     this.submitFormSubscription = this.authFormService
     .getSubmitForm
     .subscribe(value => {
+      if (!value) return;
+      if (this.authFormFields.invalid){
+        this.authFormFields.markAllAsTouched();
+        return
+      }
       const { email, password, passwordConfirm, firstName, lastName } = this.authFormFields.value;
       if (this.authType === AuthType.LOGIN) {
         this.handleLogin(email, password);
@@ -161,7 +167,6 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
 
   subscribeToStatusChange(){
     this.statusSub?.unsubscribe();
-
     this.statusSub = this.authFormFields?.statusChanges.subscribe(status => {
       //VALID // INVALID
       if (this.previousState !== status)  {
