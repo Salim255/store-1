@@ -26,7 +26,6 @@
     </ng-container>
     <ng-template #gallery>
       <app-product-card
-        (click)="onProduct(item)"
         *ngFor="let item of products"
         [product]="item">
       </app-product-card>
