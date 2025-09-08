@@ -85,6 +85,7 @@
 .heading-secondary {
   font-size: var(--text-5xl);
   letter-spacing: -.4px;
+
   @include respond(tab-land) {
     font-size: var(--text-4xl);
   }
