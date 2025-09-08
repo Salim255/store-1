@@ -5,7 +5,7 @@
       <app-auth-form [authType]="authType()"></app-auth-form>
     </div>
     <div class="btns">
-      <button class="btn btn__primary btn__primary--full" type="button" [disabled]="!validForm()" (click)="onSubmit()">{{ getCurrentAuthType }}</button>
+      <button class="btn btn__primary btn__primary--full" type="button"  (click)="onSubmit()">{{ getCurrentAuthType }}</button>
       <button class="btn btn__primary btn__primary--full" (click)="onGuest()">Guest user</button>
       <button class="btn btn__primary btn__primary--outline" (click)="onSwitch()" fill="outline">Switch to {{ switchTo }}</button>
     </div>

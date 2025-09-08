@@ -49,7 +49,10 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSubmit():void {
-    this.submitFormSubscription = this.authFormService.getSubmitForm.subscribe(value => {
+
+    this.submitFormSubscription = this.authFormService
+    .getSubmitForm
+    .subscribe(value => {
       const email = this.authFormFields.get('email')?.value;
       const password = this.authFormFields.get('password')?.value;
       const passwordConfirm = this.authFormFields.get('passwordConfirm')?.value;
@@ -57,34 +60,7 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
       const lastName = this.authFormFields.get('lastName')?.value;
 
       if (this.authType === AuthType.LOGIN) {
-        if (!email || ! password) return;
-        this.authService
-        .signIn({email, password})
-        .subscribe(
-          {
-          next: (response) => {
-            const user = response.body?.data.user;
-            console.log(user);
-            if(user) {
-              this.authService.authenticateUser().subscribe(
-                {
-                  next: ()=> {
-                    this.toastService.success('Glad to see you again!', 'Login successful')
-                  },
-                  error: () => {
-                    this.toastService.error("Please check your credentials and try again.", "Login failed.");
-                  }
-                }
-              );
-            }
-
-          },
-          error: (err) => {
-            this.toastService.error("Login failed. Please check your credentials and try again.");
-          }
-          }
-        );
-
+        this.handleLogin(email, password);
       } else if (this.authType === AuthType.SIGNUP){
         if (
           !email
@@ -109,6 +85,34 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
+  private handleLogin(email: string, password: string){
+    if (!email || ! password) return;
+    this.authService
+    .signIn({email, password})
+    .subscribe(
+      {
+      next: (response) => {
+        const user = response.body?.data.user;
+        if(user) {
+          this.authService.authenticateUser().subscribe(
+            {
+              next: ()=> {
+                this.toastService.success('Glad to see you again!', 'Login successful')
+              },
+              error: () => {
+                this.toastService.error("Please check your credentials and try again.", "Login failed.");
+              }
+            }
+          );
+        }
+
+      },
+      error: (err) => {
+        this.toastService.error("Login failed. Please check your credentials and try again.");
+      }
+      }
+    );
+  }
   buildForm(): void {
     this.previousState = 'INVALID';
      this.authFormService.setFormValidationStatus('INVALID');
