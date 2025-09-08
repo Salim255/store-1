@@ -1,23 +1,24 @@
 <form [formGroup]="authFormFields" class="form" >
   <div *ngIf="!isLogin" class="form__group">
     <label for="firstName" class="form__label"> First name </label>
-    <input formControlName="firstName" class="form__input" />
+    <input placeholder="First name" formControlName="firstName" class="form__input" />
   </div>
    <div *ngIf="!isLogin" class="form__group">
     <label for="lastName" class="form__label"> Last name </label>
-    <input formControlName="lastName"  class="form__input"/>
+    <input placeholder="Last name" formControlName="lastName"  class="form__input"/>
   </div>
   <div class="form__group">
     <label for="email" class="form__label"> Your email </label>
-    <input formControlName="email" type="email" class="form__input"/>
+    <input placeholder="Email" formControlName="email" type="email" class="form__input"/>
   </div>
   <div class="form__group">
     <label for="password" class="form__label">Password</label>
-    <input  formControlName="password" type="password" class="form__input"/>
+    <input  placeholder="Password" formControlName="password" type="password" class="form__input"/>
   </div>
   <div *ngIf="!isLogin" class="form__group">
     <label for="passwordConfirm" class="form__label">Confirm password</label>
     <input
+    placeholder="Confirm password"
       [class.input-error]="passwordsMismatch && !isLogin"
       formControlName="passwordConfirm" type="password"
       class="form__input" />
