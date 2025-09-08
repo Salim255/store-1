@@ -20,6 +20,9 @@
   &__items-nb {
     border-bottom: 1px solid var(--grey-5);
     padding-bottom: var(--2xs-spacing);
+    color: var(--grey-2);
+    font-size: var(--text-xl);
+    font-weight: var(--font-medium);
   }
   &__item {
     margin-top: var(--x-l-spacing);
