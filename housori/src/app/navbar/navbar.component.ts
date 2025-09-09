@@ -97,10 +97,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return (this.authType() === AuthType.GUEST) && (!this.userIsAuthenticated);
   }
 
-  get showAuthModal(): boolean {
-    return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
-  }
-
   onMenu(): void {
     this.openMenu.set(this.showMenuBtn());
   };

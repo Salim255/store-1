@@ -2,6 +2,12 @@
 
 .auth {
   height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  top: 0%;
+  left: 0;
+  background-color: var(--bg-secondary);
   padding: var(--md-spacing);
   &__header {
     text-align: center;

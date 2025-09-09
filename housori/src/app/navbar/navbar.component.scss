@@ -33,26 +33,6 @@ header {
       padding: 1rem 1.5rem;
       padding-right: 2rem;
     }
-    &__modal{
-      position: absolute;
-      height: 100vh;
-      width: 100%;
-      z-index: 3;
-      display: flex;
-      .auth-modal--content {
-       margin: auto;
-       backdrop-filter: blur(20px);
-       background-color: rgba(192, 192, 192, 0.1);
-
-       height: 100%;
-       width: 100%;
-       border-radius: 2rem;
-       padding: 2rem;
-       box-shadow:
-        0 .4rem 2rem rgba(0, 0, 0, 0.2),   // main soft shadow
-        0 .2rem .6rem rgba(0, 0, 0, 0.1);
-          }
-    }
   }
   .header-navbar {
     display: flex;
