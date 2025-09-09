@@ -8,13 +8,6 @@
         <a> Create Account</a>
       </div>
     </ng-container>
-   <ng-container *ngIf="showAuthModal">
-      <section class="header-auth__modal">
-       <div class="auth-modal--content">
-         <app-auth></app-auth>
-       </div>
-    </section>
-   </ng-container>
   </section>
   <nav class="header-navbar">
     <a routerLink="/" class="header-navbar__logo" (click)="onMenu()">
