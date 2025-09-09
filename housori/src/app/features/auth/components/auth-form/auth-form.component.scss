@@ -4,6 +4,7 @@
     flex-direction: column;
     font-size: var(--text-2xl);
     margin-top: var(--xs-spacing);
+    color: var(--grey-2);
   }
 
   &__label {
@@ -15,7 +16,7 @@
     background-color: var(--bg-main);
     padding: 1rem 1.5rem;
     font-size: var(--text-lg);
-    color: var(--grey-3);
+    color: var(--grey-2);
     transition: all .2s;
     &::placeholder {
       font-style: italic;

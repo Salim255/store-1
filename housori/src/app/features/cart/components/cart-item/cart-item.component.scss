@@ -134,7 +134,7 @@
   }
   &__title{
     text-align: center;
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
   }
   &__remove {
     border: none;
@@ -155,7 +155,7 @@
     }
   }
   &__price {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     text-align: right;
     @include respond(tab-port) {
       font-size: var(--text-sm);
