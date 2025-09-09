@@ -63,7 +63,6 @@
     }
   }
   &__price {
-    font-size: var(--text-xl);
     @include respond(tab-port){
       padding: 2rem 2rem 0 0;
     }

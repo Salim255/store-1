@@ -1,4 +1,4 @@
- <form class="form" [formGroup]="shippingFields">
+ <form class="form" [formGroup]="shippingFields" (ngSubmit)="onPlaceOrder()">
     <div class="form__group" *ngFor="let field of fromFields">
       <label class="form__label" for="fullName"> {{ field.label}}</label>
       <input
@@ -10,8 +10,7 @@
     <button
       class="btn btn__primary btn__primary--full"
       type="submit"
-      [disabled]="!isValid"
-      (click)="onPlaceOrder()">
+      >
         Place your order
     </button>
   </div>

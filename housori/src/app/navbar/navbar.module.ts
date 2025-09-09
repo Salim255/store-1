@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { NavbarRoutingModule } from "./navbar-routing.module";
-import { AuthModule } from "../features/auth/auth.module";
 import { CommonModule } from "@angular/common";
 import { NavbarComponent } from "./navbar.component";
 import { IonicModule } from "@ionic/angular";
@@ -11,7 +10,6 @@ import { ToastrModule } from 'ngx-toastr';
   imports:[
     ToastrModule,
     NavbarRoutingModule,
-    AuthModule,
     CommonModule,
     IonicModule.forRoot(),
   ],

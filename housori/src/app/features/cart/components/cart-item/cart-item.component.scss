@@ -4,7 +4,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: var(--grey-4);
+  background-color: var(--grey-3);
   transform: translate(-50%, -50%);
   transform-origin: center center;
   box-shadow: -2px 4px 2px rgba(0,0,0, 0.05);
@@ -134,7 +134,7 @@
   }
   &__title{
     text-align: center;
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
   }
   &__remove {
     border: none;
@@ -155,7 +155,7 @@
     }
   }
   &__price {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     text-align: right;
     @include respond(tab-port) {
       font-size: var(--text-sm);

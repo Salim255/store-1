@@ -4,11 +4,11 @@
       <h1 class="checkout__header heading-primary">Place your order</h1>
       <div class="checkout__body" *ngIf="cartItems().length" >
         <section class="shipping-info">
-          <h2 class="heading-secondary"> Shipping information: </h2>
+          <p> Shipping information: </p>
           <app-shipping-address-form ></app-shipping-address-form>
         </section>
         <section class="order-details">
-          <h2 class="heading-secondary"> Order summary: </h2>
+          <p > Order summary: </p>
           <app-order-total [totalDetails]="totalDetails()"></app-order-total>
         </section>
       </div>

@@ -8,16 +8,9 @@
         <a> Create Account</a>
       </div>
     </ng-container>
-   <ng-container *ngIf="showAuthModal">
-      <section class="header-auth__modal">
-       <div class="auth-modal--content">
-         <app-auth></app-auth>
-       </div>
-    </section>
-   </ng-container>
   </section>
   <nav class="header-navbar">
-    <a routerLink="/" class="header-navbar__logo" (click)="onMenu()">
+    <a routerLink="/home" class="header-navbar__logo" (click)="onMenu()">
       <ion-icon name="menu"></ion-icon>
       <span>Housori </span>
     </a>

@@ -3,7 +3,7 @@ import { AuthType } from "../../services/auth.service";
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ValidatorFn  } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { combineLatest, Subscription} from "rxjs";
-import { AuthFormService } from "../../services/auth-form.service";
+import { AuthField, AuthFormService } from "../../services/auth-form.service";
 import { ToastService } from "src/app/shared/services/toast.service";
 
 const passwordMatchValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
@@ -23,7 +23,7 @@ const passwordMatchValidator: ValidatorFn = (group: AbstractControl): Validation
 })
 export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   @Input() authType!: AuthType;
-
+  formInputData: AuthField []
   passwordMismatchLive = signal<boolean>(false);
   authFormFields!: FormGroup;
   private previousState: 'VALID' | 'INVALID' = 'INVALID';
@@ -35,7 +35,9 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     private authFormService: AuthFormService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-  ){}
+  ){
+    this.formInputData = this.authFormService.formFields;
+  }
 
   ngOnInit(): void {
     this.onSubmit();
@@ -49,9 +51,15 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSubmit():void {
+
     this.submitFormSubscription = this.authFormService
     .getSubmitForm
     .subscribe(value => {
+      if (!value) return;
+      if (this.authFormFields.invalid){
+        this.authFormFields.markAllAsTouched();
+        return
+      }
       const { email, password, passwordConfirm, firstName, lastName } = this.authFormFields.value;
       if (this.authType === AuthType.LOGIN) {
         this.handleLogin(email, password);
@@ -114,22 +122,17 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
     ) return;
 
     this.authService
-    .register({
-      email,
-      password,
-      passwordConfirm,
-      firstName,
-      lastName,
-      })
-      .subscribe(response => {
+    .register({email,password,passwordConfirm,firstName,lastName})
+    .subscribe(response => {
         console.log(response);
-      });
+    });
 
   }
   buildForm(): void {
     this.previousState = 'INVALID';
      this.authFormService.setFormValidationStatus('INVALID');
-    this.authFormFields = this.formBuilder.group(
+    this.authFormFields = this.formBuilder
+    .group(
       this.formFields(),
       { validators: passwordMatchValidator },
     );
@@ -166,7 +169,6 @@ export class AuthFormComponent implements OnInit, OnChanges, OnDestroy {
 
   subscribeToStatusChange(){
     this.statusSub?.unsubscribe();
-
     this.statusSub = this.authFormFields?.statusChanges.subscribe(status => {
       //VALID // INVALID
       if (this.previousState !== status)  {

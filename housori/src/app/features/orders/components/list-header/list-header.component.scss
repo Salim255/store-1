@@ -3,7 +3,7 @@
 .list-header {
   display: flex;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--grey-5);
+  border-bottom: 1px solid var(--grey-4);
   gap: var(--x-l-spacing);
   &__description{
     flex: .5;
@@ -15,7 +15,7 @@
   }
   span {
     font-size: var(--text-base);
-    color: var(--grey-1);
+    color: var(--grey-3);
   }
 
   &__qty,
