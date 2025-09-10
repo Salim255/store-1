@@ -43,8 +43,8 @@
     font-size: var(--text-2xl);
     margin-bottom: var(--sm-spacing);
   }
-  &__paragraph, &__price{
-    font-size: var(--text-base);
+  &__paragraph, &__price {
+    line-height: 1.5;
     margin-bottom: var(--sm-spacing);
   }
   &__price {
