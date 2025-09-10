@@ -20,7 +20,6 @@ import { AuthModule } from './features/auth/auth.module';
     SharedModule,
     CoreModule,
     BrowserModule,
-    RouterOutlet,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

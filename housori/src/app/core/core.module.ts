@@ -10,8 +10,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       positionClass: 'toast-top-center', // default position
       preventDuplicates: true,
       newestOnTop: true,
-      // This ensures the toast container is global
-      //toastComponent: undefined,
     }),
   ],
   providers: [
