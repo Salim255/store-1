@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./navbar/navbar.module').then(m => m.NavbarModule)
-  },
+  }
 ]
 
 @NgModule({
