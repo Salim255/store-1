@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from './features/auth/services/auth.service';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { AuthService } from './features/auth/services/auth.service';
 export class AppComponent implements OnInit {
   authSubscription!: Subscription;
   previousAuthSate: boolean = false;
-  constructor(private authService: AuthService){}
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.subscribeToAuth();
@@ -18,7 +20,6 @@ export class AppComponent implements OnInit {
 
   private subscribeToAuth(){
     this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
-      console.log(auth, this.previousAuthSate);
       //Updates only when auth changes to false (unauthenticated).
       // Will not update if auth changes to true
       if(!auth && this.previousAuthSate !== auth) {
@@ -28,8 +29,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.authSubscription?.unsubscribe();
   }
 }
