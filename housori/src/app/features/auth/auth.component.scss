@@ -1,0 +1,38 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  &__header {
+    text-align: center;
+  }
+  &__form{
+    width: 60%;
+    margin: auto;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__btns {
+    margin: auto;
+    display: flex;         // <--- puts buttons in a row
+    flex-direction: column;
+    flex: .6;
+    width: 30%;
+    gap: 1rem;
+    button {
+      border: unset;
+      border-radius: 1rem;
+      padding: 1rem;
+      cursor: pointer;
+      &:first-child, &:nth-child(2){
+        color: var(--text-on-dark);
+        background-color: var(--color-primary);
+      }
+      &:last-child{
+        outline: 1px solid var(--color-primary);
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="cart">
+  <div class="cart__container">
+    <div class="cart__content">
+      <h1 class="heading-primary">Shipping cart</h1>
+
+      <section class="cart__body">
+        <section class="cart__items">
+          <h4 class="heading-quaternary cart__items-nb"> {{ productsNm }} product in your cart</h4>
+          <div class="cart__item" *ngFor="let product of  cartItems; let index = index">
+            <app-cart-item  [item]="product" ></app-cart-item>
+          </div>
+        </section>
+        <section class="order-total">
+          <app-order-total [totalDetails]="totalDetails"></app-order-total>
+        </section>
+      </section>
+
+    </div>
+  </div>
+</div>

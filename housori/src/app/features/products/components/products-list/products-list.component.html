@@ -1,0 +1,44 @@
+<div class="products-list">
+  <div class="products-list__header">
+    <h1><span>{{products.length}}</span> Products </h1>
+    <div class="header-btns">
+      <button (click)="onListToggle('gallery')"
+        [class]="isGallery()==='gallery'
+          ? 'header-btns__btn header-btns__btn--active'
+          : 'header-btns__btn header-btns__btn--inActive'">
+        <ion-icon name="grid-outline"></ion-icon>
+      </button>
+      <button (click)="onListToggle('list')"
+       [class]="isGallery()==='list'
+          ? 'header-btns__btn header-btns__btn--active'
+          :'header-btns__btn header-btns__btn--inActive'">
+         <ion-icon name="list-outline"></ion-icon></button>
+    </div>
+  </div>
+
+  <div [class]="isGallery()==='list'
+    ? 'products-list__items'
+    : 'products-list__items-grid'">
+    <ng-container *ngIf="isGallery()==='list'; else gallery">
+      <app-list-item (click)="onProduct(item)"
+        *ngFor="let item of products" [product]="item">
+      </app-list-item>
+    </ng-container>
+    <ng-template #gallery>
+      <app-gallery-item (click)="onProduct(item)"
+        *ngFor="let item of products" [product]="item">
+      </app-gallery-item>
+    </ng-template>
+  </div>
+
+  <!-- Pagination section -->
+  <div
+    class="products-list__pagination">
+    <app-pagination
+      (goToPageEmitter)="goToPage($event)"
+      (goToPrevPageEmitter)="goToPrevPage($event)"
+      (goToNextPageEmitter)="goToNextPage($event)"
+      [pages]="pages">
+    </app-pagination>
+  </div>
+</div>

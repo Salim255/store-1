@@ -1,0 +1,38 @@
+<div class="cart-item">
+  <figure class="cart-item__figure">
+    <img
+      alt="cart-item"
+      [src]="itemImage">
+    <figcaption>
+      <h4 class="heading-quaternary" > {{ itemTitle }}</h4>
+      <p>{{ ItemCompany }}</p>
+    </figcaption>
+  </figure>
+  <section class="cart-item__amount">
+    <div class="cart-item__title">
+      <span>amount</span>
+    </div>
+    <div class="cart-item__adjust-btns">
+        <button
+          class="cart-item__minus"
+          (click)="decreaseAmount(item._id, item.amount - 1)"
+          [disabled]="item.amount === 1">
+         </button>
+        <div class="cart-item__nb">
+          <span>{{ item.amount }}</span>
+        </div>
+        <button
+          class="cart-item__plus"
+          (click)="increaseAmount(item._id, item.amount + 1)">
+        </button>
+    </div>
+    <div class="cart-item__remove">
+      <button  (click)="removeItem(item._id)">
+        remove
+      </button>
+    </div>
+  </section>
+  <section class="cart-item__price">
+    <span> {{ itemPrice | currency }}</span>
+  </section>
+</div>

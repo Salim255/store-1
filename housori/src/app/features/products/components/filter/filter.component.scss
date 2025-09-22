@@ -1,0 +1,169 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--x-l-spacing);
+  p {
+    font-size: var(--text-xl);
+  }
+  &__search {
+    flex: 1;
+    display: flex;
+    gap: var(--l-spacing);
+    flex-direction: column;
+    .search-input {
+      ion-label {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-bold);
+      }
+      input {
+        width: 100%;
+        padding: .8rem 1.6rem;
+        border-radius: var(--radius-strong);
+        background-color: var(--bg-main);
+        font-size: var(--text-xl);
+        margin-top: 2rem;
+        box-shadow: var(--box-shadow-light-small);
+      }
+    }
+
+    .search-range {
+      .selected-price {
+        display: flex;
+        justify-content: space-between;
+        &__title {
+          font-size: var(--text-2xl);
+          font-weight: var(--font-bold);
+        }
+        &__current-price{
+          font-size: var(--text-base);
+          font-weight: var(--font-bold);
+        }
+      }
+      ion-range {
+        --bar-background: var(--bg-main);
+        --bar-background-active: var(--color-tints);
+        --bar-height: 1.2rem;
+        --bar-border-radius: .8rem;
+        --knob-background: var(--color-primary);
+        --knob-size: 2.4rem;
+        --knob-spacing: .6rem;
+        --pin-background: var(--color-primary);
+        padding-inline: .4rem;
+        position: relative;
+        &::before, &::after {
+          position: absolute;
+          bottom: -1rem;
+          white-space: nowrap;
+          font-size: var(--text-xs);
+          font-weight: var(--font-bold);
+          color: var(--text-muted);
+        }
+        &::before{
+          content: "$10";
+          left: 0;
+          text-align: right;
+        }
+        &::after {
+          content: "Max: 100000$";
+          right: 0;
+          text-align: right;
+        }
+      }
+    }
+  }
+  &__category{
+    flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+
+    .category-options {
+      ion-label {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+
+      &__select{
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+    .category-toggle {
+      text-align: center;
+      ion-toggle {
+        --track-background: var(--bg-main);
+        --track-background-checked: var(--bg-main);
+
+        --handle-background: var(--color-danger);
+        --handle-background-checked: var(--color-primary);
+
+        --handle-width: 2.5rem;
+        --handle-height: 2.5rem;
+        --handle-max-height: auto;
+        --handle-box-shadow: var(--box-shadow-light);
+      }
+
+      ion-toggle::part(track) {
+        width: 5rem;
+        padding: .5rem 0;
+        /* Required for iOS handle to overflow the height of the track */
+        overflow: visible;
+      }
+      ion-toggle::part(label) {
+        font-size: 1.4rem;
+        font-weight: 600;
+        font-size: var(--text-3xl);
+      }
+    }
+
+  }
+  &__company{
+    flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+    .company-options {
+      ion-label {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+      &__select{
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+    .company-btn {
+      margin-top: auto;
+     button {
+        width: 100%;
+      }
+    }
+  }
+
+  &__sort {
+    flex: 1;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+    .sort-options {
+      ion-label {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-bold);
+        margin-bottom: 2rem;
+      }
+
+      &__select {
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+    .sort-btn {
+      margin-top: auto;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

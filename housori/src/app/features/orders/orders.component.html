@@ -1,0 +1,20 @@
+<div class="orders">
+  <div class="orders__container">
+    <section class="orders__content">
+      <div class="orders__header">
+        <h1 class="heading-primary">Your orders</h1>
+      </div>
+      <div class="orders__list">
+        <div class="orders__nb" >
+          <h4>TotalOrders: {{ ordersList.length }}</h4>
+        </div>
+        <app-list-header></app-list-header>
+        <div
+          class="orders__item"
+          *ngFor="let order of ordersList; let index = index">
+            <app-orders-item [orderItem]="order.items[0]" [updatedAt]="order.updatedAt"></app-orders-item>
+        </div>
+      </div>
+  </section>
+  </div>
+</div>

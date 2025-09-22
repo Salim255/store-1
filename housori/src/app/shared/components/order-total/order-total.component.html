@@ -1,0 +1,27 @@
+<div  class="order-total">
+  <dl class="order-total__definition-list">
+    <div class="order-total__subtotal">
+      <dt>Subtotal</dt>
+      <dd>{{ cartTotal | currency }}</dd>
+    </div>
+    <div>
+      <dt> Shipping (Standard Shipping)</dt>
+      <dd>{{ shipping | currency }}</dd>
+    </div>
+    <div>
+      <dt>Sales tax (20%)</dt>
+      <dd>{{ tax | currency }}</dd>
+    </div>
+    <div>
+      <dt>Order total</dt>
+      <dd>{{ orderTotal | currency }}</dd>
+    </div>
+  </dl>
+
+  <button
+    class="order-total__btn" *ngIf="pageName !=='payment'"
+    [disabled]="!orderTotal" (click)="onClear()">
+    clear cart
+  </button>
+
+</div>

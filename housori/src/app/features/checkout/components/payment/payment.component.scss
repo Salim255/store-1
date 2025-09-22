@@ -1,0 +1,64 @@
+.payment-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__container {
+    backdrop-filter: blur(20px);
+    background-color: rgba(192, 192, 192, 0.4);
+    // Soft glass-style shadow
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.2),   // main soft shadow
+        0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    padding: var(--l-spacing);
+    width: 92%;
+    height: 92%;
+    margin: auto;
+    display: flex;
+    gap: var(--x-l-spacing);
+    .billing {
+      &__methods {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+      &__secure {
+        display: flex;
+        gap: 2px;
+        ion-icon {
+          align-self: center;
+        }
+      }
+      &__title {
+        font-weight: 600;
+        font-size: var(--text-lg);
+      }
+    }
+  }
+  &__form {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    #payment-element {
+      min-height: 35%;
+    }
+  }
+  &__summary{
+    flex: .5;
+  }
+
+  &__submit-btn {
+    margin-top: 3rem;
+    button {
+      width: 100%;
+    }
+  }
+
+}

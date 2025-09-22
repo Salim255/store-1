@@ -1,0 +1,21 @@
+<div class="summary-item">
+  <div class="summary-item__product">
+    <figure class="summary-item__figure">
+      <img [src]="item.images[0]" alt="Product-img">
+      <figcaption class="summary-item__name">
+        <span> {{item.name}}</span>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="summary-item__price-qnt">
+    <dl>
+      <dt>
+        QTY
+      </dt>
+      <dd>
+        {{ item.amount }}
+      </dd>
+    </dl>
+    <span>{{ item.price | currency }}</span>
+  </div>
+</div>

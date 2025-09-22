@@ -1,0 +1,32 @@
+:root {
+  // 01 ==== colors
+  // a. Primary color
+  // b. Tints: Darker
+  //
+  --color-tints: #cfe4e2;
+  // c. Shads: Lighter
+  // d. Accents
+  // e. Grays
+
+
+ // === Brand Colors ===
+  --color-primary: #0E766E ;        // deep red-violet
+  --ion-color-primary: #0E766E ;
+  --color-secondary: #F4EDE4;      // creamy beige
+  --color-tertiary: #2E2E2E;       // charcoal dark
+  --color-danger:  #eb7769;
+  --color-danger-tints: #ffb199;
+
+  // === Background Colors ===
+  --bg-main: #FFFFFF;              // main content background
+  --bg-secondary: #FAF9F7;         // subtle sections, cards
+  --bg-tertiary: #F4EDE4;          // matches secondary color
+  --bg-dark: #1A1A1A;              // footer / dark section
+  --bg-contrast: #EEE5E0;          // soft neutral alt backgrounds
+
+  /* === Text Colors === */
+  --text-main: #1E1E1E;            // default body text
+  --text-secondary: #4A4A4A;       // subheadings, labels
+  --text-muted: #8B8B8B;           // placeholders, meta
+  --text-on-dark: #FAFAFA;         // white text on dark bg
+}

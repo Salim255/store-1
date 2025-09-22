@@ -1,0 +1,33 @@
+<!-- payment.component.html -->
+<div class="payment-modal">
+  <div class="payment-modal__container">
+    <form class="payment-modal__form  billing"
+      id="payment-form"
+      (submit)="handleSubmitWithCheckout();
+      $event.preventDefault()" novalidate>
+      <h1 class="heading-primary">Billing Information</h1>
+      <div class="billing__methods">
+        <p class="billing__title">Payment methods</p>
+        <div class="billing__secure">
+           <p>Secure and encrypted</p>
+          <ion-icon name="lock-closed"></ion-icon>
+        </div>
+      </div>
+
+      <div id="payment-element"><!-- Stripe injects the Payment Element here --></div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button class="payment-modal__submit-btn btn btn__primary btn__primary--full"
+        type="submit"
+        [disabled]="isLoading || !stripeReady">
+        <span *ngIf="!isLoading">Pay</span>
+        <span *ngIf="isLoading">Processing...</span>
+      </button>
+    </form>
+    <section class="payment-modal__summary">
+       <app-summary></app-summary>
+    </section>
+  </div>
+</div>

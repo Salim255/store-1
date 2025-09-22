@@ -1,0 +1,17 @@
+@import '../../../themes/styles/mixins';
+
+.products {
+  &__container {
+    padding-top: 14rem;
+   .products-content {
+      @include page-layout();
+      padding: 0;
+      .filter {
+        padding: 4rem;
+      }
+      &:first-child section {
+        margin-top: var(--x-l-spacing);
+      }
+    }
+  }
+}

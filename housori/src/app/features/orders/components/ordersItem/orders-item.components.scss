@@ -1,0 +1,44 @@
+@mixin item-text {
+  font-size: var(--text-xl);
+
+}
+
+.orders-item {
+  display: flex;
+  gap: 4rem;
+  &__details {
+    flex: .5;
+    display: flex;
+  }
+  &__figure {
+    display: flex;
+    gap: 4rem;
+  }
+  &__figure-img {
+    //flex: 1;
+    width: 16rem;
+    height: 14rem;
+    border-radius: 1rem;
+  }
+  &__figure-caption {
+    flex: 1;
+  }
+  &__title {
+    margin-bottom: 2rem;
+    font-size: var(--text-xl);
+  }
+  &__description {
+    font-size: var(--text-base);
+    color: #042321;
+  }
+
+  &__metadata {
+    display: flex;
+    flex: .5;
+    div {
+      flex: 1;
+      text-align: right;
+      font-size: var(--text-base);
+    }
+  }
+}

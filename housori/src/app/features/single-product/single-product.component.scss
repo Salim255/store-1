@@ -1,0 +1,41 @@
+@import '../../../themes/styles/mixins';
+
+.single-product {
+  display: flex;
+  flex-direction: column;
+  &__container {
+    padding-top: 14rem;
+  }
+  &__content {
+    @include page-layout();
+    height: calc(100vh - 14rem);
+
+  }
+  &__figure {
+    display: flex;
+    gap: var(--x-l-spacing);
+    height: 100%;
+  }
+  &__img {
+    flex: 1;
+    img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+      border-radius: var(--radius-3xl);
+    }
+  }
+  &__description {
+    flex: 1;
+  }
+  &__paragraph, &__price{
+    font-size: var(--text-base);
+    margin-bottom: var(--sm-spacing);
+  }
+  &__price {
+    margin-bottom: var(--sm-spacing);
+  }
+  &__add-btn{
+    border: none;
+  }
+}

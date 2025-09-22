@@ -1,0 +1,25 @@
+@import '../../../themes/styles/mixins';
+
+.cart {
+  &__container {
+    padding-top: 14rem;
+  }
+  &__content {
+    @include page-layout();
+    display: flex;
+    flex-direction: column;
+  }
+  &__body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--x-l-spacing);
+  }
+  &__items-nb {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--2xs-spacing);
+  }
+  &__item {
+    margin-top: var(--x-l-spacing);
+  }
+}
+

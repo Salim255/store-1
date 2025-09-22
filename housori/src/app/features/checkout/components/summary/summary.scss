@@ -1,0 +1,31 @@
+.summary{
+  display: flex;
+  flex-direction: column;
+  &__items {
+    max-height: 30rem;
+    overflow: auto;
+  }
+  &__shipping {
+    margin-top: var(--x-l-spacing);
+    font-size: var(--text-2xl);
+  }
+  &__shipping-recipient{
+    display: flex;
+    gap: var(--sm-spacing);
+    margin-bottom: var(--sm-spacing);
+  }
+  &__total {
+     margin-top: var(--sm-spacing);
+  }
+  &__shipping-address{
+    display: flex;
+    gap: var(--sm-spacing);
+    div {
+      flex: 1;
+      dd:first-child {
+        margin-bottom: var(--xs-spacing);
+      }
+    }
+  }
+}
+
