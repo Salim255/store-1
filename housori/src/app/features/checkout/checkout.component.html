@@ -3,21 +3,20 @@
     <div class="checkout__content">
       <h1 class="checkout__header heading-primary">Place your order</h1>
       <div class="checkout__body" *ngIf="cartItems().length" >
-        <section class="checkou__shipping-info">
-          <h3 class="heading-tertiary">Shipping information: </h3>
+        <section class="shipping-info">
+          <p> Shipping information: </p>
           <app-shipping-address-form ></app-shipping-address-form>
         </section>
-        <section class="checkout__order-details">
-          <h3 class="heading-tertiary">Order summary:</h3>
+        <section class="order-details">
+          <p > Order summary: </p>
           <app-order-total [totalDetails]="totalDetails()"></app-order-total>
         </section>
       </div>
       <div class="checkout__place-holder">
-        <app-place-holder *ngIf="!cartItems().length"></app-place-holder>
+        <app-place-holder *ngIf="!cartItems().length" [componentName]="'checkout'"></app-place-holder>
       </div>
     </div>
   </div>
 </div>
-<!-- <app-payment></app-payment> -->
 <app-payment *ngIf="orderIsPlaced()"></app-payment>
 

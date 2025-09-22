@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from "rxjs";
-import { AuthHttpService, AuthResponsePayload } from "./auth-http.service";
+import { AuthHttpService, AuthResponsePayload, AuthStatusPayload } from "./auth-http.service";
 import { HttpResponse } from "@angular/common/http";
 
 export enum AuthType {
@@ -11,6 +11,8 @@ export enum AuthType {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+  private userIsAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+
   private authTypeSubject = new BehaviorSubject<AuthType>(AuthType.GUEST);
 
   constructor(private authHttpService: AuthHttpService ){}
@@ -20,26 +22,24 @@ export class AuthService {
   }
 
   signIn(data: any): Observable<HttpResponse<AuthResponsePayload>>{
-    return this.authHttpService.signIn(data).pipe(
-      tap((response) => {
-        if (response.body?.data.user) {
-          //this.userAuth.next('authenticated');
-        }
-      }),
-      catchError((err) => {
-        // Re-throw the error to let subscribers handle it if needed
-        return throwError(() => err);
-      })
-    );
+    return this.authHttpService.signIn(data);
   }
 
-  get userIsAuthenticated(): Observable<boolean> {
-     return this.authHttpService.authStatus().pipe(
-      map((response) => {
-        return response.data.authenticated;
+  authenticateUser(): Observable<AuthStatusPayload> {
+    return this.authHttpService.authStatus().pipe(
+      tap((response) => {
+        const authenticated: boolean = response.data.authenticated
+        this.userIsAuthenticatedSubject.next(authenticated);
       }),
-      catchError( () => of(false)) //// Wrap false in an Observable using 'of'
+       catchError((err) => {
+        this.userIsAuthenticatedSubject.next(false);
+        // Re-throw the error to let subscribers handle it if needed
+        return throwError(() => err);
+      }) //// Wrap false in an Observable using 'of'
     )
+  }
+  get userIsAuthenticated(): Observable<boolean> {
+    return this.userIsAuthenticatedSubject.asObservable();
   }
 
   setAuthType(authType: AuthType ): void{

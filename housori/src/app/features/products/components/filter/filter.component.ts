@@ -32,7 +32,7 @@ export class FilterComponent {
   companyValue = signal<string>("all");
   categoryValue = signal<string>("all");
   sortValue = signal<string>("all");
-  priceValue = signal<number>(10000);
+  priceValue = signal<number>(100000);
   shippingValue = signal<boolean>(false);
 
   categoryOptions = ['Chairs', 'Tables', 'Beds', 'Sofas'];
@@ -62,14 +62,14 @@ export class FilterComponent {
     if (company) this.params = this.params.set('company', company);
     if (category) this.params = this.params.set('category', category);
     if (sort) this.params = this.params.set('alphaSort', sort);
-    if (shipping) this.params = this.params.set('shipping', shipping);
+    if (typeof shipping === 'boolean') this.params = this.params.set('shipping', shipping);
 
     this.productsService.getAllProducts(this.params).subscribe(data =>{
       console.log(data)
     });
   }
   resetFilter(){
-    this.filterFormFields.reset();
+    this.buildForm();
     this.categoryValue.set('all');
     this.companyValue.set('all');
     this.sortValue.set('all');
@@ -84,7 +84,7 @@ export class FilterComponent {
       category: [null],
       company: [null],
       alphaSort: [null],
-      price: [null],
+      price: [100000],
       shipping: [null],
     });
   }
@@ -107,6 +107,7 @@ export class FilterComponent {
     })
 
      this.filterFormFields.get('shipping')?.valueChanges.subscribe(value => {
+      console.log(value);
       this.shippingValue.set(value);
     })
 

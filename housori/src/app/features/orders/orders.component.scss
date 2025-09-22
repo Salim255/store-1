@@ -9,6 +9,7 @@
 
   &__content {
     @include page-layout();
+    position: relative;
   }
 
   &__list {
@@ -16,7 +17,11 @@
   }
 
   &__nb {
-    font-size: var(--text-2xl);
+    p {
+      color: var(--grey-3);
+      font-size: var(--text-xl);
+      font-weight: var(--font-medium);
+    }
     margin-bottom: var(--md-spacing);
   }
 
@@ -25,5 +30,12 @@
    &:hover {
     cursor: pointer;
    }
+  }
+
+  &__place-holder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

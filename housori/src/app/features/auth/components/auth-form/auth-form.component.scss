@@ -1,4 +1,33 @@
 .form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-2xl);
+    margin-top: var(--xs-spacing);
+    color: var(--grey-2);
+  }
+
+  &__label {
+    margin-bottom: var(--3xs-spacing);
+  }
+  &__input {
+    background-color: transparent;
+    border-radius: var(--radius-strong);
+    background-color: var(--bg-main);
+    padding: 1rem 1.5rem;
+    font-size: var(--text-lg);
+    color: var(--grey-2);
+    transition: all .2s;
+    &::placeholder {
+      font-style: italic;
+      font-size: var(--text-md);
+      opacity: .5;
+    }
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--box-shadow-light-small);
+    }
+  }
 }
 
 :host {

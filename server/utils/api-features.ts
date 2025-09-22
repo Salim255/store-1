@@ -46,17 +46,21 @@ export class APIFeatures<T extends Document> {
       queryObject.price = {};
       queryObject.price.$lt = this.queryString['price[lt]'];
     }
-    if (this.queryString.category?.trim().length) {
-      queryObject.category = this.queryString.category.trim();
-    }
-    if (this.queryString.company?.trim().length) {
-      queryObject.company = this.queryString.company.trim();
+
+    const category = this.queryString.category?.trim();
+    const company = this.queryString.company?.trim();
+    if (category?.length && category !== 'all') {
+      queryObject.category = category;
     }
 
-    if (this.queryString.shipping) {
+    if (company?.length && company !== 'all') {
+      queryObject.company = company;
+    }
+
+    if (this.queryString.shipping === 'true') {
       queryObject.shipping = this.queryString.shipping;
     }
-    //  Filter first without await, so latter we can add sorting and pagination
+    // Filter first without await, so latter we can add sorting and pagination
     this.query = this.query.find(queryObject);
     return this;
   }
@@ -78,7 +82,6 @@ export class APIFeatures<T extends Document> {
     if (keyWord) {
       searchQuery.$text = { $search: keyWord };
     }
-    console.log(keyWord);
     this.query.find(searchQuery);
     return this;
   }
@@ -88,7 +91,6 @@ export class APIFeatures<T extends Document> {
     // api/v1/products?sort=price
     // api/v1/products?sort=price,rating
     // api/v1/products?alphaSort='a-z'
-    console.log(this.queryString.alphaSort?.trim());
     if (this.queryString.alphaSort?.trim().length) {
       this.query.sort({
         name: this.queryString.alphaSort.trim() === 'a-z' ? 1 : -1,
@@ -101,6 +103,7 @@ export class APIFeatures<T extends Document> {
       // To get the last one been created
       this.query.sort('-createdAt'); // or this.query.sort('createdAt')
     }
+    //const sortResult = this.
     return this;
   }
 
@@ -113,9 +116,10 @@ export class APIFeatures<T extends Document> {
 
     // Product per page
     const limit = this.queryString.limit * 1 || 4;
-
+    console.log(page);
     // So this number here is all the results come before the request that we are requesting now
     const skip = (page - 1) * limit; // page -1 means the previous page
+
     this.query.skip(skip).limit(limit);
     return this;
   }
@@ -129,7 +133,8 @@ export class APIFeatures<T extends Document> {
 
     // The total products in the DB
     const total = await this.query.model.find().clone().countDocuments();
-
+    const total2 = await this.query.clone().countDocuments();
+    console.log(total2, total, currentPage);
     // All possible pages
     const pageCount = Math.ceil(total / productsByPage);
 

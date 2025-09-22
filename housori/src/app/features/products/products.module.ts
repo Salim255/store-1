@@ -9,10 +9,10 @@ import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "src/app/shared/shared.module";
 import { ListItemComponent } from "./components/list-item/list-item.component";
-import { GalleryItemComponent } from "./components/gallery-item/gallery-item.component";
+
+
 @NgModule({
   declarations: [
-    GalleryItemComponent,
     ListItemComponent,
     ProductsComponent,
     FilterComponent,

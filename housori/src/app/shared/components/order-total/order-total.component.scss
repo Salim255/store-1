@@ -4,7 +4,10 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: var(--md-spacing);
-      font-size: var(--text-2xl);
+      font-size: var(--text-lg);
+    }
+    dd {
+      font-size: var(--text-md);
     }
   }
   &__btn {

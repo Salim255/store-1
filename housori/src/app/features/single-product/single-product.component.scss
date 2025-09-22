@@ -15,6 +15,9 @@
     display: flex;
     gap: var(--x-l-spacing);
     height: 100%;
+    @include respond(tab-port){
+      flex-direction: column;
+    }
   }
   &__img {
     flex: 1;
@@ -23,19 +26,36 @@
       height: 70%;
       object-fit: cover;
       border-radius: var(--radius-3xl);
+      @include respond(tab-port){
+        height: 40rem;
+      }
+    }
+    @include respond(tab-port){
+      flex: unset;
     }
   }
   &__description {
     flex: 1;
   }
-  &__paragraph, &__price{
-    font-size: var(--text-base);
+  &__name{
+    font-weight: var(--font-bold);
+    color: var(--grey-2);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sm-spacing);
+  }
+  &__paragraph, &__price {
+    line-height: 1.5;
     margin-bottom: var(--sm-spacing);
   }
   &__price {
     margin-bottom: var(--sm-spacing);
+    font-size: var(--text-lg);
   }
   &__add-btn{
     border: none;
+    margin-top: var(--sm-spacing);
+    @include respond(tab-port){
+      width: 100%;
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import '../../themes/styles/mixins';
+
 header {
   position: fixed;
   margin-left: 0;
@@ -6,45 +8,30 @@ header {
   z-index: 1000;
   top: 0;
   background-color: var(--bg-main);
-  .header-auth{
+
+  .header-auth {
     display: flex;
     justify-content: right;
-
     gap: var(--l-spacing);
+    margin: auto;
+    @include respond(tab-port){
+      &__login,
+      &__register{
+        display: none;
+        a {
+          font-size: var(--text-sm);
+        }
+      }
+    }
     &__login {
       cursor: pointer;
       padding: 1rem 1.5rem;
-      a {
-        font-size: var(--text-sm);
-      }
-    }
 
+    }
     &__register {
       cursor: pointer;
       padding: 1rem 1.5rem;
-      a {
-        font-size: var(--text-sm);
-      }
-    }
-    &__modal{
-      position: absolute;
-      height: 100vh;
-      width: 100%;
-      z-index: 3;
-      display: flex;
-      .auth-modal--content {
-       margin: auto;
-       backdrop-filter: blur(20px);
-       background-color: rgba(250, 250, 250, 0.4);
-       height: 80%;
-       width: 80%;
-       border-radius: 2rem;
-       padding: 2rem;
-       // Soft glass-style shadow
-       box-shadow:
-        0 .4rem 2rem rgba(0, 0, 0, 0.2),   // main soft shadow
-        0 .2rem .6rem rgba(0, 0, 0, 0.1);
-          }
+      padding-right: 2rem;
     }
   }
   .header-navbar {
@@ -52,17 +39,21 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    &__logo{
+    &__logo {
       padding: .2rem .4rem;
       border-radius: .2rem;
       font-weight: var(--font-bold);
-      font-size: 3rem;
+      font-size: var(--text-4xl);
       color: var(--text-color-base);
       letter-spacing: .5rem;
       text-transform: uppercase;
       color: var(--color-primary);
+      display: flex ;
+      ion-icon {
+        align-self: center;
+      }
     }
-    &__links{
+    &__links {
       display: flex;
       justify-content: space-between;
       .navbar-item:not(:first-child) a {
@@ -73,19 +64,21 @@ header {
         flex: 1;
         list-style: none;
         &__link  {
-          font-size: var(--text-2xl);
+          font-size: var(--text-xl);
           color: var(--text-color-base);
           &--inactive{
             background-color: var(--bg-secondary);
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             border-radius: var(--radius-strong);
           }
           &--active{
-            background-color: var(--color-tints);
+            background-color: var(--color-primary-tints);
           }
         }
       }
-
+      @include respond(tab-port){
+        display: none;
+      }
     }
     &__cart {
       position: relative;

@@ -1,6 +1,6 @@
 <div class="products-list">
   <div class="products-list__header">
-    <h1><span>{{products.length}}</span> Products </h1>
+    <div class="header-text"><span>{{ products.length }}</span> Products </div>
     <div class="header-btns">
       <button (click)="onListToggle('gallery')"
         [class]="isGallery()==='gallery'
@@ -25,9 +25,10 @@
       </app-list-item>
     </ng-container>
     <ng-template #gallery>
-      <app-gallery-item (click)="onProduct(item)"
-        *ngFor="let item of products" [product]="item">
-      </app-gallery-item>
+      <app-product-card
+        *ngFor="let item of products"
+        [product]="item">
+      </app-product-card>
     </ng-template>
   </div>
 

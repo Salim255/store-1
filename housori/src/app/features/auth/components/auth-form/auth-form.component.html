@@ -1,25 +1,18 @@
 <form [formGroup]="authFormFields" class="form">
-  <ion-item *ngIf="!isLogin">
-    <ion-input formControlName="firstName" label="First name"></ion-input>
-  </ion-item>
-   <ion-item *ngIf="!isLogin">
-    <ion-input formControlName="lastName" label="Last name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input formControlName="email" type="email" label="Your email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input  formControlName="password" type="password" label="Password"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="!isLogin">
-    <ion-input
-      [class.input-error]="passwordsMismatch && !isLogin"
-      formControlName="passwordConfirm" type="password"
-      label="Confirm password">
-    </ion-input>
-  </ion-item>
+  <div *ngFor="let field of formInputData">
+    <!-- show only if allowed (always true OR !isLogin) -->
+    <div class="form__group" *ngIf="field.showIfLogin || !isLogin">
+      <label [for]="field.name" class="form__label">{{ field.label }}</label>
+      <input
+        [id]="field.name"
+        [placeholder]="field.placeholder"
+        [type]="field.type"
+        [formControlName]="field.name"
+        class="form__input"
+        [class.input-error]="
+          field.name === 'passwordConfirm' && passwordsMismatch && !isLogin
+        "
+      />
+    </div>
+  </div>
 </form>
-
-
-
-

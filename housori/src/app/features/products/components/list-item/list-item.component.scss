@@ -1,9 +1,19 @@
-.items-item{
+@import '../../../../../themes/styles/mixins';
+
+.items-item {
   font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
   transition: all .2s;
-  padding: 2rem 4rem;
+  padding: 2rem;
+  margin: 1rem 0;
+  @include respond(tab-port){
+    box-shadow: var(--box-shadow-light-small);
+    padding: 0;
+  }
+  @include respond(phone){
+    border-radius: 2rem;
+  }
   &:hover {
     cursor: pointer;
     transform: translateY(-3px);
@@ -14,29 +24,47 @@
   }
   &__details {
     display: flex;
-    gap: 4rem;
+    gap: var(--x-l-spacing);
+    @include respond(phone){
+      gap: var(--md-spacing);
+    }
     .details-img {
       height: 16rem;
       width: 24rem;
       object-fit: cover;
       border-radius: 1rem;
       transition: all .2s;
+      @include respond(phone){
+        height: 14rem;
+        width: 20rem;
+      }
       cursor: pointer;
       &:hover {
         //transform: scaleY(1.02);
         box-shadow: var(--box-shadow-light);
-      }
-      &:active {
-        //transform: scaleY(1.1);
+        @include respond(tab-port){
+          box-shadow: unset;
+        }
       }
     }
     .details-title {
-      h3 {
+      @include respond(tab-port){
+        padding: 2rem 0rem 0 0;
+      }
+      font-size: var(--text-xl);
+      .product-name {
         margin-bottom: 1rem;
+        font-weight: var(--font-medium);
+        color: var(--grey-2);
+      }
+      .product-company {
+        font-size: var(--text-lg);
       }
     }
   }
   &__price {
-    font-size: var(--text-xl);
+    @include respond(tab-port){
+      padding: 2rem 2rem 0 0;
+    }
   }
 }

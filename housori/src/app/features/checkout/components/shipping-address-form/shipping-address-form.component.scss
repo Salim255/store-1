@@ -1,23 +1,31 @@
+@import '../../../../../themes/styles/mixins';
+
 .form {
+  @include respond(tab-port){
+    padding-bottom: var(--x-l-spacing);
+  }
   &__group {
     display: flex;
     flex-direction: column;
-    font-size: var(--text-2xl);
-    margin-top: var(--xs-spacing);
+    font-size: var(--text-lg);
+    margin-bottom: var(--xs-spacing);
   }
   &__label {
-    margin-bottom: var(--4xs-spacing);
-
+    margin-bottom: var(--3xs-spacing);
   }
   &__input {
     background-color: transparent;
     border-radius: var(--radius-strong);
     background-color: var(--bg-main);
-    padding: 1rem 1.5rem;
-    font-size: var(--text-base);
-    //border: 2px solid rgb(237, 235, 235);
-
+    padding: .8rem 1.6rem;
+    font-size: var(--text-lg);
     transition: all .2s;
+    color: var(--grey-2);
+    &::placeholder {
+      font-style: italic;
+      font-size: var(--text-md);
+      opacity: .5;
+    }
     &:hover {
       transform: translateY(-1px);
       box-shadow: var(--box-shadow-light-small);
@@ -31,3 +39,5 @@
    }
   }
 }
+
+

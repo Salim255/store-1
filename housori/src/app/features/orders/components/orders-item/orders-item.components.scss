@@ -1,0 +1,90 @@
+@import '../../../../../themes/styles/mixins';
+
+.orders-item {
+  display: flex;
+  gap: var(--x-l-spacing);
+  @include respond(tab-port) {
+   flex-direction: column;
+   box-shadow: var(--box-shadow-light-small);
+   border-radius: 1rem;
+  }
+
+  &__details {
+    flex: .5;
+    display: flex;
+
+  }
+  &__figure {
+    display: flex;
+    gap: var(--x-l-spacing);
+    @include respond(tab-port) {
+      width: 100%;
+      height: 12rem;
+    }
+  }
+  &__figure-img {
+    width: 18rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    align-self: center;
+    @include respond(tab-port) {
+      height: 100%;
+    }
+    @include respond(phone) {
+      width: 16rem;
+      height: 100%;
+      //flex: 1;
+    }
+  }
+  &__figure-caption {
+    flex: 1;
+    width: 100%;
+    @include respond(tab-port) {
+      padding: 1rem 0rem 0 0;
+    }
+    dl {
+      display: none;
+      margin-bottom: var(--xs-spacing);
+      font-size: var(--text-base);
+      div {
+        display: flex;
+        gap: var(--xs-spacing);
+        margin-bottom: var(--xs-spacing);
+      }
+    }
+     @include respond(tab-port) {
+      dl {
+        display: inline;
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: var(--sm-spacing);
+    font-size: var(--text-xl);
+    font-weight: var(--font-medium);
+    color: var(--grey-2);
+  }
+  &__description {
+    font-size: var(--text-sm);
+    color: var(--grey-3);
+  }
+
+  &__metadata {
+    display: flex;
+    flex: .5;
+    @include respond(tab-port) {
+      display: none;
+    }
+    div {
+      flex: 1;
+      text-align: right;
+      font-size: var(--text-base);
+    }
+  }
+
+}
+

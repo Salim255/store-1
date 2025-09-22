@@ -27,11 +27,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const params = new HttpParams();
     this.productsService.getAllProducts(params).subscribe();
     this.subscribeToProducts();
- /*  this.subscribeToProducts();
-    this.router.events.pipe( filter(event => event instanceof NavigationEnd))
-    .subscribe(() => {
-      this.productsService.getAllProducts();
-    })  */
   }
 
   private subscribeToProducts(){
@@ -46,9 +41,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
     });
   }
+
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    if (this.productsSubscription) this.productsSubscription.unsubscribe()
+    this.productsSubscription?.unsubscribe()
   }
 }

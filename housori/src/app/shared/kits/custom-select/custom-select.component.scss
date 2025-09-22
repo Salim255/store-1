@@ -4,9 +4,9 @@
 
   &__selected {
     border-radius: var(--radius-strong);
-    padding: .8rem 1.6rem;
+    padding: 1rem 1.6rem;
     position: relative;
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     background-color: var(--bg-main);
     box-shadow: var(--box-shadow-light-small);
     span {
@@ -15,7 +15,7 @@
      &:after {
       content: "";
       position: absolute;
-      top: 1.4rem;
+      top: 1.6rem;
       right: 1rem;
       width: 0;
       height: 0;

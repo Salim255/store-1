@@ -1,11 +1,11 @@
 <div class="cart">
   <div class="cart__container">
     <div class="cart__content">
-      <h1 class="heading-primary">Shipping cart</h1>
+      <h1 class="heading-primary">Shopping cart</h1>
 
       <section class="cart__body">
         <section class="cart__items">
-          <h4 class="heading-quaternary cart__items-nb"> {{ productsNm }} product in your cart</h4>
+          <p class="cart__items-nb"> {{ productsNm }} product in your cart</p>
           <div class="cart__item" *ngFor="let product of  cartItems; let index = index">
             <app-cart-item  [item]="product" ></app-cart-item>
           </div>
@@ -14,7 +14,9 @@
           <app-order-total [totalDetails]="totalDetails"></app-order-total>
         </section>
       </section>
-
+       <div class="cart__place-holder" *ngIf="productsNm === 0">
+        <app-place-holder  [componentName]="'cart'"></app-place-holder>
+      </div>
     </div>
   </div>
 </div>

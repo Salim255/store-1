@@ -1,13 +1,21 @@
+@import '../../../../../themes/styles/mixins';
+
 .summary{
   display: flex;
   flex-direction: column;
   &__items {
     max-height: 30rem;
     overflow: auto;
+    @include respond(tab-port){
+      max-height: unset;
+    }
   }
   &__shipping {
     margin-top: var(--x-l-spacing);
     font-size: var(--text-2xl);
+    dd {
+      font-size: var(--text-lg);
+    }
   }
   &__shipping-recipient{
     display: flex;

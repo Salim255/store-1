@@ -1,0 +1,16 @@
+.spinner {
+  background-color: var(--bg-main);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1000000;
+
+  display: flex;
+  &__loader {
+    margin: auto;
+    color: var(--color-primary);
+    text-transform: capitalize;
+    font-size: var(--text-4xl);
+    font-weight: var(--font-medium);
+  }
+}

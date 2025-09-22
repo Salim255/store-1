@@ -1,54 +1,64 @@
 <form [formGroup]="filterFormFields" class="filter">
-  <!--Filter search section -->
-  <section class="filter__search">
+  <section class="filter__top-section">
     <div class="search-input">
-      <div>
-        <ion-label color="empty" position="stacked">Search Products</ion-label>
-        <input formControlName="search" placeholder="search" />
-      </div>
+      <label for="search">Search Products</label>
+      <input formControlName="search" placeholder="search" />
     </div>
-    <div class="search-range">
-      <div class="selected-price">
-        <ion-label class="selected-price__title"> Select price </ion-label>
-        <output class="selected-price__current-price"> {{ priceValue() | currency }} </output>
-      </div>
-      <ion-range formControlName="price" [min]="10" [max]="100000" [step]="100"></ion-range>
-    </div>
-  </section>
-  <!-- Filter category section -->
-  <section class="filter__category">
     <div class="category-options">
-      <ion-label color="empty" position="stacked"> Select Category </ion-label>
+      <label for="category"> Select Category </label>
       <div class="category-options__select">
-        <app-custom-select [options]="metaData.categories || []"></app-custom-select>
+        <app-custom-select
+        formControlName="category"
+        [options]="metaData.categories || []">
+        </app-custom-select>
       </div>
     </div>
-    <div class="category-toggle">
-      <ion-toggle formControlName="shipping" labelPlacement="stacked">Free shipping</ion-toggle>
-    </div>
-  </section>
-  <!-- Filter company section -->
-  <section class="filter__company">
     <div class="company-options">
-      <ion-label color="empty" position="stacked"> Select Company </ion-label>
+      <label for="company"> Select Company </label>
       <div class="company-options__select">
-        <app-custom-select [options]="metaData.companies || []"></app-custom-select>
+        <app-custom-select
+        formControlName="company"
+        [options]="metaData.companies || []"></app-custom-select>
       </div>
     </div>
-    <div class="company-btn">
-      <button class="btn btn__secondary btn__secondary--full" (click)="submitSearch()" > search </button>
-    </div>
-  </section>
-  <!-- Filter sort section -->
-  <section class="filter__sort">
     <div class="sort-options">
-      <ion-label color="empty" position="stacked"> Sort By </ion-label>
+      <label for="alphaSort" color="empty" position="stacked"> Sort By </label>
       <div class="sort-options__select">
-        <app-custom-select [options]="sortOptions || []"></app-custom-select>
+        <app-custom-select
+          formControlName="alphaSort"
+          [options]="sortOptions || []"></app-custom-select>
       </div>
+  </div>
+  </section>
+  <section class="filter__bottom-section">
+    <div class="price-range">
+      <div class="price-range__label">
+        <label for="price" class="title"> Price </label>
+        <output > {{ priceValue() | currency }} </output>
+      </div>
+      <ion-range
+        formControlName="price"
+        [min]="10"
+        [max]="100000" [step]="100">
+      </ion-range>
     </div>
-    <div class="sort-btn">
-      <button class="btn btn__secondary btn__secondary--full" (click)="resetFilter()">reset</button>
+    <div class="free-shipping">
+      <label for="shipping" > Free Shipping </label>
+      <ion-toggle formControlName="shipping"></ion-toggle>
+    </div>
+    <div class="search-btn">
+      <button
+        class="btn btn__secondary btn__secondary--full"
+        (click)="submitSearch()">
+        SEARCH
+      </button>
+    </div>
+    <div class="reset-btn">
+      <button
+        class="btn btn__secondary btn__secondary--full"
+        (click)="resetFilter()">
+        RESET
+      </button>
     </div>
   </section>
 </form>

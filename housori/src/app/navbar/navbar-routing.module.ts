@@ -36,12 +36,12 @@ const routes: Routes = [
         path: 'cart',
         loadChildren: () => import('../features/cart/cart.module').then(m => m.CartModule)
       },
-      {
-        path:'**',
-        loadChildren: () => import('../features/error-page/error-page.module').then(m => m.ErrorPageModule)
-      }
     ]
-  }
+  },
+  {
+    path:'**',
+    loadChildren: () => import('../features/error-page/error-page.module').then(m => m.ErrorPageModule)
+  },
 ]
 
 @NgModule({

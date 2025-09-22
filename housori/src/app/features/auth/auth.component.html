@@ -1,13 +1,13 @@
-<section class="auth">
-    <div class="auth__header">
-       <h1> {{getCurrentAuthType}}</h1>
+<section class="auth" *ngIf="showAuthModal">
+  <h1 class="auth__header heading-primary"> {{getCurrentAuthType}}</h1>
+  <div class="auth__content">
+    <div class="form">
+      <app-auth-form [authType]="authType()"></app-auth-form>
     </div>
-    <div class="auth__form">
-       <app-auth-form [authType]="authType()"></app-auth-form>
+    <div class="btns">
+      <button class="btn btn__primary btn__primary--full" type="button"  (click)="onSubmit()">{{ getCurrentAuthType }}</button>
+      <button class="btn btn__primary btn__primary--full" (click)="onGuest()">Guest user</button>
+      <button class="btn btn__primary btn__primary--outline" (click)="onSwitch()" fill="outline">Switch to {{ switchTo }}</button>
     </div>
-    <div class="auth__btns">
-      <ion-button type="button" [disabled]="!validForm()" (click)="onSubmit()">{{ getCurrentAuthType }}</ion-button>
-      <button  (click)="onGuest()">Guest user</button>
-      <button (click)="onSwitch()" fill="outline">Switch to {{ switchTo }}</button>
-    </div>
+  </div>
 </section>

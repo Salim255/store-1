@@ -1,0 +1,25 @@
+@import '../../../../../themes/styles/mixins';
+
+.intro {
+  display: grid;
+  grid-template-columns: 40% 55%;
+  align-items: center;
+  justify-content: space-between;
+  min-height:  calc(100vh - 14rem);
+  &__description{
+    p {
+      line-height: 1.5;
+      margin-bottom: var(--l-spacing);
+    }
+  }
+
+  &__hero {
+    max-width: 100%;
+    border-radius: 1rem;
+  }
+  @include respond(tab-port) {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: var(--2x-l-spacing);
+  }
+}

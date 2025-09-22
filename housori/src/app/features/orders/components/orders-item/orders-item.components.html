@@ -3,7 +3,29 @@
     <figure class="orders-item__figure">
       <img class="orders-item__figure-img" [src]="getImageUrl" alt="Order Item img">
       <figcaption class="orders-item__figure-caption">
-        <h5 class="orders-item__title">{{ orderItem.productId.name }}</h5>
+        <p class="orders-item__title">{{ orderItem.productId.name }}</p>
+        <dl>
+          <div>
+            <dt> Price: </dt>
+            <dd>
+              {{ unitPrice * orderItem.amount | currency:'USD':'symbol':'1.2-2'}}
+            </dd>
+          </div>
+          <div>
+            <dt> QYT: </dt>
+            <dd>
+            {{ orderItem.amount }}
+            </dd>
+          </div>
+          <div>
+            <dt>
+              Date:
+            </dt>
+            <dd>
+              {{ updatedAt | date:"MMM d, y" | lowercase}}
+            </dd>
+          </div>
+        </dl>
         <p class="orders-item__description">
           {{ orderItem.productId.description }}
         </p>
@@ -12,7 +34,7 @@
   </section>
   <section class="orders-item__metadata">
     <div class="orders-item__quantity">
-      <span>{{orderItem.amount}}</span>
+      <span>{{ orderItem.amount }}</span>
     </div>
     <div class="orders-item__unit-price">
       <span>{{ unitPrice | currency:'USD':'symbol':'1.2-2'}}</span>

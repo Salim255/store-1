@@ -13,13 +13,30 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--x-l-spacing);
+    @include respond(tab-port) {
+      grid-template-columns: 1fr
+    }
   }
   &__items-nb {
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 1px solid var(--grey-5);
     padding-bottom: var(--2xs-spacing);
+    color: var(--grey-2);
+    font-size: var(--text-xl);
+    font-weight: var(--font-medium);
   }
   &__item {
     margin-top: var(--x-l-spacing);
+  }
+
+  &__place-holder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 35%;
+    top: 60%;
+
+    @include respond(tab-port) {
+      left: 50%;
+    }
   }
 }
 

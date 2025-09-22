@@ -34,20 +34,19 @@ export class ShippingAddressForm{
   ngOnInit(): void {
     this.buildForm();
     this.shippingFields.get('country')?.valueChanges.subscribe(result=> {
-      console.log(result)
+      console.log(this.shippingFields.valid)
     })
   }
 
-  onPlaceOrder(){
-    const country = this.shippingFields.get('country')?.value;
-    const fullName = this.shippingFields.get('fullName')?.value;
-    const city = this.shippingFields.get('city')?.value;
-    const postalCode = this.shippingFields.get('postalCode')?.value;
-    const phone = this.shippingFields.get('phone')?.value;
-    const address = this.shippingFields.get('address')?.value;
 
-    const shippingAddress:ShippingAddress =
-       {country, fullName, city, postalCode, phone, address};
+  onPlaceOrder(){
+    if (this.shippingFields.invalid){
+      console.log('Hell of rom invalid');
+      this.shippingFields.markAllAsTouched();
+      return;
+    };
+    const {country, fullName, city, postalCode, phone, address} = this.shippingFields.value;
+    const shippingAddress:ShippingAddress = { country, fullName, city, postalCode, phone, address };
     this.checkoutService.setOrderIsPlaced(true);
     this.checkoutService.checkoutPayment(shippingAddress).subscribe();
   }
@@ -63,4 +62,7 @@ export class ShippingAddressForm{
     })
   }
 
+  get isValid():boolean{
+    return this.shippingFields.valid;
+  }
 }

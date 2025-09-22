@@ -14,33 +14,42 @@ export class AuthComponent implements OnInit {
   authType = signal<AuthType>(AuthType.GUEST) ;
   private authTypeSubscription!: Subscription;
   private formValidationSubscription!: Subscription;
-
+  private authSubscription!: Subscription;
+  private userIsAuthenticated: boolean = false;
   constructor(
     private authFormService: AuthFormService,
     private authService: AuthService,
   ){}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.subscribeToAuthType();
     this.subscribeToFormValidation();
+    this.subscribeToUserAuthenticated();
   }
 
   onSubmit(){
+    console.log("Hell fom submit")
     this.authFormService.setSubmitFormSubject('submit');
   }
 
   subscribeToFormValidation(){
     this.formValidationSubscription =
       this.authFormService.getAuthFormValidationStatus.subscribe(status => {
-        console.log(status, "heyy status");
         this.validForm.set(status);
       })
   }
   subscribeToAuthType(): void{
     this.authTypeSubscription =
       this.authService.getAuthType.subscribe((authType) => { this.authType.set(authType) })
+  }
+
+  subscribeToUserAuthenticated():void{
+    this.authSubscription = this.authService.userIsAuthenticated.subscribe(auth => {
+      if ((!auth && this.userIsAuthenticated) !== auth) {
+        this.userIsAuthenticated = auth;
+        this.authType.set(AuthType.LOGIN);
+      }
+    })
   }
 
   get switchTo(): string {
@@ -63,8 +72,12 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  get showAuthModal(): boolean {
+    return (this.authType() !== AuthType.GUEST) && (!this.userIsAuthenticated);
+  }
   ngOnDestroy(): void {
     this.authTypeSubscription?.unsubscribe();
     this.formValidationSubscription?.unsubscribe();
+    this.authSubscription?.unsubscribe();
   }
 }

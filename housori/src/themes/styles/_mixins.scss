@@ -6,6 +6,11 @@
   min-height: calc(100vh - 10rem);
   padding: var(--x-l-spacing);
   margin: auto;
+
+  @include respond(phone){
+    padding: var(--sm-spacing);
+    width: 98%;
+  };
 }
 
 // MEDIA QUERY MANGER

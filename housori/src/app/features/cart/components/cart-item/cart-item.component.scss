@@ -1,9 +1,10 @@
+@import '../../../../../themes/styles/mixins';
 @mixin pseudoStyle() {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: var(--color-tints);
+  background-color: var(--grey-3);
   transform: translate(-50%, -50%);
   transform-origin: center center;
   box-shadow: -2px 4px 2px rgba(0,0,0, 0.05);
@@ -12,29 +13,49 @@
 .cart-item {
   display: grid;
   grid-template-columns: 6fr 3fr 3fr;
-  gap: 2rem;
-  &__figure{
+
+  gap: var(--sm-spacing);
+  @include respond(tab-port) {
+    gap: var(--2xs-spacing);
+  }
+  &__figure {
     display: flex;
     gap: var(--sm-spacing);
     margin: 0;
     img {
-      width: 20rem;
-      height: 14rem;
+      width: 16rem;
+      height: 10rem;
       border-radius: 1rem;
+      @include respond(phone) {
+        height: 10rem;
+        width: 12rem;
+      }
     }
-    p{
-      font-size: var(--text-base);
-     }
+    figCaption {
+
+      .product-name {
+        font-weight: var(--font-medium);
+        color: var(--grey-2);
+        margin-bottom: var(--xs-spacing);
+        font-size: var(--text-xl);
+      }
+
+      .product-company {
+        font-size: var(--text-lg);
+      }
+    }
   }
 
-  &__adjust-btns{
+
+  &__adjust-btns {
     display: flex;
     justify-content: center;
     justify-items: center;
     margin-top: var(--sm-spacing);
     gap: var(--sm-spacing);
   }
-  &__plus, &__minus {
+  &__plus,
+  &__minus {
     border: none;
     background-color: transparent;
     position: relative;
@@ -44,11 +65,15 @@
   &__nb {
     font-size: var(--text-xl);
     align-self: center;
+    @include respond(phone) {
+      font-size: var(--text-sm);
+    }
   }
   &__plus {
     position: relative;
     width: 1.5rem;
     height: 1.5rem;
+
     &::before,
     &::after {
       @include pseudoStyle();
@@ -72,7 +97,18 @@
     &:active::after,
     &:active::before{
       transform: translate(-50%, -50%) scale(.9);
-      background-color: var(--color-tints);
+      background-color: var(--color-primary-tints);
+    }
+
+    @include respond(phone) {
+      width: 1rem;
+      height: 1rem;
+      &::before {
+        height: 0.3rem;
+      }
+      &::after {
+        width: 0.3rem; // vertical bar
+      }
     }
   }
 
@@ -91,10 +127,14 @@
     &:active::after {
       transform: translate(-50%, -50%) scale(0.95);
     }
+    @include respond(phone) {
+      width: 1rem;
+      height: 1rem;
+    }
   }
   &__title{
     text-align: center;
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
   }
   &__remove {
     border: none;
@@ -115,7 +155,10 @@
     }
   }
   &__price {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     text-align: right;
+    @include respond(tab-port) {
+      font-size: var(--text-sm);
+    }
   }
 }

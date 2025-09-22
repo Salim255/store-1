@@ -14,14 +14,34 @@
     &>section {
       flex: 1;
     }
+     p {
+        color: var(--grey-2);
+        font-size: var(--text-2xl);
+        font-weight: var(--font-medium);
+      }
+    .shipping-info {
+      app-shipping-address-form {
+        margin-top: var(--md-spacing);
+        display: inline-block;
+        width: 100%;
+      }
+    }
+    .order-details {
+      app-order-total {
+        margin-top: var(--md-spacing);
+        display: inline-block;
+        width: 100%;
+      }
+    }
+    @include respond(tab-port) {
+      flex-direction: column-reverse;
+    }
   }
 
   &__place-holder {
-    background-color: green;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-
   }
 }
